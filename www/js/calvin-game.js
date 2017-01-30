@@ -15,11 +15,14 @@ var Themes = {
                 id: "postBackground",
                 src: "hills.png",
                 marginX: 4,
+                marginY: 0,
                 count: 4
             },
             {
                 id: "preForeground",
                 src: "hedges.png",
+                marginX: 0,
+                marginY: 0,
                 count: 4
             },
             {
@@ -114,8 +117,8 @@ Game.prototype._initialise = function() {
         "frames": {
             "regX": 0,
             "regY": 0,
-            "width": bitmap.image.width,
-            "height": bitmap.image.height / themeItem.count,
+            "width": bitmap.image.width / themeItem.count,
+            "height": bitmap.image.height,
             "count": themeItem.count
         },
         "animations": {
@@ -129,14 +132,15 @@ Game.prototype._initialise = function() {
         j = Math.floor(Math.random() * themeItem.count) + 1;
         item = new createjs.Sprite(spriteSheet, "frame" + j);
         item.regX = themeItem.marginX;
-        item.width = bitmap.image.width - themeItem.marginX * 2;
-        item.height = bitmap.image.height / themeItem.count;
+        item.width = bitmap.image.width / themeItem.count;
+        item.height = bitmap.image.height;
         item.x =  item.width * i;
         item.y = (this.stageHeight / 2) - item.height * 15 / 16;
         this.cast.postBackgroundItems.push(item);
         this.stage.addChild(item);
     }
 
+    themeItem = this.theme.cast[this.themeIndex.preForeground];
     bitmap = new createjs.Bitmap(this.loader.getResult("preForeground"));
     spriteSheet = new createjs.SpriteSheet({
         framerate: 1,
@@ -144,7 +148,7 @@ Game.prototype._initialise = function() {
         "frames": {
             "regX": 0,
             "regY": 0,
-            "width": bitmap.image.width / 4,
+            "width": bitmap.image.width / themeItem.count,
             "height": bitmap.image.height,
             "count": 4
         },
@@ -156,10 +160,10 @@ Game.prototype._initialise = function() {
         }
     });
     for (i = 0; i < 4; i ++) {
-        j = Math.floor(Math.random() * 4) + 1;
+        j = Math.floor(Math.random() * themeItem.count) + 1;
         item = new createjs.Sprite(spriteSheet, "frame" + j);
-        item.width = bitmap.image.width / 4;
-        item.x =  bitmap.image.width / 4 * i;
+        item.width = bitmap.image.width / themeItem.count;
+        item.x =  bitmap.image.width / themeItem.count * i;
         item.y = (this.stageHeight * 5 / 8) - bitmap.image.height * 15 / 16;
         this.cast.preForegroundItems.push(item);
         this.stage.addChild(item);
@@ -177,7 +181,7 @@ Game.prototype.tick = function(event) {
 
     for (i = 0; i < this.cast.backgroundItems.length; i ++) {
         item = this.cast.backgroundItems[i];
-        item.x = item.x - deltaX * 5 * (i + 1);
+        item.x = item.x - deltaX * 4 * (i + 1);
         if (item.x + item.width < 0) {
             item.x = this.stageWidth;
             item.y = Math.random() * (this.stageHeight / 2 - item.height);
@@ -187,8 +191,8 @@ Game.prototype.tick = function(event) {
     for (i = 0; i < this.cast.postBackgroundItems.length; i ++) {
         item = this.cast.postBackgroundItems[i];
         item.x = item.x - deltaX * 10;
-        if (item.x + item.width < 0) {
-            item.x = (this.cast.postBackgroundItems.length - 1) * item.width;
+        if (item.x + item.width <= 0) {
+            item.x = item.x + (this.cast.postBackgroundItems.length) * item.width;
             j = Math.floor(Math.random() * 4) + 1;
             item.gotoAndPlay("frame" + j);
         }
@@ -197,8 +201,10 @@ Game.prototype.tick = function(event) {
     for (i = 0; i < this.cast.preForegroundItems.length; i ++) {
         item = this.cast.preForegroundItems[i];
         item.x = item.x - deltaX * 20;
-        if (item.x + item.width < 0) {
-            item.x = (this.cast.preForegroundItems.length - 1) * item.width;
+        if (item.x + item.width <= 0) {
+            console.log(item.x)
+            item.x = item.x + (this.cast.preForegroundItems.length) * item.width;
+            console.log(item.x)
             j = Math.floor(Math.random() * 4) + 1;
             item.gotoAndPlay("frame" + j);
         }

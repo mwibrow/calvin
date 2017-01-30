@@ -13,10 +13,10 @@
    inkscape:version="0.91 r13725"
    version="1.1"
    id="svg2"
-   viewBox="0 0 1024 136"
-   height="136"
-   width="1024"
-   inkscape:export-filename="/home/mwibrow/Pictures/art/art/hills.png"
+   viewBox="0 0 264 544"
+   height="544"
+   width="264"
+   inkscape:export-filename="/home/mwibrow/github/CALVin/www/img/game/themes/Bee/hills.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -66,11 +66,11 @@
      inkscape:window-width="1366"
      units="px"
      showgrid="true"
-     inkscape:current-layer="svg2"
+     inkscape:current-layer="layer3"
      inkscape:document-units="px"
-     inkscape:cy="149.36595"
-     inkscape:cx="554.78958"
-     inkscape:zoom="1.1593945"
+     inkscape:cy="447.6044"
+     inkscape:cx="101.81126"
+     inkscape:zoom="1.6347462"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -85,7 +85,11 @@
      inkscape:snap-intersection-paths="true"
      inkscape:object-nodes="true"
      inkscape:snap-smooth-nodes="true"
-     inkscape:snap-midpoints="true">
+     inkscape:snap-midpoints="true"
+     inkscape:snap-nodes="false"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-bbox-midpoints="false">
     <inkscape:grid
        type="xygrid"
        id="grid4136"
@@ -100,6 +104,26 @@
        type="xygrid"
        id="grid4138"
        empspacing="8" />
+    <sodipodi:guide
+       position="296,136"
+       orientation="0,1"
+       id="guide4839" />
+    <sodipodi:guide
+       position="72,272"
+       orientation="0,1"
+       id="guide4841" />
+    <sodipodi:guide
+       position="-24,408"
+       orientation="0,1"
+       id="guide4851" />
+    <sodipodi:guide
+       position="-24,544"
+       orientation="0,1"
+       id="guide4855" />
+    <sodipodi:guide
+       position="-24,0"
+       orientation="0,1"
+       id="guide4859" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -117,35 +141,46 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="background"
-     transform="translate(0,-120)" />
-  <g
-     inkscape:label="clouds"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-916.36219)"
-     style="opacity:1">
-    <circle
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       cy="1000.7825"
-       cx="134.48555"
-       id="circle6279"
-       style="display:inline;opacity:1;fill:#ff9800;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       r="0" />
+     transform="translate(0,288)"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <rect
+       style="opacity:1;fill:#2196f3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4843"
+       width="264"
+       height="136"
+       x="-7.9936058e-15"
+       y="120" />
+    <rect
+       y="-16"
+       x="0"
+       height="136"
+       width="264"
+       id="rect4847"
+       style="opacity:1;fill:#2196f3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <rect
+       style="opacity:1;fill:#2196f3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4849"
+       width="264"
+       height="136"
+       x="2.4980018e-16"
+       y="-152" />
+    <rect
+       y="-288"
+       x="2.4980018e-16"
+       height="136"
+       width="264"
+       id="rect4853"
+       style="opacity:1;fill:#2196f3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="forest"
-     transform="translate(0,-120)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="hedge"
-     transform="translate(0,-120)" />
+     transform="translate(0,288)" />
   <path
      style="opacity:1;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 0,136 256,0 0,-72 C 192,64 192,96 128,96 64,96 64,64 0,64 Z"
+     d="m 0,408 264,0 0,-72 c -64,0 -68,32 -132,32 C 68,368 64,336 0,336 Z"
      id="rect4169"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cccscc" />
@@ -153,11 +188,14 @@
      sodipodi:nodetypes="cccscc"
      inkscape:connector-curvature="0"
      id="path4181"
-     d="m 256,136 256,0 0,-72 c -64,0 -64,64 -128,64 -64,0 -64,-64 -128,-64 z"
-     style="opacity:1;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+     d="m 0,544 264,0 0,-72 c -64,0 -68,64 -132,64 C 68,536 64,472 0,472 Z"
+     style="opacity:1;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     inkscape:export-filename="/home/mwibrow/github/CALVin/www/img/game/themes/Bee/hills.png"
+     inkscape:export-xdpi="90"
+     inkscape:export-ydpi="90" />
   <path
      style="opacity:1;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     d="m 768,136 -256,0 0,-72 c 64,0 64,-32 128,-32 64,0 64,32 128,32 z"
+     d="M 264,272 0,272 0,200 c 64,0 68,-32 132,-32 64,0 68,32 132,32 z"
      id="path4183"
      inkscape:connector-curvature="0"
      sodipodi:nodetypes="cccscc" />
@@ -165,6 +203,6 @@
      sodipodi:nodetypes="cccscc"
      inkscape:connector-curvature="0"
      id="path4187"
-     d="m 1024,136 -256,0 0,-72 c 64,0 64,-64 128,-64 64,0 64,64 128,64 z"
+     d="M 264,136 0,136 0,64 C 64,64 68,0 132,0 c 64,0 68,64 132,64 z"
      style="opacity:1;fill:#4caf50;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
 </svg>
