@@ -30,7 +30,11 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    <!-- <script src="js/lib/preloadjs-0.6.2.min.js"></script> -->
+    <script src="js/lib/createjs-2015.11.26.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/calvin-game.js"></script>
+
   </head>
   <body ng-app="starter">
 
@@ -39,6 +43,9 @@
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
       <ion-content>
+          <div>
+              <canvas id="game" width="768" height="512"></canvas>
+          </div>
       </ion-content>
     </ion-pane>
   </body>

@@ -20,5 +20,7 @@ angular.module('starter', ['ionic'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    game = new Game("game", {theme: "Bee"});
+    game.initialise();
   });
 })
