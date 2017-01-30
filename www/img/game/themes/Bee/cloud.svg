@@ -16,7 +16,7 @@
    viewBox="0 0 240 128"
    height="128"
    width="240"
-   inkscape:export-filename="/home/mwibrow/Pictures/art/art/cloud.png"
+   inkscape:export-filename="/home/mwibrow/github/CALVin/www/img/game/themes/Bee/cloud.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -68,9 +68,9 @@
      showgrid="true"
      inkscape:current-layer="svg2"
      inkscape:document-units="px"
-     inkscape:cy="-47.98341"
-     inkscape:cx="48.500475"
-     inkscape:zoom="0.71776814"
+     inkscape:cy="61.134696"
+     inkscape:cx="196.44771"
+     inkscape:zoom="1.4269948"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -125,7 +125,17 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="background"
-     transform="translate(-256,-95.999993)" />
+     transform="translate(-256,-95.999993)"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <rect
+       style="opacity:1;fill:#2196f3;fill-opacity:1;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4264"
+       width="240"
+       height="128"
+       x="256"
+       y="96" />
+  </g>
   <g
      inkscape:label="clouds"
      inkscape:groupmode="layer"
@@ -141,63 +151,10 @@
        style="display:inline;opacity:1;fill:#ff9800;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        r="0" />
   </g>
-  <g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="forest"
-     transform="translate(-256,-95.999993)" />
-  <g
-     inkscape:groupmode="layer"
-     id="layer4"
-     inkscape:label="hedge"
-     transform="translate(-256,-95.999993)" />
-  <g
-     style="display:inline;opacity:1"
-     id="g5021"
-     transform="translate(-256,-540.36218)">
-    <circle
-       r="32"
-       cy="636.36218"
-       cx="288"
-       id="path5005"
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <circle
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle5009"
-       cx="320"
-       cy="588.36218"
-       r="32" />
-    <circle
-       r="32"
-       cy="572.36218"
-       cx="368"
-       id="circle5011"
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <circle
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="circle5013"
-       cx="416"
-       cy="604.36218"
-       r="32" />
-    <circle
-       r="32"
-       cy="636.36218"
-       cx="464"
-       id="circle5015"
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       y="588.36218"
-       x="296"
-       height="80"
-       width="120"
-       id="rect5017"
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <rect
-       y="620.36218"
-       x="416"
-       height="48"
-       width="48"
-       id="rect5019"
-       style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-  </g>
+  <path
+     style="opacity:1;fill:#b2ebf2;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="M 112,0 C 98.410322,0.0164138 86.313239,8.6144508 81.830078,21.443359 76.558684,17.899517 70.35188,16.004637 64,16 46.326888,16 32,30.326888 32,48 c 0.01237,5.763852 1.581284,11.41736 4.541016,16.363281 C 35.037897,64.134461 33.52038,64.01306 32,64 14.326888,64 0,78.326888 0,96 c 0,17.67311 14.326888,32 32,32 58.666667,0 117.33333,0 176,0 17.67311,0 32,-14.32689 32,-32 0,-17.673112 -14.32689,-32 -32,-32 -5.76385,0.01237 -11.41736,1.581284 -16.36328,4.541016 C 191.86554,67.037897 191.98694,65.52038 192,64 192,46.326888 177.67311,32 160,32 c -5.76385,0.01237 -11.41736,1.581284 -16.36328,4.541016 C 143.86554,35.037897 143.98694,33.52038 144,32 144,14.326888 129.67311,0 112,0 Z"
+     id="path5005"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="ccccccsccsccccccc" />
 </svg>

@@ -14,6 +14,7 @@ var Themes = {
             {
                 id: "postBackground",
                 src: "hills.png",
+                marginX: 4,
                 count: 4
             },
             {
@@ -52,6 +53,7 @@ function Game(canvasId, properties) {
 
 Game.prototype.initialise = function() {
     this.theme = Themes[this.properties.theme];
+    this.themeIndex = {};
     this.cast = {
         background: null,
         backgroundItems: [],
@@ -65,6 +67,7 @@ Game.prototype.initialise = function() {
     for (var i = 0; i < this.theme.cast.length; i ++) {
         this.manifest.push({src: this.theme.cast[i].src,
                             id: this.theme.cast[i].id});
+        this.themeIndex[this.theme.cast[i].id] = i;
     }
 
     var that = this;
@@ -75,7 +78,7 @@ Game.prototype.initialise = function() {
 }
 
 Game.prototype._initialise = function() {
-    var i, j, bitmap, item, spritesheet, scaleX, scaleY;
+    var i, j, bitmap, item, themeItem, spritesheet, scaleX, scaleY;
 
     // Background
     this.cast.background = new createjs.Shape();
@@ -97,12 +100,13 @@ Game.prototype._initialise = function() {
             1, 1);
         bitmap.width = bitmap.image.width;
         bitmap.height = bitmap.image.height;
-        bitmap.alpha = 1 - i / 2;
+        bitmap.alpha = 0.5 +  i / 2;
         this.cast.backgroundItems.push(bitmap);
         this.stage.addChild(bitmap);
     }
 
     // Post-background
+    themeItem = this.theme.cast[this.themeIndex.postBackground];
     bitmap = new createjs.Bitmap(this.loader.getResult("postBackground"));
     spriteSheet = new createjs.SpriteSheet({
         framerate: 1,
@@ -110,9 +114,9 @@ Game.prototype._initialise = function() {
         "frames": {
             "regX": 0,
             "regY": 0,
-            "width": bitmap.image.width / 4,
-            "height": bitmap.image.height,
-            "count": 4
+            "width": bitmap.image.width,
+            "height": bitmap.image.height / themeItem.count,
+            "count": themeItem.count
         },
         "animations": {
             "frame1": [0, 0, "frame1"],
@@ -122,11 +126,13 @@ Game.prototype._initialise = function() {
         }
     });
     for (i = 0; i < 4; i ++) {
-        j = Math.floor(Math.random() * 4) + 1;
+        j = Math.floor(Math.random() * themeItem.count) + 1;
         item = new createjs.Sprite(spriteSheet, "frame" + j);
-        item.width = bitmap.image.width / 4;
-        item.x =  bitmap.image.width / 4 * i;
-        item.y = (this.stageHeight / 2) - bitmap.image.height * 15 / 16;
+        item.regX = themeItem.marginX;
+        item.width = bitmap.image.width - themeItem.marginX * 2;
+        item.height = bitmap.image.height / themeItem.count;
+        item.x =  item.width * i;
+        item.y = (this.stageHeight / 2) - item.height * 15 / 16;
         this.cast.postBackgroundItems.push(item);
         this.stage.addChild(item);
     }
