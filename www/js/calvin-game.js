@@ -47,7 +47,11 @@ function Game(canvasId, properties) {
             this.properties[property] = properties[property];
         }
     }
+    createjs.Stage.prototype.snapToPixel = true;
+
+
     this.stage = new createjs.Stage(canvasId);
+    this.stage.snapToPixelEnabled = true;
     this.stageWidth = this.stage.canvas.width;
     this.stageHeight = this.stage.canvas.height;
 
@@ -81,7 +85,7 @@ Game.prototype.initialise = function() {
 }
 
 Game.prototype._initialise = function() {
-    var i, j, bitmap, item, themeItem, spritesheet, scaleX, scaleY;
+    var i, j, k, bitmap, item, themeItem, spritesheet, scaleX, scaleY;
 
     // Background
     this.cast.background = new createjs.Shape();
@@ -128,7 +132,10 @@ Game.prototype._initialise = function() {
             "frame4": [3, 3, "frame4"]
         }
     });
-    for (i = 0; i < 4; i ++) {
+
+    var k = Math.floor(this.stage.canvas.width / bitmap.image.width * themeItem.count) + 2;
+    console.log(k);
+    for (i = 0; i < k; i ++) {
         j = Math.floor(Math.random() * themeItem.count) + 1;
         item = new createjs.Sprite(spriteSheet, "frame" + j);
         item.regX = themeItem.marginX;
