@@ -14,9 +14,7 @@ var Themes = {
             {
                 id: "postBackground",
                 src: "hills.png",
-                marginX: 4,
-                marginY: 0,
-                count: 4
+                frameCount: 4
             },
             {
                 id: "preForeground",
@@ -121,7 +119,7 @@ Game.prototype._initialise = function() {
         "frames": {
             "regX": 0,
             "regY": 0,
-            "width": bitmap.image.width / themeItem.count,
+            "width": bitmap.image.width / themeItem.frameCount,
             "height": bitmap.image.height,
             "count": themeItem.count
         },
@@ -133,13 +131,11 @@ Game.prototype._initialise = function() {
         }
     });
 
-    var k = Math.floor(this.stage.canvas.width / bitmap.image.width * themeItem.count) + 2;
-    console.log(k);
+    var k = Math.floor(this.stage.canvas.width / bitmap.image.width * themeItem.frameCount) + 2;
     for (i = 0; i < k; i ++) {
-        j = Math.floor(Math.random() * themeItem.count) + 1;
+        j = Math.floor(Math.random() * themeItem.frameCount) + 1;
         item = new createjs.Sprite(spriteSheet, "frame" + j);
-        item.regX = themeItem.marginX;
-        item.width = bitmap.image.width / themeItem.count;
+        item.width = bitmap.image.width / themeItem.frameCount;
         item.height = bitmap.image.height;
         item.x =  item.width * i;
         item.y = (this.stageHeight / 2) - item.height * 15 / 16;
