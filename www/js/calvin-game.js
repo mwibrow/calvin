@@ -102,7 +102,7 @@ Game.prototype._initialise = function() {
         bitmap.setTransform(
             Math.random() * (this.stageWidth - bitmap.image.width),
             Math.random() * (this.stageHeight / 2 - bitmap.image.height),
-            1, 1);
+            1 - i / 2, 1 - i / 2);
         bitmap.width = bitmap.image.width;
         bitmap.height = bitmap.image.height;
         bitmap.alpha = 0.5 +  i / 2;
@@ -205,9 +205,7 @@ Game.prototype.tick = function(event) {
         item = this.cast.preForegroundItems[i];
         item.x = item.x - deltaX * 20;
         if (item.x + item.width <= 0) {
-            console.log(item.x)
             item.x = item.x + (this.cast.preForegroundItems.length) * item.width;
-            console.log(item.x)
             j = Math.floor(Math.random() * 4) + 1;
             item.gotoAndPlay("frame" + j);
         }
