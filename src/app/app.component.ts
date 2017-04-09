@@ -28,7 +28,7 @@ export class CALVinApp {
       public sharedData: SharedData) {
     this.initialiseApp();
     this.pages = [
-      { title: 'CALVin', component: HomePage },
+      { title: 'Home', component: HomePage },
       { title: 'Select speaker', component: SelectSpeakerPage },
       { title: 'Word trainer', component: WordTrainerPage }
     ];
