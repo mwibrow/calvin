@@ -11,37 +11,38 @@ export class SharedData {
     avatarImageSrc: string,
   }>;
   constructor() {
+    var speakerPath: string = 'assets/images/speakers/'
     this.currentSpeakerIndex = 1;
     this.speakers = [
       {
         name: 'Ali',
         realName: 'Ali',
-        avatarImageSrc: 'assets/images/ali.png'
+        avatarImageSrc: speakerPath + 'ali.png'
       },
       {
         name: 'Calvin',
         realName: 'Calvin',
-        avatarImageSrc: 'assets/images/calvin.png'
+        avatarImageSrc: speakerPath + 'calvin.png'
       },
       {
         name: 'Jami',
         realName: 'Jami',
-        avatarImageSrc: 'assets/images/jami.png'
+        avatarImageSrc: speakerPath + 'jami.png'
       },
       {
         name: 'Leyla',
         realName: 'Layla',
-        avatarImageSrc: 'assets/images/leyla.png'
+        avatarImageSrc: speakerPath + 'leyla.png'
       },
       {
         name: 'Mavi',
         realName: 'Mavi',
-        avatarImageSrc: 'assets/images/mavi.png'
+        avatarImageSrc: speakerPath + 'mavi.png'
       },
       {
         name: 'Noor',
         realName: 'Noor',
-        avatarImageSrc: 'assets/images/noor.png'
+        avatarImageSrc: speakerPath + 'noor.png'
       }
     ];
   }
