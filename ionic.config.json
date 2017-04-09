@@ -1,5 +1,6 @@
 {
   "name": "CALVin",
   "app_id": "",
-  "defaultBrowser": "chrome"
+  "v2": true,
+  "typescript": true
 }
