@@ -26,5 +26,16 @@ ion-avatar {
   }
 }
 
+.scroll-bar-indicator
+{
+	display: none;
+}
+
+.no-scroll .scroll-content{
+         overflow: hidden;
+    }
+
+
+
 }
 

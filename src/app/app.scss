@@ -26,6 +26,17 @@ ion-title, .calvin-title {
     font-size: 150%;
 }
 
+.scroll-bar-indicator
+{
+	display: none;
+}
+
+.no-scroll .scroll-content{
+         overflow: hidden;
+    }
+
+
+
 
 
 
