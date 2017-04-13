@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { SharedData } from '../../providers/shared-data'
+import { AppData } from '../../providers/app-data'
 
 @Component({
   selector: 'page-select-speaker',
@@ -17,7 +17,7 @@ export class SelectSpeakerPage {
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public sharedData: SharedData ) {
+    public appData: AppData ) {
 
     this.setupSpeakers();
   }
@@ -25,12 +25,12 @@ export class SelectSpeakerPage {
   setupSpeakers() {
     var name: string;
     this.slideData = [];
-    for(let i = 0; i < this.sharedData.speakers.length; i++) {
-      name = this.sharedData.speakers[i].name.replace(/\b\w/g, l => l.toUpperCase());
+    for(let i = 0; i < this.appData.speakers.length; i++) {
+      name = this.appData.speakers[i].name.replace(/\b\w/g, l => l.toUpperCase());
       this.slideData.push({
         title: name,
         index: i,
-        icon: this.sharedData.speakers[i].avatarImageSrc
+        icon: this.appData.speakers[i].avatarImageSrc
       })
     }
   }
@@ -39,7 +39,7 @@ export class SelectSpeakerPage {
   }
 
   selectSpeaker(index: number) {
-    this.sharedData.currentSpeakerIndex = index;
+    this.appData.currentSpeakerIndex = index;
   }
 
 }

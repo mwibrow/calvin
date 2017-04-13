@@ -3,7 +3,7 @@ import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { SharedData } from '../providers/shared-data';
+import { AppData } from '../providers/app-data';
 
 import { HomePage } from '../pages/home/home';
 import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
@@ -12,7 +12,7 @@ import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [SharedData]
+  providers: [AppData]
 })
 export class CALVinApp {
   @ViewChild(Nav) nav: Nav;
@@ -25,7 +25,7 @@ export class CALVinApp {
       public menu: MenuController,
       public statusBar: StatusBar,
       public splashScreen: SplashScreen,
-      public sharedData: SharedData) {
+      public appData: AppData) {
     this.initialiseApp();
     this.pages = [
       { title: 'Home', component: HomePage },

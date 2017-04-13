@@ -80,3 +80,9 @@ $colors: (
 @import '../assets/fonts/Roboto/Roboto-Regular.ttf';
 
 
+@font-face {
+    font-family: 'Crafty Girls';
+    src: url('../assets/fonts/crafty_girls/CraftyGirls.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
