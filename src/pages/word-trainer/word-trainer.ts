@@ -3,6 +3,7 @@ import { ModalController, NavController, NavParams, ViewController } from 'ionic
 
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
+import { SpeakerModal } from '../speaker-modal/speaker-modal';
 import { VowelGroupModal } from '../vowel-group-modal/vowel-group-modal';
 @Component({
   selector: 'page-word-trainer',
@@ -30,6 +31,22 @@ export class WordTrainerPage {
       modal.onDidDismiss(data => {
         if (data.hasOwnProperty('vowelGroupIndex')) {
           this.appData.vowelGroupIndex = data.vowelGroupIndex;
+        }
+    });
+    modal.present();
+
+  }
+
+  selectSpeaker() {
+    let modal = this.modalCtrl.create(SpeakerModal,
+      {
+        currentSpeakerIndex: this.appData.currentSpeakerIndex,
+        speakers: this.appData.speakers
+      },
+      { enableBackdropDismiss: false });
+      modal.onDidDismiss(data => {
+        if (data.hasOwnProperty('currentSpeakerIndex')) {
+          this.appData.currentSpeakerIndex = data.currentSpeakerIndex;
         }
     });
     modal.present();

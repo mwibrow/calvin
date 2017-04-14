@@ -11,6 +11,7 @@ import { HomePage } from '../pages/home/home';
 import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
 import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
+import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
     HomePage,
     SelectSpeakerPage,
     WordTrainerPage,
+    SpeakerModal,
     VowelGroupModal
   ],
   imports: [
@@ -30,6 +32,7 @@ import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
     HomePage,
     SelectSpeakerPage,
     WordTrainerPage,
+    SpeakerModal,
     VowelGroupModal
   ],
   providers: [

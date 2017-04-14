@@ -9,15 +9,17 @@
   <ion-navbar>
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
-      </button>
+    </button>
     <ion-title><span class="calvin-title">Word Trainer</span></ion-title>
-<ion-buttons end>
-  <button ion-button (click)="selectVowelGroup()">
-   <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
-    <span>&nbsp;</span>
-    <ion-icon name="arrow-dropdown"></ion-icon>
-  </button>
-</ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="selectVowelGroup()" class="vowel-group-button">
+        <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
+        <span>&nbsp;</span>
+        <ion-icon name="arrow-dropdown"></ion-icon>
+      </button>
+
+
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -25,6 +27,14 @@
 
 <ion-content padding class="no-scroll">
 
+<ion-fab top right edge>
+ <button ion-fab  color="light" large (click)="selectSpeaker()">
+  <ion-avatar>
+        <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
+      </ion-avatar>
+ </button>
+
+  </ion-fab>
 <ion-grid>
   <ion-row align-items-end>
     <ion-col col-4 offset-1>
@@ -55,14 +65,7 @@
   </ion-row>
 </ion-grid>
 
-<!--<ion-fab top right>
- <button ion-fab large><ion-icon name="cog"></ion-icon></button>
-    <ion-fab-list side="down">
-      <button ion-fab large><ion-icon name="image"></ion-icon></button>
-      <button ion-fab large><ion-icon name="film"></ion-icon></button>
-      <button ion-fab large><ion-icon name="walk"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>-->
+
 
 <ion-fab bottom left>
  <button ion-fab large><ion-icon name="arrow-dropright"></ion-icon></button>

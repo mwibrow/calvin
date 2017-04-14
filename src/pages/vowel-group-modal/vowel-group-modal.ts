@@ -4,7 +4,7 @@ import { NavParams, ViewController } from 'ionic-angular';
 import { WordLists } from '../../providers/word-lists';
 
 @Component({
-  selector: 'vowel-group-modal',
+  selector: 'page-vowel-group-modal',
   templateUrl: 'vowel-group-modal.html',
 })
 export class VowelGroupModal {
