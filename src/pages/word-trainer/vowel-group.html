@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Select vowel group
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let group of vowelGroups" (click)="setVowelGroup(group.index)">
+      <p></p>
+      <h2>{{group.title}}
+          <span>&nbsp;</span>
+          <ion-icon *ngIf="group.index === vowelGroupIndex"
+            name="checkmark-circle" class="check-mark-circle">
+          </ion-icon></h2>
+      <p>{{group.hvds}}</p>
+
+      </ion-item>
+  </ion-list>
+ <ion-buttons end>
+     <button ion-button color="secondary" (click)="cancel()">
+         Cancel
+     </button>
+    <button ion-button (click)="ok()">
+        OK
+</button>
+ </ion-buttons>
+</ion-content>

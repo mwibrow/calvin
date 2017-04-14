@@ -11,6 +11,13 @@
         <ion-icon name="menu"></ion-icon>
       </button>
     <ion-title><span class="calvin-title">Word Trainer</span></ion-title>
+<ion-buttons end>
+  <button ion-button (click)="selectVowelGroup()">
+   <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
+    <span>&nbsp;</span>
+    <ion-icon name="arrow-dropdown"></ion-icon>
+  </button>
+</ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -19,9 +26,8 @@
 <ion-content padding class="no-scroll">
 
 <ion-grid>
-  <ion-row>
+  <ion-row align-items-end>
     <ion-col col-4 offset-1>
-      <div>
       <ion-slides>
         <ion-slide>
           <div text-center>
@@ -39,7 +45,6 @@
           </span>
         </ion-slide>
       </ion-slides>
-      </div>
     </ion-col>
 
     <ion-col col-5 offset-1>

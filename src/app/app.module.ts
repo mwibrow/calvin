@@ -5,17 +5,20 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { AppData } from '../providers/app-data'
+import { WordLists } from '../providers/word-lists'
 import { CALVinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
+import { VowelGroupModal } from '../pages/word-trainer/word-trainer';
 
 @NgModule({
   declarations: [
     CALVinApp,
     HomePage,
     SelectSpeakerPage,
-    WordTrainerPage
+    WordTrainerPage,
+    VowelGroupModal
   ],
   imports: [
     BrowserModule,
@@ -26,13 +29,15 @@ import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
     CALVinApp,
     HomePage,
     SelectSpeakerPage,
-    WordTrainerPage
+    WordTrainerPage,
+    VowelGroupModal
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AppData
+    AppData,
+    WordLists
   ]
 })
 export class AppModule {}

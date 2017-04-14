@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { WordLists } from 'word-lists'
+
 @Injectable()
 export class AppData {
 
@@ -10,6 +12,7 @@ export class AppData {
     realName: string,
     avatarImageSrc: string,
   }>;
+  vowelGroupIndex: number;
   constructor() {
     var speakerPath: string = 'assets/images/speakers/'
     this.currentSpeakerIndex = 1;
@@ -45,6 +48,7 @@ export class AppData {
         avatarImageSrc: speakerPath + 'noor.png'
       }
     ];
+    this.vowelGroupIndex = 0;
   }
 
 }

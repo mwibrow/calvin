@@ -16,7 +16,7 @@
 
 <ion-content padding class="no-scroll">
   <ion-list>
-    <ion-item *ngFor="let slide of slideData">
+    <ion-item *ngFor="let slide of slideData" (click)="selectSpeaker(slide.index)">
       <ion-avatar item-left>
         <img id="img{{slide.index}}" src="{{slide.icon}}">
         <ion-icon
@@ -27,7 +27,6 @@
       <h2>{{slide.title}}</h2>
       <p></p>
 
-      <button ion-button strong item-right (click)="selectSpeaker(slide.index)">Select</button>
       </ion-item>
   </ion-list>
 </ion-content>
