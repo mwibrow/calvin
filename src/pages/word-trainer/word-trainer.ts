@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalController, NavController, NavParams, ViewController } from 'ionic-angular';
 
-import { AppData } from '../../providers/app-data'
-import { WordLists } from '../../providers/word-lists'
-
+import { AppData } from '../../providers/app-data';
+import { WordLists } from '../../providers/word-lists';
+import { VowelGroupModal } from '../vowel-group-modal/vowel-group-modal';
 @Component({
   selector: 'page-word-trainer',
   templateUrl: 'word-trainer.html',
@@ -38,46 +38,3 @@ export class WordTrainerPage {
 
 }
 
-@Component({
-  selector: 'vowel-group-modal',
-  templateUrl: 'vowel-group.html',
-})
-export class VowelGroupModal {
-
-  vowelGroups: Array<{
-    index: number,
-    title: string,
-    hvds: string
-  }>;
-  vowelGroupIndex: number;
-  constructor(
-    public viewCtrl: ViewController,
-    public wordLists: WordLists,
-    public navParams:NavParams
-  ) {
-    this.vowelGroupIndex = navParams.data.vowelGroupIndex;
-    var i: number;
-    this.vowelGroups = [];
-    for (i = 0; i < wordLists.vowelGroups.length; i++) {
-      this.vowelGroups.push({
-        index: i,
-        title: wordLists.vowelGroups[i].title,
-        hvds: wordLists.vowelGroups[i].hvds.join(' ')
-      })
-    }
-  }
-
-  setVowelGroup(index) {
-    this.vowelGroupIndex = index;
-  }
-
- ok() {
-   let data = { vowelGroupIndex : this.vowelGroupIndex };
-   this.viewCtrl.dismiss(data);
- }
- cancel() {
-   let data = { };
-   this.viewCtrl.dismiss(data);
- }
-
-}

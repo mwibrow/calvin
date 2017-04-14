@@ -10,7 +10,7 @@ import { CALVinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
-import { VowelGroupModal } from '../pages/word-trainer/word-trainer';
+import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
 
 @NgModule({
   declarations: [
