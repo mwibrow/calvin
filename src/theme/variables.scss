@@ -78,11 +78,19 @@ $colors: (
 @import "noto-sans";
 @import '../assets/fonts/crafty_girls/CraftyGirls.ttf';
 @import '../assets/fonts/Roboto/Roboto-Regular.ttf';
+@import '../assets/fonts/DoulosSIL/DoulosSIL-R.ttf';
 
 
 @font-face {
     font-family: 'Crafty Girls';
     src: url('../assets/fonts/crafty_girls/CraftyGirls.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DoulosSIL';
+    src: url('../assets/fonts/DoulosSIL/DoulosSIL-R.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

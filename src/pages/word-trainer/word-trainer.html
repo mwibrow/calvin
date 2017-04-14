@@ -12,11 +12,11 @@
     </button>
     <ion-title><span class="calvin-title">Word Trainer</span></ion-title>
     <ion-buttons end>
-      <button ion-button (click)="selectVowelGroup()" class="vowel-group-button">
+      <!--<button ion-button (click)="selectVowelGroup()" class="vowel-group-button">
         <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
         <span>&nbsp;</span>
         <ion-icon name="arrow-dropdown"></ion-icon>
-      </button>
+      </button>-->
 
 
     </ion-buttons>
@@ -27,14 +27,27 @@
 
 <ion-content padding class="no-scroll">
 
-<ion-fab top right edge>
+
+<ion-fab top right edge  #fab>
+ <button ion-fab large><ion-icon name="settings"></ion-icon></button>
+    <ion-fab-list side="down">
+      <button ion-fab large (click)="selectVowelGroup(fab)">
+        <span class="ipa">/i:/</span>
+      </button>
+      <button ion-fab large (click)="selectSpeaker(fab)">
+        <ion-icon name="contacts"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+
+<!--<ion-fab top right edge>
  <button ion-fab  color="light" large (click)="selectSpeaker()">
   <ion-avatar>
         <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
       </ion-avatar>
  </button>
 
-  </ion-fab>
+  </ion-fab>-->
 <ion-grid>
   <ion-row align-items-end>
     <ion-col col-4 offset-1>

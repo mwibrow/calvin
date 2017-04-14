@@ -22,7 +22,7 @@ ion-button ion-content {
 }
 
 ion-title, .calvin-title {
-    font-family: 'Crafty Girls', cursive;
+    font-family: 'Crafty Girls', cursive !important;
     font-size: 150%;
 }
 
@@ -37,6 +37,10 @@ ion-title, .calvin-title {
 
 .check-mark-circle {
     color: #40c040;
+}
+
+.ipa {
+    font-family: 'DoulosSIL' !important;
 }
 
 

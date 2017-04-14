@@ -3,6 +3,18 @@
     <ion-title>
       Select speaker
     </ion-title>
+
+     <ion-buttons start>
+     <button ion-button icon-only (click)="cancel()">
+         <ion-icon name="close"></ion-icon>
+     </button>
+  </ion-buttons>
+  <ion-buttons end>
+      <button ion-button icon-only (click)="ok()">
+         <ion-icon name="checkmark"></ion-icon>
+  </button>
+ </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
@@ -10,23 +22,19 @@
     <ion-item *ngFor="let speaker of speakers" (click)="setSpeaker(speaker.index)">
        <ion-avatar item-left>
         <img id="img{{speaker.index}}" src="{{speaker.icon}}">
+
+      </ion-avatar>
+      <p><p>
+      <h2>{{speaker.title}}
+        <span>&nbsp;</span>
         <ion-icon
         *ngIf="speaker.index === currentSpeakerIndex"
         name="checkmark-circle" class="check-mark-circle"> </ion-icon>
-      </ion-avatar>
-      <p><p>
-      <h2>{{speaker.title}}</h2>
+      </h2>
       <p></p>
 
 
       </ion-item>
   </ion-list>
- <ion-buttons end>
-     <button ion-button color="secondary" (click)="cancel()">
-         Cancel
-     </button>
-    <button ion-button (click)="ok()">
-        OK
-</button>
- </ion-buttons>
+
 </ion-content>

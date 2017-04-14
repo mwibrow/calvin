@@ -29,7 +29,6 @@ export class CALVinApp {
     this.initialiseApp();
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Select speaker', component: SelectSpeakerPage },
       { title: 'Word trainer', component: WordTrainerPage }
     ];
   }
