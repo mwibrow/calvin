@@ -12,6 +12,8 @@ import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
 import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
 import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
+import { HvdTab } from '../pages/hvd-tab/hvd-tab';
+import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
     SelectSpeakerPage,
     WordTrainerPage,
     SpeakerModal,
-    VowelGroupModal
+    VowelGroupModal,
+    HvdTab,
+    KeywordTab
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
     SelectSpeakerPage,
     WordTrainerPage,
     SpeakerModal,
-    VowelGroupModal
+    VowelGroupModal,
+    HvdTab,
+    KeywordTab
   ],
   providers: [
     StatusBar,

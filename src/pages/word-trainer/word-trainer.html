@@ -40,6 +40,13 @@
     </ion-fab-list>
   </ion-fab>
 
+<ion-tabs>
+  <ion-tab tabTitle="HVDs" [root]="hvdTab"></ion-tab>
+   <ion-tab tabTitle="Keywords"[root]="keywordTab"></ion-tab>
+
+
+    </ion-tabs>
+
 <!--<ion-fab top right edge>
  <button ion-fab  color="light" large (click)="selectSpeaker()">
   <ion-avatar>
@@ -48,7 +55,7 @@
  </button>
 
   </ion-fab>-->
-<ion-grid>
+<!--<ion-grid>
   <ion-row align-items-end>
     <ion-col col-4 offset-1>
       <ion-slides>
@@ -101,5 +108,5 @@
        <button ion-fab large><ion-icon name="recording"></ion-icon></button>
 
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab>-->
 </ion-content>

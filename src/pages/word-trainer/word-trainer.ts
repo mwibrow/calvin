@@ -5,11 +5,17 @@ import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
 import { SpeakerModal } from '../speaker-modal/speaker-modal';
 import { VowelGroupModal } from '../vowel-group-modal/vowel-group-modal';
+import { HvdTab } from '../hvd-tab/hvd-tab'
+import { KeywordTab } from '../keyword-tab/keyword-tab'
+
 @Component({
   selector: 'page-word-trainer',
   templateUrl: 'word-trainer.html',
 })
 export class WordTrainerPage {
+
+  hvdTab: any;
+  keywordTab: any;
 
   constructor(
     public navCtrl: NavController,
@@ -17,6 +23,9 @@ export class WordTrainerPage {
     public modalCtrl: ModalController,
     public appData: AppData,
     public wordLists: WordLists) {
+
+      this.hvdTab = HvdTab;
+      this.keywordTab = KeywordTab;
 
   }
 
