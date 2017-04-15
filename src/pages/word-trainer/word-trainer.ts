@@ -33,8 +33,10 @@ export class WordTrainerPage {
     console.log('ionViewDidLoad WordTrainer');
   }
 
-  selectVowelGroup(fab) {
-    fab.close();
+  selectVowelGroup(fab: any) {
+    if (fab) {
+      fab.close();
+    }
     let modal = this.modalCtrl.create(VowelGroupModal,
       { vowelGroupIndex: this.appData.vowelGroupIndex },
       { enableBackdropDismiss: false });
@@ -47,8 +49,10 @@ export class WordTrainerPage {
 
   }
 
-  selectSpeaker(fab) {
-    fab.close();
+  selectSpeaker(fab: any) {
+    if (fab) {
+      fab.close();
+    }
     let modal = this.modalCtrl.create(SpeakerModal,
       {
         currentSpeakerIndex: this.appData.currentSpeakerIndex,

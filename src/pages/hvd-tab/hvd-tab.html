@@ -1,12 +1,26 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{wordLists.vowelGroups[appData.vowelGroupIndex].title}}</ion-title>
+
+
+    <ion-title>
+ {{wordLists.vowelGroups[appData.vowelGroupIndex].title}} vowels</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-TAB1
+<ion-content>
+<ion-card *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds">
+
+  <ion-card-header>
+    {{ hvd }}
+  </ion-card-header>
+
+  <ion-card-content>
+    <!-- Add card content here! -->
+  </ion-card-content>
+
+</ion-card>
+
 </ion-content>

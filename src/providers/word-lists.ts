@@ -79,7 +79,7 @@ export class WordLists {
       },
       {
         id: 'diphthongs',
-        title: 'Diphthongs',
+        title: 'Diphthong',
         hvds: [ 'hayed', 'hide' ],
         keywords: [
           {
