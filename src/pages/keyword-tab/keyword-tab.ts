@@ -9,13 +9,14 @@ import { WordLists } from '../../providers/word-lists';
 })
 export class KeywordTab {
 
+  keywordIndex: number;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public appData: AppData,
     public wordLists: WordLists
   ) {
-
+    this.keywordIndex = -1;
   }
 
   ionViewDidLoad() {
@@ -23,6 +24,7 @@ export class KeywordTab {
   }
 
   cycleVowelGroup(direction: number) {
+    this.keywordIndex = -1;
     if (!direction) {
       direction = 1;
     }
@@ -31,5 +33,18 @@ export class KeywordTab {
       this.appData.vowelGroupIndex = this.wordLists.vowelGroups.length - 1;
     }
   }
+
+  getButtonsEnabled() {
+    return this.keywordIndex >= 0 ? "" : "true";
+  }
+
+  changeKeyword(i) {
+    this.keywordIndex = i;
+  }
+
+  isOutlined(i) {
+    return this.keywordIndex != i;
+  }
+
 
 }

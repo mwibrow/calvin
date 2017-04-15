@@ -1,40 +1,30 @@
 <ion-header>
-
   <ion-navbar>
-
-
     <ion-title>
-
       <button ion-button clear (click)="cycleVowelGroup()">
         <ion-label>
           <p class="crafty-padding">
             {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
           </p>
         </ion-label>
-     </button>
-
+      </button>
     </ion-title>
-
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
-
-  <ion-list no-lines radio-group>
-    <ion-item *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
-
-      <ion-radio value="{{ hvd }}" (ionSelect)="changeHvd(i)"></ion-radio>
-
-       <ion-label class="keyword">
-        {{ hvd }}
-      </ion-label>
-
-    </ion-item>
-
-  </ion-list>
-
+  <ion-grid>
+    <ion-row *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
+      <ion-col text-center>
+        <button ion-button text-center large round [outline]="isOutlined(i)"
+          (click)="changeHvd(i)" class="keyword-button">
+          <ion-label class="keyword">
+            {{ hvd }}
+          </ion-label>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer>

@@ -42,4 +42,8 @@ export class HvdTab {
     this.hvdIndex = i;
 
   }
+
+  isOutlined(i) {
+    return this.hvdIndex != i;
+  }
 }

@@ -14,15 +14,31 @@
 
 
 <ion-content padding>
-<ion-card *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].keywords">
-
-  <ion-card-header>
-    {{ keyword.word }}
-  </ion-card-header>
-
-  <ion-card-content>
-    <!-- Add card content here! -->
-  </ion-card-content>
-
-</ion-card>
+  <ion-grid>
+    <ion-row *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].keywords; let i = index">
+      <ion-col text-center>
+        <button ion-button text-center large round [outline]="isOutlined(i)"
+          (click)="changeKeyword(i)" class="keyword-button">
+          <ion-label class="keyword">
+            {{ keyword.word }}
+          </ion-label>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="headset"></ion-icon>
+      </button>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="image"></ion-icon>
+      </button>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="mic"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
