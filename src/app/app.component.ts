@@ -29,7 +29,7 @@ export class CALVinApp {
     this.initialiseApp();
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Word trainer', component: WordTrainerPage }
+      { title: 'Vowel trainer', component: WordTrainerPage }
     ];
   }
 

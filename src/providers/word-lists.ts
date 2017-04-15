@@ -39,7 +39,15 @@ export class WordLists {
         hvds: [ 'heed', 'hid', 'head' ],
         keywords: [
           {
-            word: 'reel',
+            word: 'key',
+            imageSrc: ''
+          },
+          {
+            word: 'lid',
+            imageSrc: ''
+          },
+          {
+            word: 'bed',
             imageSrc: ''
           }
         ]

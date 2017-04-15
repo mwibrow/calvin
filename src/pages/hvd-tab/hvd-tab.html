@@ -4,23 +4,54 @@
 
 
     <ion-title>
- {{wordLists.vowelGroups[appData.vowelGroupIndex].title}} vowels</ion-title>
+
+      <button ion-button clear (click)="cycleVowelGroup()">
+        <ion-label>
+          <p class="crafty-padding">
+            {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
+          </p>
+        </ion-label>
+     </button>
+
+    </ion-title>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
-<ion-card *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds">
+<ion-content padding>
 
-  <ion-card-header>
-    {{ hvd }}
-  </ion-card-header>
+  <ion-list no-lines radio-group>
+    <ion-item *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
 
-  <ion-card-content>
-    <!-- Add card content here! -->
-  </ion-card-content>
+      <ion-radio value="{{ hvd }}" (ionSelect)="changeHvd(i)"></ion-radio>
 
-</ion-card>
+       <ion-label class="keyword">
+        {{ hvd }}
+      </ion-label>
+
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons end>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="headset"></ion-icon>
+      </button>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="film"></ion-icon>
+      </button>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="walk"></ion-icon>
+      </button>
+      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+        <ion-icon name="mic"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

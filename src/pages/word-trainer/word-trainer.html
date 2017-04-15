@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><span class="calvin-title">Word Trainer</span></ion-title>
+    <ion-title><span class="calvin-title">Vowel Trainer</span></ion-title>
     <ion-buttons end>
       <!--<button ion-button (click)="selectVowelGroup()" class="vowel-group-button">
         <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
@@ -26,9 +26,23 @@
 
 
 <ion-content padding class="no-scroll">
+<ion-fab top right edge>
+ <button ion-fab  color="light" large (click)="cycleSpeaker()">
+  <ion-avatar>
+        <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
+      </ion-avatar>
+ </button>
 
+  </ion-fab>
 
-<ion-fab top right edge  #fab>
+<ion-list>
+<ion-item>
+  <button ion-button clear (click)="cycleVowelGroup()">
+        {{wordLists.vowelGroups[appData.vowelGroupIndex].title}} vowels
+        </button>
+  </ion-item>
+  </ion-list>
+<!--<ion-fab top right edge  #fab>
  <button ion-fab large><ion-icon name="settings"></ion-icon></button>
     <ion-fab-list side="down">
       <button ion-fab large (click)="selectVowelGroup(fab)">
@@ -38,7 +52,7 @@
         <ion-icon name="contacts"></ion-icon>
       </button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab>-->
 
 <ion-tabs>
   <ion-tab tabTitle="HVDs" [root]="hvdTab"></ion-tab>
@@ -47,14 +61,7 @@
 
     </ion-tabs>
 
-<!--<ion-fab top left>
- <button ion-fab  color="light" large (click)="selectSpeaker()">
-  <ion-avatar>
-        <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
-      </ion-avatar>
- </button>
 
-  </ion-fab>-->
 <!--<ion-grid>
   <ion-row align-items-end>
     <ion-col col-4 offset-1>

@@ -89,6 +89,13 @@ $colors: (
 }
 
 @font-face {
+    font-family: 'Roboto';
+    src: url('../assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'DoulosSIL';
     src: url('../assets/fonts/DoulosSIL/DoulosSIL-R.ttf') format('truetype');
     font-weight: normal;

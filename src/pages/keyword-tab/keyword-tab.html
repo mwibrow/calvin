@@ -1,12 +1,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{wordLists.vowelGroups[appData.vowelGroupIndex].title}} vowels</ion-title>
+    <button ion-button clear (click)="cycleVowelGroup()">
+      <ion-label>
+        <p class="crafty padding">
+          {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
+        </p>
+      </ion-label>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-Tab2
+<ion-card *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].keywords">
+
+  <ion-card-header>
+    {{ keyword.word }}
+  </ion-card-header>
+
+  <ion-card-content>
+    <!-- Add card content here! -->
+  </ion-card-content>
+
+</ion-card>
 </ion-content>

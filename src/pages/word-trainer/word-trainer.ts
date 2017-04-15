@@ -68,5 +68,9 @@ export class WordTrainerPage {
 
   }
 
+  cycleSpeaker() {
+    this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
+  }
+
 }
 
