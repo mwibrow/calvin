@@ -1,15 +1,18 @@
 <ion-header>
-  <ion-navbar>
-     <ion-title>
-      <button ion-button clear (click)="cycleVowelGroup(1)">
-        <ion-label>
-          <p class="crafty-padding">
-            {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
-          </p>
-        </ion-label>
-      </button>
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar start>
+    <button ion-button clear (click)="cycleVowelGroup(1)">
+        <p class="crafty-padding">
+          {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
+        </p>
+    </button>
+
+    <ion-chip class="speaker-chip" (click)="cycleSpeaker()">
+      <ion-label>{{appData.speakers[appData.currentSpeakerIndex].name}}</ion-label>
+      <ion-avatar>
+        <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
+      </ion-avatar>
+    </ion-chip>
+  </ion-toolbar>
 </ion-header>
 
 

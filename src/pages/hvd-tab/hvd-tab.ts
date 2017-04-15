@@ -51,7 +51,6 @@ export class HvdTab {
 
   changeHvd(i) {
     this.hvdIndex = i;
-
   }
 
   isOutlined(i) {
@@ -59,7 +58,7 @@ export class HvdTab {
   }
 
   getFablistOrientation() {
-    if (this.platform.isLandscape()) {
+    if (this.isLandscape()) {
       return 'left';
     } else {
       return 'top';
@@ -67,7 +66,7 @@ export class HvdTab {
   }
 
   getSouthWestIcon() {
-     if (this.platform.isLandscape()) {
+     if (this.isLandscape()) {
       return 'arrow-dropleft';
     } else {
       return 'arrow-dropup';
@@ -75,6 +74,10 @@ export class HvdTab {
   }
 
   isLandscape() {
-    return this.platform.isLandscape();
+    return true; //this.platform.isLandscape();
+  }
+
+  cycleSpeaker() {
+    this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
   }
 }

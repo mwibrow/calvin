@@ -16,14 +16,13 @@
 // automatically applied to the <body> element in the app.
 
 body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item, ion-title,
-ion-button ion-content {
+ion-button, ion-content, ion-label {
   font-family: 'Crafty Girls', cursive !important;
   font-weight: bold !important;
 }
 
 ion-title, .calvin-title {
     font-family: 'Crafty Girls', cursive !important;
-    font-size: 5vw;
 }
 
 .scroll-bar-indicator
@@ -32,8 +31,12 @@ ion-title, .calvin-title {
 }
 
 .no-scroll .scroll-content{
-         overflow: hidden;
-    }
+    overflow: hidden !important;
+}
+
+.yes-scroll {
+    overflow: scroll !important;
+}
 
 .check-mark-circle {
     color: #40c040;
@@ -47,6 +50,40 @@ ion-title, .calvin-title {
     padding-top: 0.5ex !important;
     padding-bottom: 0.5ex !important;
 }
+
+
+.logo {
+    font-size: 15vw !important;
+}
+.logo-c {
+    color: red;
+}
+.logo-a {
+    color: orange;
+}
+.logo-l {
+    color: deeppink;
+}
+.logo-v {
+    color: green;
+}
+.logo-i {
+    color: purple;
+}
+.logo-n {
+    color: blue;
+}
+
+.logo-subtitle {
+    font-size: 150%;
+}
+
+.speaker-chip {
+    position: absolute !important;
+    right: 2ex !important;
+    top: 1.5ex !important;
+}
+
 
 
 .keyword {
