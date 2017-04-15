@@ -1,15 +1,15 @@
 <ion-header>
-
   <ion-navbar>
-    <button ion-button clear (click)="cycleVowelGroup()">
-      <ion-label>
-        <p class="crafty padding">
-          {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
-        </p>
-      </ion-label>
-    </button>
+     <ion-title>
+      <button ion-button clear (click)="cycleVowelGroup(1)">
+        <ion-label>
+          <p class="crafty-padding">
+            {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
+          </p>
+        </ion-label>
+      </button>
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
@@ -26,19 +26,25 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-buttons end>
-      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
-        <ion-icon name="headset"></ion-icon>
-      </button>
-      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
-        <ion-icon name="image"></ion-icon>
-      </button>
-      <button ion-button icon-only large clear [disabled]="getButtonsEnabled()">
+  <ion-fab bottom right #fab>
+    <button ion-fab mini [disabled]="getButtonsEnabled()">
+      <ion-icon name="arrow-dropleft" *ngIf="isLandscape()"></ion-icon>
+      <ion-icon name="arrow-dropup" *ngIf="!isLandscape()"></ion-icon>
+    </button>
+    <ion-fab-list [attr.side]="getFablistOrientation()">
+
+      <button ion-fab mini icon-only large color="secondary" [disabled]="getButtonsEnabled()">
         <ion-icon name="mic"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-toolbar>
+      <button ion-fab mini icon-only large color="secondary" [disabled]="getButtonsEnabled()">
+        <ion-icon name="image"></ion-icon>
+      </button>
+      <button ion-fab mini icon-only large color="secondary" [disabled]="getButtonsEnabled()">
+        <ion-icon name="headset"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+

@@ -7,6 +7,8 @@ export class AppData {
 
 
   currentSpeakerIndex: number;
+  hvdIndex: number;
+  keywordIndex: number;
   speakers: Array<{
     name: string,
     realName: string,
@@ -14,6 +16,8 @@ export class AppData {
   }>;
   vowelGroupIndex: number;
   constructor() {
+    this.hvdIndex = -1;
+    this.keywordIndex = -1;
     var speakerPath: string = 'assets/images/speakers/'
     this.currentSpeakerIndex = 1;
     this.speakers = [
