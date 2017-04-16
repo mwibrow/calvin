@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "ionic-calvin",
+  "author": "Mark Wibrow",
+  "homepage": "https://github.com/mwibrow/CALVin",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -25,6 +25,8 @@
     "@ionic-native/status-bar": "3.4.2",
     "@ionic/storage": "2.0.1",
     "ionic-angular": "3.0.1",
+    "ionic-audio": "^2.3.4",
+    "ionic-native": "^2.9.0",
     "ionicons": "3.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",

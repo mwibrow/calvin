@@ -19,7 +19,7 @@
 </ion-header>
 
 <ion-content padding class="yes-scroll">
-  <ion-grid>
+  <ion-grid *ngIf="stackVertical()">
     <ion-row *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
       <ion-col text-center>
         <button ion-button text-center large round [outline]="isOutlined(i)"
@@ -30,14 +30,17 @@
         </button>
       </ion-col>
     </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="!stackVertical()">
     <ion-row>
-      <ion-col>
-        <p></p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <p></p>
+      <ion-col *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
+        <button ion-button text-center large round [outline]="isOutlined(i)"
+          (click)="changeHvd(i)" class="keyword-button">
+          <ion-label class="keyword">
+            {{ hvd }}
+          </ion-label>
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>

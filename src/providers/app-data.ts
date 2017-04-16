@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { WordLists } from 'word-lists'
-
 @Injectable()
 export class AppData {
 

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, NavParams, Events, FabContainer } from 'ionic-angular';
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
+import { AudioProvider } from 'ionic-audio';
 
 @Component({
   selector: 'page-hvd-tab',
@@ -17,10 +18,12 @@ export class HvdTab {
     public appData: AppData,
     public wordLists: WordLists,
     public platform: Platform,
-    public events: Events
+    public events: Events,
+    private _audioProvider: AudioProvider
   ) {
     this.hvdIndex = -1;
 
+    console.log(platform)
     this.events.subscribe('VowelGroupChange', () => {
       this.reset();
     });
@@ -80,4 +83,9 @@ export class HvdTab {
   cycleSpeaker() {
     this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
   }
+
+  stackVertical() {
+    return this.platform.isPortrait();// || this.platform.is('core');
+  }
+
 }

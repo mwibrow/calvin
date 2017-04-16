@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppData } from '../providers/app-data';
 
 import { HomePage } from '../pages/home/home';
-import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
 
 

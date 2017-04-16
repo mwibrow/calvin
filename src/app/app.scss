@@ -35,7 +35,7 @@ ion-title, .calvin-title {
 }
 
 .yes-scroll {
-    overflow: scroll !important;
+    overflow: visible !important;
 }
 
 .check-mark-circle {
@@ -87,20 +87,23 @@ ion-title, .calvin-title {
 
 
 .keyword {
+    font-size: 100% !important;
     font-family: 'Roboto' !important;
-    font-size: 5vw !important;
-    font-weight: normal !important;
+    font-weight: bold !important;
     text-transform: none;
+    padding-top: 0ex !important;
+    padding-bottom: 0ex !important;
 }
 
 .keyword-button {
-    width: 33vw !important;
-    padding-top: 3vw !important;
-    padding-bottom: 3vw !important;
+    font-size: 200% !important;
+    width: 12ex !important;
     margin-left: auto !important;
     margin-right: auto !important;
     display: block !important;
 }
+
+
 
 .keyword-div {
     text-align: center !important;
@@ -110,5 +113,65 @@ ion-title, .calvin-title {
     margin-left: auto;
     margin-right: auto;
     display: block;
+}
+
+
+// iPhone 4
+@media only screen
+    and (min-device-width: 640px)
+    and (min-device-height: 960px)
+    and (orientation: portrait) {
+
+  .keyword-button {
+    font-size: 18px !important;
+  }
+
+}
+
+// iPhone 5
+@media only screen
+    and (min-device-width: 320px)
+    and (min-device-height: 568px)
+    and (orientation: portrait) {
+
+  .keyword-button {
+    font-size: 24px !important;
+  }
+
+}
+
+@media only screen
+    and (min-device-width: 568px)
+    and (min-device-height: 320px)
+    and (orientation: landscape) {
+
+  .keyword-button {
+    font-size: 16px !important;
+  }
+
+}
+
+// iPhone 6/7
+@media only screen
+    and (min-device-width: 375px)
+    and (min-device-height: 667px)
+    and (orientation: portrait) {
+
+  .keyword-button {
+    font-size: 32px !important;
+  }
+
+}
+
+// browser
+@media only screen
+    and (min-device-width: 1024px)
+    and (min-device-height: 768px)
+    and (orientation: landscape) {
+
+  .keyword-button {
+    font-size: 40px !important;
+  }
+
 }
 

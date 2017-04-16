@@ -77,7 +77,7 @@ export class WordLists {
       {
         id: 'back',
         title: 'Back',
-        hvds: [ 'who\'d', 'how\'d', 'hoed' ],
+        hvds: [ 'who\'d', 'how\'d' ],
         keywords: [
           {
             word: 'reel',
@@ -88,7 +88,7 @@ export class WordLists {
       {
         id: 'diphthongs',
         title: 'Diphthong',
-        hvds: [ 'hayed', 'hide' ],
+        hvds: [ 'hayed', 'hide', 'hoed' ],
         keywords: [
           {
             word: 'reel',

@@ -20,7 +20,7 @@
   <ion-grid>
     <ion-row *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].keywords; let i = index">
       <ion-col text-center>
-        <button ion-button text-center large round [outline]="isOutlined(i)"
+        <button ion-button large round [outline]="isOutlined(i)"
           (click)="changeKeyword(i)" class="keyword-button">
           <ion-label class="keyword">
             {{ keyword.word }}
