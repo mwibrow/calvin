@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WordLists {
 
-  public hvds: Array<string>;
+  public hvds: any[];
   public vowelGroups: Array<{
     id: string,
     title: string,
@@ -16,22 +16,38 @@ export class WordLists {
 
 
   constructor() {
-    this.hvds = [
+
+    var hvdList: string[];
+    var i: number;
+
+    var hvdList = [
       'heed',
       'hid',
       'head',
       'had',
-      'hud',
-      'hod',
-      'heard',
       'hard',
+      'hod',
       'hoard',
       'who\'d',
-      'howd',
-      'hoed',
+      'hood',
+      'hud',
+      'heard',
       'hayed',
-      'hide'
+      'hide',
+      'how\'d',
+      'hoed',
+      'haired',
+      'hoyed'
     ];
+    this.hvds = [];
+    for (i = 0; i < hvdList.length; i++) {
+      this.hvds.push({
+        id: hvdList[i].replace(/\'/g, ''),
+        display: hvdList[i]
+      });
+    }
+
+
     this.vowelGroups = [
       {
         id: 'high-front',

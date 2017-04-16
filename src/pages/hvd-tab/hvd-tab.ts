@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, NavParams, Events, FabContainer } from 'ionic-angular';
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
-import { AudioProvider } from 'ionic-audio';
+import { AudioProvider, WebAudioTrack } from 'ionic-audio';
 
 @Component({
   selector: 'page-hvd-tab',
@@ -11,6 +11,8 @@ import { AudioProvider } from 'ionic-audio';
 export class HvdTab {
 
   hvdIndex: number;
+  tracks: any[];
+  trackMap: any;
   @ViewChild('fab') fab: FabContainer
   constructor(
     public navCtrl: NavController,
@@ -21,7 +23,12 @@ export class HvdTab {
     public events: Events,
     private _audioProvider: AudioProvider
   ) {
+
+
     this.hvdIndex = -1;
+
+
+    this.loadHvds();
 
     console.log(platform)
     this.events.subscribe('VowelGroupChange', () => {
@@ -30,6 +37,19 @@ export class HvdTab {
 
   }
 
+  loadHvds() {
+    var i: number;
+    var j: number;
+    this.tracks = [];
+    this.trackMap = {}
+    for (j = 0; j < this.wordLists.hvds.length; j++) {
+      this.tracks.push({
+        src: '../../assets/audio/hvds/mark/' + this.wordLists.hvds[j].id + '.wav'
+      })
+      this.trackMap[this.wordLists.hvds[j].id] = j;
+    }
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad HvdTab');
 
@@ -52,8 +72,12 @@ export class HvdTab {
     return this.hvdIndex >= 0 ? '' : 'true';
   }
 
-  changeHvd(i) {
+  changeHvd(i, hvd) {
     this.hvdIndex = i;
+    // use AudioProvider to control selected track
+    if (hvd) {
+      this._audioProvider.play(this.trackMap[hvd]);
+    }
   }
 
   isOutlined(i) {

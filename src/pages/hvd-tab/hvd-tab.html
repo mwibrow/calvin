@@ -19,11 +19,18 @@
 </ion-header>
 
 <ion-content padding class="yes-scroll">
+
   <ion-grid *ngIf="stackVertical()">
+      <ion-row>
+        <ion-col>
+<audio-track #audio *ngFor="let track of tracks"  [track]="track">
+  </audio-track>
+        </ion-col>
+    </ion-row>
     <ion-row *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
       <ion-col text-center>
         <button ion-button text-center large round [outline]="isOutlined(i)"
-          (click)="changeHvd(i)" class="keyword-button">
+          (click)="changeHvd(i, hvd)" class="keyword-button">
           <ion-label class="keyword">
             {{ hvd }}
           </ion-label>
@@ -33,6 +40,11 @@
   </ion-grid>
 
   <ion-grid *ngIf="!stackVertical()">
+    <ion-row>
+<audio-track #audio *ngFor="let track of tracks"  [track]="track">
+    <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
+  </audio-track>
+    </ion-row>
     <ion-row>
       <ion-col *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
         <button ion-button text-center large round [outline]="isOutlined(i)"
