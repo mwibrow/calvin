@@ -55,13 +55,13 @@ export class WordTrainerPage {
     }
     let modal = this.modalCtrl.create(SpeakerModal,
       {
-        currentSpeakerIndex: this.appData.currentSpeakerIndex,
+        speakerIndex: this.appData.speakerIndex,
         speakers: this.appData.speakers
       },
       { enableBackdropDismiss: false });
       modal.onDidDismiss(data => {
-        if (data.hasOwnProperty('currentSpeakerIndex')) {
-          this.appData.currentSpeakerIndex = data.currentSpeakerIndex;
+        if (data.hasOwnProperty('speakerIndex')) {
+          this.appData.speakerIndex = data.speakerIndex;
         }
     });
     modal.present();
@@ -69,7 +69,7 @@ export class WordTrainerPage {
   }
 
   cycleSpeaker() {
-    this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
+    this.appData.speakerIndex = (this.appData.speakerIndex + 1) % this.appData.speakers.length;
   }
 
 }

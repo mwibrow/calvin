@@ -2,7 +2,7 @@
   <ion-toolbar start>
     <button ion-button clear (click)="cycleVowelGroup(1)">
         <p class="crafty-padding">
-          {{wordLists.vowelGroups[appData.vowelGroupIndex].title}}
+          {{wordLists.getVowelGroupByIndex(appData.vowelGroupIndex).display}}
         </p>
     </button>
 
@@ -10,47 +10,42 @@
 
 
   <ion-chip class="speaker-chip" (click)="cycleSpeaker()">
-    <ion-label>{{appData.speakers[appData.currentSpeakerIndex].name}}</ion-label>
+    <ion-label>{{appData.speakers[appData.speakerIndex].display}}</ion-label>
     <ion-avatar>
-      <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
+      <img src="{{appData.speakers[appData.speakerIndex].avatarImageSrc}}">
     </ion-avatar>
   </ion-chip>
 </ion-toolbar>
 </ion-header>
 
-<ion-content padding class="yes-scroll">
+<ion-content class="yes-scroll">
+
+  <audio-track #audio *ngFor="let track of tracks"  [track]="track">
+  </audio-track>
 
   <ion-grid *ngIf="stackVertical()">
-      <ion-row>
-        <ion-col>
-<audio-track #audio *ngFor="let track of tracks"  [track]="track">
-  </audio-track>
-        </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
+
+    <ion-row *ngFor="let keyword of wordLists.getVowelGroupByIndex(appData.vowelGroupIndex).keywords; let i = index">
       <ion-col text-center>
-        <button ion-button text-center large round [outline]="isOutlined(i)"
-          (click)="changeHvd(i, hvd)" class="keyword-button">
+        <button ion-button text-center [outline]="isOutlined(i)"
+          (click)="changeHvd(i, keyword)" class="keyword-button">
           <ion-label class="keyword">
-            {{ hvd }}
+            {{ keyword }}
           </ion-label>
         </button>
       </ion-col>
     </ion-row>
+
   </ion-grid>
 
+
   <ion-grid *ngIf="!stackVertical()">
-    <ion-row>
-<audio-track #audio *ngFor="let track of tracks"  [track]="track">
-    <audio-track-play dark [audioTrack]="audio"><ion-spinner></ion-spinner></audio-track-play>
-  </audio-track>
-    </ion-row>
-    <ion-row>
-      <ion-col *ngFor="let hvd of wordLists.vowelGroups[appData.vowelGroupIndex].hvds; let i = index">
-        <button ion-button text-center large round [outline]="isOutlined(i)"
-          (click)="changeHvd(i)" class="keyword-button">
+    <ion-row *ngFor="let row of gridRows">
+      <ion-col *ngFor="let keyword of row">
+        <button ion-button text-center [outline]="isOutlined(keyword.index)"
+          (click)="changeHvd(keyword.index, keyword.display)" class="keyword-button">
           <ion-label class="keyword">
-            {{ hvd }}
+            {{ keyword.display }}
           </ion-label>
         </button>
       </ion-col>

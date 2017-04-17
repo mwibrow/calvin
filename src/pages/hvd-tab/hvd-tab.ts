@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, NavParams, Events, FabContainer } from 'ionic-angular';
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
-import { AudioProvider, WebAudioTrack } from 'ionic-audio';
+import { AudioProvider } from 'ionic-audio';
 
 @Component({
   selector: 'page-hvd-tab',
@@ -13,6 +13,8 @@ export class HvdTab {
   hvdIndex: number;
   tracks: any[];
   trackMap: any;
+  gridRows: any[];
+
   @ViewChild('fab') fab: FabContainer
   constructor(
     public navCtrl: NavController,
@@ -27,9 +29,9 @@ export class HvdTab {
 
     this.hvdIndex = -1;
 
-
+    this.gridRows = [];
     this.loadHvds();
-
+    this.makeGrid();
     console.log(platform)
     this.events.subscribe('VowelGroupChange', () => {
       this.reset();
@@ -40,14 +42,24 @@ export class HvdTab {
   loadHvds() {
     var i: number;
     var j: number;
+    var k: number = 0;
     this.tracks = [];
     this.trackMap = {}
-    for (j = 0; j < this.wordLists.hvds.length; j++) {
-      this.tracks.push({
-        src: '../../assets/audio/hvds/mark/' + this.wordLists.hvds[j].id + '.wav'
-      })
-      this.trackMap[this.wordLists.hvds[j].id] = j;
+    for (i = 0; i < this.appData.speakers.length; i++) {
+      for (j = 0; j < this.wordLists.keywords.length; j++) {
+        this.tracks.push({
+          src: '../../assets/audio/hvds/' + this.appData.speakers[i].id + '/' + this.wordLists.keywords[j].id + '.wav'
+        })
+        this.trackMap[this.appData.speakers[i].id + ':' + this.wordLists.keywords[j].id] = k;
+        k++;
+      }
     }
+    // for (j = 0; j < this.wordLists.hvds.length; j++) {
+    //   this.tracks.push({
+    //     src: '../../assets/audio/hvds/mark/' + this.wordLists.hvds[j].id + '.wav'
+    //   })
+    //   this.trackMap[this.wordLists.hvds[j].id] = j;
+    // }
 
   }
   ionViewDidLoad() {
@@ -57,10 +69,34 @@ export class HvdTab {
 
   cycleVowelGroup(direction: number) {
     this.events.publish('VowelGroupChange');
-    this.appData.vowelGroupIndex = (this.appData.vowelGroupIndex + direction) % this.wordLists.vowelGroups.length;
+    this.appData.vowelGroupIndex = (this.appData.vowelGroupIndex + direction) % this.wordLists.vowelGroupIds.length;
     if (this.appData.vowelGroupIndex < 0) {
-      this.appData.vowelGroupIndex = this.wordLists.vowelGroups.length - 1;
+      this.appData.vowelGroupIndex = this.wordLists.vowelGroupIds.length - 1;
     }
+    this.makeGrid();
+  }
+
+  makeGrid() {
+    var i: number;
+    var keywords: string[];
+    var row: any[];
+    keywords = this.wordLists.getVowelGroupByIndex(this.appData.vowelGroupIndex).keywords;
+    row = [];
+    this.gridRows = [];
+    for (i = 0; i < keywords.length; i++) {
+      row.push({
+        display: keywords[i],
+        index: i
+      })
+      if (row.length === 3) {
+        this.gridRows.push(row);
+        row = [];
+      }
+    }
+    if (row.length > 0) {
+      this.gridRows.push(row);
+    }
+    console.log(this.gridRows)
   }
 
   reset() {
@@ -73,12 +109,16 @@ export class HvdTab {
   }
 
   changeHvd(i, hvd) {
+    var key: string;
     this.hvdIndex = i;
     // use AudioProvider to control selected track
     if (hvd) {
-      this._audioProvider.play(this.trackMap[hvd]);
+      key = this.appData.speakers[this.appData.speakerIndex].id + ':' + hvd
+      this._audioProvider.play(this.trackMap[key]);
     }
   }
+
+
 
   isOutlined(i) {
     return this.hvdIndex != i;
@@ -105,11 +145,12 @@ export class HvdTab {
   }
 
   cycleSpeaker() {
-    this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
+    this.appData.speakerIndex = (this.appData.speakerIndex + 1) % this.appData.speakers.length;
   }
 
   stackVertical() {
     return this.platform.isPortrait();// || this.platform.is('core');
   }
+
 
 }

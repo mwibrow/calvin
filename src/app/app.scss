@@ -97,9 +97,10 @@ ion-title, .calvin-title {
 
 .keyword-button {
     font-size: 200% !important;
-    width: 12ex !important;
     margin-left: auto !important;
     margin-right: auto !important;
+    margin-top: 0px;
+    margin-bottom: 0px;
     display: block !important;
 }
 
@@ -124,6 +125,7 @@ ion-title, .calvin-title {
 
   .keyword-button {
     font-size: 18px !important;
+    height: 10px !important;
   }
 
 }
@@ -136,20 +138,27 @@ ion-title, .calvin-title {
 
   .keyword-button {
     font-size: 24px !important;
+    height: 44px !important;
+    width: 320 - 2.5 * $fab-size;
   }
 
 }
 
+// iPhone 5
 @media only screen
     and (min-device-width: 568px)
     and (min-device-height: 320px)
     and (orientation: landscape) {
 
+
   .keyword-button {
-    font-size: 16px !important;
+    font-size: 18px !important;
+    height: 38px !important;
+    width: (568 - 2.5 * $fab-size) / 3;
   }
 
 }
+
 
 // iPhone 6/7
 @media only screen
@@ -171,6 +180,10 @@ ion-title, .calvin-title {
 
   .keyword-button {
     font-size: 40px !important;
+    height: 64px !important;
+    width: 256px;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
 
 }

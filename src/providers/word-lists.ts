@@ -3,126 +3,72 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WordLists {
 
-  public hvds: any[];
-  public vowelGroups: Array<{
-    id: string,
-    title: string,
-    hvds: Array<string>,
-    keywords: Array<{
-      word: string,
-      imageSrc: string
-    }>
-  }>;
+  public keywords: any[];
 
+  public vowelGroups: any;
+  public vowelGroupIds: string[];
 
   constructor() {
 
-    var hvdList: string[];
-    var i: number;
+    var vowelGroup: any;
 
-    var hvdList = [
-      'heed',
-      'hid',
-      'head',
-      'had',
-      'hard',
-      'hod',
-      'hoard',
-      'who\'d',
-      'hood',
-      'hud',
-      'heard',
-      'hayed',
-      'hide',
-      'how\'d',
-      'hoed',
-      'haired',
-      'hoyed'
-    ];
-    this.hvds = [];
-    for (i = 0; i < hvdList.length; i++) {
-      this.hvds.push({
-        id: hvdList[i].replace(/\'/g, ''),
-        display: hvdList[i]
-      });
-    }
+    this.vowelGroupIds = [];
+    this.keywords = [];
 
+    // heed, hid, head, had, hard, hod, hoard, who’d, hood, hud, heard, hayed, hide, how’d, hoed, haired, hoyed
+    // hiːd, hɪd, hɛd, hæd, hɑːd, hɒd, hɔːd, huːd, hʊd, hʌd, hɜːd, heɪd, haɪd, haʊd, həʊd, heəd, hɔɪd
 
-    this.vowelGroups = [
-      {
-        id: 'high-front',
-        title: 'High front',
-        hvds: [ 'heed', 'hid', 'head' ],
-        keywords: [
-          {
-            word: 'key',
-            imageSrc: ''
-          },
-          {
-            word: 'lid',
-            imageSrc: ''
-          },
-          {
-            word: 'bed',
-            imageSrc: ''
-          }
-        ]
+    this.vowelGroups = {
+      highFront: {
+        display: 'High front',
+        keywords: ['heed', 'hid', 'head'],
+        examples: []
       },
-      {
-        id: 'open',
-        title: 'Open',
-        hvds: [ 'had', 'hud', 'hod' ],
-        keywords: [
-          {
-            word: 'reel',
-            imageSrc: ''
-          }
-        ]
+      Open: {
+        display: 'Open',
+        keywords: ['had', 'hod', 'hud'],
+        examples: []
       },
-      {
-        id: 'central-low-back',
-        title: 'Central low back',
-        hvds: [ 'heard', 'hard', 'hoard' ],
-        keywords: [
-          {
-            word: 'reel',
-            imageSrc: ''
-          }
-        ]
+      centralLowBack: {
+        display: 'Central low back',
+        keywords: ['hard', 'heard', 'hoard'],
+        examples: []
       },
-      {
-        id: 'back',
-        title: 'Back',
-        hvds: [ 'who\'d', 'how\'d' ],
-        keywords: [
-          {
-            word: 'reel',
-            imageSrc: ''
-          }
-        ]
+      back: {
+        display: 'Back',
+        keywords: ['hood', 'how\'d', 'who\'d'],
+        examples: []
       },
-      {
-        id: 'diphthongs',
-        title: 'Diphthong',
-        hvds: [ 'hayed', 'hide', 'hoed' ],
-        keywords: [
-          {
-            word: 'reel',
-            imageSrc: ''
-          }
-        ]
+      diphthongs: {
+        display: 'Diphthongs',
+        keywords: ['haired', 'hayed', 'hide', 'hoed', 'how\'d', 'hoyed'],
+        examples: []
       }
-    ];
-    console.log('Hello WordLists Provider');
+    };
+
+    for (var vowelGroupId in this.vowelGroups) {
+      if (this.vowelGroups.hasOwnProperty(vowelGroupId)) {
+        this.vowelGroupIds.push(vowelGroupId);
+
+        vowelGroup = this.vowelGroups[vowelGroupId];
+
+        var that = this;
+        vowelGroup.keywords.map(function(keyword: string) {
+          that.keywords.push({
+            id: keyword,
+            display: keyword,
+            group: vowelGroupId
+          });
+        });
+      }
+    }
   }
 
-  getVowelGroupById(id: string){
-    var i;
-    for (i = 0; i < this.vowelGroups.length; i++) {
-      if (this.vowelGroups[i].id === id) {
-        return this.vowelGroups[i];
-      }
-    }
-    return null;
+  getVowelGroupById(id: string) {
+    return this.vowelGroups[id];
+  }
+
+   getVowelGroupByIndex(index: number) {
+    return this.vowelGroups[this.vowelGroupIds[index]];
   }
 }

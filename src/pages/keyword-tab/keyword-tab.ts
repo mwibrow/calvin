@@ -75,7 +75,7 @@ export class KeywordTab {
   }
 
  cycleSpeaker() {
-    this.appData.currentSpeakerIndex = (this.appData.currentSpeakerIndex + 1) % this.appData.speakers.length;
+    this.appData.speakerIndex = (this.appData.speakerIndex + 1) % this.appData.speakers.length;
   }
 
 }

@@ -1,57 +1,24 @@
-<!--
-  Generated template for the WordTrainer page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
+
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
+
     <ion-title><span class="calvin-title">Vowel Trainer</span></ion-title>
-    <ion-buttons end>
-      <!--<button ion-button (click)="selectVowelGroup()" class="vowel-group-button">
-        <span>{{ wordLists.vowelGroups[appData.vowelGroupIndex].title }}</span>
-        <span>&nbsp;</span>
-        <ion-icon name="arrow-dropdown"></ion-icon>
-      </button>-->
 
-
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding class="no-scroll">
 
-<ion-list>
-<ion-item>
-  <button ion-button clear (click)="cycleVowelGroup()">
-        {{wordLists.vowelGroups[appData.vowelGroupIndex].title}} vowels
-        </button>
-  </ion-item>
-  </ion-list>
-<!--<ion-fab top right edge  #fab>
- <button ion-fab large><ion-icon name="settings"></ion-icon></button>
-    <ion-fab-list side="down">
-      <button ion-fab large (click)="selectVowelGroup(fab)">
-        <span class="ipa">/i:/</span>
-      </button>
-      <button ion-fab large (click)="selectSpeaker(fab)">
-        <ion-icon name="contacts"></ion-icon>
-      </button>
-    </ion-fab-list>
-  </ion-fab>-->
-
 <ion-tabs>
-  <ion-tab tabTitle="HVDs" [root]="hvdTab"></ion-tab>
-  <ion-tab tabTitle="Keywords"[root]="keywordTab"></ion-tab>
-
-
-    </ion-tabs>
+  <ion-tab tabTitle="Keywords" [root]="hvdTab"></ion-tab>
+  <ion-tab tabTitle="Examples"[root]="keywordTab"></ion-tab>
+</ion-tabs>
 
 
 </ion-content>

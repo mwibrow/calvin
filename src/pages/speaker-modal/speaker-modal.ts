@@ -7,14 +7,14 @@ import { NavParams, ViewController } from 'ionic-angular';
 })
 export class SpeakerModal {
 
-  currentSpeakerIndex: number;
+  speakerIndex: number;
   speakers: Array<{
     index: number,
     title: string,
     icon: string
   }>;
   constructor(public navParams: NavParams, public viewCtrl: ViewController) {
-    this.currentSpeakerIndex = navParams.data.currentSpeakerIndex;
+    this.speakerIndex = navParams.data.speakerIndex;
     var i: number;
     this.speakers = [];
     for (i = 0; i < navParams.data.speakers.length; i++) {
@@ -32,11 +32,11 @@ export class SpeakerModal {
   }
 
 setSpeaker(index: number) {
-    this.currentSpeakerIndex = index;
+    this.speakerIndex = index;
   }
 
  ok() {
-   let data = { currentSpeakerIndex : this.currentSpeakerIndex };
+   let data = { speakerIndex : this.speakerIndex };
    this.viewCtrl.dismiss(data);
  }
  cancel() {

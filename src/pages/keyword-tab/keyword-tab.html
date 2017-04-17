@@ -7,9 +7,9 @@
     </button>
 
     <ion-chip class="speaker-chip" (click)="cycleSpeaker()">
-      <ion-label>{{appData.speakers[appData.currentSpeakerIndex].name}}</ion-label>
+      <ion-label>{{appData.speakers[appData.speakerIndex].name}}</ion-label>
       <ion-avatar>
-        <img src="{{appData.speakers[appData.currentSpeakerIndex].avatarImageSrc}}">
+        <img src="{{appData.speakers[appData.speakerIndex].avatarImageSrc}}">
       </ion-avatar>
     </ion-chip>
   </ion-toolbar>
@@ -18,7 +18,7 @@
 
 <ion-content padding>
   <ion-grid>
-    <ion-row *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].keywords; let i = index">
+    <ion-row *ngFor="let keyword of wordLists.vowelGroups[appData.vowelGroupIndex].examples; let i = index">
       <ion-col text-center>
         <button ion-button large round [outline]="isOutlined(i)"
           (click)="changeKeyword(i)" class="keyword-button">

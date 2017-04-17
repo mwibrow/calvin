@@ -39,7 +39,7 @@ export class SelectSpeakerPage {
   }
 
   selectSpeaker(index: number) {
-    this.appData.currentSpeakerIndex = index;
+    this.appData.speakerIndex = index;
   }
 
 }

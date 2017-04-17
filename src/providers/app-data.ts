@@ -4,50 +4,36 @@ import { Injectable } from '@angular/core';
 export class AppData {
 
 
-  currentSpeakerIndex: number;
+  speakerIndex: number;
   hvdIndex: number;
   keywordIndex: number;
-  speakers: Array<{
-    name: string,
-    realName: string,
-    avatarImageSrc: string,
-  }>;
+  speakers: any[];
   vowelGroupIndex: number;
   constructor() {
     this.hvdIndex = -1;
     this.keywordIndex = -1;
     var speakerPath: string = 'assets/images/speakers/'
-    this.currentSpeakerIndex = 1;
+    this.speakerIndex = 1;
     this.speakers = [
       {
-        name: 'Ali',
-        realName: 'Ali',
+        display: 'Ali',
+        id: 'mark',
         avatarImageSrc: speakerPath + 'ali.png'
       },
       {
-        name: 'Calvin',
-        realName: 'Calvin',
+        display: 'Calvin',
+        id: 'mark',
         avatarImageSrc: speakerPath + 'calvin.png'
       },
       {
-        name: 'Jami',
-        realName: 'Jami',
-        avatarImageSrc: speakerPath + 'jami.png'
-      },
-      {
-        name: 'Leyla',
-        realName: 'Layla',
+        display: 'Leyla',
+        id: 'mark',
         avatarImageSrc: speakerPath + 'leyla.png'
       },
       {
-        name: 'Mavi',
-        realName: 'Mavi',
+        display: 'Mavi',
+        id: 'mark',
         avatarImageSrc: speakerPath + 'mavi.png'
-      },
-      {
-        name: 'Noor',
-        realName: 'Noor',
-        avatarImageSrc: speakerPath + 'noor.png'
       }
     ];
     this.vowelGroupIndex = 0;
