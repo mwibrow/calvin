@@ -10,7 +10,7 @@ import { AudioProvider } from 'ionic-audio';
 })
 export class HvdTab {
 
-  hvdIndex: number;
+  keywordIndex: number;
   tracks: any[];
   trackMap: any;
   gridRows: any[];
@@ -27,7 +27,7 @@ export class HvdTab {
   ) {
 
 
-    this.hvdIndex = -1;
+    this.keywordIndex = -1;
 
     this.gridRows = [];
     this.loadHvds();
@@ -54,17 +54,6 @@ export class HvdTab {
         k++;
       }
     }
-    // for (j = 0; j < this.wordLists.hvds.length; j++) {
-    //   this.tracks.push({
-    //     src: '../../assets/audio/hvds/mark/' + this.wordLists.hvds[j].id + '.wav'
-    //   })
-    //   this.trackMap[this.wordLists.hvds[j].id] = j;
-    // }
-
-  }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HvdTab');
-
   }
 
   cycleVowelGroup(direction: number) {
@@ -78,8 +67,15 @@ export class HvdTab {
 
   makeGrid() {
     var i: number;
+    var maxColumns: number;
     var keywords: string[];
     var row: any[];
+
+    if (this.platform.isPortrait()) {
+      maxColumns = 1;
+    } else {
+      maxColumns = 3;
+    }
     keywords = this.wordLists.getVowelGroupByIndex(this.appData.vowelGroupIndex).keywords;
     row = [];
     this.gridRows = [];
@@ -88,7 +84,7 @@ export class HvdTab {
         display: keywords[i],
         index: i
       })
-      if (row.length === 3) {
+      if (row.length === maxColumns) {
         this.gridRows.push(row);
         row = [];
       }
@@ -101,27 +97,27 @@ export class HvdTab {
 
   reset() {
     this.fab.close()
-    this.hvdIndex = -1;
+    this.keywordIndex = -1;
   }
 
   getButtonsEnabled() {
-    return this.hvdIndex >= 0 ? '' : 'true';
+    return this.keywordIndex >= 0 ? '' : 'true';
   }
 
-  changeHvd(i, hvd) {
+  changeKeyword(i, keyword) {
     var key: string;
-    this.hvdIndex = i;
+    this.keywordIndex = i;
     // use AudioProvider to control selected track
-    if (hvd) {
-      key = this.appData.speakers[this.appData.speakerIndex].id + ':' + hvd
+    if (keyword) {
+      key = this.appData.speakers[this.appData.speakerIndex].id + ':' + keyword
       this._audioProvider.play(this.trackMap[key]);
     }
   }
 
 
 
-  isOutlined(i) {
-    return this.hvdIndex != i;
+  isOutlined(index) {
+    return this.keywordIndex != index;
   }
 
   getFablistOrientation() {

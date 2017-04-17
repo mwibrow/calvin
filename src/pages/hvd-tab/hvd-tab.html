@@ -23,27 +23,11 @@
   <audio-track #audio *ngFor="let track of tracks"  [track]="track">
   </audio-track>
 
-  <ion-grid *ngIf="stackVertical()">
-
-    <ion-row *ngFor="let keyword of wordLists.getVowelGroupByIndex(appData.vowelGroupIndex).keywords; let i = index">
-      <ion-col text-center>
-        <button ion-button text-center [outline]="isOutlined(i)"
-          (click)="changeHvd(i, keyword)" class="keyword-button">
-          <ion-label class="keyword">
-            {{ keyword }}
-          </ion-label>
-        </button>
-      </ion-col>
-    </ion-row>
-
-  </ion-grid>
-
-
-  <ion-grid *ngIf="!stackVertical()">
+  <ion-grid>
     <ion-row *ngFor="let row of gridRows">
       <ion-col *ngFor="let keyword of row">
         <button ion-button text-center [outline]="isOutlined(keyword.index)"
-          (click)="changeHvd(keyword.index, keyword.display)" class="keyword-button">
+          (click)="changeKeyword(keyword.index, keyword.display)" class="keyword-button">
           <ion-label class="keyword">
             {{ keyword.display }}
           </ion-label>
