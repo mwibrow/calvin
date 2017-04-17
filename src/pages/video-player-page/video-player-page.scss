@@ -1,0 +1,20 @@
+page-video-player-page {
+
+
+@media only screen and (orientation: portrait) {
+
+video {
+    width: 80vw !important;
+}
+
+}
+
+@media only screen and (orientation: landscape) {
+
+video {
+    width: 80vh !important;
+}
+
+}
+
+}

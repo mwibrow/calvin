@@ -7,7 +7,7 @@ import { AppData } from '../providers/app-data';
 
 import { HomePage } from '../pages/home/home';
 import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
-
+import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
 
 @Component({
   templateUrl: 'app.html',
@@ -28,7 +28,8 @@ export class CALVinApp {
     this.initialiseApp();
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Vowel trainer', component: WordTrainerPage }
+      { title: 'Vowel trainer', component: WordTrainerPage },
+      { title: 'Video', component: VideoPlayerPage }
     ];
   }
 

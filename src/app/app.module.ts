@@ -15,6 +15,7 @@ import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
 import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
 import { HvdTab } from '../pages/hvd-tab/hvd-tab';
 import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
+import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
     SpeakerModal,
     VowelGroupModal,
     HvdTab,
-    KeywordTab
+    KeywordTab,
+    VideoPlayerPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
     SpeakerModal,
     VowelGroupModal,
     HvdTab,
-    KeywordTab
+    KeywordTab,
+    VideoPlayerPage
   ],
   providers: [
     StatusBar,
