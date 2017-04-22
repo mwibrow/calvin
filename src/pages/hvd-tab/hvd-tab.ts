@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, NavController, NavParams, Events, FabContainer } from 'ionic-angular';
+import { ModalController, Platform, NavController, NavParams, Events, FabContainer } from 'ionic-angular';
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
 import { AudioProvider } from 'ionic-audio';
+import { VideoPlayerPage } from '../video-player-page/video-player-page';
 
 @Component({
   selector: 'page-hvd-tab',
@@ -11,10 +12,11 @@ import { AudioProvider } from 'ionic-audio';
 export class HvdTab {
 
   keywordIndex: number;
+  keyword: string;
   tracks: any[];
   trackMap: any;
   gridRows: any[];
-
+  trackPlaying: boolean;
   @ViewChild('fab') fab: FabContainer
   constructor(
     public navCtrl: NavController,
@@ -22,12 +24,15 @@ export class HvdTab {
     public appData: AppData,
     public wordLists: WordLists,
     public platform: Platform,
+    public modalCtrl: ModalController,
     public events: Events,
     private _audioProvider: AudioProvider
   ) {
 
 
     this.keywordIndex = -1;
+    this.keyword = '';
+    this.trackPlaying = false;
 
     this.gridRows = [];
     this.loadHvds();
@@ -105,16 +110,21 @@ export class HvdTab {
   }
 
   changeKeyword(i, keyword) {
-    var key: string;
+
     this.keywordIndex = i;
+    this.keyword = keyword;
     // use AudioProvider to control selected track
-    if (keyword) {
-      key = this.appData.speakers[this.appData.speakerIndex].id + ':' + keyword
-      this._audioProvider.play(this.trackMap[key]);
-    }
+    this.playAudio();
   }
 
 
+  playAudio() {
+    var key: string;
+     if (this.keywordIndex  >= 0) {
+      key = this.appData.speakers[this.appData.speakerIndex].id + ':' + this.keyword
+      this._audioProvider.play(this.trackMap[key]);
+    }
+  }
 
   isOutlined(index) {
     return this.keywordIndex != index;
@@ -148,5 +158,17 @@ export class HvdTab {
     return this.platform.isPortrait();// || this.platform.is('core');
   }
 
+  playVideo() {
+    this.navCtrl.push(VideoPlayerPage, { keyword: this.keyword });
+    // let modal = this.modalCtrl.create(VideoPlayerPage,
+    //   {
+    //     keyword: this.keyword
+    //   },
+    //   { enableBackdropDismiss: false });
+    //   modal.onDidDismiss(data => {
+
+    // });
+    // modal.present();
+  }
 
 }

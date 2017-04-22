@@ -48,10 +48,12 @@
       <button ion-fab mini icon-only  color="secondary" [disabled]="getButtonsEnabled()">
         <ion-icon name="walk"></ion-icon>
       </button>
-      <button ion-fab mini icon-only  color="secondary" [disabled]="getButtonsEnabled()">
+      <button ion-fab mini icon-only  color="secondary" [disabled]="getButtonsEnabled()"
+         (click)="playVideo()">
         <ion-icon name="film"></ion-icon>
       </button>
-      <button ion-fab mini icon-only  color="secondary"  [disabled]="getButtonsEnabled()">
+      <button ion-fab mini icon-only color="secondary" [disabled]="getButtonsEnabled()"
+          (click)="playAudio()">
         <ion-icon name="headset"></ion-icon>
       </button>
     </ion-fab-list>

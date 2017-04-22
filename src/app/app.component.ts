@@ -29,7 +29,6 @@ export class CALVinApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Vowel trainer', component: WordTrainerPage },
-      { title: 'Video', component: VideoPlayerPage }
     ];
   }
 
