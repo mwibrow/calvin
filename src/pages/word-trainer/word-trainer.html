@@ -7,7 +7,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title><span class="calvin-title">Vowel Trainer</span></ion-title>
+    <ion-title><span class="calvin-title">Vowel trainer</span></ion-title>
 
   </ion-navbar>
 
@@ -15,10 +15,9 @@
 
 <ion-content padding class="no-scroll">
 
-<ion-tabs>
-  <ion-tab tabTitle="Keywords" [root]="hvdTab"></ion-tab>
-  <ion-tab tabTitle="Examples"[root]="keywordTab"></ion-tab>
-</ion-tabs>
+<button ion-button (click)="goToKeywords()">
+  Start
+</button>
 
 
 </ion-content>

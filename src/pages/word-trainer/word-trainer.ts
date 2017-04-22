@@ -5,9 +5,9 @@ import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
 import { SpeakerModal } from '../speaker-modal/speaker-modal';
 import { VowelGroupModal } from '../vowel-group-modal/vowel-group-modal';
-import { HvdTab } from '../hvd-tab/hvd-tab'
-import { KeywordTab } from '../keyword-tab/keyword-tab'
-
+import { HvdTab } from '../hvd-tab/hvd-tab';
+import { KeywordTab } from '../keyword-tab/keyword-tab';
+import { KeywordPage } from '../keyword-page/keyword-page';
 @Component({
   selector: 'page-word-trainer',
   templateUrl: 'word-trainer.html',
@@ -72,5 +72,8 @@ export class WordTrainerPage {
     this.appData.speakerIndex = (this.appData.speakerIndex + 1) % this.appData.speakers.length;
   }
 
+  goToKeywords() {
+    this.navCtrl.push(KeywordPage);
+  }
 }
 

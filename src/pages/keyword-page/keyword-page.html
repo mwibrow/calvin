@@ -1,0 +1,65 @@
+
+<ion-header>
+
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+    <button ion-button icon-only clear>
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Keywords</ion-title>
+  </ion-navbar>
+
+ <ion-toolbar start>
+    <button ion-button clear (click)="cycleVowelGroup(1)">
+        <p class="crafty-padding">
+          {{wordLists.getVowelGroupByIndex(appData.vowelGroupIndex).display}}
+        </p>
+    </button>
+
+  <ion-chip class="speaker-chip" (click)="cycleSpeaker()">
+    <ion-label>{{appData.speakers[appData.speakerIndex].display}}</ion-label>
+    <ion-avatar>
+      <img src="{{appData.speakers[appData.speakerIndex].avatarImageSrc}}">
+    </ion-avatar>
+  </ion-chip>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row *ngFor="let row of gridRows">
+      <ion-col *ngFor="let keyword of row">
+        <button ion-button text-center [outline]="isOutlined(keyword.index)"
+          (click)="changeKeyword(keyword.index, keyword.display)" class="keyword-button">
+          <ion-label class="keyword">
+            {{ keyword.display }}
+          </ion-label>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>
+
+
+<ion-footer>
+   <ion-toolbar>
+     <ion-buttons start>
+    <button ion-button icon-only clear [disabled]="!isEnabled()">
+      <ion-icon name="film"></ion-icon>
+    </button>
+    <button ion-button icon-only clear [disabled]="!isEnabled()">
+      <ion-icon name="walk"></ion-icon>
+    </button>
+     <button ion-button icon-only clear [disabled]="!isEnabled()">
+      <ion-icon name="mic"></ion-icon>
+    </button>
+    <button ion-button icon-only clear (click)="showExamplePage()" [disabled]="!hasExamples()">
+      <ion-icon name="list"></ion-icon>
+    </button>
+     </ion-buttons>
+   </ion-toolbar>
+</ion-footer>

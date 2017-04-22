@@ -17,6 +17,9 @@ import { HvdTab } from '../pages/hvd-tab/hvd-tab';
 import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
 import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
 
+import { KeywordPage } from '../pages/keyword-page/keyword-page';
+import { ExamplePage } from '../pages/example-page/example-page';
+
 @NgModule({
   declarations: [
     CALVinApp,
@@ -27,7 +30,9 @@ import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
     VowelGroupModal,
     HvdTab,
     KeywordTab,
-    VideoPlayerPage
+    VideoPlayerPage,
+    KeywordPage,
+    ExamplePage
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,9 @@ import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
     VowelGroupModal,
     HvdTab,
     KeywordTab,
-    VideoPlayerPage
+    VideoPlayerPage,
+    KeywordPage,
+    ExamplePage
   ],
   providers: [
     StatusBar,
