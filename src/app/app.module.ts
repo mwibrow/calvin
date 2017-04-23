@@ -5,8 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicAudioModule } from 'ionic-audio';
 
-import { AppData } from '../providers/app-data'
-import { WordLists } from '../providers/word-lists'
+import { AppData } from '../providers/app-data';
+import { WordLists } from '../providers/word-lists';
+import { WebRecorder } from '../providers/web-recorder'
 import { CALVinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
@@ -61,7 +62,8 @@ import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppData,
-    WordLists
+    WordLists,
+    WebRecorder
   ]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { WebRecorder } from '../../providers/web-recorder';
 
 @Component({
   selector: 'page-home',
@@ -9,7 +9,8 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
 
   recorder: any;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+  public webRecorder: WebRecorder) {
     console.log(navigator.getUserMedia);
     this.recorder = null;
   }
@@ -22,7 +23,7 @@ export class HomePage {
         var context = new AudioContext();
         var mediaStreamSource = context.createMediaStreamSource(s);
 
-        this.recorder = new Recorder(mediaStreamSource, {});
+        this.recorder = this.webRecorder.GetRecorder(mediaStreamSource, {});
         this.recorder.record();
 
         // audio loopback
@@ -50,85 +51,3 @@ export class HomePage {
 
 }
 
-
-export class Recorder {
-
-  WORKER_PATH:string = '../../assets/js/recorderWorker.js';
-  context: any;
-  node: any;
-  worker: any;
-  recording: boolean;
-  config: any;
-  currCallback: any;
-  constructor(source, cfg){
-
-    this.config = cfg || {};
-    var bufferLen = this.config.bufferLen || 4096;
-    this.context = source.context;
-    this.node = this.context.createScriptProcessor(bufferLen, 2, 2);
-    this.worker = new Worker(this.config.workerPath || this.WORKER_PATH);
-    this.worker.postMessage({
-      command: 'init',
-      config: {
-        sampleRate: this.context.sampleRate
-      }
-    });
-    this.recording = false;
-    this.currCallback = null;
-    var that: any = this;
-    this.node.onaudioprocess = function(e){
-      if (!that.recording) return;
-      that.worker.postMessage({
-        command: 'record',
-        buffer: [
-          e.inputBuffer.getChannelData(0),
-          e.inputBuffer.getChannelData(1)
-        ]
-      });
-    }
-
-    that = this;
-    this.worker.onmessage = function(e){
-      var blob = e.data;
-      that.currCallback(blob);
-    }
-
-    source.connect(this.node);
-    this.node.connect(this.context.destination);    //this should not be necessary
-  };
-
-  exportWAV(callback: any, type: any){
-    this.currCallback = callback || this.config.callback;
-    type = type || this.config.type || 'audio/wav';
-    if (!this.currCallback) throw new Error('Callback not set');
-    this.worker.postMessage({
-      command: 'exportWAV',
-      type: type
-    });
-  }
-
-  configure (cfg: any){
-    for (var prop in cfg){
-      if (cfg.hasOwnProperty(prop)){
-        this.config[prop] = cfg[prop];
-      }
-    }
-  }
-
-  record() {
-    this.recording = true;
-  }
-
-  stop(){
-    this.recording = false;
-  }
-
-  clear(){
-    this.worker.postMessage({ command: 'clear' });
-  }
-
-  getBuffer = function(callback: any) {
-    this.currCallback = callback || this.config.callback;
-    this.worker.postMessage({ command: 'getBuffer' })
-  }
-}
