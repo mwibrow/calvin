@@ -17,7 +17,7 @@ import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
 export class CALVinApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = WordTrainerPage;
+  rootPage:any = HomePage;
   pages: Array<{title: string, component: any}>;
 
   constructor(

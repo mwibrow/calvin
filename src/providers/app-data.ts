@@ -17,12 +17,12 @@ export class AppData {
     this.speakers = [
       {
         display: 'Ali',
-        id: 'mark',
+        id: 'mark1',
         avatarImageSrc: speakerPath + 'ali.png'
       },
       {
         display: 'Calvin',
-        id: 'mark2',
+        id: 'mark',
         avatarImageSrc: speakerPath + 'calvin.png'
       },
       {

@@ -16,18 +16,20 @@
 <ion-content padding>
 
 <ion-list radio-group [(ngModel)]="talkermode">
-  <ion-list-header>
-    <ion-label> Single talker </ion-label> <ion-radio checked="true" value="single"></ion-radio>
-  </ion-list-header>
-  <ion-item *ngIf="talkermode == 'single'">
- <button ion-button >
-   Select
-   </button>
-   </ion-item>
-  <ion-list-header>
-    <ion-label> Multiple talkers </ion-label> <ion-radio checked="false" value="multi"></ion-radio>
-  </ion-list-header>
   <ion-item>
+    <ion-label> Single talker </ion-label>
+
+    <ion-chip ion-item class="speaker-chip" (click)="cycleSpeaker()">
+    <ion-label>{{appData.speakers[appData.speakerIndex].display}}</ion-label>
+    <ion-avatar>
+      <img src="{{appData.speakers[appData.speakerIndex].avatarImageSrc}}">
+    </ion-avatar>
+  </ion-chip>
+   <!--<ion-radio checked="true" value="single"></ion-radio>-->
+  </ion-item>
+
+  <ion-item>
+    <ion-label> Multiple talkers </ion-label> <ion-radio checked="false" value="multi"></ion-radio>
   </ion-item>
 </ion-list>
 

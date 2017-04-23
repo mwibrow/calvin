@@ -8,6 +8,7 @@ import { VowelGroupModal } from '../vowel-group-modal/vowel-group-modal';
 import { HvdTab } from '../hvd-tab/hvd-tab';
 import { KeywordTab } from '../keyword-tab/keyword-tab';
 import { KeywordPage } from '../keyword-page/keyword-page';
+import { TalkerModePage } from '../talker-mode-page/talker-mode-page';
 @Component({
   selector: 'page-word-trainer',
   templateUrl: 'word-trainer.html',
@@ -71,6 +72,13 @@ export class WordTrainerPage {
   }
 
   selectTalkerMode() {
+    //  let modal = this.modalCtrl.create(TalkerModePage
+    //   ,
+    //   { enableBackdropDismiss: false });
+    //   modal.onDidDismiss(data => {
+
+    // });
+    // modal.present();
     let alert = this.alertCtrl.create();
     alert.setTitle('Talkers');
 

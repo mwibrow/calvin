@@ -11,7 +11,7 @@ export class SpeakerModal {
   currentSpeaker: string;
   constructor(public navParams: NavParams, public viewCtrl: ViewController,
     public appData: AppData) {
-      this.currentSpeaker = appData.speakers[0].id;
+      this.currentSpeaker = appData.speakers[1].id;
   }
 
   ok() {

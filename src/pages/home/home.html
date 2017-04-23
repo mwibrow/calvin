@@ -28,6 +28,9 @@
       </div>
       </ion-col>
     </ion-row>
+    <audio controls autoplay #media></audio>
+    <button ion-button (click)="startRecording(media)"> start </button>
+    <button ion-button (click)="stopRecording(media)"> play</button>
   </ion-grid>
 
 </ion-content>
