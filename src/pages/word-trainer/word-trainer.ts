@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController, NavParams } from 'ionic-angular';
+import { ModalController, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { AppData } from '../../providers/app-data';
 import { WordLists } from '../../providers/word-lists';
@@ -21,6 +21,7 @@ export class WordTrainerPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
+    public alertCtrl: AlertController,
     public appData: AppData,
     public wordLists: WordLists) {
 
@@ -49,20 +50,13 @@ export class WordTrainerPage {
 
   }
 
-  selectSpeaker(fab: any) {
-    if (fab) {
-      fab.close();
-    }
-    let modal = this.modalCtrl.create(SpeakerModal,
-      {
-        speakerIndex: this.appData.speakerIndex,
-        speakers: this.appData.speakers
-      },
+  selectSpeaker() {
+
+    let modal = this.modalCtrl.create(SpeakerModal
+      ,
       { enableBackdropDismiss: false });
       modal.onDidDismiss(data => {
-        if (data.hasOwnProperty('speakerIndex')) {
-          this.appData.speakerIndex = data.speakerIndex;
-        }
+
     });
     modal.present();
 
@@ -74,6 +68,41 @@ export class WordTrainerPage {
 
   goToKeywords() {
     this.navCtrl.push(KeywordPage);
+  }
+
+  selectTalkerMode() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Talkers');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Single talker',
+      value: 'single',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Multiple talkers',
+      value: 'multi',
+      checked: false
+    });
+
+    alert.addButton('Cancel');
+    var that: any = this;
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+         that.postSpeakerMode(data);
+      }
+    });
+    alert.present();
+  }
+
+  postSpeakerMode(mode) {
+    if (mode === 'single') {
+      this.selectSpeaker();
+    }
   }
 }
 

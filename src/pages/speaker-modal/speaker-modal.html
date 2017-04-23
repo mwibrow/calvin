@@ -4,6 +4,27 @@
       Select speaker
     </ion-title>
 
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="no-scroll">
+
+  <ion-list radio-group [(ngModel)]="currentSpeaker">
+    <ion-item *ngFor="let speaker of appData.speakers">
+       <ion-avatar item-left>
+        <img id="img{{speaker.index}}" src="{{speaker.avatarImageSrc}}">
+
+        </ion-avatar>
+        <ion-label>
+          {{ speaker.display }}
+        </ion-label>
+        <ion-radio value="{{ speaker.id }}"></ion-radio>
+      </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer>
+ <ion-toolbar>
      <ion-buttons start>
      <button ion-button icon-only (click)="cancel()">
          <ion-icon name="close"></ion-icon>
@@ -14,27 +35,5 @@
          <ion-icon name="checkmark"></ion-icon>
   </button>
  </ion-buttons>
-
-  </ion-toolbar>
-</ion-header>
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let speaker of speakers" (click)="setSpeaker(speaker.index)">
-       <ion-avatar item-left>
-        <img id="img{{speaker.index}}" src="{{speaker.icon}}">
-
-      </ion-avatar>
-      <p><p>
-      <h2>{{speaker.title}}
-        <span>&nbsp;</span>
-        <ion-icon
-        *ngIf="speaker.index === speakerIndex"
-        name="checkmark-circle" class="check-mark-circle"> </ion-icon>
-      </h2>
-      <p></p>
-
-
-      </ion-item>
-  </ion-list>
-
-</ion-content>
+ </ion-toolbar>
+</ion-footer>

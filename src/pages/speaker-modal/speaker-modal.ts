@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
+import { AppData } from '../../providers/app-data'
 
 @Component({
   selector: 'page-speaker-modal',
@@ -7,42 +8,19 @@ import { NavParams, ViewController } from 'ionic-angular';
 })
 export class SpeakerModal {
 
-  speakerIndex: number;
-  speakers: Array<{
-    index: number,
-    title: string,
-    icon: string
-  }>;
-  constructor(public navParams: NavParams, public viewCtrl: ViewController) {
-    this.speakerIndex = navParams.data.speakerIndex;
-    var i: number;
-    this.speakers = [];
-    for (i = 0; i < navParams.data.speakers.length; i++) {
-      this.speakers.push({
-        index: i,
-        title: navParams.data.speakers[i].name,
-        icon: navParams.data.speakers[i].avatarImageSrc
-      })
-    }
-
+  currentSpeaker: string;
+  constructor(public navParams: NavParams, public viewCtrl: ViewController,
+    public appData: AppData) {
+      this.currentSpeaker = appData.speakers[0].id;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SpeakerModal');
+  ok() {
+    let data = { speakerIndex : this.currentSpeaker };
+    this.viewCtrl.dismiss(data);
   }
 
-setSpeaker(index: number) {
-    this.speakerIndex = index;
+  cancel() {
+    let data = { };
+    this.viewCtrl.dismiss(data);
   }
-
- ok() {
-   let data = { speakerIndex : this.speakerIndex };
-   this.viewCtrl.dismiss(data);
- }
- cancel() {
-   let data = { };
-   this.viewCtrl.dismiss(data);
- }
-
-
 }

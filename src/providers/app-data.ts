@@ -22,17 +22,17 @@ export class AppData {
       },
       {
         display: 'Calvin',
-        id: 'mark',
+        id: 'mark2',
         avatarImageSrc: speakerPath + 'calvin.png'
       },
       {
         display: 'Leyla',
-        id: 'mark',
+        id: 'mark3',
         avatarImageSrc: speakerPath + 'leyla.png'
       },
       {
         display: 'Mavi',
-        id: 'mark',
+        id: 'mark4',
         avatarImageSrc: speakerPath + 'mavi.png'
       }
     ];
