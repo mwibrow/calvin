@@ -46,6 +46,7 @@ export class HomePage {
     			this.recorder.exportWAV(function(s) {
 
                 audio.src = window.URL.createObjectURL(s);
+                audio.play()
         });
       }
 
