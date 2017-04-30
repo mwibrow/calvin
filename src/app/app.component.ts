@@ -10,6 +10,7 @@ import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
 import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
 
 import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
+import { Introduction } from '../pages/introduction/introduction';
 @Component({
   templateUrl: 'app.html',
   providers: [AppData]
@@ -17,7 +18,7 @@ import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
 export class CALVinApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = Introduction;
   pages: Array<{title: string, component: any}>;
 
   constructor(

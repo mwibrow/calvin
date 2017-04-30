@@ -94,5 +94,7 @@ export class Recorder {
     this.currCallback = callback || this.config.callback;
     this.worker.postMessage({ command: 'getBuffer' })
   }
+
+
 }
 

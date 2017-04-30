@@ -1,0 +1,93 @@
+<!--
+  Generated template for the Introduction page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Introduction</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-slides (ionSlideDidChange)="slideChanged()">
+
+<!--<ion-slide>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="introduction" style="vertical-align: middle;">
+      This is <br> Calvin
+  </ion-col>
+  <ion-col>
+  <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
+  </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-slide>-->
+
+<ion-slide>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="introduction">
+         <p>
+         This is Calvin
+        </p>
+         <p>
+        Hello Calvin!
+        </p>
+      </ion-col>
+      <ion-col>
+        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front-wave.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-slide>
+
+
+<ion-slide>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="introduction">
+        Calvin is going to help us
+        learn the sounds we use in English
+      </ion-col>
+      <ion-col>
+        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-slide>
+
+<ion-slide>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="introduction">
+        We're going to go inside his head
+        to see how his lips, jaw and tongue
+        move when he makes different
+        sounds
+        <br>
+        <br>
+        Come with us!
+      </ion-col>
+      <ion-col>
+        <div class="slide-image image-parent">
+        <img
+        [class]="getFadeIn()" src="assets/images/calvin-introduction/calvin-front-profile-vocal-tract.png">
+        <img
+         [class]="getFadeOut()" src="assets/images/calvin-introduction/calvin-front-profile.png">
+
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-slide>
+
+</ion-slides>
+</ion-content>

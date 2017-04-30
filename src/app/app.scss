@@ -178,12 +178,22 @@ ion-title, .calvin-title {
     and (min-device-height: 768px)
     and (orientation: landscape) {
 
+
   .keyword-button {
     font-size: 40px !important;
     height: 64px !important;
     width: 256px;
     margin-top: 32px;
     margin-bottom: 32px;
+  }
+
+  .video-player {
+      width: 512px !important;
+  }
+
+  .slide-image {
+      width: 512px !important;
+      height: 512px !important;
   }
 
 }

@@ -21,6 +21,7 @@ import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
 import { KeywordPage } from '../pages/keyword-page/keyword-page';
 import { ExamplePage } from '../pages/example-page/example-page';
 import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
+import { Introduction } from '../pages/introduction/introduction';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
     VideoPlayerPage,
     KeywordPage,
     ExamplePage,
-    TalkerModePage
+    TalkerModePage,
+    Introduction
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
     VideoPlayerPage,
     KeywordPage,
     ExamplePage,
-    TalkerModePage
+    TalkerModePage,
+    Introduction
   ],
   providers: [
     StatusBar,

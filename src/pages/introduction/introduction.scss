@@ -1,0 +1,63 @@
+page-introduction {
+
+
+
+.introduction {
+      display: inline-block;
+      font-size: 50px !important;
+      background-color: color($colors, primary) !important;
+      color: color($colors, light) !important;
+      padding: 10px;
+      border-radius: 10px;
+}
+
+@keyframes fadeout {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(128px) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(128px) scale(2);
+    opacity: 1;
+  }
+}
+
+
+
+.fade-out {
+    animation: fadeout 3s linear forwards;
+}
+
+.fade-in {
+    animation: fadein 3s linear forwards;
+}
+
+.image-parent {
+  position:relatve;
+
+}
+.image-back {
+  position: absolute;
+  left: 16px;
+  top: 0px;
+  opacity: 0;
+}
+
+.image-front {
+  position: absolute;
+  left: 16px;
+  top: 0px;
+  opacity: 1;
+}
+}
