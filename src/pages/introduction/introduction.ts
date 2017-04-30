@@ -26,14 +26,14 @@ export class Introduction {
   }
 
   getFadeOut() {
-    if (this.slides.getActiveIndex() === 2) {
+    if (this.slides.getActiveIndex() === 3) {
 
       return "slide-image image-front fade-out";
     }
     return "slide-image image-front";
   }
   getFadeIn() {
-    if (this.slides.getActiveIndex() === 2) {
+    if (this.slides.getActiveIndex() === 3) {
 
       return "slide-image image-front fade-in";
     }

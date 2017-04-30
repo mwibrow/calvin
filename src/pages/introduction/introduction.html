@@ -15,31 +15,30 @@
 
 <ion-content padding>
 
-<ion-slides (ionSlideDidChange)="slideChanged()">
+<ion-slides speed="0">
 
-<!--<ion-slide>
+<ion-slide>
   <ion-grid>
     <ion-row>
-      <ion-col class="introduction" style="vertical-align: middle;">
-      This is <br> Calvin
-  </ion-col>
+      <ion-col>
+        <div class="introduction">
+      This is  Calvin
+        </div>
+    </ion-col>
   <ion-col>
   <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
   </ion-col>
     </ion-row>
   </ion-grid>
-</ion-slide>-->
+</ion-slide>
 
 <ion-slide>
   <ion-grid>
     <ion-row>
-      <ion-col class="introduction">
-         <p>
-         This is Calvin
-        </p>
-         <p>
+      <ion-col>
+         <div class="introduction">
         Hello Calvin!
-        </p>
+        </div>
       </ion-col>
       <ion-col>
         <img class="slide-image" src="assets/images/calvin-introduction/calvin-front-wave.png">
@@ -52,9 +51,11 @@
 <ion-slide>
   <ion-grid>
     <ion-row>
-      <ion-col class="introduction">
+      <ion-col>
+        <div class="introduction">
         Calvin is going to help us
         learn the sounds we use in English
+        </div>
       </ion-col>
       <ion-col>
         <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
@@ -66,14 +67,13 @@
 <ion-slide>
   <ion-grid>
     <ion-row>
-      <ion-col class="introduction">
-        We're going to go inside his head
+      <ion-col>
+         <div class="introduction">
+        We're going to go inside Calvin's head
         to see how his lips, jaw and tongue
         move when he makes different
         sounds
-        <br>
-        <br>
-        Come with us!
+        </div>
       </ion-col>
       <ion-col>
         <div class="slide-image image-parent">
@@ -87,6 +87,21 @@
     </ion-row>
   </ion-grid>
 
+</ion-slide>
+
+<ion-slide>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="introduction">
+        Let's go!
+        </div>
+      </ion-col>
+      <ion-col>
+        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front-cheer.png">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-slide>
 
 </ion-slides>

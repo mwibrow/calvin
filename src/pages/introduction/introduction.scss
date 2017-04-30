@@ -3,7 +3,7 @@ page-introduction {
 
 
 .introduction {
-      display: inline-block;
+
       font-size: 50px !important;
       background-color: color($colors, primary) !important;
       color: color($colors, light) !important;
@@ -16,8 +16,12 @@ page-introduction {
     transform: translateY(0px) scale(1);
     opacity: 1;
   }
+  20% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
   100% {
-    transform: translateY(128px) scale(2);
+    transform: translateY(96px) scale(2);
     opacity: 0;
   }
 }
@@ -27,8 +31,12 @@ page-introduction {
     transform: translateY(0px) scale(1);
     opacity: 0;
   }
+  20% {
+    transform: translateY(0px) scale(1);
+    opacity: 0;
+  }
   100% {
-    transform: translateY(128px) scale(2);
+    transform: translateY(96px) scale(2);
     opacity: 1;
   }
 }
@@ -36,11 +44,11 @@ page-introduction {
 
 
 .fade-out {
-    animation: fadeout 3s linear forwards;
+    animation: fadeout 4s  forwards;
 }
 
 .fade-in {
-    animation: fadein 3s linear forwards;
+    animation: fadein 4s forwards;
 }
 
 .image-parent {
@@ -49,14 +57,14 @@ page-introduction {
 }
 .image-back {
   position: absolute;
-  left: 16px;
+  left: 40px;
   top: 0px;
   opacity: 0;
 }
 
 .image-front {
   position: absolute;
-  left: 16px;
+  left: 40px;
   top: 0px;
   opacity: 1;
 }
