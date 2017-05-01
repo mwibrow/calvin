@@ -26,7 +26,7 @@
         </div>
     </ion-col>
   <ion-col>
-  <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
+    <calvin></calvin>
   </ion-col>
     </ion-row>
   </ion-grid>
@@ -41,7 +41,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front-wave.png">
+         <calvin-wave></calvin-wave>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -58,7 +58,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front.png">
+       <calvin></calvin>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -77,11 +77,8 @@
       </ion-col>
       <ion-col>
         <div class="slide-image image-parent">
-        <img
-        [class]="getFadeIn()" src="assets/images/calvin-introduction/calvin-front-profile-vocal-tract.png">
-        <img
-         [class]="getFadeOut()" src="assets/images/calvin-introduction/calvin-front-profile.png">
-
+          <calvin-vocal-tract [class]="getFadeIn()"></calvin-vocal-tract>
+          <calvin-profile [class]="getFadeOut()"></calvin-profile>
         </div>
       </ion-col>
     </ion-row>
@@ -98,7 +95,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <img class="slide-image" src="assets/images/calvin-introduction/calvin-front-cheer.png">
+         <div class="slide-image" [innerHtml]="svg.calvin.svg.calvinCheer | safe: 'html'"></div>
       </ion-col>
     </ion-row>
   </ion-grid>

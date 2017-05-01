@@ -18,7 +18,7 @@ import { Introduction } from '../pages/introduction/introduction';
 export class CALVinApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = Introduction;
   pages: Array<{title: string, component: any}>;
 
   constructor(

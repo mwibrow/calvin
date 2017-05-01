@@ -1,12 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Pipe, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
-/**
- * Generated class for the Introduction page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { Svg } from '../../providers/svg';
+import { SafePipe } from '../../pipes/safe-pipe';
+
+import { Calvin } from '../../components/calvin'
+
+@Pipe({
+   name: 'safePipe',
+   pure: false
+})
 @IonicPage()
 @Component({
   selector: 'page-introduction',
@@ -14,7 +17,10 @@ import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 })
 export class Introduction {
   @ViewChild(Slides) slides: Slides;
+  svg: Svg;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.svg = new Svg();
   }
 
   ionViewDidLoad() {

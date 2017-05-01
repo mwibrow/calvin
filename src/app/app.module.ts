@@ -26,6 +26,11 @@ import { Svg } from '../providers/svg';
 
 import { SafePipe } from '../pipes/safe-pipe';
 
+import { Calvin } from '../components/calvin/calvin';
+import { CalvinWave } from '../components/calvin/calvin-wave';
+import { CalvinCheer } from '../components/calvin/calvin-cheer';
+import { CalvinProfile } from '../components/calvin/calvin-profile';
+import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
 @NgModule({
   declarations: [
     CALVinApp,
@@ -41,7 +46,8 @@ import { SafePipe } from '../pipes/safe-pipe';
     ExamplePage,
     TalkerModePage,
     Introduction,
-    SafePipe
+    SafePipe,
+    Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract
   ],
   imports: [
     BrowserModule,
