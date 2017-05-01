@@ -22,6 +22,9 @@ import { KeywordPage } from '../pages/keyword-page/keyword-page';
 import { ExamplePage } from '../pages/example-page/example-page';
 import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
 import { Introduction } from '../pages/introduction/introduction';
+import { Svg } from '../providers/svg';
+
+import { SafePipe } from '../pipes/safe-pipe';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,8 @@ import { Introduction } from '../pages/introduction/introduction';
     KeywordPage,
     ExamplePage,
     TalkerModePage,
-    Introduction
+    Introduction,
+    SafePipe
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,8 @@ import { Introduction } from '../pages/introduction/introduction';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppData,
     WordLists,
-    WebRecorder
+    WebRecorder,
+    Svg
   ]
 })
 export class AppModule {}

@@ -10,10 +10,10 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="no-scroll">
+<ion-content padding>
 
   <ion-grid>
-    <ion-row>
+    <!--<ion-row>
       <ion-col col-10 offset-1>
         <div text-center>
 
@@ -33,11 +33,13 @@
       </div>
       </ion-col>
 
-    </ion-row>
+    </ion-row>-->
     <ion-row>
-<svg id="svg" #svg>
-  </svg>
+      <ion-col>
 
+<div [innerHtml]="svg.calvin.svg.calvinNeutral | safe: 'html'"></div>
+
+</ion-col>
       </ion-row>
     <!--<audio #media></audio>
     <button ion-button (click)="startRecording(media)"> start </button>

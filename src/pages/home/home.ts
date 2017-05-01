@@ -1,32 +1,41 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, Pipe, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { WebRecorder } from '../../providers/web-recorder';
+import { Svg } from '../../providers/svg';
+import { SafePipe } from '../../pipes/safe-pipe';
 //import { Snap } from 'snapsvg';
-import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
+//import Snap from 'imports-loader?this=>window,fix=>module.exports=0!snapsvg/dist/snap.svg.js';
 
+@Pipe({
+   name: 'safePipe',
+  pure: false
+})
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+
 })
 export class HomePage {
 
   @ViewChild('svg') svgElement: ElementRef;
   recorder: any;
-
+  svg: Svg;
+  safe: SafePipe;
   constructor(public navCtrl: NavController,
   public webRecorder: WebRecorder) {
     console.log(navigator.getUserMedia);
     this.recorder = null;
-
+    this.svg = new Svg();
+    console.log(this.svg)
     //
   }
 
   ngAfterViewInit() {
-    console.log(this.svgElement);
-    //console.log(snapsvg)
-    var snap = Snap('#svg')
+    // console.log(this.svgElement);
+    // //console.log(snapsvg)
+    // var snap = Snap('#svg')
 
-    var bigCircle = snap.circle(150, 150, 100);
+    // var bigCircle = snap.circle(150, 150, 100);
 }
 
   onFail(e) {
