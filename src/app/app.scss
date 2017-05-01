@@ -198,7 +198,8 @@ ion-title, .calvin-title {
 
 }
 
-.calvin-head, .calvin-ear-right, .calvin-ear-left {
+.calvin-head, .calvin-ear-right, .calvin-ear-left,
+.calvin-hand-left, .calvin-hand-right {
     fill: #ffc107;
 }
 
@@ -210,10 +211,14 @@ ion-title, .calvin-title {
     fill: #b71c1c;
 }
 
-.calvin-hair, .calvin-eye-right, .calvin-eye-left {
+.calvin-hair, .calvin-eye-right, .calvin-eye-left, .calvin-mouth {
     fill:#3e2723;
 }
 
 .calvin-neck, .calvin-ear-right-inner, .calvin-ear-left-inner, .calvin-lips {
     fill: #ff9800;
+}
+
+.calvin-teeth {
+    fill: #ffffff;
 }
