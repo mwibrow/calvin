@@ -4,8 +4,6 @@ import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { Svg } from '../../providers/svg';
 import { SafePipe } from '../../pipes/safe-pipe';
 
-import { Calvin } from '../../components/calvin'
-
 @Pipe({
    name: 'safePipe',
    pure: false
