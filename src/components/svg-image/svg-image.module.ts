@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SvgImages } from './svg-images';
-import { HttpModule } from '@angular/http';
+import { SvgImage } from './svg-image';
 @NgModule({
   declarations: [
-    SvgImages,
-    HttpModule
+    SvgImage,
   ],
   imports: [
-    IonicPageModule.forChild(SvgImages),
+    IonicPageModule.forChild(SvgImage),
   ],
   exports: [
-    SvgImages
+    SvgImage
   ]
 })
 export class SvgImagesModule {}

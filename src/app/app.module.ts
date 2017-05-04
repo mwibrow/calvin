@@ -37,7 +37,7 @@ import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
 import { HttpModule } from '@angular/http';
 
 import { SvgName } from '../components/svg-name/svg-name';
-import { SvgImages } from '../components/svg-images/svg-images';
+import { SvgImage } from '../components/svg-image/svg-image';
 @NgModule({
   declarations: [
     CALVinApp,
@@ -55,7 +55,7 @@ import { SvgImages } from '../components/svg-images/svg-images';
     Introduction,
     SafePipe,
     Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract,
-    SvgName,SvgImages
+    SvgName,SvgImage
   ],
   imports: [
     HttpModule,

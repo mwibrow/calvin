@@ -3,27 +3,15 @@ import { HttpModule, Http } from '@angular/http';
 import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
-/**
- * Generated class for the SvgName directive.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/DirectiveMetadata-class.html
- * for more info on Angular Directives.
- */
 @Directive({
-  selector: '[svgname]', // Attribute selector
+  selector: '[svg-name]', // Attribute selector
   providers: [HttpModule]
 })
 export class SvgName {
 
-  @Input('svgname') svgName;
+  @Input('svg-name') svgName;
 
-  svgData: string;
-  constructor(public element: ElementRef, public http: Http) {
-    console.log('Hello SvgName Directive');
-
-    element.nativeElement.innerHTML = 'foo';
-
-  }
+  constructor(public element: ElementRef, public http: Http) {}
 
   ngOnInit(){
     console.log(this.svgName)
@@ -37,11 +25,8 @@ export class SvgName {
         .get(path)
         .map(res => res.text())
         .subscribe((data)=>
-        {
-          that.element.nativeElement.innerHTML = data
-          // this.svgData = data;
+          {
+            that.element.nativeElement.innerHTML = data
           });
    }
-
-
 }
