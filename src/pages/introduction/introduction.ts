@@ -1,4 +1,4 @@
-import { Component, Pipe, ViewChild } from '@angular/core';
+import { Component, Pipe, ViewChild, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
 import { Svg } from '../../providers/svg';
@@ -14,12 +14,16 @@ import { SafePipe } from '../../pipes/safe-pipe';
   templateUrl: 'introduction.html',
 })
 export class Introduction {
+
+
+
   @ViewChild(Slides) slides: Slides;
   svg: Svg;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
     this.svg = new Svg();
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Introduction');

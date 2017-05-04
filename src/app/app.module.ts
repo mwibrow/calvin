@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicAudioModule } from 'ionic-audio';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 import { AppData } from '../providers/app-data';
 import { WordLists } from '../providers/word-lists';
 import { WebRecorder } from '../providers/web-recorder'
@@ -31,6 +33,11 @@ import { CalvinWave } from '../components/calvin/calvin-wave';
 import { CalvinCheer } from '../components/calvin/calvin-cheer';
 import { CalvinProfile } from '../components/calvin/calvin-profile';
 import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
+
+import { HttpModule } from '@angular/http';
+
+import { SvgName } from '../components/svg-name/svg-name';
+import { SvgImages } from '../components/svg-images/svg-images';
 @NgModule({
   declarations: [
     CALVinApp,
@@ -47,12 +54,15 @@ import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
     TalkerModePage,
     Introduction,
     SafePipe,
-    Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract
+    Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract,
+    SvgName,SvgImages
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(CALVinApp),
-    IonicAudioModule.forRoot()
+    IonicAudioModule.forRoot(),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
