@@ -10,9 +10,54 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class WebRecorder {
 
+  config: any;
+  audio: any;
+  recorder: Recorder;
+  constructor(audio: any, config?: any) {
+    this.config = config || {};
+    this.audio = audio;
+    this.recorder = null;
+  }
+
   GetRecorder(source: any, config?: any) {
     return new Recorder(source, config);
   }
+
+  initialise() {
+    let that: WebRecorder = this;
+    if (navigator.getUserMedia) {
+      navigator.getUserMedia({audio: true},
+        function(s){that.initSuccess(s)},
+        function(e){that.initFail(e)});
+    } else {
+      console.log('navigator.getUserMedia not present');
+    }
+  }
+
+  initSuccess(stream) {
+    let context: any = new AudioContext();
+    let mediaStreamSource: any = context.createMediaStreamSource(stream);
+    this.recorder = new Recorder(mediaStreamSource, this.config);
+
+  }
+
+  initFail(e) {
+    console.error('Error occured while excuting getUserMedia');
+  }
+
+  startRecording() {
+    this.recorder.record();
+  }
+
+  stopRecording() {
+    let that: WebRecorder = this;
+    this.recorder.stop();
+    this.recorder.exportWAV(function(s) {
+      that.audio.src = window.URL.createObjectURL(s);
+    }, {});
+  }
+
+
 }
 
 export class Recorder {
@@ -60,7 +105,7 @@ export class Recorder {
     this.node.connect(this.context.destination);    //this should not be necessary
   };
 
-  exportWAV(callback: any, type: any){
+  exportWAV(callback: any, type?: any){
     this.currCallback = callback || this.config.callback;
     type = type || this.config.type || 'audio/wav';
     if (!this.currCallback) throw new Error('Callback not set');

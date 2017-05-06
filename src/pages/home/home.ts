@@ -54,6 +54,7 @@ export class HomePage {
       }
 
   startRecording(audio) {
+    console.log(audio)
       if (navigator.getUserMedia) {
         var that = this;
         navigator.getUserMedia({audio: true},
@@ -65,13 +66,12 @@ export class HomePage {
     }
 
   stopRecording(audio) {
-    				this.recorder.stop();
-    			this.recorder.exportWAV(function(s) {
-
-                audio.src = window.URL.createObjectURL(s);
-                audio.play()
-        });
-      }
+    this.recorder.stop();
+    this.recorder.exportWAV(function(s) {
+      audio.src = window.URL.createObjectURL(s);
+      audio.play()
+    });
+  }
 
 }
 
