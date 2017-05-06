@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+//import { Injectable } from '@angular/core';
 
 
 /*
@@ -7,23 +7,25 @@ import { Injectable } from '@angular/core';
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
-@Injectable()
+//@Injectable()
 export class WebRecorder {
 
   config: any;
   audio: any;
-  recorder: Recorder;
-  constructor(audio: any, config?: any) {
-    this.config = config || {};
-    this.audio = audio;
+  recorder: any;
+  constructor() {
+    this.config = {};
+    this.audio = null;
     this.recorder = null;
   }
 
-  GetRecorder(source: any, config?: any) {
-    return new Recorder(source, config);
+  initialise(audio: any, config?: any) {
+    this.audio = audio;
+    this.config = config;
   }
 
-  initialise() {
+  setUp() {
+    this.recorder = null;
     let that: WebRecorder = this;
     if (navigator.getUserMedia) {
       navigator.getUserMedia({audio: true},
@@ -38,7 +40,7 @@ export class WebRecorder {
     let context: any = new AudioContext();
     let mediaStreamSource: any = context.createMediaStreamSource(stream);
     this.recorder = new Recorder(mediaStreamSource, this.config);
-
+    this.recorder.record();
   }
 
   initFail(e) {
@@ -46,7 +48,8 @@ export class WebRecorder {
   }
 
   startRecording() {
-    this.recorder.record();
+    this.setUp();
+
   }
 
   stopRecording() {
@@ -54,10 +57,9 @@ export class WebRecorder {
     this.recorder.stop();
     this.recorder.exportWAV(function(s) {
       that.audio.src = window.URL.createObjectURL(s);
+      that.recorder.clear();
     }, {});
   }
-
-
 }
 
 export class Recorder {
@@ -68,6 +70,7 @@ export class Recorder {
   recording: boolean;
   config: any;
   currCallback: any;
+
   constructor(source: any, cfg: any){
 
     this.config = cfg || {};
@@ -131,6 +134,9 @@ export class Recorder {
     this.recording = false;
   }
 
+  quit() {
+    this.worker.terminate();
+  }
   clear(){
     this.worker.postMessage({ command: 'clear' });
   }

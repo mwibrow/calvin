@@ -18,59 +18,35 @@ import { SafePipe } from '../../pipes/safe-pipe';
 export class HomePage {
 
   @ViewChild('svg') svgElement: ElementRef;
+  @ViewChild('media') audio: ElementRef;
   recorder: any;
   svg: Svg;
   safe: SafePipe;
-  constructor(public navCtrl: NavController,
-  public webRecorder: WebRecorder) {
+  webRecorder: WebRecorder;
+  constructor(public navCtrl: NavController) {
     console.log(navigator.getUserMedia);
     this.recorder = null;
     this.svg = new Svg();
-    console.log(this.svg)
+    console.log(this.svg);
+    this.webRecorder = new WebRecorder();
     //
   }
 
   ngAfterViewInit() {
-    // console.log(this.svgElement);
-    // //console.log(snapsvg)
-    // var snap = Snap('#svg')
+     this.webRecorder.initialise(this.audio.nativeElement);
+  }
 
-    // var bigCircle = snap.circle(150, 150, 100);
-}
-
-  onFail(e) {
-    				console.log('Rejected!', e);
-    			};
-
-  onSuccess(s) {
-        var context = new AudioContext();
-        var mediaStreamSource = context.createMediaStreamSource(s);
-
-        this.recorder = this.webRecorder.GetRecorder(mediaStreamSource, {});
-        this.recorder.record();
-
-        // audio loopback
-        // mediaStreamSource.connect(context.destination);
-      }
-
-  startRecording(audio) {
-    console.log(audio)
-      if (navigator.getUserMedia) {
-        var that = this;
-        navigator.getUserMedia({audio: true},
-          function(s){that.onSuccess(s)},
-          function(e){that.onFail(e)});
-      } else {
-        console.log('navigator.getUserMedia not present');
-      }
-    }
+  startRecording() {
+    this.webRecorder.startRecording();
+  }
 
   stopRecording(audio) {
-    this.recorder.stop();
-    this.recorder.exportWAV(function(s) {
-      audio.src = window.URL.createObjectURL(s);
-      audio.play()
-    });
+     this.webRecorder.stopRecording();
+     var that = this;
+     this.audio.nativeElement.oncanplaythrough = function() {
+          that.audio.nativeElement.play();
+     };
+
   }
 
 }
