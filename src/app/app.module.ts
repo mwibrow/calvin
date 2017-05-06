@@ -38,6 +38,8 @@ import { HttpModule } from '@angular/http';
 
 import { SvgName } from '../components/svg-name/svg-name';
 import { SvgImage } from '../components/svg-image/svg-image';
+import { AudioIO } from '../components/audio-io/audio-io';
+
 @NgModule({
   declarations: [
     CALVinApp,
@@ -55,7 +57,7 @@ import { SvgImage } from '../components/svg-image/svg-image';
     Introduction,
     SafePipe,
     Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract,
-    SvgName,SvgImage
+    SvgName,SvgImage, AudioIO
   ],
   imports: [
     HttpModule,

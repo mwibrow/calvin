@@ -41,9 +41,11 @@
 
 </ion-col>
       </ion-row>
+      <audio-io #audio1> </audio-io>
     <audio #media></audio>
     <button ion-button (click)="startRecording(media)"> start </button>
-    <button ion-button (click)="stopRecording(media)"> play</button>
+    <button ion-button (click)="stopRecording(media)"> stop</button>
+    <button ion-button (click)="play()"> play </button>
   </ion-grid>
 
 </ion-content>
