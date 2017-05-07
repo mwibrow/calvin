@@ -36,10 +36,10 @@ import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
 
 import { HttpModule } from '@angular/http';
 
-import { SvgName } from '../components/svg-name/svg-name';
+import { SvgSrc } from '../components/svg-src/svg-src';
 import { SvgImage } from '../components/svg-image/svg-image';
 import { AudioIO } from '../components/audio-io/audio-io';
-
+import { VocalTractAnimation } from '../components/vocal-tract-animation/vocal-tract-animation';
 @NgModule({
   declarations: [
     CALVinApp,
@@ -57,7 +57,8 @@ import { AudioIO } from '../components/audio-io/audio-io';
     Introduction,
     SafePipe,
     Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract,
-    SvgName,SvgImage, AudioIO
+    SvgSrc,SvgImage, AudioIO,
+    VocalTractAnimation
   ],
   imports: [
     HttpModule,

@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'svg-image',
@@ -6,6 +6,8 @@ import { Component,Input } from '@angular/core';
 })
 export class SvgImage {
 
+  svg: string;
   constructor() {}
+
 
 }
