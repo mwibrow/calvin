@@ -15,7 +15,7 @@ export class SvgName {
 
   ngOnInit(){
     console.log(this.svgName)
-    this.loadSvg('/assets/images/svg/calvin-' + this.svgName + '.svg');
+    this.loadSvg('/assets/images/svg/' + this.svgName + '.svg');
   }
 
   loadSvg(path: string)

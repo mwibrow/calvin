@@ -13,7 +13,7 @@
 <ion-content padding>
 
   <ion-grid>
-    <!--<ion-row>
+    <ion-row>
       <ion-col col-10 offset-1>
         <div text-center>
 
@@ -33,19 +33,7 @@
       </div>
       </ion-col>
 
-    </ion-row>-->
-    <ion-row>
-      <ion-col>
-
-<div [innerHtml]="svg.calvin.svg.calvinVocalTract | safe: 'html'"></div>
-
-</ion-col>
-      </ion-row>
-      <audio-io #audio1> </audio-io>
-    <audio #media></audio>
-    <button ion-button (click)="startRecording(media)"> start </button>
-    <button ion-button (click)="stopRecording(media)"> stop</button>
-    <button ion-button (click)="play()"> play </button>
+    </ion-row>
   </ion-grid>
 
 </ion-content>
