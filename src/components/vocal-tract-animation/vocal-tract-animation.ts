@@ -15,20 +15,22 @@ export class VocalTractAnimation {
 
   text: string;
   elementRef: ElementRef;
+  vocalTract: any;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
     this.elementRef = me;
+    this.vocalTract = {};
   }
 
   ngOnInit() {
-    console.log(this);
-    let paths: Array<any> = this.elementRef.nativeElement.querySelectorAll('path');
-    let path: any = paths[0];
-    console.log(svgParse(path.getAttribute('d')))
-    let vPath = Path.fromSvg(path.getAttribute('d'));
-    console.log(vPath);
-
+    let i: number, svgPath: any, svgPaths: Array<any>;
+    svgPaths = this.elementRef.nativeElement.querySelectorAll('path');
+    for (i = 0; i < svgPaths.length; i++) {
+      svgPath = svgPaths[i];
+      this.vocalTract[svgPath.getAttribute('svg-label')] = svgParse(svgPath.getAttribute('d'))
+    }
+    console.log(this.vocalTract)
   }
 
 }
@@ -100,6 +102,10 @@ class Point {
       return tmpPoint;
     }
   }
+
+  static pointAtTime(t: number, p: Point, q:Point) {
+    return new Point(p.x * (1 - t) + q.x * t, p.y * (1 - t) + q.y * t);
+  }
 }
 
 
@@ -132,10 +138,10 @@ class Path {
   append(segment: PathSegment) {
     let segmentCount: number = this.segments.length;
     if (segmentCount > 0) {
-      segment.from = this.segments[segmentCount - 1].to;
+      segment.from = this.segments[segmentCount - 1].to.copy();
     } else {
       if (!segment.from) {
-        segment.from = segment.to;
+        segment.from = segment.to.copy();
       }
     }
     console.log(segment)
@@ -172,7 +178,9 @@ class Path {
         case 'Z':
            segment = new ClosePathSegment(null,
              new Point(svgSegment.x, svgSegment.y));
-        break;
+          break;
+        default:
+          console.error(`Invalid segment code ${svgSegment.code}`);
       }
       path.append(segment);
     }
