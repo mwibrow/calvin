@@ -144,7 +144,6 @@ class Path {
         segment.from = segment.to.copy();
       }
     }
-    console.log(segment)
     this.segments.push(segment);
   }
 
@@ -152,6 +151,15 @@ class Path {
     return this.segments.map(function(segment) {
       return segment.toSvg();
     }).join(' ');
+  }
+
+  getPoints(): Array<Point> {
+    let i: number;
+    let points: Array<Point> = new Array<Point>();
+    for (i = 0;i < this.segments.length; i++) {
+      points.concat(this.segments[i].getPoints());
+    }
+    return points;
   }
 
   static fromSvg(svgString: string): Path {
@@ -203,6 +211,15 @@ class PathSegment {
     this.fromSupport = null;
     this.toSupport = null;
     this.to = null;
+  }
+
+  getPoints(): Array<Point> {
+    let points: Array<Point> = new Array<Point>();
+    if (this.from) points.push(this.from);
+    if (this.fromSupport) points.push(this.fromSupport);
+    if (this.toSupport) points.push(this.toSupport);
+    if (this.to) points.push(this.to);
+    return points;
   }
 
   toSvg(): string {
