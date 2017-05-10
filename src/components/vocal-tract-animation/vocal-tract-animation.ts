@@ -277,3 +277,96 @@ class CurveToSegment extends PathSegment {
   }
 }
 
+
+namespace Theatro {
+
+  class Theatro {
+
+    production: any;
+    performing: boolean;
+    currentProduction: string;
+
+    perform() {
+      this.performing = true;
+      window.requestAnimationFrame(this._perform);
+
+    }
+
+    _perform(event) {
+      if (this.performing) {
+        this.performing = this.production[this.currentProduction].perform();
+        window.requestAnimationFrame(this._perform);
+      }
+    }
+  }
+
+  class Production {
+    cast: Array<Actor>;
+    performing: boolean;
+
+  }
+
+  interface Actor {
+    script: Script;
+    performing: boolean;
+
+    rehearse();
+
+    perform();
+
+    show();
+  }
+
+  class Script {
+    scenes: any;
+    openingScene: string;
+    currentScene: string;
+    performing: boolean;
+
+    constructor() {
+      this.scenes = {};
+      this.openingScene = null;
+    }
+
+    addScene(scene: Scene) {
+      if (this.scenes.length) {
+        this.scenes[this.scenes.length - 1].next = scene.name;
+      } else {
+        this.openingScene = scene.name;
+      }
+      this.scenes.push(scene);
+    }
+
+    rehearse() {
+      this.currentScene = this.openingScene;
+    }
+
+    perform() {
+      this.scenes[this.currentScene].perform();
+      if (!this.scenes[this.currentScene].performing) {
+        this.currentScene = this.scenes[this.currentScene].next;
+        this.performing = !(this.currentScene === null);
+      }
+    }
+  }
+
+  class Scene {
+    action: Action;
+    name: string;
+    next: string;
+    performing: boolean;
+    perform() {
+      this.action.perform()
+    }
+  }
+
+  class Action {
+    duration: number;
+    actor: Actor;
+
+    perform() {
+
+    }
+  }
+
+}
