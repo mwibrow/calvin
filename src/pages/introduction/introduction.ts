@@ -40,6 +40,7 @@ export class Introduction {
     }
     return "slide-image image-front";
   }
+
   getFadeIn() {
     if (this.slides.getActiveIndex() === 3) {
 

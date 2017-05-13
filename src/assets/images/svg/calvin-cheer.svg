@@ -1,4 +1,6 @@
-<svg class="calvin-svg" viewBox="0 0 512 512">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="calvin-svg" viewBox="0 0 512 512">
   <g class="calvin-cheer">
     <path
       d="M 428,120 L 400,76 L 400,64 L 404,56 L 416,56 L 424,64 L 424,56 L 424,24 L 428,16 L 440,16 L 444,24 L 444,16 L 448,8 L 460,8 L 464,16 L 464,28 L 468,20 L 480,20 L 484,28 L 484,40 L 484,48 L 488,40 L 496,40 L 500,48 L 500,76 L 488,112 L 484,128 L 484,136 L 436,136 L 436,128 Z"
