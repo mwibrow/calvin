@@ -3,94 +3,49 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { IonicAudioModule } from 'ionic-audio';
 
-import { IonicStorageModule } from '@ionic/storage';
-
-import { AppData } from '../providers/app-data';
-import { WordLists } from '../providers/word-lists';
-import { WebRecorder } from '../providers/web-recorder'
-import { CALVinApp } from './app.component';
+import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { SelectSpeakerPage } from '../pages/select-speaker/select-speaker';
-import { WordTrainerPage } from '../pages/word-trainer/word-trainer';
-import { VowelGroupModal } from '../pages/vowel-group-modal/vowel-group-modal';
-import { SpeakerModal } from '../pages/speaker-modal/speaker-modal';
-import { HvdTab } from '../pages/hvd-tab/hvd-tab';
-import { KeywordTab } from '../pages/keyword-tab/keyword-tab';
-import { VideoPlayerPage } from '../pages/video-player-page/video-player-page';
-
-import { KeywordPage } from '../pages/keyword-page/keyword-page';
-import { ExamplePage } from '../pages/example-page/example-page';
-import { TalkerModePage } from '../pages/talker-mode-page/talker-mode-page';
-import { Introduction } from '../pages/introduction/introduction';
-import { Svg } from '../providers/svg';
-
-import { SafePipe } from '../pipes/safe-pipe';
-
-import { Calvin } from '../components/calvin/calvin';
-import { CalvinWave } from '../components/calvin/calvin-wave';
-import { CalvinCheer } from '../components/calvin/calvin-cheer';
-import { CalvinProfile } from '../components/calvin/calvin-profile';
-import { CalvinVocalTract } from '../components/calvin/calvin-vocal-tract';
+import { IntroductionPage } from '../pages/introduction/introduction';
+import { AudioIOComponent } from '../components/audio-io/audio-io';
+import { SvgImageComponent } from '../components/svg-image/svg-image';
+import { SvgSrcDirective } from '../directives/svg-src/svg-src';
+import { VocalTractAnimationComponent } from '../components/vocal-tract-animation/vocal-tract-animation';
+import { AppStateProvider } from '../providers/app-state/app-state';
+import { AppDataProvider } from '../providers/app-data/app-data';
+import { LogoComponent } from '../components/logo/logo';
 
 import { HttpModule } from '@angular/http';
 
-import { SvgSrc } from '../components/svg-src/svg-src';
-import { SvgImage } from '../components/svg-image/svg-image';
-import { AudioIO } from '../components/audio-io/audio-io';
-import { VocalTractAnimation } from '../components/vocal-tract-animation/vocal-tract-animation';
 @NgModule({
   declarations: [
-    CALVinApp,
+    MyApp,
     HomePage,
-    SelectSpeakerPage,
-    WordTrainerPage,
-    SpeakerModal,
-    VowelGroupModal,
-    HvdTab,
-    KeywordTab,
-    VideoPlayerPage,
-    KeywordPage,
-    ExamplePage,
-    TalkerModePage,
-    Introduction,
-    SafePipe,
-    Calvin, CalvinWave, CalvinCheer, CalvinProfile, CalvinVocalTract,
-    SvgSrc,SvgImage, AudioIO,
-    VocalTractAnimation
+    IntroductionPage,
+    AudioIOComponent,
+    SvgImageComponent,
+    SvgSrcDirective,
+    VocalTractAnimationComponent,
+    LogoComponent
   ],
   imports: [
-    HttpModule,
     BrowserModule,
-    IonicModule.forRoot(CALVinApp),
-    IonicAudioModule.forRoot(),
-    IonicStorageModule.forRoot()
+    HttpModule,
+    IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    CALVinApp,
+    MyApp,
     HomePage,
-    SelectSpeakerPage,
-    WordTrainerPage,
-    SpeakerModal,
-    VowelGroupModal,
-    HvdTab,
-    KeywordTab,
-    VideoPlayerPage,
-    KeywordPage,
-    ExamplePage,
-    TalkerModePage,
-    Introduction
+    IntroductionPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AppData,
-    WordLists,
-    WebRecorder,
-    Svg
+    AppStateProvider,
+    AppDataProvider,
+    HttpModule
   ]
 })
 export class AppModule {}

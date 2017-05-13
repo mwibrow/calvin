@@ -4,7 +4,7 @@ import { Component, ElementRef } from '@angular/core';
   selector: 'audio-io',
   template: '<audio></audio>'
 })
-export class AudioIO {
+export class AudioIOComponent {
 
   private audio: any;
   private webRecorder: WebRecorder;
@@ -24,7 +24,7 @@ export class AudioIO {
 
 
   loadAudio(uri: string, cb: (data: any) => void) {
-    let that: AudioIO = this;
+    let that: AudioIOComponent = this;
     this.audio.oncanplaythrough = function() {
       that.audio.oncanplaythrough = null;
       cb(that.audio);
@@ -215,6 +215,5 @@ class Recorder {
     this.currCallback = callback || this.config.callback;
     this.worker.postMessage({ command: 'getBuffer' })
   }
-
 
 }

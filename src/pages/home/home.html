@@ -1,39 +1,23 @@
 <ion-header>
-  <ion-navbar color="navbarColor">
-    <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
+  <ion-navbar>
     <ion-title>
 
     </ion-title>
-
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="no-scroll">
+<ion-grid fixed>
+  <ion-row justify-content-center>
+    <ion-col col-auto>
+        <logo class="font-logo"></logo>
+    </ion-col>
+  </ion-row>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col col-10 offset-1>
-        <div text-center>
-
-
-            <div class="logo-wrapper">
-              &nbsp;
-          <span class="logo">
-            <span class="logo-c">C</span><span class="logo-a">A</span><span class="logo-l">L</span><span class="logo-v">V</span><span class="logo-i">i</span><span class="logo-n">n</span>
-          </span>
-          &nbsp;
-          </div>
-
-            <p><span class="logo-subtitle">
+  <ion-row justify-content-center>
+     <ion-col col-auto class="font-normal">
         Computer Assisted Vowel Learning interface
-        </span>
-      </p>
-      </div>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-  <vocal-tract-animation></vocal-tract-animation>
+     </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>

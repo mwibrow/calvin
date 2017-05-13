@@ -4,7 +4,7 @@ page-introduction {
 
 .introduction {
 
-      font-size: 50px !important;
+      font-size: 48px !important;
       background-color: color($colors, primary) !important;
       color: color($colors, light) !important;
       padding: 10px;
@@ -21,7 +21,7 @@ page-introduction {
     opacity: 1;
   }
   100% {
-
+    transform: translateY(80px) scale(1.75);
     opacity: 0;
   }
 }
@@ -36,7 +36,7 @@ page-introduction {
     opacity: 0;
   }
   100% {
-
+    transform: translateY(80px) scale(1.75);
     opacity: 1;
   }
 }
@@ -53,8 +53,8 @@ page-introduction {
 
 .image-parent {
   position:relatve;
-
 }
+
 .image-back {
   position: absolute;
   left: 40px;
@@ -68,10 +68,4 @@ page-introduction {
   top: 0px;
   opacity: 1;
 }
-
-.calvin {
-    width: 512px !important;
-    height: 512px !important;
-}
-
 }

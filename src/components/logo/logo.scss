@@ -1,0 +1,96 @@
+logo {
+
+.logo {
+    display: inline-block;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: translateY(0ex);
+  }
+  1% {
+    transform: translateY(-0.1ex);
+  }
+  3% {
+    transform: translateY(0.1ex);
+  }
+  4% {
+    transform: translateY(0px);
+  }
+  50% {
+      transform: rotate(0deg);
+  }
+  51% {
+      transform: rotate(10deg);
+  }
+  53% {
+      transform: rotate(-10deg);
+  }
+  54% {
+      transform: rotate(0deg);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.logo-letter {
+    display: inline-block;
+    height: 2ex;
+}
+
+.logo-letter span {
+    padding-right: 0.5ex;
+}
+
+.logo-letter:nth-child(1) {
+    width: 0.625ex;
+}
+.logo-letter:nth-child(2) {
+    width: 0.75ex;
+}
+.logo-letter:nth-child(3) {
+    width: 0.25ex;
+}
+.logo-letter:nth-child(4) {
+    width: 0.625ex;
+}
+.logo-letter:nth-child(5) {
+    width: 0ex;
+}
+.logo-letter:nth-child(6) {
+    width: 0.5ex;
+}
+
+.logo-c {
+    color: red;
+    position: absolute;
+    animation: jiggle 10s .1s ease-in-out infinite;
+}
+.logo-a {
+    color: orange;
+    position: absolute;
+    animation: jiggle 10s .2s ease-in-out infinite;
+}
+.logo-l {
+    color: deeppink;
+    position: absolute;
+    animation: jiggle 10s .3s ease-in-out infinite;
+}
+.logo-v {
+    color: green;
+    position: absolute;
+    animation: jiggle 10s .4s ease-in-out infinite;
+}
+.logo-i {
+    color: purple;
+    position: absolute;
+    animation: jiggle 10s .5s  ease-in-out infinite;
+}
+.logo-n {
+    color: blue;
+    position: absolute;
+    animation: jiggle 10s .6s  ease-in-out infinite;
+}
+
+}

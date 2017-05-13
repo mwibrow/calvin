@@ -1,9 +1,3 @@
-<!--
-  Generated template for the Introduction page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -26,8 +20,7 @@
         </div>
     </ion-col>
   <ion-col>
-    <!--<calvin></calvin>-->
-    <svg-image class="calvin" svg-src="assets/images/svg/calvin-profile"></svg-image>
+    <svg-image class="calvin" svg-src="assets/images/svg/calvin-neutral"></svg-image>
   </ion-col>
     </ion-row>
   </ion-grid>
@@ -42,7 +35,7 @@
         </div>
       </ion-col>
       <ion-col>
-         <calvin-wave></calvin-wave>
+        <svg-image class="calvin" svg-src="assets/images/svg/calvin-wave"></svg-image>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -59,7 +52,7 @@
         </div>
       </ion-col>
       <ion-col>
-       <calvin></calvin>
+         <svg-image class="calvin" svg-src="assets/images/svg/calvin-neutral"></svg-image>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -78,8 +71,10 @@
       </ion-col>
       <ion-col>
         <div class="slide-image image-parent">
-          <calvin-vocal-tract [class]="getFadeIn()"></calvin-vocal-tract>
-          <calvin-profile [class]="getFadeOut()"></calvin-profile>
+          <svg-image svg-src="assets/images/svg/calvin-profile-vocal-tract"
+            [class]="getFadeIn()"></svg-image>
+          <svg-image svg-src="assets/images/svg/calvin-profile"
+            [class]="getFadeOut()"></svg-image>
         </div>
       </ion-col>
     </ion-row>
@@ -96,11 +91,13 @@
         </div>
       </ion-col>
       <ion-col>
-         <div class="slide-image" [innerHtml]="svg.calvin.svg.calvinCheer | safe: 'html'"></div>
+         <svg-image class="calvin" svg-src="assets/images/svg/calvin-cheer"></svg-image>
+
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-slide>
 
 </ion-slides>
+
 </ion-content>

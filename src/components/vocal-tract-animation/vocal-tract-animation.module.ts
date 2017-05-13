@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { VocalTractAnimation } from './vocal-tract-animation';
+import { VocalTractAnimationComponent } from './vocal-tract-animation';
 
 @NgModule({
   declarations: [
-    VocalTractAnimation,
+    VocalTractAnimationComponent,
   ],
   imports: [
-    IonicPageModule.forChild(VocalTractAnimation),
+    IonicPageModule.forChild(VocalTractAnimationComponent),
   ],
   exports: [
-    VocalTractAnimation
+    VocalTractAnimationComponent
   ]
 })
-export class VocalTractAnimationModule {}
+export class VocalTractAnimationComponentModule {}

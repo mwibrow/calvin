@@ -4,10 +4,11 @@ import { Component } from '@angular/core';
   selector: 'svg-image',
   template: `<div></div>`
 })
-export class SvgImage {
+export class SvgImageComponent {
 
   svg: string;
   constructor() {}
 
 
 }
+

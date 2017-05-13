@@ -15,191 +15,54 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-body, span, button, h1, h2, h3, h4, h5, h6, p, ion-item, ion-title,
+body, div, span, p,
+h1, h2, h3, h4, h5, h6,
+button,
+ion-item, ion-title,
 ion-button, ion-content, ion-label {
   font-family: 'Crafty Girls', cursive !important;
   font-weight: bold !important;
 }
 
-ion-title, .calvin-title {
-    font-family: 'Crafty Girls', cursive !important;
-}
 
-.scroll-bar-indicator
-{
-	display: none;
-}
 
 .no-scroll .scroll-content{
     overflow: hidden !important;
 }
 
-.yes-scroll {
-    overflow: visible !important;
-}
-
-.check-mark-circle {
-    color: #40c040;
-}
-
-.ipa {
-    font-family: 'DoulosSIL' !important;
-}
-
-.crafty-padding {
-    padding-top: 0.5ex !important;
-    padding-bottom: 0.5ex !important;
-}
-
-
-.logo {
-    font-size: 15vw !important;
-}
-.logo-c {
-    color: red;
-}
-.logo-a {
-    color: orange;
-}
-.logo-l {
-    color: deeppink;
-}
-.logo-v {
-    color: green;
-}
-.logo-i {
-    color: purple;
-}
-.logo-n {
-    color: blue;
-}
-
-.logo-subtitle {
-    font-size: 150%;
-}
-
-.speaker-chip {
-    position: absolute !important;
-    right: 2ex !important;
-    top: 1.5ex !important;
-}
-
-
-
-.keyword {
-    font-size: 100% !important;
-    font-family: 'Roboto' !important;
-    font-weight: bold !important;
-    text-transform: none;
-    padding-top: 0ex !important;
-    padding-bottom: 0ex !important;
-}
-
-.keyword-button {
-    font-size: 200% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    display: block !important;
-}
-
-
-
-.keyword-div {
-    text-align: center !important;
-}
-
-.keyword-center {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-
-// iPhone 4
-@media only screen
-    and (min-device-width: 640px)
-    and (min-device-height: 960px)
-    and (orientation: portrait) {
-
-  .keyword-button {
-    font-size: 18px !important;
-    height: 10px !important;
-  }
-
-}
-
-// iPhone 5
-@media only screen
-    and (min-device-width: 320px)
-    and (min-device-height: 568px)
-    and (orientation: portrait) {
-
-  .keyword-button {
-    font-size: 24px !important;
-    height: 44px !important;
-    width: 320 - 2.5 * $fab-size;
-  }
-
-}
-
-// iPhone 5
-@media only screen
-    and (min-device-width: 568px)
-    and (min-device-height: 320px)
-    and (orientation: landscape) {
-
-
-  .keyword-button {
-    font-size: 18px !important;
-    height: 38px !important;
-    width: (568 - 2.5 * $fab-size) / 3;
-  }
-
-}
-
-
-// iPhone 6/7
-@media only screen
-    and (min-device-width: 375px)
-    and (min-device-height: 667px)
-    and (orientation: portrait) {
-
-  .keyword-button {
-    font-size: 32px !important;
-  }
-
-}
-
-// browser
 @media only screen
     and (min-device-width: 1024px)
     and (min-device-height: 768px)
     and (orientation: landscape) {
 
 
-  .keyword-button {
-    font-size: 40px !important;
-    height: 64px !important;
-    width: 256px;
-    margin-top: 32px;
-    margin-bottom: 32px;
-  }
+.font-logo {
+    font-size: 160px;
+}
 
-  .video-player {
+.font-large {
+    font-size: 96px;
+}
+
+body, .font-normal {
+    font-size: 32px;
+}
+
+
+.video-player {
       width: 512px !important;
   }
 
-  .slide-image {
-      width: 512px !important;
-      height: 512px !important;
-  }
+.slide-image {
+    width: 512px !important;
+    height: 512px !important;
+}
 
 }
 
-.calvin-head, .calvin-ear-right, .calvin-ear-left,
-.calvin-hand-left, .calvin-hand-right {
+.calvin-head,
+.calvin-ear, .calvin-ear-right, .calvin-ear-left,
+.calvin-hand, .calvin-hand-left, .calvin-hand-right, {
     fill: #ffc107;
 }
 
@@ -223,25 +86,25 @@ ion-title, .calvin-title {
     fill: #ffffff;
 }
 
-.calvin-vocal-tract-head, .calvin-vocal-tract-laryngeal-wall,
-.calvin-vocal-tract-lower-lip, .calvin-vocal-tract-lip-upper
+.vocal-tract-head, .vocal-tract-laryngeal-wall,
+.vocal-tract-lip-lower, .vocal-tract-lip-upper
 {
     fill: #607d8b;
 }
 
-.calvin-vocal-tract-tongue, .calvin-vocal-tract-pharynx,
-.calvin-vocal-tract-velum
+.vocal-tract-tongue, .vocal-tract-pharynx,
+.vocal-tract-velum
 {
     fill: #263238;
 }
 
-.calvin-vocal-tract-gum-lower, .calvin-vocal-tract-alveolar-ridge
+.vocal-tract-gum-lower, .vocal-tract-alveolar-ridge
 {
     fill: #9e9e9e;
 }
 
-.calvin-vocal-tract-teeth-upper,
-.calvin-vocal-tract-teeth-lower
+.vocal-tract-teeth-upper,
+.vocal-tract-teeth-lower
 {
     fill: #cfd8dc;
 }

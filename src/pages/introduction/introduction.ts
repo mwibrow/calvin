@@ -1,36 +1,26 @@
-import { Component, Pipe, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
-import { Svg } from '../../providers/svg';
-import { SafePipe } from '../../pipes/safe-pipe';
-
-@Pipe({
-   name: 'safePipe',
-   pure: false
-})
+/**
+ * Generated class for the IntroductionPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
 @IonicPage()
 @Component({
   selector: 'page-introduction',
   templateUrl: 'introduction.html',
 })
-export class Introduction {
 
-
+export class IntroductionPage {
 
   @ViewChild(Slides) slides: Slides;
-  svg: Svg;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.svg = new Svg();
   }
-
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Introduction');
-  }
-
-  slideChanged() {
-
+    console.log('ionViewDidLoad IntroductionPage');
   }
 
   getFadeOut() {

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { AudioIO } from './audio-io';
+import { AudioIOComponent } from './audio-io';
 
 @NgModule({
   declarations: [
-    AudioIO,
+    AudioIOComponent,
   ],
   imports: [
-    IonicPageModule.forChild(AudioIO),
+    IonicPageModule.forChild(AudioIOComponent),
   ],
   exports: [
-    AudioIO
+    AudioIOComponent
   ]
 })
-export class AudioIOModule {}
+export class AudioIoComponentModule {}

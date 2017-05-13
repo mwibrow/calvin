@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { VowelTrainer } from './vowel-trainer';
+import { VowelTrainerPage } from './vowel-trainer';
 
 @NgModule({
   declarations: [
-    VowelTrainer,
+    VowelTrainerPage,
   ],
   imports: [
-    IonicPageModule.forChild(VowelTrainer),
+    IonicPageModule.forChild(VowelTrainerPage),
   ],
   exports: [
-    VowelTrainer
+    VowelTrainerPage
   ]
 })
-export class VowelTrainerModule {}
+export class VowelTrainerPageModule {}
