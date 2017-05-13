@@ -1,6 +1,5 @@
-import { Directive, ElementRef, Input, HostListener } from '@angular/core';
+import { Directive, ElementRef, Input } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
-import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
 @Directive({
