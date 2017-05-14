@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { IntroductionPage } from '../pages/introduction/introduction';
+import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { AudioIOComponent } from '../components/audio-io/audio-io';
 import { SvgImageComponent } from '../components/svg-image/svg-image';
 import { SvgSrcDirective } from '../directives/svg-src/svg-src';
@@ -16,17 +17,22 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 import { LogoComponent } from '../components/logo/logo';
 
 import { HttpModule } from '@angular/http';
+import { StackComponent } from '../components/stack/stack';
+import { StackItemComponent } from '../components/stack-item/stack-item';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     IntroductionPage,
+    VowelTrainerPage,
     AudioIOComponent,
     SvgImageComponent,
     SvgSrcDirective,
     VocalTractAnimationComponent,
-    LogoComponent
+    LogoComponent,
+    StackComponent,
+    StackItemComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,7 @@ import { HttpModule } from '@angular/http';
     MyApp,
     HomePage,
     IntroductionPage,
+    VowelTrainerPage
   ],
   providers: [
     StatusBar,

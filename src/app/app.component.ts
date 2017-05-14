@@ -4,13 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-
 import { IntroductionPage } from '../pages/introduction/introduction';
+import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = IntroductionPage;
+  rootPage:any = VowelTrainerPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
