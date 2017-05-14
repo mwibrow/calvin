@@ -28,11 +28,11 @@
     <ion-col>
 
         <div *ngIf="isAudio()" class="centred">
-          <ion-icon name="volume-up" class="icon-as-image"></ion-icon>
+          <ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>
         </div>
          <div *ngIf="isRecording()" class="centred">
 
-          <ion-icon name="mic" class="icon-as-image recording"></ion-icon>
+          <ion-icon name="mic" class="icon-as-image active"></ion-icon>
           <audio-io></audio-io>
         </div>
         <div *ngIf="isVideo()">
