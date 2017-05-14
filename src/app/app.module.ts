@@ -19,6 +19,7 @@ import { LogoComponent } from '../components/logo/logo';
 import { HttpModule } from '@angular/http';
 import { StackComponent } from '../components/stack/stack';
 import { StackItemComponent } from '../components/stack-item/stack-item';
+import { AnimationDirective } from '../directives/animation/animation';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { StackItemComponent } from '../components/stack-item/stack-item';
     VocalTractAnimationComponent,
     LogoComponent,
     StackComponent,
-    StackItemComponent
+    StackItemComponent,
+    AnimationDirective
   ],
   imports: [
     BrowserModule,

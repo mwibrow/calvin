@@ -16,20 +16,40 @@
 <ion-content padding>
 <ion-grid>
   <ion-row>
-    <ion-col width-50>
-      Content 1
+    <ion-col>
+      <div class="vowel-example">
+        <span class="vowel-highlight">e</span> as in
+        <br>
+        B<span class="vowel-highlight">e</span>d
+      </div>
     </ion-col>
-    <ion-col width-50>
+    <ion-col>
       <stack>
         <stack-item>
           <video></video>
         </stack-item>
          <stack-item>
-          <vocal-tract-animation></vocal-tract-animation>
+          <vocal-tract-animation animation="bed"></vocal-tract-animation>
         </stack-item>
-
       </stack>
     </ion-col>
   </ion-row>
 </ion-grid>
 </ion-content>
+
+<ion-footer padding>
+  <ion-buttons>
+       <button ion-button icon-only>
+        <ion-icon name="headset"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="film"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="person"></ion-icon>
+      </button>
+       <button ion-button icon-only>
+        <ion-icon name="mic"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-footer>

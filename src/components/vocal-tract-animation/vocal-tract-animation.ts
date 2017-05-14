@@ -16,11 +16,13 @@ export class VocalTractAnimationComponent {
   text: string;
   elementRef: ElementRef;
   vocalTract: any;
+  animation: string;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
     this.elementRef = me;
     this.vocalTract = {};
+    this.animation = null;
   }
 
   ngOnInit() {
@@ -31,6 +33,11 @@ export class VocalTractAnimationComponent {
       this.vocalTract[svgPath.getAttribute('svg-label')] = svgParse(svgPath.getAttribute('d'))
     }
     console.log(this.vocalTract)
+  }
+
+  setAnimation(animation: string) {
+    this.animation = animation;
+    console.log(`Setting animation to ${animation}`);
   }
 
 }
