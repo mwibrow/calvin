@@ -17,11 +17,28 @@ export class VowelTrainerPage {
   static state: any = {
     video: 'video',
     audio: 'audio',
-    animation: 'animation'
+    animation: 'animation',
+    recording: 'recording'
   };
   private currentState: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.currentState = VowelTrainerPage.state.video;
+    this.currentState = VowelTrainerPage.state.recording;
+  }
+
+  isAudio() {
+    return this.currentState === VowelTrainerPage.state.audio;
+  }
+
+  showAudio() {
+    this.currentState = VowelTrainerPage.state.audio;
+  }
+
+  isRecording() {
+    return this.currentState === VowelTrainerPage.state.recording;
+  }
+
+  showRecording() {
+    this.currentState = VowelTrainerPage.state.recording;
   }
 
   isVideo() {

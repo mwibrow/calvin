@@ -21,18 +21,28 @@
         <span class="vowel-highlight">e</span> as in
         <br>
         B<span class="vowel-highlight">e</span>d
+
+
       </div>
     </ion-col>
     <ion-col>
-      <stack>
-        <stack-item *ngIf="isVideo()">
+
+        <div *ngIf="isAudio()" class="centred">
+          <ion-icon name="volume-up" class="icon-as-image"></ion-icon>
+        </div>
+         <div *ngIf="isRecording()" class="centred">
+
+          <ion-icon name="mic" class="icon-as-image recording"></ion-icon>
+          <audio-io></audio-io>
+        </div>
+        <div *ngIf="isVideo()">
           Video
           <video-player></video-player>
-        </stack-item>
-         <stack-item *ngIf="isAnimation()">
+        </div>
+        <div *ngIf="isAnimation()" class="centred">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
-        </stack-item>
-      </stack>
+        </div>
+
     </ion-col>
   </ion-row>
 </ion-grid>
@@ -40,7 +50,7 @@
 
 <ion-footer padding>
   <ion-buttons>
-       <button ion-button icon-only>
+       <button ion-button icon-only (click)="showAudio()">
         <ion-icon name="headset"></ion-icon>
       </button>
       <button ion-button icon-only (click)="showVideo()">
@@ -49,7 +59,7 @@
       <button ion-button icon-only (click)="showAnimation()">
         <ion-icon name="person"></ion-icon>
       </button>
-       <button ion-button icon-only>
+       <button ion-button icon-only (click)="showRecording()">
         <ion-icon name="mic"></ion-icon>
       </button>
     </ion-buttons>

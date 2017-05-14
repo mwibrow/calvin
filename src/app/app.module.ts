@@ -17,8 +17,6 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 import { LogoComponent } from '../components/logo/logo';
 
 import { HttpModule } from '@angular/http';
-import { StackComponent } from '../components/stack/stack';
-import { StackItemComponent } from '../components/stack-item/stack-item';
 import { AnimationDirective } from '../directives/animation/animation';
 import { VideoPlayerComponent } from '../components/video-player/video-player';
 import { VideoDirective } from '../directives/video/video';
@@ -34,8 +32,6 @@ import { VideoDirective } from '../directives/video/video';
     SvgSrcDirective,
     VocalTractAnimationComponent,
     LogoComponent,
-    StackComponent,
-    StackItemComponent,
     AnimationDirective,
     VideoPlayerComponent,
     VideoDirective
