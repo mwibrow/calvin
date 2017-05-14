@@ -14,7 +14,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class VowelTrainerPage {
 
+  static state: any = {
+    video: 'video',
+    audio: 'audio',
+    animation: 'animation'
+  };
+  private currentState: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.currentState = VowelTrainerPage.state.video;
+  }
+
+  isVideo() {
+    return this.currentState === VowelTrainerPage.state.video;
+  }
+
+  showVideo() {
+    this.currentState = VowelTrainerPage.state.video;
+  }
+
+  isAnimation() {
+    return this.currentState === VowelTrainerPage.state.animation;
+  }
+
+  showAnimation() {
+    return this.currentState =VowelTrainerPage.state.animation;
   }
 
   ionViewDidLoad() {

@@ -1,7 +1,21 @@
 page-vowel-trainer {
 
-stack div {
+stack > div {
+  height: 480px;
+  width: 480px;
+}
 
+stack-item > div {
+    margin-top:2rem !important;
+}
+
+vocal-tract-animation > div {
+    padding: 1rem !important;
+}
+
+video-player > div {
+    background: red;
+    width: 100%;
 }
 .vowel-example {
     font-size: 96px !important;

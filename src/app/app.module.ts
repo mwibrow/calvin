@@ -20,6 +20,8 @@ import { HttpModule } from '@angular/http';
 import { StackComponent } from '../components/stack/stack';
 import { StackItemComponent } from '../components/stack-item/stack-item';
 import { AnimationDirective } from '../directives/animation/animation';
+import { VideoPlayerComponent } from '../components/video-player/video-player';
+import { VideoDirective } from '../directives/video/video';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AnimationDirective } from '../directives/animation/animation';
     LogoComponent,
     StackComponent,
     StackItemComponent,
-    AnimationDirective
+    AnimationDirective,
+    VideoPlayerComponent,
+    VideoDirective
   ],
   imports: [
     BrowserModule,

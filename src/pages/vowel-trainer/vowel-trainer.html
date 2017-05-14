@@ -25,10 +25,11 @@
     </ion-col>
     <ion-col>
       <stack>
-        <stack-item>
-          <video></video>
+        <stack-item *ngIf="isVideo()">
+          Video
+          <video-player></video-player>
         </stack-item>
-         <stack-item>
+         <stack-item *ngIf="isAnimation()">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
         </stack-item>
       </stack>
@@ -42,10 +43,10 @@
        <button ion-button icon-only>
         <ion-icon name="headset"></ion-icon>
       </button>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="showVideo()">
         <ion-icon name="film"></ion-icon>
       </button>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="showAnimation()">
         <ion-icon name="person"></ion-icon>
       </button>
        <button ion-button icon-only>
