@@ -7,6 +7,7 @@ var buffers = [];
 var frameCount = 0;
 var sampleRate = 44100;
 
+
 this.onmessage = function(event){
     var command = event.data.command;
     var outputs;
@@ -21,8 +22,8 @@ this.onmessage = function(event){
 
 function configure(config) {
     var i;
-    that.channelCount = args.channelCount || that.channelCount;
-    that.sampleRate = args.sampleRate || that.sampleRate;
+    that.channelCount = config.channelCount || that.channelCount;
+    that.sampleRate = config.sampleRate || that.sampleRate;
     that.clear();
 }
 
