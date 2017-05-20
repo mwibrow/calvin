@@ -35,8 +35,10 @@ export class VocalTractAnimationComponent {
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
     }
-
-    let jaw = new RotateAroundGesture(-10, new Geometry.Point(400, 200));
+    console.log(this.vocalTract)
+    let center: Geometry.Point = new Geometry.Point(350, 200);
+    center.show(this.elementRef.nativeElement.querySelector('svg'));
+    let jaw = new RotateAroundGesture(-10, center);
     jaw.paths.push(this.vocalTract['teeth-lower']);
     jaw.paths.push(this.vocalTract['lip-lower']);
     jaw.paths.push(this.vocalTract['gum-lower']);
@@ -45,13 +47,13 @@ export class VocalTractAnimationComponent {
 
     jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
     jaw.appendPoints(this.vocalTract['gum-lower'].getPoints());
-    jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
+    // jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
     jaw.appendPoints(this.vocalTract['tongue'].getPoints(
-      Geometry.seq(0,45), Geometry.seq(52, 62)
+        Geometry.seq(10,32)
     ));
     jaw.appendPoints(this.vocalTract['lip-lower'].getPoints(
-      Geometry.seq(0,24), Geometry.seq(56,82)));
-
+      Geometry.seq(0,24), Geometry.seq(52, 78)
+    ));
     jaw.init();
     jaw.act(0);
 

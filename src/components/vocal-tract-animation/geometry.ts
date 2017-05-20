@@ -62,7 +62,16 @@ export class Point {
   static pointAtTime(t: number, p: Point, q:Point) {
     return new Point(p.x * (1 - t) + q.x * t, p.y * (1 - t) + q.y * t);
   }
+
+  show(svgElement: any) {
+    let newpath: any = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    newpath.setAttributeNS(null, 'cx', `${this.x}`);
+    newpath.setAttributeNS(null, 'cy', `${this.y}`);
+    newpath.setAttributeNS(null, 'r', '4');
+    svgElement.appendChild(newpath);
+  }
 }
+
 
 
 class Points {
