@@ -22,7 +22,7 @@ export class VowelTrainerPage {
   };
   private currentState: string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.currentState = VowelTrainerPage.state.recording;
+    this.currentState = VowelTrainerPage.state.animation;
   }
 
   isAudio() {
