@@ -16,6 +16,7 @@ export class VocalTractAnimationComponent {
   animation: string;
   articulators: any;
   jaw: any;
+  velum: any;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
@@ -36,29 +37,36 @@ export class VocalTractAnimationComponent {
         Geometry.SvgPath.fromPathNode(svgPath);
     }
     console.log(this.vocalTract)
-    let center: Geometry.Point = new Geometry.Point(350, 200);
+    let center: Geometry.Point = new Geometry.Point(260, 140);
     center.show(this.elementRef.nativeElement.querySelector('svg'));
-    let jaw = new RotateAroundGesture(-10, center);
-    jaw.paths.push(this.vocalTract['teeth-lower']);
-    jaw.paths.push(this.vocalTract['lip-lower']);
-    jaw.paths.push(this.vocalTract['gum-lower']);
-    jaw.paths.push(this.vocalTract['teeth-lower']);
-    jaw.paths.push(this.vocalTract['tongue']);
+    this.velum = new TranslateAndRotateAroundGesture(new Geometry.Point(8,-5), -20, center);
+    this.velum.paths.push(this.vocalTract['velum']);
+    this.velum.appendPoints(this.vocalTract['velum'].getPoints(
+      Geometry.seq(8,20)
+    ));
+    // let center: Geometry.Point = new Geometry.Point(350, 200);
+    // center.show(this.elementRef.nativeElement.querySelector('svg'));
+    // let jaw = new RotateAroundGesture(-10, center);
+    // jaw.paths.push(this.vocalTract['teeth-lower']);
+    // jaw.paths.push(this.vocalTract['lip-lower']);
+    // jaw.paths.push(this.vocalTract['gum-lower']);
+    // jaw.paths.push(this.vocalTract['teeth-lower']);
+    // jaw.paths.push(this.vocalTract['tongue']);
 
-    jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
-    jaw.appendPoints(this.vocalTract['gum-lower'].getPoints());
     // jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
-    jaw.appendPoints(this.vocalTract['tongue'].getPoints(
-        Geometry.seq(10,32)
-    ));
-    jaw.appendPoints(this.vocalTract['lip-lower'].getPoints(
-      Geometry.seq(0,24), Geometry.seq(52, 78)
-    ));
-    jaw.init();
-    jaw.act(0);
+    // jaw.appendPoints(this.vocalTract['gum-lower'].getPoints());
+    // // jaw.appendPoints(this.vocalTract['teeth-lower'].getPoints());
+    // jaw.appendPoints(this.vocalTract['tongue'].getPoints(
+    //     Geometry.seq(10,32)
+    // ));
+    // jaw.appendPoints(this.vocalTract['lip-lower'].getPoints(
+    //   Geometry.seq(0,24), Geometry.seq(52, 78)
+    // ));
+    // jaw.init();
+    // jaw.act(0);
 
-
-    this.jaw = jaw;
+    this.velum.init();
+    // this.jaw = jaw;
   }
 
   setAnimation(animation: string) {
@@ -67,7 +75,7 @@ export class VocalTractAnimationComponent {
   }
 
   rangeChange(event) {
-    this.jaw.act(event.ratio);
+    this.velum.act(event.ratio);
   }
 
 }
@@ -93,6 +101,10 @@ namespace Easing {
 
   export function linear(t) {
     return t;
+  }
+
+  export function sine(t) {
+    return Math.sin(t * Math.PI);
   }
 
 }
@@ -147,7 +159,7 @@ class Gesture {
       this.paths[i].update();
     }
   }
-  act(t) {};
+  act(t: number, update=true) {};
 }
 
 
@@ -162,18 +174,71 @@ class RotateAroundGesture extends Gesture {
     this.around = around;
   }
 
-  act(t) {
+  act(t: number, update=true) {
     let i: number, angle: number;
     let point: Geometry.Point;
+    t = this.easing(t);
     angle = t * this.angle;
     for (i = 0; i < this.points.length; i ++) {
       point = this.savedPoints[i].rotateAround(angle, this.around, false);
       this.points[i].x = point.x;
       this.points[i].y = point.y;
     }
-    this.update();
+    update && this.update();
   }
 }
+
+class TranslationGesture extends Gesture {
+
+  shift: Geometry.Point;
+
+  constructor(shift: Geometry.Point) {
+    super();
+    this.shift = shift;
+  }
+
+  act(t: number, update=true) {
+    let i: number;
+    let point: Geometry.Point;
+    t = this.easing(t);
+    for (i = 0; i < this.points.length; i ++) {
+      point = this.savedPoints[i].copy();
+      this.points[i].x = point.x + t * this.shift.x;
+      this.points[i].y = point.y + t * this.shift.y;
+    }
+    update && this.update();
+  }
+}
+
+class TranslateAndRotateAroundGesture extends Gesture {
+
+  shift: Geometry.Point;
+  around: Geometry.Point;
+  angle: number;
+  constructor(shift: Geometry.Point, angle: number, around: Geometry.Point) {
+    super();
+    this.shift = shift;
+    this.angle = angle;
+    this.around = around;
+  }
+
+
+  act(t: number, update=true) {
+    let i: number, angle: number;
+    let point: Geometry.Point;
+    t = this.easing(t);
+    angle = t * this.angle;
+    for (i = 0; i < this.points.length; i ++) {
+      point = this.savedPoints[i].rotateAround(angle, this.around, false);
+      this.points[i].x = point.x + t * this.shift.x;
+      this.points[i].y = point.y + t * this.shift.y;
+    }
+    update && this.update();
+  }
+}
+
+
+
 
 
 
