@@ -17,6 +17,7 @@ export class VocalTractAnimationComponent {
   articulators: any;
   jaw: any;
   velum: any;
+  larynx: any;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
@@ -37,13 +38,16 @@ export class VocalTractAnimationComponent {
         Geometry.SvgPath.fromPathNode(svgPath);
     }
     console.log(this.vocalTract)
-    let center: Geometry.Point = new Geometry.Point(260, 140);
-    center.show(this.elementRef.nativeElement.querySelector('svg'));
-    this.velum = new TranslateAndRotateAroundGesture(new Geometry.Point(8,-5), -20, center);
-    this.velum.paths.push(this.vocalTract['velum']);
-    this.velum.appendPoints(this.vocalTract['velum'].getPoints(
-      Geometry.seq(8,20)
-    ));
+    this.larynx = new OscillateYGesture(2, 0.05);
+    this.larynx.paths.push(this.vocalTract['larynx']);
+    this.larynx.appendPoints(this.vocalTract['larynx'].getPoints());
+    // let center: Geometry.Point = new Geometry.Point(260, 140);
+    // center.show(this.elementRef.nativeElement.querySelector('svg'));
+    // this.velum = new TranslateAndRotateAroundGesture(new Geometry.Point(8,-5), -20, center);
+    // this.velum.paths.push(this.vocalTract['velum']);
+    // this.velum.appendPoints(this.vocalTract['velum'].getPoints(
+    //   Geometry.seq(8,20)
+    // ));
     // let center: Geometry.Point = new Geometry.Point(350, 200);
     // center.show(this.elementRef.nativeElement.querySelector('svg'));
     // let jaw = new RotateAroundGesture(-10, center);
@@ -65,7 +69,7 @@ export class VocalTractAnimationComponent {
     // jaw.init();
     // jaw.act(0);
 
-    this.velum.init();
+    this.larynx.init();
     // this.jaw = jaw;
   }
 
@@ -75,7 +79,8 @@ export class VocalTractAnimationComponent {
   }
 
   rangeChange(event) {
-    this.velum.act(event.ratio);
+    this.larynx.act(event.ratio);
+    this.larynx.update();
   }
 
 }
@@ -97,15 +102,32 @@ class Articulator {
 }
 
 
-namespace Easing {
+namespace Easings {
 
-  export function linear(t) {
-    return t;
+export abstract class Easing {
+  abstract ease(t: number);
+}
+
+export class Linear extends Easing {
+  ease(t: number) { return t; }
+}
+
+export class CubicBezier extends Easing {
+
+  controls: number[];
+  constructor(...controls: number[]) {
+    super();
+    this.controls = controls;
   }
 
-  export function sine(t) {
-    return Math.sin(t * Math.PI);
+  ease(t: number) {
+    let u: number = 1 - t;
+    return this.controls[0] * (u ** 3) +
+      this.controls[1] * (u ** 2) * t * 3 +
+      this.controls[2] * u * (t ** 2) * 3 +
+      this.controls[3] * (t ** 3);
   }
+}
 
 }
 
@@ -118,14 +140,14 @@ class Gesture {
   points: Array<Geometry.Point>;
   savedPoints: Array<Geometry.Point>;
   paths: Array<Geometry.SvgPath>;
-  easing: any;
+  easing: Easings.Easing;
 
   constructor() {
     this.start = this.duration = 0;
     this.points = new Array<Geometry.Point>();
     this.savedPoints = new Array<Geometry.Point>();
     this.paths = new Array<Geometry.SvgPath>();
-    this.easing = Easing.linear;
+    this.easing = new Easings.Linear();
   }
 
   appendPoint(point: Geometry.Point) {
@@ -135,6 +157,7 @@ class Gesture {
   appendPoints(points: Array<Geometry.Point>) {
     this.points = this.points.concat(points);
   }
+
   init() {
     let i: number;
     //console.log(this.points);
@@ -147,7 +170,7 @@ class Gesture {
   animate(frame: number) {
     let t: number;
     if ((frame >= this.start) && (frame < this.start + this.duration)) {
-      t = this.easing((frame - this.start) / this.duration);
+      t = this.easing.ease((frame - this.start) / this.duration);
       this.act(t);
       this.update();
     }
@@ -159,7 +182,8 @@ class Gesture {
       this.paths[i].update();
     }
   }
-  act(t: number, update=true) {};
+
+  act(t: number) {};
 }
 
 
@@ -174,17 +198,15 @@ class RotateAroundGesture extends Gesture {
     this.around = around;
   }
 
-  act(t: number, update=true) {
+  act(t: number) {
     let i: number, angle: number;
     let point: Geometry.Point;
-    t = this.easing(t);
     angle = t * this.angle;
     for (i = 0; i < this.points.length; i ++) {
       point = this.savedPoints[i].rotateAround(angle, this.around, false);
       this.points[i].x = point.x;
       this.points[i].y = point.y;
     }
-    update && this.update();
   }
 }
 
@@ -197,16 +219,14 @@ class TranslationGesture extends Gesture {
     this.shift = shift;
   }
 
-  act(t: number, update=true) {
+  act(t: number) {
     let i: number;
     let point: Geometry.Point;
-    t = this.easing(t);
     for (i = 0; i < this.points.length; i ++) {
       point = this.savedPoints[i].copy();
       this.points[i].x = point.x + t * this.shift.x;
       this.points[i].y = point.y + t * this.shift.y;
     }
-    update && this.update();
   }
 }
 
@@ -223,19 +243,42 @@ class TranslateAndRotateAroundGesture extends Gesture {
   }
 
 
-  act(t: number, update=true) {
+  act(t: number) {
     let i: number, angle: number;
     let point: Geometry.Point;
-    t = this.easing(t);
     angle = t * this.angle;
     for (i = 0; i < this.points.length; i ++) {
       point = this.savedPoints[i].rotateAround(angle, this.around, false);
       this.points[i].x = point.x + t * this.shift.x;
       this.points[i].y = point.y + t * this.shift.y;
     }
-    update && this.update();
   }
 }
+
+class OscillateYGesture extends Gesture {
+
+
+  amplitude: number;
+  period: number;
+  constructor(amplitude: number, period: number) {
+    super();
+    this.amplitude = amplitude;
+    this.period = period;
+  }
+
+
+  act(t: number) {
+    let i: number;
+    let point: Geometry.Point;
+
+    for (i = 0; i < this.points.length; i ++) {
+      point = this.savedPoints[i].copy();
+      this.points[i].y = point.y + this.amplitude * Math.sin(2 * Math.PI * t / this.period);
+
+    }
+  }
+}
+
 
 
 
