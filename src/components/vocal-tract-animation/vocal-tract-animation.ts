@@ -39,9 +39,9 @@ export class VocalTractAnimationComponent {
         Geometry.SvgPath.fromPathNode(svgPath);
     }
     console.log(this.vocalTract)
-    // this.larynx = new OscillateYGesture(2, 0.05);
-    // this.larynx.paths.push(this.vocalTract['larynx']);
-    // this.larynx.appendPoints(this.vocalTract['larynx'].getPoints());
+    this.larynx = new OscillateYAction(2, 0.05);
+    this.larynx.appendPath(this.vocalTract['larynx']);
+
 
     // let center: Geometry.Point = new Geometry.Point(260, 140);
     // center.show(this.elementRef.nativeElement.querySelector('svg'));
@@ -89,14 +89,17 @@ export class VocalTractAnimationComponent {
     let center: Geometry.Point = new Geometry.Point(90, 230);
     center.show(this.elementRef.nativeElement.querySelector('svg'));
 
-    this.articulator = new RotateAroundGesture(-30, center);
-    this.articulator.paths.push(this.vocalTract['lip-lower']);
-    this.articulator.appendPoints(
-      this.vocalTract['lip-lower'].getPoints(
+    this.articulator = new RotateAroundAction(-30, center);
+    this.articulator.appendPath(this.vocalTract['lip-lower'],
         Geometry.seq(0, 9), Geometry.seq(68, 78)
-      )
-    );
-    this.articulator.init()
+      );
+    //this.articulator.init()
+    this.jaw = new Gesture();
+    this.jaw.addAction(this.articulator);
+    this.jaw.addAction(this.larynx);
+    this.jaw.start = 0;
+    this.jaw.end = 100;
+    this.jaw.init();
   }
 
   setAnimation(animation: string) {
@@ -105,8 +108,7 @@ export class VocalTractAnimationComponent {
   }
 
   rangeChange(event) {
-    this.articulator.act(event.ratio);
-    this.articulator.update();
+    this.jaw.animate(event.value);
   }
 
 }
@@ -158,85 +160,53 @@ export class CubicBezier extends Easing {
 }
 
 
+class Action {
 
-class Gesture {
-
-  start: number;
-  duration: number;
   points: Array<Geometry.Point>;
   savedPoints: Array<Geometry.Point>;
   paths: Array<Geometry.SvgPath>;
   easing: Easings.Easing;
 
   constructor() {
-    this.start = this.duration = 0;
     this.points = new Array<Geometry.Point>();
     this.savedPoints = new Array<Geometry.Point>();
     this.paths = new Array<Geometry.SvgPath>();
     this.easing = new Easings.Linear();
   }
 
-  appendPoint(point: Geometry.Point) {
-    this.points.push(point);
-  }
-
-  appendPoints(points: Array<Geometry.Point>) {
-    this.points = this.points.concat(points);
-  }
-
   init() {
     let i: number;
-    //console.log(this.points);
     this.savedPoints = new Array<Geometry.Point>();
+    console.log(this.points)
     for (i = 0; i < this.points.length; i ++) {
       this.savedPoints.push(this.points[i].copy());
     }
   }
 
-  animate(frame: number) {
-    let t: number;
-    if ((frame >= this.start) && (frame < this.start + this.duration)) {
-      t = this.easing.ease((frame - this.start) / this.duration);
-      this.act(t);
-      this.update();
+  appendPath(path: Geometry.SvgPath, ...indices: number[]) {
+    this.paths.push(path);
+    if (indices) {
+      this.points = this.points.concat(path.getPoints(...indices))
+    } else {
+      this.points = this.points.concat(path.getPoints());
     }
   }
 
+  act(t: number) {}
+
   update() {
-    let i: number;
+    let i: number = 0;
     for (i = 0; i < this.paths.length; i ++) {
       this.paths[i].update();
     }
   }
-
-  act(t: number) {};
 }
 
 
-class RotateAroundGesture extends Gesture {
 
-  around: Geometry.Point;
-  angle: number;
 
-  constructor(angle: number, around: Geometry.Point) {
-    super();
-    this.angle = angle;
-    this.around = around;
-  }
 
-  act(t: number) {
-    let i: number, angle: number;
-    let point: Geometry.Point;
-    angle = t * this.angle;
-    for (i = 0; i < this.points.length; i ++) {
-      point = this.savedPoints[i].rotateAround(angle, this.around, false);
-      this.points[i].x = point.x;
-      this.points[i].y = point.y;
-    }
-  }
-}
-
-class TranslationGesture extends Gesture {
+class TranslationAction extends Action {
 
   shift: Geometry.Point;
 
@@ -256,7 +226,7 @@ class TranslationGesture extends Gesture {
   }
 }
 
-class TranslateAndRotateAroundGesture extends Gesture {
+class TranslateAndRotateAroundAction extends Action {
 
   shift: Geometry.Point;
   around: Geometry.Point;
@@ -281,7 +251,7 @@ class TranslateAndRotateAroundGesture extends Gesture {
   }
 }
 
-class OscillateYGesture extends Gesture {
+class OscillateYAction extends Action {
 
 
   amplitude: number;
@@ -306,8 +276,67 @@ class OscillateYGesture extends Gesture {
 }
 
 
+class Gesture {
+
+  actions: Array<Action>;
+  start: number;
+  end: number;
+
+  constructor() {
+    this.start = this.end = 0;
+    this.actions = new Array<Action>();
+  }
+
+  init() {
+    let i: number;
+    for (i = 0; i < this.actions.length; i ++) {
+        this.actions[i].init();
+      }
+  }
+  addAction(action: Action) {
+    this.actions.push(action);
+  }
+
+  animate(time: number) {
+    let i: number, t: number;
+    if ((time >= this.start) && (time < this.end)) {
+      t = (time - this.start) / (this.end - this.start);
+      for (i = 0; i < this.actions.length; i ++) {
+        this.actions[i].act(t);
+        this.actions[i].update();
+      }
+    }
+  }
 
 
+}
+
+
+
+
+
+class RotateAroundAction extends Action {
+  around: Geometry.Point;
+  angle: number;
+
+  constructor(angle: number, around: Geometry.Point) {
+    super();
+    this.angle = angle;
+    this.around = around;
+  }
+
+  act(t: number) {
+    let i: number, angle: number;
+    let point: Geometry.Point;
+    t = this.easing.ease(t);
+    angle = t * this.angle;
+    for (i = 0; i < this.points.length; i ++) {
+      point = this.savedPoints[i].rotateAround(angle, this.around, false);
+      this.points[i].x = point.x;
+      this.points[i].y = point.y;
+    }
+  }
+}
 
 
 
