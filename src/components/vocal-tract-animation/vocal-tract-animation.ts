@@ -18,6 +18,7 @@ export class VocalTractAnimationComponent {
   jaw: any;
   velum: any;
   larynx: any;
+  articulator: any;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
@@ -38,9 +39,10 @@ export class VocalTractAnimationComponent {
         Geometry.SvgPath.fromPathNode(svgPath);
     }
     console.log(this.vocalTract)
-    this.larynx = new OscillateYGesture(2, 0.05);
-    this.larynx.paths.push(this.vocalTract['larynx']);
-    this.larynx.appendPoints(this.vocalTract['larynx'].getPoints());
+    // this.larynx = new OscillateYGesture(2, 0.05);
+    // this.larynx.paths.push(this.vocalTract['larynx']);
+    // this.larynx.appendPoints(this.vocalTract['larynx'].getPoints());
+
     // let center: Geometry.Point = new Geometry.Point(260, 140);
     // center.show(this.elementRef.nativeElement.querySelector('svg'));
     // this.velum = new TranslateAndRotateAroundGesture(new Geometry.Point(8,-5), -20, center);
@@ -48,6 +50,7 @@ export class VocalTractAnimationComponent {
     // this.velum.appendPoints(this.vocalTract['velum'].getPoints(
     //   Geometry.seq(8,20)
     // ));
+
     // let center: Geometry.Point = new Geometry.Point(350, 200);
     // center.show(this.elementRef.nativeElement.querySelector('svg'));
     // let jaw = new RotateAroundGesture(-10, center);
@@ -69,8 +72,31 @@ export class VocalTractAnimationComponent {
     // jaw.init();
     // jaw.act(0);
 
-    this.larynx.init();
+    //this.larynx.init();
     // this.jaw = jaw;
+
+
+    // let center: Geometry.Point = new Geometry.Point(85, 170);
+    // center.show(this.elementRef.nativeElement.querySelector('svg'));
+
+    // this.articulator = new RotateAroundGesture(30, center);
+    // this.articulator.paths.push(this.vocalTract['lip-upper']);
+    // this.articulator.appendPoints(
+    //   this.vocalTract['lip-upper'].getPoints(
+    //     Geometry.seq(17, 32)
+    //   )
+    // );
+    let center: Geometry.Point = new Geometry.Point(90, 230);
+    center.show(this.elementRef.nativeElement.querySelector('svg'));
+
+    this.articulator = new RotateAroundGesture(-30, center);
+    this.articulator.paths.push(this.vocalTract['lip-lower']);
+    this.articulator.appendPoints(
+      this.vocalTract['lip-lower'].getPoints(
+        Geometry.seq(0, 9), Geometry.seq(68, 78)
+      )
+    );
+    this.articulator.init()
   }
 
   setAnimation(animation: string) {
@@ -79,8 +105,8 @@ export class VocalTractAnimationComponent {
   }
 
   rangeChange(event) {
-    this.larynx.act(event.ratio);
-    this.larynx.update();
+    this.articulator.act(event.ratio);
+    this.articulator.update();
   }
 
 }
