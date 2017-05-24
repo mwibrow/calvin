@@ -19,6 +19,7 @@ export class VocalTractAnimationComponent {
   velum: any;
   larynx: any;
   articulator: any;
+  upperLip: any;
   constructor(public me: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
@@ -76,27 +77,27 @@ export class VocalTractAnimationComponent {
     // this.jaw = jaw;
 
 
-    // let center: Geometry.Point = new Geometry.Point(85, 170);
-    // center.show(this.elementRef.nativeElement.querySelector('svg'));
+    let upperLipCenter: Geometry.Point = new Geometry.Point(85, 170);
+    upperLipCenter.show(this.elementRef.nativeElement.querySelector('svg'));
 
-    // this.articulator = new RotateAroundGesture(30, center);
-    // this.articulator.paths.push(this.vocalTract['lip-upper']);
-    // this.articulator.appendPoints(
-    //   this.vocalTract['lip-upper'].getPoints(
-    //     Geometry.seq(17, 32)
-    //   )
-    // );
+    let upperLipShift: Geometry.Point = new Geometry.Point(-3,-3);
+    this.upperLip = new TranslateAndRotateAroundAction(upperLipShift, 30, upperLipCenter);
+    this.upperLip.appendPath(this.vocalTract['lip-upper'],
+        Geometry.seq(16, 32)
+    );
     let center: Geometry.Point = new Geometry.Point(90, 230);
     center.show(this.elementRef.nativeElement.querySelector('svg'));
 
-    this.articulator = new RotateAroundAction(-30, center);
+    let shift: Geometry.Point = new Geometry.Point(-5,-5);
+    this.articulator = new TranslateAndRotateAroundAction(shift, -30, center);
     this.articulator.appendPath(this.vocalTract['lip-lower'],
-        Geometry.seq(0, 9), Geometry.seq(68, 78)
+        Geometry.seq(0, 8), Geometry.seq(68, 78)
       );
     //this.articulator.init()
     this.jaw = new Gesture();
     this.jaw.addAction(this.articulator);
     this.jaw.addAction(this.larynx);
+    this.jaw.addAction(this.upperLip);
     this.jaw.start = 0;
     this.jaw.end = 100;
     this.jaw.init();
