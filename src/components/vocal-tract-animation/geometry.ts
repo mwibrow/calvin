@@ -44,6 +44,14 @@ export class Point {
     }
   }
 
+  neg(inPlace=true) {
+    if (inPlace) {
+      this.x = -this.x;
+      this.y = -this.y;
+    } else {
+      return new Point(-this.x, -this.y);
+    }
+  }
   rotateAround(angle: number, point: Point, inPlace=true) {
     let tmpPoint = this.copy();
     tmpPoint.x -= point.x;

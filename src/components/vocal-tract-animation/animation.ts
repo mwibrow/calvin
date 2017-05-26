@@ -49,19 +49,30 @@ export class Animation {
 
 export namespace Easings {
 
-export abstract class Easing {
-  abstract ease(t: number);
+export class BaseEasing {
+  ease(t: number): number { return t };
 }
 
-export class Linear extends Easing {
-  ease(t: number) { return t; }
+export class Linear extends BaseEasing {
+  ease(t: number): number { return t; }
 }
 
-export class ReverseLinear extends Easing {
-  ease(t: number) { return 1 - t; }
+export class ReverseLinear extends BaseEasing {
+  ease(t: number): number { return 1 - t; }
 }
 
-export class CubicBezier extends Easing {
+export class Reverse extends BaseEasing {
+    easing: BaseEasing;
+    constructor(easing: BaseEasing) {
+        super();
+        this.easing = easing;
+    }
+    ease(t: number): number {
+        return this.easing.ease(1. - t);
+    }
+}
+
+export class CubicBezier extends BaseEasing {
 
   controls: number[];
   constructor(...controls: number[]) {
@@ -69,7 +80,7 @@ export class CubicBezier extends Easing {
     this.controls = controls;
   }
 
-  ease(t: number) {
+  ease(t: number): number {
     let u: number = 1 - t;
     return this.controls[0] * (u ** 3) +
       this.controls[1] * (u ** 2) * t * 3 +
@@ -87,7 +98,7 @@ export class BaseAction {
   points: Array<Geometry.Point>;
   savedPoints: Array<Geometry.Point>;
   paths: Array<Geometry.SvgPath>;
-  easing: Easings.Easing;
+  easing: Easings.BaseEasing;
 
   constructor() {
     this.points = new Array<Geometry.Point>();
@@ -112,6 +123,10 @@ export class BaseAction {
     } else {
       this.points = this.points.concat(path.getPoints());
     }
+  }
+
+  appendPoints(...points: Geometry.Point[]) {
+    this.points = this.points.concat(points);
   }
 
   act(t: number) {}
@@ -250,6 +265,7 @@ export class Gesture {
     let i: number, t: number;
     if ((time >= this.start) && (time < this.end)) {
       t = (time - this.start) / (this.end - this.start);
+
       for (i = 0; i < this.actions.length; i ++) {
         this.actions[i].act(t);
         this.actions[i].update();

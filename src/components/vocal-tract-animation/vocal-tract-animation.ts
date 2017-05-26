@@ -93,7 +93,7 @@ export class VocalTractAnimationComponent {
 
     this.upperLipRotationCenter = new Geometry.Point(85, 170);
     this.lowerLipRotationCenter = new Geometry.Point(90, 230);
-
+    this.jawRotationCenter = new Geometry.Point(280, 140);
 
 
     let upperLipShift: Geometry.Point = new Geometry.Point(-3,-3);
@@ -119,13 +119,14 @@ export class VocalTractAnimationComponent {
     this.jaw = this.velumCloseGesture(0, 100);
     this.jaw.init();
 
-    this.animationRange.setValue(75);
-    this.rangeChange({value: this.animationRange.value});
+    // this.animationRange.setValue(75);
+    // this.rangeChange({value: this.animationRange.value});
     //  var evObj = new Event("click", {bubbles: true});
     //  this.animationRange._elementRef.nativeElement.dispatchEvent(evObj);
 
 
-    this.timeline.addGesture(this.jaw);
+    this.timeline.addGesture(this.jawOpenGesture(0, 50));
+    this.timeline.addGesture(this.jawCloseGesture(50, 100));
     this.timeline.init();
   }
 
@@ -144,11 +145,32 @@ export class VocalTractAnimationComponent {
   }
 
   velumCloseGesture(start, end) {
-
     let gesture: Gesture = this.velumOpenGesture(start, end);
-    gesture.actions[0].easing = new Easings.ReverseLinear();
+    gesture.actions[0].easing = new Easings.Reverse(gesture.actions[0].easing);
     return gesture;
   }
+
+  jawOpenGesture(start, end) {
+    let gesture: Gesture, action: Action.TranslateAndRotateAroundAction;
+    action = new Action.TranslateAndRotateAroundAction(new Geometry.Point(0,12), -8, this.jawRotationCenter);
+    action.appendPath(this.vocalTract['teeth-lower']);
+    action.appendPath(this.vocalTract['gum-lower']);
+    action.appendPath(this.vocalTract['tongue'], Geometry.seq(10,32));
+    action.appendPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
+    action.appendPoints(this.lowerLipRotationCenter);
+    gesture = new Gesture();
+    gesture.start = start;
+    gesture.end = end;
+    gesture.addAction(action);
+    return gesture;
+  }
+
+  jawCloseGesture(start, end) {
+    let gesture: Gesture = this.jawOpenGesture(start, end);
+    gesture.actions[0].easing = new Easings.Reverse(gesture.actions[0].easing);
+    return gesture;
+  }
+
 
   setAnimation(animation: string) {
     this.animation = animation;
