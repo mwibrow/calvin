@@ -1,16 +1,42 @@
 vocal-tract-animation {
 
 .vocal-tract-animation {
-    background-color: #cfd8dc;
+    display: inline-block;
+}
+.svg-container {
+     background-color: #cfd8dc;
+     position: relative;
 }
 
+.overlay {
+    position: absolute;
+    background-color: black;
+    opacity: 0.25;
+    left:0% !important;
+    right:0% !important;
+    width: 100% !important;
+    bottom: 0%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
 circle {
     fill: red;
 }
-.range-container {
-   padding-left: 1%;
-   padding-right: 1%;
+
+.range-knob-handle {
+
 }
+.range-slider, .range-bar, .range, {
+    margin: 0% !important;
+    padding: 0% !important;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+ion-range {
+    margin: 0% ! important;
+    padding-top: 0% !important;
+}
+
 .head, .laryngeal-wall,
 .lip,
 {

@@ -1,4 +1,5 @@
-<div class="vocal-tract-animation" svg-label="vocal-tract-animation" ng-include src="'assets/images/svg/src/vocal-tract-plain.svg'">
+<div class="vocal-tract-animation" svg-label="vocal-tract-animation" >
+  <div class="svg-container" (click)="playAnimation()" #svgContainer>
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -69,5 +70,13 @@
 </svg>
 </div>
 <div class="range-container">
-<ion-range  (ionChange)="rangeChange($event)"></ion-range>
+  <ion-grid  >
+    <ion-row justify-content-center>
+      <ion-col>
+      <ion-range #animationRange (ionChange)="rangeChange($event)"></ion-range>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </div>
+</div>
+

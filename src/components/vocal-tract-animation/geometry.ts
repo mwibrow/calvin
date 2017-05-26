@@ -72,7 +72,25 @@ export class Point {
   }
 }
 
+class SvgPoint extends Point {
 
+  svgNode: any;
+
+  constructor(x: number, y: number) {
+    super(x, y);
+    this.svgNode = document.createElementNS('http://www.w3.org/2000/svg','circle');
+  }
+
+  addToSvg(svgElement: any) {
+    svgElement.appendChild(this.svgNode);
+  }
+
+  update() {
+    this.svgNode.setAttribute('cx', `${this.x}`);
+    this.svgNode.setAttribute('cy', `${this.y}`);
+  }
+
+}
 
 class Points {
   points: Array<Point>;
