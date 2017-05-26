@@ -127,9 +127,33 @@ export class VocalTractAnimationComponent {
 
     this.timeline.addGesture(this.jawOpenGesture(0, 50));
     this.timeline.addGesture(this.jawCloseGesture(50, 100));
+    this.timeline.addGesture(this.lipRoundingGesture(0, 50));
+
     this.timeline.init();
+       console.log(this.timeline)
   }
 
+  lipRoundingGesture(start, end) {
+    let upperLipAction: Action.TranslateAndRotateAroundAction;
+    let lowerLipAction: Action.TranslateAndRotateAroundAction;
+    let gesture: Gesture;
+    upperLipAction = new Action.TranslateAndRotateAroundAction(new Geometry.Point(-3,-3), 30, this.upperLipRotationCenter);
+     upperLipAction.appendPath(this.vocalTract['lip-upper'],
+        Geometry.seq(16, 32)
+    );
+
+    lowerLipAction = new Action.TranslateAndRotateAroundAction(new Geometry.Point(-5,-5), -30, this.lowerLipRotationCenter);
+    lowerLipAction.appendPath(this.vocalTract['lip-lower'],
+        Geometry.seq(0, 8), Geometry.seq(68, 78)
+      );
+
+    gesture = new Gesture();
+    gesture.start = start;
+    gesture.end = end;
+    gesture.addAction(upperLipAction);
+    gesture.addAction(lowerLipAction);
+    return gesture;
+  }
   velumOpenGesture(start, end) {
     let center: Geometry.Point;
     let gesture: Gesture;
