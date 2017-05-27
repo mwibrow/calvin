@@ -232,5 +232,146 @@ animationClick(event) {
 }
 }
 
+class VocalTractTimeline {
+
+  duration: number;
+
+  velum: Timeline;
+  lipUpper: Timeline;
+  epiglottis: Timeline;
+  vocalFolds: Timeline;
+  jaw: Gesture;
+  lipLower: Gesture;
+  teethLower: Gesture;
+  gumLower: Gesture;
+  tongue: Gesture;
+
+
+}
+
+class Action {
+  parent: Action;
+  path: Geometry.SvgPath;
+  easing: Easings.BaseEasing;
+  keyPoints: any;
+  _keyPoints: any;
+  t: number;
+
+  constructor() {
+    this.parent = null;
+    this.path = null;
+    this.easing = new Easings.Linear();
+    this.keyPoints = {};
+    this._keyPoints = {};
+    this.t = 0;
+  }
+
+  setParent(action: Action) {
+    this.parent = action;
+  }
+
+  setT(t: number) {
+    this.t = t;
+  }
+  setPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
+    let points: Array<Geometry.Point> = new Array<Geometry.Point>();
+    this.path = path;
+    this._keyPoints.pathPoints = path.getPoints(...indices);
+  }
+
+  preAct() {}
+
+  resetKeyPoints() {
+    let property: any, i: number;
+    if (this.parent) {
+      this.keyPoints = {};
+      for (property in this.keyPoints) {
+        if (this._keyPoints.hasOwnProperty(property)) {
+          for (i = 0; i < this.keyPoints[property].length; i ++) {
+            this.keyPoints.push(this.parent.actOn(this._keyPoints[property][i].copy()));
+          }
+        }
+      }
+    } else {
+      this.keyPoints = this._keyPoints;
+    }
+  }
+
+  act() {}
+
+  actOn(point: Geometry.Point) {
+  }
+
+  update() {
+    this.path.update();
+  }
+}
+
+
+class RotateAroundAction extends Action {
+
+  _angle: number;
+  _around: Geometry.Point;
+  constructor(private angle: number, private around: Geometry.Point) {
+    super();
+    this._angle = this.angle;
+    this._around = this.around;
+  }
+
+  setT(t: number) {
+    this.t = this.easing.ease(t);
+    this.angle = t * this._angle;
+  }
+
+  act() {
+    let i: number;
+    let point: Geometry.Point;
+    this.resetKeyPoints();
+    for (i = 0; i < this.keyPoints.pathPoints; i ++) {
+      this.actOn(this.keyPoints.pathPoints[i]);
+      this._keyPoints.pathPoints.x = point.x;
+      this._keyPoints.pathPoints.y = point.y;
+    }
+  }
+
+  actOn(point: Geometry.Point) {
+    point.rotateAround(this.angle, this.around, true);
+  }
+}
+class Gesture {
+  start: number;
+  end: number;
+  parent: Gesture;
+  action: Action;
+  t: number;
+  constructor(start: number, end: number) {
+    this.start = start;
+    this.end = end;
+    this.parent = null;
+    this.t = 0;
+  }
+
+  setParent(gesture: Gesture) {
+    this.parent = gesture;
+    this.action.setParent(gesture.action);
+  }
+
+  setT(frame: number) {
+    let t: number;
+    if ((frame >= this.start) && (frame < this.end)) {
+      this.t = (frame - this.start) / (this.end - this.start);
+      this.action.setT(this.t);
+      return true;
+    }
+    return false;
+  }
+
+  act() {
+    this.action.act();
+  }
+
+
+}
+
 
 
