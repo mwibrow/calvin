@@ -78,6 +78,11 @@ export class Point {
     newpath.setAttributeNS(null, 'r', '4');
     svgElement.appendChild(newpath);
   }
+
+  update(point: Point) {
+    this.x = point.x;
+    this.y = point.y;
+  }
 }
 
 class SvgPoint extends Point {
@@ -104,7 +109,7 @@ export class Points {
   points: Array<Point>;
   constructor(points?: Array<Point>) {
     if (points) {
-      this.points = points.slice(0);
+      this.points = points;
     } else {
       this.points = new Array<Point>();
     }
@@ -123,7 +128,13 @@ export class Points {
   }
 
   copy(): Points {
-    return new Points(this.points);
+    let points: Points = new Points();
+    this.points.forEach((x) => points.append(x.copy()));
+    return points;
+  }
+
+  length(): number {
+    return this.points.length;
   }
 }
 

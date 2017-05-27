@@ -263,7 +263,6 @@ class Action {
   path: Geometry.SvgPath;
   easing: Easings.BaseEasing;
   keyPoints: any;
-  _keyPoints: any;
   t: number;
 
   constructor() {
@@ -282,26 +281,18 @@ class Action {
     this.t = t;
   }
   setPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
-    let points: Array<Geometry.Point> ;
+    let points: Geometry.Points ;
     this.path = path;
     points = path.getPoints(...indices);
     this.keyPoints.pathPoints = points;
-    this.keyPoints.savedPoints = new Array<Geometry.Point>();
-    this.keyPoints.livePoints = new Array<Geometry.Point>();
-    let i: number;
-    for (i = 0; i < points.length; i ++) {
-      this.keyPoints.savedPoints.push(points[i].copy());
-      this.keyPoints.livePoints.push(points[i].copy());
-    }
+    this.keyPoints.savedPoints = points.copy();
+    this.keyPoints.livePoints = points.copy();
   }
 
   preAct() {}
 
   resetKeyPoints() {
-    let property: any, i: number;
-      for (i = 0; i < this.keyPoints.savedPointslength; i ++) {
-       this.keyPoints.livePoints[i] = this.keyPoints.savedPoints[i].copy();
-    }
+    this.keyPoints.livePoints = this.keyPoints.savedPoints.copy();
   }
 
   act() {}
@@ -334,10 +325,10 @@ class RotateAroundAction extends Action {
     let i: number;
     let point: Geometry.Point;
     this.resetKeyPoints();
-    for (i = 0; i < this.keyPoints.livePoints.length; i ++) {
-      point = this.actOn(this.keyPoints.livePoints[i]);
-      this.keyPoints.pathPoints[i].x = point.x;
-      this.keyPoints.pathPoints[i].y = point.y;
+    for (i = 0; i < this.keyPoints.livePoints.length(); i ++) {
+      point = this.actOn(this.keyPoints.livePoints.get(i));
+      this.keyPoints.pathPoints.get(i).update(point);
+
     }
   }
 
