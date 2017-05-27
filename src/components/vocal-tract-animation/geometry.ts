@@ -100,11 +100,11 @@ class SvgPoint extends Point {
 
 }
 
-class Points {
+export class Points {
   points: Array<Point>;
   constructor(points?: Array<Point>) {
     if (points) {
-      this.points = points;
+      this.points = points.slice(0);
     } else {
       this.points = new Array<Point>();
     }
@@ -116,6 +116,14 @@ class Points {
 
   appendPoints(points: Array<Point>) {
     this.points = this.points.concat(points);
+  }
+
+  get(i: number): Point {
+    return this.points[i];
+  }
+
+  copy(): Points {
+    return new Points(this.points);
   }
 }
 
@@ -145,7 +153,7 @@ class Path {
     }).join(' ');
   }
 
-  getPoints(...indices: any[]): Array<Point> {
+  getPoints(...indices: any[]): Points {
     let i: number, j: number;
     let allPoints: Array<Point> = new Array<Point>();
     let points: Array<Point> = new Array<Point>();
@@ -162,7 +170,7 @@ class Path {
     } else {
         points = allPoints;
     }
-    return points;
+    return new Points(points);
   }
 
   static fromSvg(svgString: string): Path {

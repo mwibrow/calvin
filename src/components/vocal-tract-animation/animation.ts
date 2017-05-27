@@ -129,12 +129,12 @@ export class BaseAction {
   }
 
   appendPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
-    this.paths.push(path);
-    if (indices) {
-      this.points = this.points.concat(path.getPoints(...indices))
-    } else {
-      this.points = this.points.concat(path.getPoints());
-    }
+    // this.paths.push(path);
+    // if (indices) {
+    //   this.points = this.points.concat(path.getPoints(...indices))
+    // } else {
+    //   this.points = this.points.concat(path.getPoints());
+    // }
   }
 
   appendPoints(...points: Geometry.Point[]) {
