@@ -99,12 +99,16 @@ export class BaseAction {
   savedPoints: Array<Geometry.Point>;
   paths: Array<Geometry.SvgPath>;
   easing: Easings.BaseEasing;
+  children: Array<BaseAction>;
+  parent: BaseAction;
 
   constructor() {
     this.points = new Array<Geometry.Point>();
     this.savedPoints = new Array<Geometry.Point>();
     this.paths = new Array<Geometry.SvgPath>();
     this.easing = new Easings.Linear();
+    this.children = new Array<BaseAction>();
+    this.parent = null;
   }
 
   init() {
@@ -114,6 +118,14 @@ export class BaseAction {
     for (i = 0; i < this.points.length; i ++) {
       this.savedPoints.push(this.points[i].copy());
     }
+  }
+
+  hasChildren(): boolean {
+    return this.children.length > 0;
+  }
+
+  hasParent(): boolean {
+    return this.parent !== null;
   }
 
   appendPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
@@ -131,6 +143,20 @@ export class BaseAction {
 
   act(t: number) {}
 
+  actOn(point: Geometry.Point, t: number): Geometry.Point {
+    return point.copy();
+  }
+
+  action(t: number) {
+    t = this.easing.ease(t);
+    let i: number;
+    let tmpPoints: Array<Geometry.Point> = new Array<Geometry.Point>();
+    if (this.hasParent) {
+      for (i = 0; i < this.points.length; i ++) {
+        tmpPoints.push(this.parent.actOn(this.points[i], t));
+      }
+    }
+  }
   update() {
     let i: number = 0;
     for (i = 0; i < this.paths.length; i ++) {
@@ -156,10 +182,18 @@ export class TranslationAction extends BaseAction {
     let i: number;
     let point: Geometry.Point;
     for (i = 0; i < this.points.length; i ++) {
-      point = this.savedPoints[i].copy();
-      this.points[i].x = point.x + t * this.shift.x;
-      this.points[i].y = point.y + t * this.shift.y;
+      point = this.actOn(this.savedPoints[i].copy(), t);
+      this.points[i].x = point.x;
+      this.points[i].y = point.y;
     }
+  }
+
+  actOn(point: Geometry.Point, t=1): Geometry.Point {
+    t = this.easing.ease(t);
+    let tmpPoint: Geometry.Point = point.copy();
+    tmpPoint.x = point.x + t * this.shift.x;
+    tmpPoint.y = point.y + t * this.shift.y;
+    return tmpPoint
   }
 }
 
@@ -182,10 +216,22 @@ export class TranslateAndRotateAroundAction extends BaseAction {
     t = this.easing.ease(t);
     angle = t * this.angle;
     for (i = 0; i < this.points.length; i ++) {
-      point = this.savedPoints[i].rotateAround(angle, this.around, false);
-      this.points[i].x = point.x + t * this.shift.x;
-      this.points[i].y = point.y + t * this.shift.y;
+      point = this.actOn(this.savedPoints[i], t);
+      this.points[i].x = point.x;
+      this.points[i].y = point.y;
     }
+  }
+
+  actOn(point: Geometry.Point, t=1): Geometry.Point {
+    let angle: number;
+    let tmpPoint: Geometry.Point;
+    t = this.easing.ease(t);
+    angle = t * this.angle;
+    tmpPoint = point.rotateAround(angle, this.around, false);
+    tmpPoint.x += t * this.shift.x;
+    tmpPoint.y += t * this.shift.y;
+    return tmpPoint;
+
   }
 }
 
@@ -227,13 +273,17 @@ export class RotateAroundAction extends BaseAction {
   act(t: number) {
     let i: number, angle: number;
     let point: Geometry.Point;
-    t = this.easing.ease(t);
-    angle = t * this.angle;
     for (i = 0; i < this.points.length; i ++) {
-      point = this.savedPoints[i].rotateAround(angle, this.around, false);
+      point = this.actOn(this.points[i], t);
       this.points[i].x = point.x;
       this.points[i].y = point.y;
     }
+  }
+
+  actOn(point: Geometry.Point, t=1): Geometry.Point {
+     t = this.easing.ease(t);
+     let angle: number = t * this.angle;
+     return point.rotateAround(angle, this.around, false);
   }
 }
 
@@ -245,10 +295,11 @@ export class Gesture {
   actions: Array<Action.BaseAction>;
   start: number;
   end: number;
-
+  children: Array<Gesture>;
   constructor() {
     this.start = this.end = 0;
     this.actions = new Array<Action.BaseAction>();
+    this.children = new Array<Gesture>();
   }
 
   init() {
@@ -256,6 +307,13 @@ export class Gesture {
     for (i = 0; i < this.actions.length; i ++) {
         this.actions[i].init();
       }
+  }
+
+  addChild(child: Gesture) {
+    this.children.push(child);
+  }
+  hasChildren(): boolean {
+    return this.children.length > 0;
   }
   addAction(action: Action.BaseAction) {
     this.actions.push(action);

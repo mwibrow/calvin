@@ -331,4 +331,6 @@ export function seq(from: number,to?: number) :Array<number> {
     return Array.from(new Array(n),(val, index) => index + from);
 }
 
+
 }
+
