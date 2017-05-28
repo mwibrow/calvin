@@ -136,6 +136,16 @@ export class Points {
   length(): number {
     return this.points.length;
   }
+
+  apply(callback) {
+    this.points.map((p) => callback(p));
+  }
+
+  update(points: Points) {
+    for (let i: number = 0; i < this.points.length; i ++) {
+      this.points[i].update(points.points[i]);
+    }
+  }
 }
 
 class Path {

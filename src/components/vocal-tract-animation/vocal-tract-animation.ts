@@ -263,6 +263,9 @@ class Action {
   path: Geometry.SvgPath;
   easing: Easings.BaseEasing;
   keyPoints: any;
+  pathPoints: Geometry.Points;
+  savedPoints: Geometry.Points;
+  points: Geometry.Points;
   t: number;
 
   constructor() {
@@ -270,6 +273,7 @@ class Action {
     this.path = null;
     this.easing = new Easings.Linear();
     this.keyPoints = {};
+    this.pathPoints = this.savedPoints = this.points = null;
     this.t = 0;
   }
 
@@ -284,20 +288,24 @@ class Action {
     let points: Geometry.Points ;
     this.path = path;
     points = path.getPoints(...indices);
-    this.keyPoints.pathPoints = points;
-    this.keyPoints.savedPoints = points.copy();
-    this.keyPoints.livePoints = points.copy();
+    this.pathPoints = path.getPoints(...indices);
+    this.savedPoints = this.pathPoints.copy();
+    this.points = this.savedPoints.copy();
   }
 
   preAct() {}
 
-  resetKeyPoints() {
-    this.keyPoints.livePoints = this.keyPoints.savedPoints.copy();
+  resetPoints() {
+    this.points = this.savedPoints.copy();
+    if (this.parent) {
+      this.points.apply(this.parent.actOn);
+    }
   }
 
   act() {}
 
-  actOn(point: Geometry.Point) {
+  actOn(point: Geometry.Point): Geometry.Point {
+    return point;
   }
 
   update() {
@@ -321,14 +329,19 @@ class RotateAroundAction extends Action {
     this.angle = this.t * this._angle;
   }
 
+  resetPoints() {
+    super.resetPoints();
+    if (this.parent) {
+      this.around = this.parent.actOn(this._around);
+    }
+  }
   act() {
     let i: number;
     let point: Geometry.Point;
-    this.resetKeyPoints();
-    for (i = 0; i < this.keyPoints.livePoints.length(); i ++) {
-      point = this.actOn(this.keyPoints.livePoints.get(i));
-      this.keyPoints.pathPoints.get(i).update(point);
-
+    this.resetPoints();
+    for (i = 0; i < this.points.length(); i ++) {
+      point = this.actOn(this.points.get(i));
+      this.pathPoints.get(i).update(point);
     }
   }
 
@@ -336,6 +349,7 @@ class RotateAroundAction extends Action {
     return point.rotateAround(this.angle, this.around, false);
   }
 }
+
 class Gesture {
   start: number;
   end: number;
