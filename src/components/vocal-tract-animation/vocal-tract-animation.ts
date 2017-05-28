@@ -21,6 +21,7 @@ export class VocalTractAnimationComponent {
   svg: any;
   range: any;
   frame: number;
+  lowerLip: any;
   @ViewChild(Range) animationRange: Range;
   @ViewChild('svgContainer') svgContainer: any;
 
@@ -132,9 +133,23 @@ export class VocalTractAnimationComponent {
     //this.timeline.init();
        console.log(this.timeline)
 
-    this.jaw = new RotateAroundAction(30, this.upperLipRotationCenter);
-    this.jaw.setPath(this.vocalTract['lip-upper'],
-         Geometry.seq(16, 32))
+    // this.jaw = new RotateAroundAction(30, this.upperLipRotationCenter);
+    // this.jaw.setPath(this.vocalTract['lip-upper'],
+    //      Geometry.seq(16, 32))
+    this.lowerLip = new Gesture(0, 100);
+
+    let action = new RotateAroundAction(-30, this.lowerLipRotationCenter);
+    action.setPath(this.vocalTract['lip-lower'],
+        Geometry.seq(0, 8), Geometry.seq(68, 78)
+      );
+    this.lowerLip.setAction(action);
+
+    this.jaw = new Gesture(50, 100);
+
+    action = new RotateAroundAction(-8, this.jawRotationCenter);
+    action.setPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
+    this.jaw.setAction(action);
+    this.lowerLip.setParent(this.jaw);
   }
 
   // lipRoundingGesture(start, end) {
@@ -212,9 +227,12 @@ export class VocalTractAnimationComponent {
     //this.timeline.animate(event.value)
     let t = event.ratio;
     console.log(t);
-    this.jaw.setT(t);
+    this.jaw.setT(event.value);
     this.jaw.act();
     this.jaw.update();
+    this.lowerLip.setT(event.value);
+    this.lowerLip.act();
+    this.lowerLip.update();
   }
 
   playAnimation() {
@@ -262,7 +280,6 @@ class Action {
   parent: Action;
   path: Geometry.SvgPath;
   easing: Easings.BaseEasing;
-  keyPoints: any;
   pathPoints: Geometry.Points;
   savedPoints: Geometry.Points;
   points: Geometry.Points;
@@ -272,7 +289,6 @@ class Action {
     this.parent = null;
     this.path = null;
     this.easing = new Easings.Linear();
-    this.keyPoints = {};
     this.pathPoints = this.savedPoints = this.points = null;
     this.t = 0;
   }
@@ -284,6 +300,7 @@ class Action {
   setT(t: number) {
     this.t = t;
   }
+
   setPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
     let points: Geometry.Points ;
     this.path = path;
@@ -298,7 +315,7 @@ class Action {
   resetPoints() {
     this.points = this.savedPoints.copy();
     if (this.parent) {
-      this.points.apply(this.parent.actOn);
+      this.points.apply((x) => this.parent.actOn(x))
     }
   }
 
@@ -309,7 +326,7 @@ class Action {
   }
 
   update() {
-    this.path.update();
+    this.path && this.path.update();
   }
 }
 
@@ -363,6 +380,9 @@ class Gesture {
     this.t = 0;
   }
 
+  setAction(action: Action) {
+    this.action = action;
+  }
   setParent(gesture: Gesture) {
     this.parent = gesture;
     this.action.setParent(gesture.action);
@@ -370,16 +390,24 @@ class Gesture {
 
   setT(frame: number) {
     let t: number;
-    if ((frame >= this.start) && (frame < this.end)) {
-      this.t = (frame - this.start) / (this.end - this.start);
-      this.action.setT(this.t);
-      return true;
+    if (frame < this.start) {
+      this.t = 0;
+    } else {
+      if (frame >= this.end) {
+        this.t = 1;
+      } else {
+        this.t = (frame - this.start) / (this.end - this.start);
+      }
     }
-    return false;
+    this.action.setT(this.t);
   }
 
   act() {
     this.action.act();
+  }
+
+  update() {
+    this.action.update();
   }
 
 

@@ -138,7 +138,9 @@ export class Points {
   }
 
   apply(callback) {
-    this.points.map((p) => callback(p));
+    for (let i: number = 0; i < this.points.length; i ++) {
+      this.points[i] = callback(this.points[i]);
+    }
   }
 
   update(points: Points) {
