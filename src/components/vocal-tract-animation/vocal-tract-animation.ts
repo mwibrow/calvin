@@ -139,15 +139,15 @@ export class VocalTractAnimationComponent {
     this.lowerLip = new Gesture(0, 100);
 
     let action = new RotateAroundAction(-30, this.lowerLipRotationCenter);
-    action.setPath(this.vocalTract['lip-lower'],
+    action.addPath(this.vocalTract['lip-lower'],
         Geometry.seq(0, 8), Geometry.seq(68, 78)
       );
     this.lowerLip.setAction(action);
 
-    this.jaw = new Gesture(50, 100);
+    this.jaw = new Gesture(25, 50);
 
     action = new RotateAroundAction(-8, this.jawRotationCenter);
-    action.setPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
+    action.addPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
     this.jaw.setAction(action);
     this.lowerLip.setParent(this.jaw);
   }
@@ -278,18 +278,20 @@ class VocalTractTimeline {
 
 class Action {
   parent: Action;
-  path: Geometry.SvgPath;
+  paths: Array<Geometry.SvgPath>;
   easing: Easings.BaseEasing;
-  pathPoints: Geometry.Points;
-  savedPoints: Geometry.Points;
-  points: Geometry.Points;
+  pathPoints: Array<Geometry.Points>;
+  savedPoints: Array<Geometry.Points>;
+  points: Array<Geometry.Points>;
   t: number;
 
   constructor() {
     this.parent = null;
-    this.path = null;
+    this.paths = new Array<Geometry.SvgPath>();
     this.easing = new Easings.Linear();
-    this.pathPoints = this.savedPoints = this.points = null;
+    this.pathPoints = new Array<Geometry.Points>();
+    this.savedPoints = new Array<Geometry.Points>();
+    this.points = new Array<Geometry.Points>();
     this.t = 0;
   }
 
@@ -301,21 +303,24 @@ class Action {
     this.t = t;
   }
 
-  setPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
+  addPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
     let points: Geometry.Points ;
-    this.path = path;
+    this.paths.push(path);
     points = path.getPoints(...indices);
-    this.pathPoints = path.getPoints(...indices);
-    this.savedPoints = this.pathPoints.copy();
-    this.points = this.savedPoints.copy();
+    this.pathPoints.push(points);
+    this.savedPoints.push(points.copy());
+    this.points.push(points.copy());
   }
 
   preAct() {}
 
   resetPoints() {
-    this.points = this.savedPoints.copy();
-    if (this.parent) {
-      this.points.apply((x) => this.parent.actOn(x))
+    let i:  number;
+    for (i = 0; i < this.points.length; i ++) {
+      this.points[i] = this.savedPoints[i].copy();
+      if (this.parent) {
+        this.points[i].apply((x) => this.parent.actOn(x))
+      }
     }
   }
 
@@ -326,7 +331,10 @@ class Action {
   }
 
   update() {
-    this.path && this.path.update();
+    let i:  number;
+    for (i = 0; i < this.paths.length; i ++) {
+      this.paths[i].update();
+    }
   }
 }
 
@@ -353,12 +361,14 @@ class RotateAroundAction extends Action {
     }
   }
   act() {
-    let i: number;
+    let i: number, j: number;
     let point: Geometry.Point;
     this.resetPoints();
-    for (i = 0; i < this.points.length(); i ++) {
-      point = this.actOn(this.points.get(i));
-      this.pathPoints.get(i).update(point);
+    for (i = 0; i < this.points.length; i ++) {
+      for (j = 0; j < this.points[i].length(); j ++) {
+        point = this.actOn(this.points[i].get(j));
+        this.pathPoints[i].get(j).update(point);
+      }
     }
   }
 
