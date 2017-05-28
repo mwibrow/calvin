@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
-import { Timeline, Animation, Easings }  from './animation'
+import { Animation, Easings }  from './animation'
 
 @Component({
   selector: 'vocal-tract-animation',
@@ -22,6 +22,7 @@ export class VocalTractAnimationComponent {
   range: any;
   frame: number;
   lowerLip: any;
+  gestures: VocalTractGestures;
   @ViewChild(Range) animationRange: Range;
   @ViewChild('svgContainer') svgContainer: any;
 
@@ -29,7 +30,7 @@ export class VocalTractAnimationComponent {
   lowerLipRotationCenter: Geometry.Point;
   jawRotationCenter: Geometry.Point;
 
-  timeline: Timeline;
+
   constructor(public elementRef: ElementRef) {
     console.log('Hello VocalTractAnimation Component');
     this.text = 'Hello World';
@@ -42,7 +43,7 @@ export class VocalTractAnimationComponent {
       upper: 200,
       value: 75
     }
-    this.timeline = new Timeline();
+
   }
 
   ngOnInit() {
@@ -131,25 +132,34 @@ export class VocalTractAnimationComponent {
     // this.timeline.addGesture(this.lipRoundingGesture(0, 50));
 
     //this.timeline.init();
-       console.log(this.timeline)
+
 
     // this.jaw = new RotateAroundAction(30, this.upperLipRotationCenter);
     // this.jaw.setPath(this.vocalTract['lip-upper'],
     //      Geometry.seq(16, 32))
-    this.lowerLip = new Gesture(0, 100);
+    let gesture: Gesture;
+    this.gestures = new VocalTractGestures();
 
+
+    gesture = new Gesture(0, 100);
     let action = new RotateAroundAction(-30, this.lowerLipRotationCenter);
     action.addPath(this.vocalTract['lip-lower'],
         Geometry.seq(0, 8), Geometry.seq(68, 78)
       );
-    this.lowerLip.setAction(action);
+    gesture.setAction(action);
+    this.gestures.lipLower.appendGesture(gesture);
 
-    this.jaw = new Gesture(25, 50);
-
+    gesture = new Gesture(25, 50);
     action = new RotateAroundAction(-8, this.jawRotationCenter);
     action.addPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
-    this.jaw.setAction(action);
-    this.lowerLip.setParent(this.jaw);
+    action.addPath(this.vocalTract['teeth-lower']);
+    action.addPath(this.vocalTract['gum-lower']);
+    action.addPath(this.vocalTract['tongue'], Geometry.seq(10,32));
+    gesture.setAction(action);
+
+    this.gestures.jaw.appendGesture(gesture);
+    console.log(this.gestures)
+    //this.lowerLip.setParent(this.jaw);
   }
 
   // lipRoundingGesture(start, end) {
@@ -225,14 +235,10 @@ export class VocalTractAnimationComponent {
   }
   rangeChange(event) {
     //this.timeline.animate(event.value)
-    let t = event.ratio;
-    console.log(t);
-    this.jaw.setT(event.value);
-    this.jaw.act();
-    this.jaw.update();
-    this.lowerLip.setT(event.value);
-    this.lowerLip.act();
-    this.lowerLip.update();
+
+    this.gestures.setT(event.value);
+    this.gestures.act();
+    this.gestures.update();
   }
 
   playAnimation() {
@@ -259,20 +265,128 @@ animationClick(event) {
 }
 }
 
-class VocalTractTimeline {
+class Gestures {
+  gestures: Array<Gesture>;
+  index: number;
+  start: number;
+  end: number;
+  constructor() {
+    this.gestures = new Array<Gesture>();
+    this.index = 0;
+    this.start = this.end = 0;
+  }
 
-  duration: number;
+  appendGesture(gesture: Gesture) {
+    this.gestures.push(gesture);
+    if (this.end < gesture.end) {
+      this.end = gesture.end;
+    }
+  }
 
-  velum: Timeline;
-  lipUpper: Timeline;
-  epiglottis: Timeline;
-  vocalFolds: Timeline;
-  jaw: Gesture;
-  lipLower: Gesture;
-  teethLower: Gesture;
-  gumLower: Gesture;
-  tongue: Gesture;
+  currentGesture(): Gesture {
 
+    if (this.index < this.gestures.length) {
+      if (this.gestures[this.index].active) {
+        return this.gestures[this.index];
+      }
+    }
+    return null;
+  }
+
+  updateIndex(frame) {
+    let i: number;
+    for (i = 0; i < this.gestures.length; i ++) {
+      if ((frame >= this.gestures[i].start) && (frame < this.gestures[i].end)) {
+        this.index = i;
+        return;
+      }
+    }
+    this.index = this.gestures.length;
+  }
+
+  setT(frame) {
+    this.updateIndex(frame);
+    if (this.index < this.gestures.length) {
+      this.gestures[this.index].setT(frame);
+    }
+  }
+
+  act() {
+      if (this.index < this.gestures.length) {
+      this.gestures[this.index].act();
+    }
+  }
+
+  update() {
+    if (this.index < this.gestures.length) {
+      this.gestures[this.index].update();
+    }
+  }
+}
+
+class VocalTractGestures {
+
+  frame: 0;
+  velum: Gestures;
+  lipUpper: Gestures;
+  epiglottis: Gestures;
+  vocalFolds: Gestures;
+  jaw: Gestures;
+  lipLower: Gestures;
+  tongue: Gestures;
+
+
+  constructor() {
+    this.velum = new Gestures();
+    this.lipUpper = new Gestures();
+    this.epiglottis = new Gestures();
+    this.vocalFolds = new Gestures();
+    this.jaw = new Gestures();
+    this.lipLower = new Gestures();
+    this.tongue = new Gestures();
+    this.frame = 0;
+  }
+
+  setT(frame) {
+    this.velum.setT(frame);
+    this.lipUpper.setT(frame);
+    this.epiglottis.setT(frame);
+    this.vocalFolds.setT(frame);
+    this.jaw.setT(frame);
+    this.lipLower.setT(frame);
+    this.tongue.setT(frame);
+  }
+
+  act() {
+    let childGesture: Gesture, parentGesture: Gesture;
+    this.velum.act();
+    this.lipUpper.act();
+    this.epiglottis.act();
+    this.vocalFolds.act();
+    this.jaw.act();
+    childGesture = this.lipLower.currentGesture();
+    if (childGesture) {
+      parentGesture = this.jaw.currentGesture();
+      parentGesture && childGesture.setParent(parentGesture);
+    }
+    this.lipLower.act();
+    childGesture = this.tongue.currentGesture();
+    if (childGesture) {
+      parentGesture = this.jaw.currentGesture();
+      parentGesture && childGesture.setParent(parentGesture);
+    }
+    this.tongue.act();
+  }
+
+  update() {
+    this.velum.update();
+    this.lipUpper.update();
+    this.epiglottis.update();
+    this.vocalFolds.update();
+    this.jaw.update();
+    this.lipLower.update();
+    this.tongue.update();
+  }
 
 }
 
@@ -301,6 +415,7 @@ class Action {
 
   setT(t: number) {
     this.t = t;
+    console.log(`Setting t: ${t}`);
   }
 
   addPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
@@ -383,41 +498,46 @@ class Gesture {
   parent: Gesture;
   action: Action;
   t: number;
+  active: boolean;
   constructor(start: number, end: number) {
     this.start = start;
     this.end = end;
     this.parent = null;
     this.t = 0;
+    this.active = false;
   }
 
   setAction(action: Action) {
     this.action = action;
   }
+
   setParent(gesture: Gesture) {
     this.parent = gesture;
     this.action.setParent(gesture.action);
   }
 
   setT(frame: number) {
-    let t: number;
     if (frame < this.start) {
       this.t = 0;
+      this.active = false;
     } else {
       if (frame >= this.end) {
         this.t = 1;
+        this.active = false;
       } else {
         this.t = (frame - this.start) / (this.end - this.start);
+        this.active = true;
       }
     }
     this.action.setT(this.t);
   }
 
   act() {
-    this.action.act();
+    this.active && this.action.act();
   }
 
   update() {
-    this.action.update();
+    this.active && this.action.update();
   }
 
 
