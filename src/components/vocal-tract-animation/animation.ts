@@ -239,19 +239,22 @@ export class TranslateAction extends BaseAction {
 
   setT(t: number) {
     this.t = this.easing.ease(t);
-    this.shift = this._shift.scale(t, false);
   }
 
   resetPoints() {
     super.resetPoints();
     if (this.parent) {
-      this.shift = this.parent.actOn(this.shift);
+      this.shift = this.parent.actOn(this._shift.copy());
+    } else {
+      this.shift = this._shift.copy();
     }
   }
+
   act() {
     let i: number, j: number;
     let point: Geometry.Point;
     this.resetPoints();
+    this.shift = this.shift.scale(this.t, false);
     for (i = 0; i < this.points.length; i ++) {
       for (j = 0; j < this.points[i].length(); j ++) {
         point = this.actOn(this.points[i].get(j));
@@ -321,6 +324,12 @@ export class Out {
 
 export class In {
   ease(t: number): number { return 0.0 };
+}
+
+export class Function {
+
+  constructor(public func) {}
+  ease(t: number): number { return this.func(t); }
 }
 
 export class Linear extends BaseEasing {

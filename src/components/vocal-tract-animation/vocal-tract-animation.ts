@@ -56,11 +56,6 @@ export class VocalTractAnimationComponent {
 
 
 
-    this.lipUpperRotationCenter = new Geometry.Point(85, 170);
-    this.lipLowerRotationCenter = new Geometry.Point(90, 230);
-    this.jawRotationCenter = new Geometry.Point(280, 140);
-    this.velumRotationCenter = new Geometry.Point(260, 140);
-
 
     let gesture: Gesture;
     this.gestures = new VocalTractGestures(this.vocalTract);
@@ -72,7 +67,7 @@ export class VocalTractAnimationComponent {
     this.gestures.addVelumRaise(0, 20);
     this.gestures.addVelumRaised(20, 80);
     this.gestures.addVelumLower(80, 100);
-
+    this.gestures.addVocalFoldVibration(25, 75);
   }
 
 
