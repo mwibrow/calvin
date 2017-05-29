@@ -254,22 +254,25 @@ export class TranslateAndRotateAroundAction extends BaseAction {
 
   setT(t: number) {
     this.t = this.easing.ease(t);
-    this.angle = this.t * this._angle;
-    this.shift = this._shift.scale(t, false);
   }
 
   resetPoints() {
     super.resetPoints();
     if (this.parent) {
       this.around = this.parent.actOn(this._around);
-      this.shift = this.parent.actOn(this.shift);
+      //this.shift = this.parent.actOn(this._shift);
+    } else {
+      this.around = this._around.copy();
+      this.shift = this._shift.copy();
     }
   }
   act() {
     let i: number, j: number;
     let point: Geometry.Point;
     this.resetPoints();
-    //this.around.translate(this.shift);
+    this.angle = this.t * this._angle;
+    this.shift = this.shift.scale(this.t, false);
+    this.around = this.around.translate(this.shift, false);
     for (i = 0; i < this.points.length; i ++) {
       for (j = 0; j < this.points[i].length(); j ++) {
         point = this.actOn(this.points[i].get(j));
@@ -280,6 +283,42 @@ export class TranslateAndRotateAroundAction extends BaseAction {
 
   actOn(point: Geometry.Point) {
     return point.translate(this.shift, false).rotateAround(this.angle, this.around, false);
+  }
+}
+
+export class TranslateAction extends BaseAction {
+
+  _shift: Geometry.Vector;
+  constructor(private shift: Geometry.Vector) {
+    super();
+    this._shift = this.shift.copy();
+  }
+
+  setT(t: number) {
+    this.t = this.easing.ease(t);
+    this.shift = this._shift.scale(t, false);
+  }
+
+  resetPoints() {
+    super.resetPoints();
+    if (this.parent) {
+      this.shift = this.parent.actOn(this.shift);
+    }
+  }
+  act() {
+    let i: number, j: number;
+    let point: Geometry.Point;
+    this.resetPoints();
+    for (i = 0; i < this.points.length; i ++) {
+      for (j = 0; j < this.points[i].length(); j ++) {
+        point = this.actOn(this.points[i].get(j));
+        this.pathPoints[i].get(j).update(point);
+      }
+    }
+  }
+
+  actOn(point: Geometry.Point) {
+    return point.translate(this.shift, false);
   }
 }
 

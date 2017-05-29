@@ -73,7 +73,7 @@
   <ion-grid  >
     <ion-row justify-content-center>
       <ion-col>
-      <ion-range min="{{range.min}}" max="{{range.max}}" value="0" (ionChange)="rangeChange($event)"></ion-range>
+      <ion-range #animationRange min="{{range.min}}" max="{{range.max}}" value="0" (ionChange)="rangeChange($event)"></ion-range>
       </ion-col>
     </ion-row>
   </ion-grid>

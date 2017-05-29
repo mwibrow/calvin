@@ -142,7 +142,8 @@ export class VocalTractAnimationComponent {
 
     let action: Actions.BaseAction;
     gesture = new Gesture(0, 100);
-    action = new Actions.RotateAroundAction(-30, this.lowerLipRotationCenter);
+    action = new Actions.RotateAroundAction(-35, this.lowerLipRotationCenter);
+      action = new Actions.TranslateAndRotateAroundAction(new Geometry.Vector(-5,-10), -35, this.lowerLipRotationCenter);
     action.addPath(this.vocalTract['lip-lower'],
         Geometry.seq(0, 8), Geometry.seq(68, 78)
       );
@@ -150,7 +151,7 @@ export class VocalTractAnimationComponent {
     this.gestures.lipLower.appendGesture(gesture);
 
     gesture = new Gesture(0, 100);
-    action = new Actions.RotateAroundAction(30, this.upperLipRotationCenter);
+    action = new Actions.TranslateAndRotateAroundAction(new Geometry.Vector(-5,0), 35, this.upperLipRotationCenter);
     action.addPath(this.vocalTract['lip-upper'], Geometry.seq(16, 32));
     gesture.setAction(action);
     this.gestures.lipUpper.appendGesture(gesture);
@@ -164,6 +165,16 @@ export class VocalTractAnimationComponent {
     gesture.setAction(action);
 
     this.gestures.jaw.appendGesture(gesture);
+
+      let center: Geometry.Point;
+
+    center = new Geometry.Point(260, 140);
+    gesture = new Gesture(50,100);
+    action = new Actions.TranslateAndRotateAroundAction(new Geometry.Point(9,-5), -20, center);
+    action.addPath(this.vocalTract['velum'], Geometry.seq(8, 20));
+    gesture.setAction(action);
+    this.gestures.velum.appendGesture(gesture);
+
     console.log(this.gestures)
     //this.lowerLip.setParent(this.jaw);
   }

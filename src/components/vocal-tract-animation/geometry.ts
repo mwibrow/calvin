@@ -6,9 +6,7 @@ export module Geometry {
 
 export class Point {
 
-  constructor(public x: number, public y: number) {
-
-  }
+  constructor(public x: number, public y: number) {}
 
   copy(): Point {
     return new Point(this.x, this.y);
@@ -57,6 +55,7 @@ export class Point {
       return new Point(-this.x, -this.y);
     }
   }
+
   rotateAround(angle: number, point: Point, inPlace=true) {
     let tmpPoint = this.copy();
     tmpPoint.x -= point.x;
@@ -96,7 +95,7 @@ export class Vector extends Point {
     if (!inPlace) {
       return new Vector(this.x, this.y);
     }
-  };
+  }
 }
 
 
