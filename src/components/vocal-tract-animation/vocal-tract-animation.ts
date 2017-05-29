@@ -23,6 +23,7 @@ export class VocalTractAnimationComponent {
   frame: number;
   lowerLip: any;
   gestures: VocalTractGestures;
+  speed: number;
   @ViewChild('animationRange') animationRange: Range;
   @ViewChild('svgContainer') svgContainer: any;
 
@@ -42,6 +43,7 @@ export class VocalTractAnimationComponent {
       min: "0",
       max: "100"
     }
+    this.speed = 5;
   }
 
   ngOnInit() {
@@ -251,9 +253,8 @@ export class VocalTractAnimationComponent {
     this.frame += 5;
     this.animationRange.setValue(this.frame);
     this.rangeChange({value: this.animationRange.value});
-    if (this.frame < 100) {
-
-    window.requestAnimationFrame((ev) => this._playAnimation(ev));
+    if (this.frame < this.range.max) {
+      window.requestAnimationFrame((ev) => this._playAnimation(ev));
     }
   }
 

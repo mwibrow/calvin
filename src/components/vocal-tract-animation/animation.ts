@@ -278,6 +278,122 @@ export class RotateAroundAction extends BaseAction {
   }
 }
 
+
+export class TranslateAndRotateAroundAction extends BaseAction {
+
+  _shift: Geometry.Point;
+  _angle: number;
+  _around: Geometry.Point;
+
+  constructor(private shift: Geometry.Point, private angle: number, private around: Geometry.Point) {
+    super();
+    this._shift = shift;
+    this._angle = this.angle;
+    this._around = this.around;
+  }
+
+  setT(t: number) {
+    this.t = this.easing.ease(t);
+    this.angle = this.t * this._angle;
+  }
+
+  resetPoints() {
+    super.resetPoints();
+    if (this.parent) {
+      this.around = this.parent.actOn(this._around);
+    }
+  }
+  act() {
+    let i: number, j: number;
+    let point: Geometry.Point;
+    this.resetPoints();
+    for (i = 0; i < this.points.length; i ++) {
+      for (j = 0; j < this.points[i].length(); j ++) {
+        point = this.actOn(this.points[i].get(j));
+        this.pathPoints[i].get(j).update(point);
+      }
+    }
+  }
+
+  actOn(point: Geometry.Point) {
+    return point.rotateAround(this.angle, this.around, false);
+  }
+}
+
+
+
+}
+
+export namespace Transforms {
+
+  export class BaseTransform {
+
+    t: number;
+
+    constructor(public interpolatable=true) {
+      this.t = 0;
+    }
+
+    setT(t: number) {
+      if (this.interpolatable) {
+        this.t = t;
+        this.interpolate();
+      }
+    }
+
+    interpolate() {}
+
+    act(){};
+
+    actOn(point: Geometry.Point): Geometry.Point {
+      return point;
+    }
+  }
+
+  export class TranslateTransform extends BaseTransform {
+
+    _point: Geometry.Point;
+
+    constructor(public point: Geometry.Point, interpolatable=true) {
+      super(interpolatable);
+      this._point = this.point.copy();
+    }
+
+    interpolate() {
+      this.point = new Geometry.Point(this.t * this._point.x, this.t * this._point.y);
+    }
+
+    actOn(point: Geometry.Point): Geometry.Point {
+      return new Geometry.Point(point.x + this.point.x, point.y + this.point.y);
+    }
+  }
+
+  export class RotateTransform extends BaseTransform {
+
+    _angle: number;
+    cosAngle: number;
+    sinAngle: number;
+    constructor(public angle: number, interpolatable=true) {
+      super(interpolatable);
+      this._angle = this.angle;
+      this.cosAngle = Math.cos(this.angle);
+      this.sinAngle = Math.sin(this.angle);
+    }
+
+    interpolate() {
+      this.angle =  this.t * this._angle;
+      this.cosAngle = Math.cos(this.angle);
+      this.sinAngle = Math.sin(this.angle);
+    }
+
+    actOn(point: Geometry.Point): Geometry.Point {
+      return new Geometry.Point(
+        point.x * this.cosAngle - point.y * this.sinAngle,
+        point.x * this.sinAngle + point.y * this.cosAngle);
+    }
+  }
+
+
 }
 
 export namespace Easings {
