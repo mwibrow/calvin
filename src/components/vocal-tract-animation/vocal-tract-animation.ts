@@ -140,17 +140,23 @@ export class VocalTractAnimationComponent {
     let gesture: Gesture;
     this.gestures = new VocalTractGestures();
 
-
+    let action: Actions.BaseAction;
     gesture = new Gesture(0, 100);
-    let action = new Actions.RotateAroundAction(-30, this.lowerLipRotationCenter);
+    action = new Actions.RotateAroundAction(-30, this.lowerLipRotationCenter);
     action.addPath(this.vocalTract['lip-lower'],
         Geometry.seq(0, 8), Geometry.seq(68, 78)
       );
     gesture.setAction(action);
     this.gestures.lipLower.appendGesture(gesture);
 
-    gesture = new Gesture(25, 50);
-    action = new Actions.RotateAroundAction(-8, this.jawRotationCenter);
+    gesture = new Gesture(0, 100);
+    action = new Actions.RotateAroundAction(30, this.upperLipRotationCenter);
+    action.addPath(this.vocalTract['lip-upper'], Geometry.seq(16, 32));
+    gesture.setAction(action);
+    this.gestures.lipUpper.appendGesture(gesture);
+
+    gesture = new Gesture(25, 75);
+    action = new Actions.TranslateAndRotateAroundAction(new Geometry.Vector(-8, 4), -8, this.jawRotationCenter);
     action.addPath(this.vocalTract['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
     action.addPath(this.vocalTract['teeth-lower']);
     action.addPath(this.vocalTract['gum-lower']);

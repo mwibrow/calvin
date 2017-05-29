@@ -5,11 +5,9 @@ export module Geometry {
 
 
 export class Point {
-  x: number;
-  y: number;
-  constructor(x: number, y: number) {
-    this.x = x;
-   this.y = y;
+
+  constructor(public x: number, public y: number) {
+
   }
 
   copy(): Point {
@@ -20,7 +18,14 @@ export class Point {
     return `${this.x},${this.y}`;
   }
 
-
+  scale(factor: number, inPlace=true) {
+    if (inPlace) {
+      this.x *= factor;
+      this.y *= factor;
+    } else {
+      return new Point(this.x * factor, this.y * factor);
+    }
+  }
   translate(point: Point, inPlace=true) {
     if (inPlace) {
       this.x += point.x;
@@ -84,6 +89,16 @@ export class Point {
     this.y = point.y;
   }
 }
+
+export class Vector extends Point {
+
+  translate(point: Point, inPlace=true) {
+    if (!inPlace) {
+      return new Vector(this.x, this.y);
+    }
+  };
+}
+
 
 class SvgPoint extends Point {
 
@@ -361,6 +376,7 @@ export function seq(from: number,to?: number) :Array<number> {
     let n: number = to - from;
     return Array.from(new Array(n),(val, index) => index + from);
 }
+
 
 
 }

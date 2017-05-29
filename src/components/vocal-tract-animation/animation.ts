@@ -240,31 +240,36 @@ export class BaseAction {
 }
 
 
-export class RotateAroundAction extends BaseAction {
+export class TranslateAndRotateAroundAction extends BaseAction {
 
+  _shift: Geometry.Vector;
   _angle: number;
   _around: Geometry.Point;
-  constructor(private angle: number, private around: Geometry.Point) {
+  constructor(private shift: Geometry.Vector, private angle: number, private around: Geometry.Point) {
     super();
+    this._shift = this.shift.copy();
     this._angle = this.angle;
-    this._around = this.around;
+    this._around = this.around.copy();
   }
 
   setT(t: number) {
     this.t = this.easing.ease(t);
     this.angle = this.t * this._angle;
+    this.shift = this._shift.scale(t, false);
   }
 
   resetPoints() {
     super.resetPoints();
     if (this.parent) {
       this.around = this.parent.actOn(this._around);
+      this.shift = this.parent.actOn(this.shift);
     }
   }
   act() {
     let i: number, j: number;
     let point: Geometry.Point;
     this.resetPoints();
+    //this.around.translate(this.shift);
     for (i = 0; i < this.points.length; i ++) {
       for (j = 0; j < this.points[i].length(); j ++) {
         point = this.actOn(this.points[i].get(j));
@@ -274,20 +279,17 @@ export class RotateAroundAction extends BaseAction {
   }
 
   actOn(point: Geometry.Point) {
-    return point.rotateAround(this.angle, this.around, false);
+    return point.translate(this.shift, false).rotateAround(this.angle, this.around, false);
   }
 }
 
 
-export class TranslateAndRotateAroundAction extends BaseAction {
+export class RotateAroundAction extends BaseAction {
 
-  _shift: Geometry.Point;
   _angle: number;
   _around: Geometry.Point;
-
-  constructor(private shift: Geometry.Point, private angle: number, private around: Geometry.Point) {
+  constructor(private angle: number, private around: Geometry.Point) {
     super();
-    this._shift = shift;
     this._angle = this.angle;
     this._around = this.around;
   }
@@ -329,7 +331,6 @@ export namespace Transforms {
   export class BaseTransform {
 
     t: number;
-
     constructor(public interpolatable=true) {
       this.t = 0;
     }
