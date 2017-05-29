@@ -61,6 +61,9 @@ export class Gestures {
     this.start = this.end = 0;
   }
 
+  length() {
+    return this.gestures.length;
+  }
   appendGesture(gesture: Gesture) {
     this.gestures.push(gesture);
     if (this.end < gesture.end) {
@@ -109,70 +112,6 @@ export class Gestures {
   }
 }
 
-export class VocalTractGestures {
-
-  frame: 0;
-  velum: Gestures;
-  lipUpper: Gestures;
-  epiglottis: Gestures;
-  vocalFolds: Gestures;
-  jaw: Gestures;
-  lipLower: Gestures;
-  tongue: Gestures;
-
-  constructor() {
-    this.velum = new Gestures();
-    this.lipUpper = new Gestures();
-    this.epiglottis = new Gestures();
-    this.vocalFolds = new Gestures();
-    this.jaw = new Gestures();
-    this.lipLower = new Gestures();
-    this.tongue = new Gestures();
-    this.frame = 0;
-  }
-
-  setT(frame) {
-    this.velum.setT(frame);
-    this.lipUpper.setT(frame);
-    this.epiglottis.setT(frame);
-    this.vocalFolds.setT(frame);
-    this.jaw.setT(frame);
-    this.lipLower.setT(frame);
-    this.tongue.setT(frame);
-  }
-
-  act() {
-    let childGesture: Gesture, parentGesture: Gesture;
-    this.velum.act();
-    this.lipUpper.act();
-    this.epiglottis.act();
-    this.vocalFolds.act();
-    this.jaw.act();
-    childGesture = this.lipLower.currentGesture();
-    if (childGesture) {
-      parentGesture = this.jaw.currentGesture();
-      parentGesture && childGesture.setParent(parentGesture);
-    }
-    this.lipLower.act();
-    childGesture = this.tongue.currentGesture();
-    if (childGesture) {
-      parentGesture = this.jaw.currentGesture();
-      parentGesture && childGesture.setParent(parentGesture);
-    }
-    this.tongue.act();
-  }
-
-  update() {
-    this.velum.update();
-    this.lipUpper.update();
-    this.epiglottis.update();
-    this.vocalFolds.update();
-    this.jaw.update();
-    this.lipLower.update();
-    this.tongue.update();
-  }
-
-}
 
 export namespace Actions {
 
@@ -192,16 +131,19 @@ export class BaseAction {
     this.pathPoints = new Array<Geometry.Points>();
     this.savedPoints = new Array<Geometry.Points>();
     this.points = new Array<Geometry.Points>();
-    this.t = 0;
+    this.t = this.easing.ease(0);
   }
 
+  setEasing(easing: Easings.BaseEasing) {
+    this.easing = easing;
+    this.t = this.easing.ease(0);
+  }
   setParent(action: BaseAction) {
     this.parent = action;
   }
 
   setT(t: number) {
-    this.t = t;
-    console.log(`Setting t: ${t}`);
+    this.t = this.easing.ease(t);
   }
 
   addPath(path: Geometry.SvgPath, ...indices: Array<number[]>) {
@@ -365,76 +307,6 @@ export class RotateAroundAction extends BaseAction {
 
 }
 
-export namespace Transforms {
-
-  export class BaseTransform {
-
-    t: number;
-    constructor(public interpolatable=true) {
-      this.t = 0;
-    }
-
-    setT(t: number) {
-      if (this.interpolatable) {
-        this.t = t;
-        this.interpolate();
-      }
-    }
-
-    interpolate() {}
-
-    act(){};
-
-    actOn(point: Geometry.Point): Geometry.Point {
-      return point;
-    }
-  }
-
-  export class TranslateTransform extends BaseTransform {
-
-    _point: Geometry.Point;
-
-    constructor(public point: Geometry.Point, interpolatable=true) {
-      super(interpolatable);
-      this._point = this.point.copy();
-    }
-
-    interpolate() {
-      this.point = new Geometry.Point(this.t * this._point.x, this.t * this._point.y);
-    }
-
-    actOn(point: Geometry.Point): Geometry.Point {
-      return new Geometry.Point(point.x + this.point.x, point.y + this.point.y);
-    }
-  }
-
-  export class RotateTransform extends BaseTransform {
-
-    _angle: number;
-    cosAngle: number;
-    sinAngle: number;
-    constructor(public angle: number, interpolatable=true) {
-      super(interpolatable);
-      this._angle = this.angle;
-      this.cosAngle = Math.cos(this.angle);
-      this.sinAngle = Math.sin(this.angle);
-    }
-
-    interpolate() {
-      this.angle =  this.t * this._angle;
-      this.cosAngle = Math.cos(this.angle);
-      this.sinAngle = Math.sin(this.angle);
-    }
-
-    actOn(point: Geometry.Point): Geometry.Point {
-      return new Geometry.Point(
-        point.x * this.cosAngle - point.y * this.sinAngle,
-        point.x * this.sinAngle + point.y * this.cosAngle);
-    }
-  }
-
-
-}
 
 export namespace Easings {
 
