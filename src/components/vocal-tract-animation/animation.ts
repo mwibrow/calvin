@@ -203,6 +203,7 @@ export class TranslateAndRotateAroundAction extends BaseAction {
     if (this.parent) {
       this.around = this.parent.actOn(this._around);
       //this.shift = this.parent.actOn(this._shift);
+      this.shift = this._shift.copy();
     } else {
       this.around = this._around.copy();
       this.shift = this._shift.copy();
@@ -312,6 +313,14 @@ export namespace Easings {
 
 export class BaseEasing {
   ease(t: number): number { return t };
+}
+
+export class Out {
+  ease(t: number): number { return 1.0 };
+}
+
+export class In {
+  ease(t: number): number { return 0.0 };
 }
 
 export class Linear extends BaseEasing {

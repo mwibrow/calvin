@@ -72,6 +72,9 @@ export class VocalTractAnimationComponent {
     this.gestures.addJawClose(50, 100);
     this.gestures.addLipRounding(0, 50);
     this.gestures.addLipUnrounding(50, 100);
+    this.gestures.addVelumRaise(0, 20);
+    this.gestures.addVelumRaised(20, 80);
+    this.gestures.addVelumLower(80, 100);
     // let action: Actions.BaseAction;
     // gesture = new Gesture(0, 100);
     // action = new Actions.RotateAroundAction(-35, this.lipLowerRotationCenter);
@@ -196,7 +199,7 @@ export class VocalTractAnimationComponent {
   }
 
   _playAnimation(event) {
-    this.frame += 5;
+    this.frame += this.speed;
     this.animationRange.setValue(this.frame);
     this.rangeChange({value: this.animationRange.value});
     if (this.frame < this.range.max) {

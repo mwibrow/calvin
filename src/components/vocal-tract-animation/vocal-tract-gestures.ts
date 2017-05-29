@@ -85,6 +85,13 @@ export class VocalTractGestures {
     this.velum.appendGesture(gesture);
   }
 
+  addVelumRaised(start: number, end: number) {
+    let action: Actions.BaseAction;
+    this.addVelumRaise(start, end);
+    action = this.velum.gestures[this.velum.gestures.length - 1].action;
+    action.setEasing(new Easings.Out());
+  }
+
   addVelumLower(start: number, end: number) {
     let action: Actions.BaseAction;
     this.addVelumRaise(start, end);
