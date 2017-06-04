@@ -61,13 +61,13 @@ export class VocalTractAnimationComponent {
     this.gestures = new VocalTractGestures(this.vocalTract);
 
     this.gestures.addJawOpen(0, 50);
-    this.gestures.addJawClose(50, 100);
+    this.gestures.addJawClose(51, 100);
     this.gestures.addLipRounding(0, 50);
-    this.gestures.addLipUnrounding(50, 100);
+    this.gestures.addLipUnrounding(51, 100);
     this.gestures.addVelumRaise(0, 20);
-    this.gestures.addVelumRaised(20, 80);
+    this.gestures.addVelumRaised(21, 79);
     this.gestures.addVelumLower(80, 100);
-    this.gestures.addVocalFoldVibration(25, 75);
+    this.gestures.addVocalFoldVibration(20, 80);
   }
 
 

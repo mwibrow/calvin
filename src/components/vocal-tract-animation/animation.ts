@@ -84,7 +84,7 @@ export class Gestures {
     // Ooo this is inefficient.
     let i: number;
     for (i = 0; i < this.gestures.length; i ++) {
-      if ((frame >= this.gestures[i].start) && (frame < this.gestures[i].end)) {
+      if ((frame >= this.gestures[i].start) && (frame <= this.gestures[i].end)) {
         this.index = i;
         return;
       }

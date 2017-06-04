@@ -78,7 +78,7 @@ export class VocalTractGestures {
   addVocalFoldVibration(start: number, end: number) {
     let gesture: Gesture, action: Actions.TranslateAction;
     gesture = new Gesture(start, end);
-    action = new Actions.TranslateAction(new Geometry.Point(0,-4));
+    action = new Actions.TranslateAction(new Geometry.Point(0,-3));
     action.addPath(this.vocalTractPaths['larynx'], Geometry.seq(0,4), Geometry.seq(8, 12), Geometry.seq(16, 20));
     action.setEasing(new Easings.Function(function(t){
       if ((t >= 0.9) || (t <= 0.1)) return 0;
