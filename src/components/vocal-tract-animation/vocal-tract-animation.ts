@@ -52,11 +52,6 @@ export class VocalTractAnimationComponent {
         Geometry.SvgPath.fromPathNode(svgPath);
     }
 
-
-
-
-
-
     let gesture: Gesture;
     this.gestures = new VocalTractGestures(this.vocalTract);
 

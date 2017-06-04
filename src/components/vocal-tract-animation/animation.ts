@@ -169,7 +169,7 @@ export class BaseAction {
 
   act() {}
 
-  actOn(point: Geometry.Point): Geometry.Point {
+  actOn(point: Geometry.Point, ...any): Geometry.Point {
     return point;
   }
 
@@ -178,6 +178,32 @@ export class BaseAction {
     for (i = 0; i < this.paths.length; i ++) {
       this.paths[i].update();
     }
+  }
+}
+
+export class MorphAction extends BaseAction {
+
+  constructor(private targetPoints: Geometry.Points) {
+    super();
+  }
+
+  resetPoints() {
+    super.resetPoints();
+  }
+  act() {
+    let i: number, j: number;
+    let point: Geometry.Point;
+    this.resetPoints();
+    for (i = 0; i < this.points.length; i ++) {
+      for (j = 0; j < this.points[i].length(); j ++) {
+        point = this.actOn(this.points[i].get(j), this.targetPoints.get(j));
+        this.pathPoints[i].get(j).update(point);
+      }
+    }
+  }
+
+  actOn(point: Geometry.Point, target: Geometry.Point) {
+    return Geometry.Point.pointAtTime(this.t, point, target);
   }
 }
 

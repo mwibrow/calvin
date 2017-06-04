@@ -141,7 +141,7 @@ export class VocalTractGestures {
     action.setEasing(new Easings.Reverse(action.easing));
   }
 
-  addJawOpen(start: number, end: number) {
+  addJawOpen(start: number, end: number, howWide=1) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(new Geometry.Vector(-8, 4), -8, jawRotationCenter);
@@ -153,11 +153,18 @@ export class VocalTractGestures {
     this.jaw.appendGesture(gesture);
   }
 
-  addJawClose(start: number, end: number) {
+  addJawClose(start: number, end: number, howWide=1) {
     let action: Actions.BaseAction;
-    this.addJawOpen(start, end);
+    this.addJawOpen(start, end, howWide);
     action = this.jaw.gestures[this.jaw.gestures.length - 1].action;
     action.setEasing(new Easings.Reverse(action.easing));
+  }
+
+  addJawOpened(start: number, end: number, howWide=1) {
+    let action: Actions.BaseAction;
+    this.addJawOpen(start, end, howWide);
+    action = this.jaw.gestures[this.jaw.gestures.length - 1].action;
+    action.setEasing(new Easings.Out());
   }
 
 }
