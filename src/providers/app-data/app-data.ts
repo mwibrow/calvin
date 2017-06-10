@@ -11,6 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppDataProvider {
 
+  talkers: any;
   words: any;
   constructor(public http: Http) {
     console.log('Hello AppDataProvider Provider');
@@ -338,6 +339,24 @@ export class AppDataProvider {
 				display: "ear",
 				vowels: "<ear>"
       }
+    }
+    this.talkers = {
+      emma: {
+        realName: "Emma",
+        displayName: "Emma",
+        avatar: "emma"
+      },
+      dan: {
+        realName: "Dan",
+        displayName: "Dan",
+        avatar: "dan"
+      },
+      mark: {
+        realName: "Mark",
+        displayName: "Mark",
+        avatar: "mark"
+      }
+
     }
   }
 
