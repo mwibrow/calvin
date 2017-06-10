@@ -221,36 +221,123 @@ export class AppDataProvider {
         vowels: "t<ear>s"
       },
       // Keywords
-      knot: { display: "knot", vowels: "kn<o>t" },
-      dart: { display: "dart", vowels: "d<ar>t" },
-      knee: { display: "knee", vowels: "kn<ee>" },
-      tin: { display: "tin", vowels: "t<i>n" },
-      bull: { display: "bull", vowels: "b<u>ll" },
-      cloud: { display: "cloud", vowels: "cl<ou>d" },
-      crown: { display: "crown", vowels: "cr<o>wn" },
-      light: { display: "light", vowels: "l<i>ght" },
-      lake: { display: "lake", vowels: "l<a>ke" },
-      girl: { display: "girl", vowels: "g<ir>l" },
-      dirt: { display: "dirt", vowels: "d<ir>t" },
-      earth: { display: "earth", vowels: "e<ar>th" },
-      stairs: { display: "stairs", vowels: "st<air>s" },
-      joint: { display: "joint", vowels: "j<oi>nt" },
-      joy: { display: "joy", vowels: "j<oy>" },
-      soup: { display: "soup", vowels: "s<ou>p" },
-      port: { display: "port", vowels: "p<or>t" },
-      red: { display: "red", vowels: "r<e>d" },
-      shed: { display: "shed", vowels: "sh<e>d" },
-      coke: { display: "coke", vowels: "c<o>ke" },
-      toed: { display: "toad", vowels: "t<oa>d" },
-      soak: { display: "soak", vowels: "s<oa>k" },
-      bag: { display: "bag", vowels: "b<a>g" },
-      tag: { display: "tag", vowels: "t<a>g" },
-      flag: { display: "flag", vowels: "fl<a>g" },
-      near: { display: "near", vowels: "n<ear>" },
-      cheer: { display: "cheer", vowels: "ch<eer>" },
-      fear: { display: "fear", vowels: "f<ear>" },
-      ear: { display: "ear", vowels: "<ear>" }
+      knot: {
+				display: "knot",
+				vowels: "kn<o>t"
+			},
+      dart: {
+				display: "dart",
+				vowels: "d<ar>t"
+			},
+      knee: {
+				display: "knee",
+				vowels: "kn<ee>"
+			},
+      tin: {
+				display: "tin",
+				vowels: "t<i>n"
+			},
+      bull: {
+				display: "bull",
+				vowels: "b<u>ll"
+			},
+      cloud: {
+				display: "cloud",
+				vowels: "cl<ou>d"
+			},
+      crown: {
+				display: "crown",
+				vowels: "cr<o>wn"
+			},
+      light: {
+				display: "light",
+				vowels: "l<i>ght"
+			},
+      lake: {
+				display: "lake",
+				vowels: "l<a>ke"
+			},
+      girl: {
+				display: "girl",
+				vowels: "g<ir>l"
+			},
+      dirt: {
+				display: "dirt",
+				vowels: "d<ir>t"
+			},
+      earth: {
+				display: "earth",
+				vowels: "e<ar>th"
+			},
+      stairs: {
+				display: "stairs",
+				vowels: "st<air>s"
+			},
+      joint: {
+				display: "joint",
+				vowels: "j<oi>nt"
+			},
+      joy: {
+				display: "joy",
+				vowels: "j<oy>"
+			},
+      soup: {
+				display: "soup",
+				vowels: "s<ou>p"
+			},
+      port: {
+				display: "port",
+				vowels: "p<or>t"
+			},
+      red: {
+				display: "red",
+				vowels: "r<e>d"
+			},
+      shed: {
+				display: "shed",
+				vowels: "sh<e>d"
+			},
+      coke: {
+				display: "coke",
+				vowels: "c<o>ke"
+			},
+      toed: {
+				display: "toad",
+				vowels: "t<oa>d"
+			},
 
+      soak: {
+				display: "soak",
+				vowels: "s<oa>k"
+			},
+      bag: {
+				display: "bag",
+				vowels: "b<a>g"
+			},
+      tag: {
+				display: "tag",
+				vowels: "t<a>g"
+			},
+      flag: {
+				display: "flag",
+				vowels: "fl<a>g"
+			},
+      near: {
+				display: "near",
+				vowels: "n<ear>"
+			},
+      cheer: {
+				display: "cheer",
+				vowels: "ch<eer>"
+			},
+      fear: {
+				display: "fear",
+				vowels: "f<ear>"
+			},
+      ear: {
+				display: "ear",
+				vowels: "<ear>"
+      }
     }
   }
 
