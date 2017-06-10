@@ -13,6 +13,8 @@ export class AppDataProvider {
 
   talkers: any;
   words: any;
+  keywords: any;
+  keywordList: Array<string>;
   constructor(public http: Http) {
     console.log('Hello AppDataProvider Provider');
 
@@ -339,6 +341,16 @@ export class AppDataProvider {
 				display: "ear",
 				vowels: "<ear>"
       }
+    };
+    let i: number;
+    this.keywordList = [
+      "knot", "dart", "knee", "tin", "bull", "cloud", "crown", "light", "lake", "girl",
+      "dirt", "earth", "stairs", "joint", "joy", "soup", "port", "red", "shed",
+      "coke", "toad", "soak", "bag", "tag", "flag", "near", "cheer", "fear", "ear"
+    ].sort();
+    this.keywords = {}
+    for (i = 0; i < this.keywordList.length; i ++) {
+      this.keywords[this.keywordList[i]] = this.words[this.keywordList[i]];
     }
     this.talkers = {
       emma: {
@@ -356,8 +368,7 @@ export class AppDataProvider {
         displayName: "Mark",
         avatar: "mark"
       }
-
-    }
+    };
   }
 
 }

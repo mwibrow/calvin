@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AppDataProvider } from '../../providers/app-data/app-data'
 /**
  * Generated class for the VowelTrainerPage page.
  *
@@ -11,6 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-vowel-trainer',
   templateUrl: 'vowel-trainer.html',
+  providers: [AppDataProvider]
 })
 export class VowelTrainerPage {
 
@@ -21,8 +22,9 @@ export class VowelTrainerPage {
     recording: 'recording'
   };
   private currentState: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
     this.currentState = VowelTrainerPage.state.animation;
+    console.log(this.appData)
   }
 
   isAudio() {
@@ -54,7 +56,7 @@ export class VowelTrainerPage {
   }
 
   showAnimation() {
-    return this.currentState =VowelTrainerPage.state.animation;
+    return this.currentState = VowelTrainerPage.state.animation;
   }
 
   ionViewDidLoad() {
