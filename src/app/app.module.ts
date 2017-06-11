@@ -6,6 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { SplashPage } from '../pages/splash/splash';
+import { SelectTalkerPage } from '../pages/select-talker/select-talker';
 import { IntroductionPage } from '../pages/introduction/introduction';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { AudioIOComponent } from '../components/audio-io/audio-io';
@@ -27,6 +29,8 @@ import { VideoDirective } from '../directives/video/video';
     HomePage,
     IntroductionPage,
     VowelTrainerPage,
+    SplashPage,
+    SelectTalkerPage,
     AudioIOComponent,
     SvgImageComponent,
     SvgSrcDirective,
@@ -46,7 +50,9 @@ import { VideoDirective } from '../directives/video/video';
     MyApp,
     HomePage,
     IntroductionPage,
-    VowelTrainerPage
+    VowelTrainerPage,
+    SplashPage,
+    SelectTalkerPage
   ],
   providers: [
     StatusBar,

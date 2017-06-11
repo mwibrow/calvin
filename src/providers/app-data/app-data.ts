@@ -12,8 +12,10 @@ import 'rxjs/add/operator/map';
 export class AppDataProvider {
 
   talkers: any;
+
   words: any;
   keywords: any;
+  talkerList: Array<string>;
   keywordList: Array<string>;
   constructor(public http: Http) {
     console.log('Hello AppDataProvider Provider');
@@ -369,6 +371,7 @@ export class AppDataProvider {
         avatar: "mark"
       }
     };
+    this.talkerList = ["emma", "dan", "mark"];
   }
 
 }
