@@ -17,6 +17,8 @@ export class AppDataProvider {
   keywords: any;
   talkerList: Array<string>;
   keywordList: Array<string>;
+  talkerMode: string;
+  talker: string;
   constructor(public http: Http) {
     console.log('Hello AppDataProvider Provider');
 
@@ -372,6 +374,9 @@ export class AppDataProvider {
       }
     };
     this.talkerList = ["emma", "dan", "mark"];
+
+    this.talkerMode = "multiple";
+    this.talker = "emma";
   }
 
 }

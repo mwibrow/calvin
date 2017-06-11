@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
+import { IntroductionPage } from '../introduction/introduction';
 /**
  * Generated class for the SelectTalkerPage page.
  *
@@ -43,13 +44,29 @@ export class SelectTalkerPage {
   }
 
   nextClicked() {
-    this.page += 1;
-
+    let next: boolean = false;
+    switch (this.page) {
+      case 1:
+        if (this.talkerMode === "multiple") {
+           next = true;
+        } else {
+          this.page += 1;
+        }
+        break;
+      case 2:
+        next = true;
+    }
+    if (next) {
+      this.appData.talkerMode = this.talkerMode;
+      this.appData.talker = this.talker;
+      this.navCtrl.push(IntroductionPage);
+    }
   }
 
   backClicked() {
-    this.page -= 1;
-
+    if (this.page > 1) {
+      this.page -= 1;
+    }
   }
 
 }

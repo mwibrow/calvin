@@ -13,30 +13,32 @@
       Talkers
     </ion-card-header>
 
-    <ion-card-content *ngIf="page === 1;">
-    <ion-list radio-group [(ngModel)]="talkerMode">
+    <ion-card-content>
 
-    <ion-list-header>
-      Single or multiple talker(s)?
-    </ion-list-header>
+    <div  *ngIf="page === 1;">
+      <ion-list radio-group [(ngModel)]="talkerMode">
 
-    <ion-item>
-      <ion-label>Single talker</ion-label>
-      <ion-radio value="single"></ion-radio>
-    </ion-item>
+      <ion-list-header>
+        Single or multiple talker(s)?
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Single talker</ion-label>
+        <ion-radio value="single"></ion-radio>
+      </ion-item>
 
 
 
-    <ion-item>
-      <ion-label>Multiple talkers</ion-label>
-      <ion-radio value="multiple"></ion-radio>
-    </ion-item>
+      <ion-item>
+        <ion-label>Multiple talkers</ion-label>
+        <ion-radio value="multiple"></ion-radio>
+      </ion-item>
 
-  <ion-item-divider></ion-item-divider>
-    </ion-list>
-    </ion-card-content>
+    <ion-item-divider></ion-item-divider>
+      </ion-list>
+    </div>
 
-    <ion-card-content *ngIf="page === 2">
+    <div *ngIf="page === 2">
     <ion-list radio-group [(ngModel)]="talker">
 
     <ion-list-header>
@@ -52,17 +54,30 @@
 
   <ion-item-divider></ion-item-divider>
     </ion-list>
-    </ion-card-content>
 
 
+</div>
 
+<ion-grid>
+  <ion-row>
+    <ion-col>
+     <ion-buttons start>
+        <button ion-button icon-left (click)="backClicked()" *ngIf="page === 2;">
+          <ion-icon name="arrow-back"></ion-icon>
+        Back
 
-     <ion-buttons end>
-      <button ion-button icon-right [attr.disabled]="nextButtonDisabled()" (click)="nextClicked()">
+      </button>
+</ion-buttons>
+    </ion-col>
+  <ion-col>
+       <ion-buttons end >
+      <button  ion-button icon-right [attr.disabled]="nextButtonDisabled()" (click)="nextClicked()">
         Next
         <ion-icon name="arrow-forward"></ion-icon>
       </button>
       </ion-buttons>
+  </ion-col></ion-row></ion-grid>
+     </ion-card-content>
   </ion-card>
 </div>
 </ion-content>
