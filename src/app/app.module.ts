@@ -10,6 +10,9 @@ import { SplashPage } from '../pages/splash/splash';
 import { SelectTalkerPage } from '../pages/select-talker/select-talker';
 import { IntroductionPage } from '../pages/introduction/introduction';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
+
+import { TalkerModeModal } from '../pages/talker-mode-modal/talker-mode-modal';
+
 import { AudioIOComponent } from '../components/audio-io/audio-io';
 import { SvgImageComponent } from '../components/svg-image/svg-image';
 import { SvgSrcDirective } from '../directives/svg-src/svg-src';
@@ -22,6 +25,7 @@ import { HttpModule } from '@angular/http';
 import { AnimationDirective } from '../directives/animation/animation';
 import { VideoPlayerComponent } from '../components/video-player/video-player';
 import { VideoDirective } from '../directives/video/video';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +42,8 @@ import { VideoDirective } from '../directives/video/video';
     LogoComponent,
     AnimationDirective,
     VideoPlayerComponent,
-    VideoDirective
+    VideoDirective,
+    TalkerModeModal
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import { VideoDirective } from '../directives/video/video';
     IntroductionPage,
     VowelTrainerPage,
     SplashPage,
-    SelectTalkerPage
+    SelectTalkerPage,
+    TalkerModeModal
   ],
   providers: [
     StatusBar,
