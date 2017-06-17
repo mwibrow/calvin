@@ -49,15 +49,20 @@ export class VowelTrainerPage {
 
 formatWord() {
   let word = this.getWord();
+
   if (this.viewState === ViewState.Animation) {
-    return word.highlight.replace(/([^<])+<([a-z]+)>(.*)/,
+    return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/,
       '<span class="lowlight">$1<span class="highlight">$2</span>$3</span>')
   } else {
     return word.display;
   }
 }
   getWord() {
-    return this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+   let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+   if (word === undefined) {
+     console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
+   }
+   return word;
   }
 
   getVideo() {
@@ -66,6 +71,30 @@ formatWord() {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad VowelTrainerPage');
+  }
+
+  backButtonDisabled() {
+    if (this.wordIndex === 0) {
+      return "true";
+    }
+  }
+
+  forwardButtonDisabled() {
+    if (this.wordIndex === this.appData.keywordList.length - 1) {
+      return "true";
+    }
+  }
+
+  backWord() {
+    if (this.wordIndex > 0) {
+      this.wordIndex --;
+    }
+  }
+
+  forwardWord() {
+    if (this.wordIndex < this.appData.keywordList.length - 1) {
+      this.wordIndex ++;
+    }
   }
 
 }

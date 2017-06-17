@@ -232,7 +232,7 @@ export const WORDS: any = {
 			},
       crown: {
 				display: 'crown',
-				highlight: 'cr<o>wn'
+				highlight: 'cr<ow>n'
 			},
       light: {
 				display: 'light',
@@ -322,6 +322,10 @@ export const WORDS: any = {
       ear: {
 				display: 'ear',
 				highlight: '<ear>'
+      },
+      toad: {
+        display: 'toad',
+        highlight: 't<oa>d'
       }
     };
 

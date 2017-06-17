@@ -33,6 +33,12 @@ page-vowel-trainer {
     position: absolute;
 }
 
+.content-container {
+    text-align: center !important;
+    margin: auto !important;
+    width: 768px !important;
+}
+
 .inactive {
     color: color($colors, inactive);
 }
@@ -59,4 +65,13 @@ page-vowel-trainer {
 .highlight {
     color: color($colors, danger);
 }
+
+.button-container {
+    top: 25%;
+}
+
+.forward-button-container {
+    right: 0%;
+}
+
 }
