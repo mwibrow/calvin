@@ -7,11 +7,16 @@ import { AppDataProvider } from '../../providers/app-data/app-data'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+enum ViewState {
+  Audio,
+  Video,
+  Animation,
+  Recording
+}
 @IonicPage()
 @Component({
   selector: 'page-vowel-trainer',
-  templateUrl: 'vowel-trainer.html',
-  providers: [AppDataProvider]
+  templateUrl: 'vowel-trainer.html'
 })
 export class VowelTrainerPage {
 
@@ -21,44 +26,44 @@ export class VowelTrainerPage {
     animation: 'animation',
     recording: 'recording'
   };
-  private currentState: string;
+
+  public readonly ViewState = ViewState;
+  private viewState: ViewState;
+  public wordIndex: number;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
-    this.currentState = VowelTrainerPage.state.animation;
-    console.log(this.appData)
+
+    this.viewState = ViewState.Audio;
+    this.wordIndex = 0;
   }
 
-  isAudio() {
-    return this.currentState === VowelTrainerPage.state.audio;
+  changeViewState(viewState: ViewState) {
+    this.viewState = viewState;
   }
 
-  showAudio() {
-    this.currentState = VowelTrainerPage.state.audio;
+  isViewState(viewState: ViewState) {
+    if (this.viewState === viewState) {
+      return "true"
+    }
   }
 
-  isRecording() {
-    return this.currentState === VowelTrainerPage.state.recording;
+formatWord() {
+  let word = this.getWord();
+  if (this.viewState === ViewState.Animation) {
+    return word.highlight.replace(/([^<])+<([a-z]+)>(.*)/,
+      '<span class="lowlight">$1<span class="highlight">$2</span>$3</span>')
+  } else {
+    return word.display;
+  }
+}
+  getWord() {
+    return this.appData.keywords[this.appData.keywordList[this.wordIndex]];
   }
 
-  showRecording() {
-    this.currentState = VowelTrainerPage.state.recording;
+  getVideo() {
+    let talker = this.appData.talker;
+    let word = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
   }
-
-  isVideo() {
-    return this.currentState === VowelTrainerPage.state.video;
-  }
-
-  showVideo() {
-    this.currentState = VowelTrainerPage.state.video;
-  }
-
-  isAnimation() {
-    return this.currentState === VowelTrainerPage.state.animation;
-  }
-
-  showAnimation() {
-    return this.currentState = VowelTrainerPage.state.animation;
-  }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad VowelTrainerPage');
   }

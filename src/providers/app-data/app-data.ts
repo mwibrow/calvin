@@ -33,6 +33,8 @@ export class AppDataProvider {
 
     this.words = WordLists.WORDS;
     this.keywordList = WordLists.KEYWORD_LIST;
+    this.keywords = WordLists.KEYWORDS;
+
     this.talkers = Talkers.TALKERS;
     this.talkerList = Talkers.TALKER_LIST;
 
@@ -52,6 +54,8 @@ export class AppDataProvider {
   getImage(word: string, extension: string='png'): string {
     return `assets/images/${word}.${extension}`;
   }
+
+
 
 
 }

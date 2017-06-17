@@ -51,4 +51,12 @@ page-vowel-trainer {
   width: 100% !important;
 
 }
+
+.lowlight {
+    color: color($colors, inactive);
+}
+
+.highlight {
+    color: color($colors, danger);
+}
 }

@@ -20,7 +20,7 @@
 
     <ion-col justify-content-center>
       <div class="centred">
-       <span class="vowel-example">bed</span>
+       <span class="vowel-example" [innerHtml]="formatWord()"></span>
        </div>
     </ion-col>
 
@@ -28,18 +28,18 @@
   <ion-row justify-content-center>
     <ion-col>
 
-        <div *ngIf="isAudio()" class="centred">
+        <div *ngIf="isViewState(ViewState.Audio)" class="centred">
           <ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>
         </div>
-         <div *ngIf="isRecording()" class="centred">
+         <div *ngIf="isViewState(ViewState.Recording)" class="centred">
 
         <ion-icon name="mic" class="icon-as-image"></ion-icon>
           <audio-io></audio-io>
         </div>
-        <div *ngIf="isVideo()" class="centred">
+        <div *ngIf="isViewState(ViewState.Video)" class="centred">
           <video src="assets/video/emma/ball.mp4" class="display-block"></video>
         </div>
-        <div *ngIf="isAnimation()" class="centred">
+        <div *ngIf="isViewState(ViewState.Animation)" class="centred">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
         </div>
 
@@ -56,21 +56,22 @@
     <ion-icon name="arrow-forward"></ion-icon>
   </button>
 </ion-fab>
+
 </ion-content>
 
 <ion-footer padding>
   <div class="centred">
 
-       <button ion-button icon-only (click)="showAudio()">
+       <button ion-button icon-only (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
         <ion-icon name="headset"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="showVideo()">
+      <button ion-button icon-only (click)="changeViewState(ViewState.Video)" [disabled]="isViewState(ViewState.Video)">
         <ion-icon name="film"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="showAnimation()">
+      <button ion-button icon-only (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
         <ion-icon name="person"></ion-icon>
       </button>
-       <button ion-button icon-only (click)="showRecording()">
+       <button ion-button icon-only (click)="changeViewState(ViewState.Recording)" [disabled]="isViewState(ViewState.Recording)">
         <ion-icon name="mic"></ion-icon>
       </button>
 
