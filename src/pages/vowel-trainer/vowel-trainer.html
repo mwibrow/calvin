@@ -7,24 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>VowelTrainer</ion-title>
+    <ion-title><logo></logo></ion-title>
+
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-<ion-grid>
-  <ion-row>
-    <ion-col>
-      <div class="vowel-example">
-        <span class="vowel-highlight">e</span> as in
-        <br>
-        B<span class="vowel-highlight">e</span>d
+<ion-content padding class="no-scroll">
+<ion-grid justify-content-center>
+  <ion-row justify-content-center>
 
-
-      </div>
+    <ion-col justify-content-center>
+      <div class="centred">
+       <span class="vowel-example">bed</span>
+       </div>
     </ion-col>
+
+  </ion-row>
+  <ion-row justify-content-center>
     <ion-col>
 
         <div *ngIf="isAudio()" class="centred">
@@ -32,12 +33,11 @@
         </div>
          <div *ngIf="isRecording()" class="centred">
 
-          <ion-icon name="mic" class="icon-as-image active"></ion-icon>
+        <ion-icon name="mic" class="icon-as-image"></ion-icon>
           <audio-io></audio-io>
         </div>
-        <div *ngIf="isVideo()">
-          Video
-          <video-player></video-player>
+        <div *ngIf="isVideo()" class="centred">
+          <video src="assets/video/emma/ball.mp4" class="display-block"></video>
         </div>
         <div *ngIf="isAnimation()" class="centred">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
@@ -46,10 +46,21 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+<ion-fab top left>
+  <button ion-fab icon-only>
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+</ion-fab>
+<ion-fab top right>
+  <button ion-fab icon-only>
+    <ion-icon name="arrow-forward"></ion-icon>
+  </button>
+</ion-fab>
 </ion-content>
 
 <ion-footer padding>
-  <ion-buttons>
+  <div class="centred">
+
        <button ion-button icon-only (click)="showAudio()">
         <ion-icon name="headset"></ion-icon>
       </button>
@@ -62,5 +73,6 @@
        <button ion-button icon-only (click)="showRecording()">
         <ion-icon name="mic"></ion-icon>
       </button>
-    </ion-buttons>
+
+    </div>
 </ion-footer>

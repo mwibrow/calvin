@@ -41,4 +41,17 @@ export class AppDataProvider {
     this.talker = 'emma';
   }
 
+  getAudio(talker: string, word: string, extension: string='wav'): string {
+    return `assets/audio/${talker}/${word}.${extension}`;
+  }
+
+  getVideo(talker: string, word: string, extension: string='mp4'): string {
+    return `assets/video/${talker}/${word}.${extension}`;
+  }
+
+  getImage(word: string, extension: string='png'): string {
+    return `assets/images/${word}.${extension}`;
+  }
+
+
 }

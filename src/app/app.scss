@@ -35,7 +35,6 @@ ion-button, ion-content, ion-label {
     and (min-device-height: 768px)
     and (orientation: landscape) {
 
-
 .font-logo {
     font-size: 160px !important;
 }
@@ -51,14 +50,21 @@ body, .font-normal {
 
 .video-player {
       width: 512px !important;
-  }
+}
 
 .slide-image {
     width: 512px !important;
     height: 512px !important;
 }
 
+.display-block {
+    width: 400px !important;
+}
 
+.container {
+    height: 100% !important;
+    width: 75% !important;
+}
 }
 
 .calvin-head,
