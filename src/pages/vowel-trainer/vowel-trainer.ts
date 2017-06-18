@@ -7,6 +7,7 @@ import { AppDataProvider } from '../../providers/app-data/app-data'
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
+
 enum ViewState {
   Audio,
   Video,
@@ -30,12 +31,16 @@ export class VowelTrainerPage {
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
+  public talker: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
 
     this.viewState = ViewState.Audio;
     this.wordIndex = 0;
+    this.talker = appData.talker;
+
   }
+
 
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
@@ -66,8 +71,9 @@ formatWord() {
   }
 
   getVideo() {
-    let talker = this.appData.talker;
-    let word = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+    let talker = this.talker;
+    let word = this.appData.keywordList[this.wordIndex];
+    return `assets/video/${talker}/${word}.mp4`
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad VowelTrainerPage');

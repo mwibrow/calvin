@@ -42,14 +42,16 @@
         <div *ngIf="isViewState(ViewState.Audio)" class="centred">
           <ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>
         </div>
-         <div *ngIf="isViewState(ViewState.Recording)" class="centred">
 
+        <div *ngIf="isViewState(ViewState.Recording)" class="centred">
         <ion-icon name="mic" class="icon-as-image"></ion-icon>
           <audio-io></audio-io>
         </div>
+
         <div *ngIf="isViewState(ViewState.Video)" class="centred">
-          <video src="assets/video/emma/ball.mp4" class="display-block"></video>
+          <video src="{{ getVideo() }}" class="display-block"></video>
         </div>
+
         <div *ngIf="isViewState(ViewState.Animation)" class="centred">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
         </div>
