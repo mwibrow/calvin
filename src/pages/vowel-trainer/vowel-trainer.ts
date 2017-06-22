@@ -35,7 +35,7 @@ export class VowelTrainerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
 
-    this.viewState = ViewState.Audio;
+    this.viewState = ViewState.Recording;
     this.wordIndex = 0;
     this.talker = appData.talker;
 

@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'audio-io',
-  template: '<audio></audio>'
+  templateUrl: 'audio-io.html'
 })
 export class AudioIOComponent {
 
@@ -12,6 +12,7 @@ export class AudioIOComponent {
   private recording: boolean;
   constructor(private me: ElementRef ) {
     this.audio = null;
+
     this.webRecorder = new WebRecorder();
     this.playing = false;
     this.recording = false;
@@ -19,6 +20,10 @@ export class AudioIOComponent {
 
   ngAfterViewInit() {
     this.audio = this.me.nativeElement.querySelector('audio');
+
+
+
+    console.log(this.audio)
     this.webRecorder.initialise(this.audio);
   }
 
@@ -44,6 +49,7 @@ export class AudioIOComponent {
       if (uri) {
         this.loadAudio(uri, function(a){ a.play(); });
       } else {
+        console.log('Playing audio');
         this.audio.play();
       }
     }
@@ -62,15 +68,29 @@ export class AudioIOComponent {
     }
   }
 
+  uiRecordStart() {
+    this.recordStart();
+  }
+
+  uiRecordStop() {
+
+    this.recordStop();
+    this.recording = false;
+    let that = this;
+    window.setTimeout(function(){that.audio.play();}, 2000);
+    // this.playStart('assets/audio/emma/ball.wav');
+  }
   recordStart() {
     if (!this.playing && !this.recording) {
       this.recording = true;
+      console.log('Starting recording');
       this.webRecorder.startRecording();
     }
   }
 
   recordStop() {
     if (!this.playing && this.recording) {
+      console.log('Stopping recording');
       this.webRecorder.stopRecording();
       this.recording = false;
     }
@@ -83,6 +103,7 @@ class WebRecorder {
   config: any;
   audio: any;
   recorder: any;
+
   constructor() {
     this.config = {};
     this.audio = null;
@@ -97,10 +118,19 @@ class WebRecorder {
   setUp() {
     this.recorder = null;
     let that: WebRecorder = this;
-    if (navigator.getUserMedia) {
-      navigator.getUserMedia({audio: true},
-        function(s){that.initSuccess(s)},
-        function(e){that.initFail(e)});
+
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({audio: true, video: false})
+        .then((s) => {
+           this.initSuccess(s)
+      })
+        .catch((err) => {
+          this.initFail(err);
+        })
+    //  if (navigator.getUserMedia) {
+    //   navigator.getUserMedia({audio: true},
+    //      function(s){that.initSuccess(s)},
+    //      function(e){that.initFail(e)});
     } else {
       console.log('navigator.getUserMedia not present');
     }
@@ -115,6 +145,7 @@ class WebRecorder {
 
   initFail(e) {
     console.error('Error occured while excuting getUserMedia');
+    console.log(e)
   }
 
   startRecording() {
@@ -126,7 +157,9 @@ class WebRecorder {
     let that: WebRecorder = this;
     this.recorder.stop();
     this.recorder.exportWAV(function(s) {
+
       that.audio.src = window.URL.createObjectURL(s);
+      that.audio.load();
       that.recorder.clear();
     }, {});
   }
@@ -137,6 +170,7 @@ class Recorder {
   context: any;
   node: any;
   worker: any;
+  analyser: any;
   recording: boolean;
   config: any;
   currCallback: any;
@@ -154,6 +188,7 @@ class Recorder {
         sampleRate: this.context.sampleRate
       }
     });
+    this.analyser = this.context.createAnalyser();
     this.recording = false;
     this.currCallback = null;
     var that: any = this;
@@ -175,6 +210,7 @@ class Recorder {
     }
 
     source.connect(this.node);
+    source.connect(this.analyser);
     this.node.connect(this.context.destination);    //this should not be necessary
   };
 
