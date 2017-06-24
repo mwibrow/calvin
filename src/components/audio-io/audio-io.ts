@@ -8,14 +8,31 @@ export class AudioIOComponent {
 
   private audio: any;
   private webRecorder: WebRecorder;
-  private webPlayer: WebPlayer;
+  private webPlayer: WebPlayerSimpleVisualiser<Uint8Array>;
   private playing: boolean;
   private recording: boolean;
   constructor(private me: ElementRef ) {
     this.audio = null;
 
     this.webRecorder = new WebRecorder();
-    this.webPlayer = new WebPlayer();
+    this.webPlayer = new WebPlayerSimpleVisualiser<Uint8Array>();
+
+    let webPlayer = this.webPlayer;
+    this.webPlayer.onInitialise = function(ctx) {
+      let analyser = ctx.createAnalyser();
+      analyser.fftSize = 32;
+      let buffer = new Uint8Array(analyser.frequencyBinCount);
+      webPlayer.setAnalyser(analyser);
+
+      webPlayer.setVisualiser(function() {
+        analyser.getByteFrequencyData(buffer);
+        console.log(buffer);
+      }
+    );
+
+    }
+
+     this.webPlayer.initialise();
     this.playing = false;
     this.recording = false;
   }
@@ -101,29 +118,30 @@ export class AudioIOComponent {
 
 }
 
-class WebPlayer {
 
-  config: any;
+class WebPlayer{
+
   context: AudioContext;
   buffer: AudioBuffer;
-  analyser: any;
-  analyserBuffer: Float32Array;
   playing: boolean;
+  source: AudioBufferSourceNode;
+  nodes: Array<AudioNode>;
+  onInitialise: any;
+  onPlay: any;
+  onStop: any;
+  onEnded: any;
   constructor() {
-    this.config = {};
     this.context = null;
     this.buffer = null;
-    this.analyser = null;
     this.playing = false;
-    this.initialise();
+    this.nodes = new Array<AudioNode>();
+    this.onInitialise = null;
+    this.onPlay = null;
+    this.onStop = null;
+    this.onEnded = null;
   }
 
-  initialise(config?: any) {
-
-    if (config) {
-      this.config = config;
-    }
-
+  initialise() {
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({audio: true, video: false})
         .then((stream) => {
@@ -137,8 +155,7 @@ class WebPlayer {
 
   initialiseSuccess(stream) {
     this.context = new AudioContext();
-    let mediaStreamSource: any = this.context.createMediaStreamSource(stream);
-
+    this.onInitialise && this.onInitialise(this.context)
   }
 
   raise(err, msg='') {
@@ -146,57 +163,126 @@ class WebPlayer {
     console.log(err)
   }
 
-  loadAudio(url) {
+  loadAudio(url: string, cb?: any) {
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.responseType = 'arraybuffer';
 
-    let that: WebPlayer = this;
+    let that: WebPlayer= this;
     request.onload = function() {
       that.context.decodeAudioData(request.response, function(buffer) {
         that.buffer = buffer;
+        if (cb) {
+          cb(buffer);
+        }
       }, function (e) { that.raise(e, 'Error decoding audio data')});
     }
     request.send();
   }
 
-  setAnalyser(analyser: AnalyserNode) {
-    this.analyser = analyser;
+  addNode(node: AudioNode) {
+    this.nodes.push(node);
   }
+
+  playBuffer(buffer: AudioBuffer) {
+    this.stopAudio();
+    this.buffer = buffer;
+    this.playAudio();
+  }
+
+  playUrl(url: string) {
+    this.stopAudio();
+    let that: WebPlayer = this;
+    this.loadAudio(url, function() {
+      that.playAudio();
+    })
+  }
+
+
 
   playAudio() {
+    let i: number, node: AudioNode;
     if (this.buffer) {
-      var source = this.context.createBufferSource();
 
-      this.analyser = this.context.createAnalyser();
-      this.analyser.fftSize = 256;
-      this.analyserBuffer = new Float32Array(this.analyser.frequencyBinCount);
-      source.buffer = this.buffer;
-      source.connect(this.analyser);
-      this.analyser.connect(this.context.destination);
+      this.source = this.context.createBufferSource();
+      this.source.buffer = this.buffer;
+      node = this.source;
+      for (i = 0; i < this.nodes.length; i ++) {
+        node.connect(this.nodes[i]);
+        node = this.nodes[i];
+      }
+      node.connect(this.context.destination);
       var that = this;
-
-      source.onended = function() {
+      this.source.onended = function() {
         that.playing = false;
+        that.onEnded && that.onEnded();
       }
       this.playing = true;
-      source.start(0);
-      window.requestAnimationFrame((e) => this._visualiser(this, e));
+      this.onPlay && this.onPlay();
+      this.source.start(0);
     }
   }
 
-  _visualiser(me, event) {
-    me.analyser.getFloatFrequencyData(me.analyserBuffer);
-    console.log(me.analyserBuffer);
-    if (me.playing) {
-      window.requestAnimationFrame((e) => this._visualiser(this, e));
+  stopAudio() {
+    if (this.source && this.playing) {
+      this.source.stop();
+      this.onStop && this.onStop();
+      this.playing = false;
     }
   }
+
 
 
 
 
 }
+
+class WebPlayerSimpleVisualiser<T> extends WebPlayer {
+
+  analyser: AudioNode;
+  analyserBuffer: T;
+  visualiser: any;
+  constructor() {
+    super();
+    this.analyser = null;
+    this.analyserBuffer = null;
+    this.visualiser = null;
+
+    let that: WebPlayerSimpleVisualiser<T> = this;
+    this.onPlay = function() {
+      window.requestAnimationFrame((event) => that._visualise(that, event));
+    }
+  }
+
+  setAnalyser(analyser: AudioNode) {
+    this.nodes.push(analyser);
+    this.analyser = analyser;
+  }
+
+  setVisualiser(visualiser: any) {
+    this.visualiser = visualiser;
+  }
+
+  _visualise(me, event) {
+    me.visualiser && me.visualiser(me);
+    if (me.playing) {
+      window.requestAnimationFrame((event) => me._visualise(me, event));
+    }
+  }
+
+
+
+
+  // _visualiser(me, event) {
+  //   me.analyser.getFloatFrequencyData(me.analyserBuffer);
+  //   console.log(me.analyserBuffer);
+  //   if (me.playing) {
+  //     window.requestAnimationFrame((e) => this._visualiser(this, e));
+  //   }
+  // }
+
+}
+
 class WebRecorder {
 
   config: any;
