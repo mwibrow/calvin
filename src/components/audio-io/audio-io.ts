@@ -8,7 +8,7 @@ export class AudioIOComponent {
 
   private audio: any;
   private webRecorder: WebRecorder;
-  private webPlayer: WebPlayerSimpleVisualiser;
+  private webPlayer: WebAudioPlayerByteFrequencyVisualiser;
   private playing: boolean;
   private recording: boolean;
   @ViewChild('canvas')
@@ -17,7 +17,10 @@ export class AudioIOComponent {
     this.audio = null;
 
     this.webRecorder = new WebRecorder();
-    this.webPlayer = new WebPlayerSimpleVisualiser();
+    this.webPlayer = new WebAudioPlayerByteFrequencyVisualiser({
+      fftSize: 64,
+      smoothingTimeConstant: 0.85
+    });
 
 
     this.playing = false;
@@ -28,35 +31,48 @@ export class AudioIOComponent {
     this.audio = this.me.nativeElement.querySelector('audio');
 
     let webPlayer = this.webPlayer;
+
     let canvas = this.canvas.nativeElement;
     let can = canvas.getContext('2d')
     canvas.width = 128;
     canvas.height = 128;
     can.clearRect(0, 0, canvas.width, canvas.height);
-    console.log(canvas)
-    this.webPlayer.onInitialise = function(ctx) {
-      let analyser = ctx.createAnalyser();
-      analyser.fftSize = 64;
-      let buffer = new Uint8Array(analyser.frequencyBinCount);
-      webPlayer.setAnalyser(analyser);
-
-
-
-      webPlayer.setVisualiser(function() {
-        analyser.getByteFrequencyData(buffer);
-        can.clearRect(0, 0, canvas.width, canvas.height);
+    this.webPlayer.callback = function(buffer) {
+       can.clearRect(0, 0, canvas.width, canvas.height);
          can.beginPath();
          let r =  buffer.reduce((a, b) => Math.max(a, b));
-         r = (r / 255) ** 2;
-        can.arc(64, 64,r * 64, 0, 2 * Math.PI, false);
-      can.fillStyle = 'green';
+         r = r / 255;
+         console.log(r)
+         can.globalAlpha = r;
+        can.arc(64, 64, (r ** 2) * 64, 0, 2 * Math.PI, false);
+        can.alp
+        let R = Math.random() * 128 + 64;
+        let f = Math.random() * 128 + 64;
+      can.fillStyle = 'red';
      can.fill()
-        //console.log();
-      }
-    );
-
     }
+    // this.webPlayer.onInitialise = function(ctx) {
+    //   let analyser = ctx.createAnalyser();
+    //   analyser.fftSize = 64;
+    //   let buffer = new Uint8Array(analyser.frequencyBinCount);
+    //   webPlayer.setAnalyser(analyser);
 
+
+
+    //   webPlayer.setVisualiser(function() {
+    //     analyser.getByteTimeDomainData(buffer);
+    //     can.clearRect(0, 0, canvas.width, canvas.height);
+    //      can.beginPath();
+    //      let r =  buffer.reduce((a, b) => Math.max(a, b));
+    //      r = (r / 255);
+    //     can.arc(64, 64,r * 64, 0, 2 * Math.PI, false);
+    //   can.fillStyle = 'green';
+    //  can.fill()
+    //     //console.log();
+    //   }
+    // );
+
+    // }
      this.webPlayer.initialise();
 
     console.log(this.audio)
@@ -247,56 +263,88 @@ class WebPlayer{
       this.playing = false;
     }
   }
-
-
-
-
-
 }
 
-class WebPlayerSimpleVisualiser extends WebPlayer {
 
-  analyser: AudioNode;
-  visualiser: any;
-  constructor() {
+class WebAudioPlayerFloatFrequencyVisualiser extends WebPlayer {
+
+  analyser: AnalyserNode;
+  analyserBuffer: Float32Array;
+  bufferType: any;
+  analyserProperties: any;
+  callback: any;
+
+  constructor(analyserProperties: object={}) {
     super();
-    this.analyser = null;
-    this.visualiser = null;
+    this.analyserProperties = analyserProperties;
+    this.onInitialise = this._initialise;
+    this.callback = null;
+  }
 
-    let that: WebPlayerSimpleVisualiser = this;
-    this.onPlay = function() {
-      window.requestAnimationFrame((event) => that._visualise(that, event));
+  _initialise(context) {
+    let property: any;
+    this.analyser = this.context.createAnalyser()
+    for (property in this.analyserProperties) {
+      if (this.analyserProperties.hasOwnProperty(property)) {
+        this.analyser[property] = this.analyserProperties[property];
+      }
+    }
+    this.addNode(this.analyser);
+    this.analyserBuffer = new Float32Array(this.analyser.frequencyBinCount);
+    this.onPlay = () => window.requestAnimationFrame((event) => this._visualise(event));
+  }
+
+  _visualise(event: any) {
+    this.analyser.getFloatFrequencyData(this.analyserBuffer);
+    this.callback && this.callback(this.analyserBuffer);
+    if (this.playing) {
+      window.requestAnimationFrame((event) => this._visualise(event));
+    } else {
+
     }
   }
-
-  setAnalyser(analyser: AudioNode) {
-    this.nodes.push(analyser);
-    this.analyser = analyser;
-  }
-
-  setVisualiser(visualiser: any) {
-    this.visualiser = visualiser;
-  }
-
-  _visualise(me, event) {
-    me.visualiser && me.visualiser(me);
-    if (me.playing) {
-      window.requestAnimationFrame((event) => me._visualise(me, event));
-    }
-  }
-
-
-
-
-  // _visualiser(me, event) {
-  //   me.analyser.getFloatFrequencyData(me.analyserBuffer);
-  //   console.log(me.analyserBuffer);
-  //   if (me.playing) {
-  //     window.requestAnimationFrame((e) => this._visualiser(this, e));
-  //   }
-  // }
-
 }
+
+class WebAudioPlayerByteFrequencyVisualiser extends WebPlayer {
+
+  analyser: AnalyserNode;
+  analyserBuffer: Uint8Array;
+  bufferType: any;
+  analyserProperties: any;
+  callback: any;
+
+  constructor(analyserProperties: object={}) {
+    super();
+    this.analyserProperties = analyserProperties;
+    this.onInitialise = this._initialise;
+    this.callback = null;
+  }
+
+  _initialise(context) {
+    let property: any;
+    this.analyser = this.context.createAnalyser()
+    for (property in this.analyserProperties) {
+      if (this.analyserProperties.hasOwnProperty(property)) {
+        this.analyser[property] = this.analyserProperties[property];
+      }
+    }
+    this.addNode(this.analyser);
+    this.analyserBuffer = new Uint8Array(this.analyser.frequencyBinCount);
+    this.onPlay = () => window.requestAnimationFrame((event) => this._visualise(event));
+  }
+
+  _visualise(event: any) {
+    this.analyser.getByteFrequencyData(this.analyserBuffer);
+    this.callback && this.callback(this.analyserBuffer);
+    if (this.playing) {
+      window.requestAnimationFrame((event) => this._visualise(event));
+    } else {
+      this.analyserBuffer.fill(0);
+      this.callback && this.callback(this.analyserBuffer);
+    }
+  }
+}
+
 
 class WebRecorder {
 
@@ -317,7 +365,7 @@ class WebRecorder {
 
   setUp() {
     this.recorder = null;
-    let that: WebRecorder = this;
+
 
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({audio: true, video: false})
@@ -327,10 +375,7 @@ class WebRecorder {
         .catch((err) => {
           this.initFail(err);
         })
-    //  if (navigator.getUserMedia) {
-    //   navigator.getUserMedia({audio: true},
-    //      function(s){that.initSuccess(s)},
-    //      function(e){that.initFail(e)});
+
     } else {
       console.log('navigator.getUserMedia not present');
     }
