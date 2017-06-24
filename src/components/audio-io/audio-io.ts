@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'audio-io',
@@ -8,31 +8,18 @@ export class AudioIOComponent {
 
   private audio: any;
   private webRecorder: WebRecorder;
-  private webPlayer: WebPlayerSimpleVisualiser<Uint8Array>;
+  private webPlayer: WebPlayerSimpleVisualiser;
   private playing: boolean;
   private recording: boolean;
+  @ViewChild('canvas')
+  canvas:ElementRef;
   constructor(private me: ElementRef ) {
     this.audio = null;
 
     this.webRecorder = new WebRecorder();
-    this.webPlayer = new WebPlayerSimpleVisualiser<Uint8Array>();
+    this.webPlayer = new WebPlayerSimpleVisualiser();
 
-    let webPlayer = this.webPlayer;
-    this.webPlayer.onInitialise = function(ctx) {
-      let analyser = ctx.createAnalyser();
-      analyser.fftSize = 32;
-      let buffer = new Uint8Array(analyser.frequencyBinCount);
-      webPlayer.setAnalyser(analyser);
 
-      webPlayer.setVisualiser(function() {
-        analyser.getByteFrequencyData(buffer);
-        console.log(buffer);
-      }
-    );
-
-    }
-
-     this.webPlayer.initialise();
     this.playing = false;
     this.recording = false;
   }
@@ -40,7 +27,37 @@ export class AudioIOComponent {
   ngAfterViewInit() {
     this.audio = this.me.nativeElement.querySelector('audio');
 
+    let webPlayer = this.webPlayer;
+    let canvas = this.canvas.nativeElement;
+    let can = canvas.getContext('2d')
+    canvas.width = 128;
+    canvas.height = 128;
+    can.clearRect(0, 0, canvas.width, canvas.height);
+    console.log(canvas)
+    this.webPlayer.onInitialise = function(ctx) {
+      let analyser = ctx.createAnalyser();
+      analyser.fftSize = 64;
+      let buffer = new Uint8Array(analyser.frequencyBinCount);
+      webPlayer.setAnalyser(analyser);
 
+
+
+      webPlayer.setVisualiser(function() {
+        analyser.getByteFrequencyData(buffer);
+        can.clearRect(0, 0, canvas.width, canvas.height);
+         can.beginPath();
+         let r =  buffer.reduce((a, b) => Math.max(a, b));
+         r = (r / 255) ** 2;
+        can.arc(64, 64,r * 64, 0, 2 * Math.PI, false);
+      can.fillStyle = 'green';
+     can.fill()
+        //console.log();
+      }
+    );
+
+    }
+
+     this.webPlayer.initialise();
 
     console.log(this.audio)
     this.webRecorder.initialise(this.audio);
@@ -237,18 +254,16 @@ class WebPlayer{
 
 }
 
-class WebPlayerSimpleVisualiser<T> extends WebPlayer {
+class WebPlayerSimpleVisualiser extends WebPlayer {
 
   analyser: AudioNode;
-  analyserBuffer: T;
   visualiser: any;
   constructor() {
     super();
     this.analyser = null;
-    this.analyserBuffer = null;
     this.visualiser = null;
 
-    let that: WebPlayerSimpleVisualiser<T> = this;
+    let that: WebPlayerSimpleVisualiser = this;
     this.onPlay = function() {
       window.requestAnimationFrame((event) => that._visualise(that, event));
     }
