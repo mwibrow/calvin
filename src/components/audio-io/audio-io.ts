@@ -43,21 +43,21 @@ export class AudioIOComponent {
        can.clearRect(0, 0, canvas.width, canvas.height);
        can.beginPath();
        can.moveTo(0, canvas.height / 2)
-       for (var i=0;i <= 32; i ++) {
+       for (var i=0;i <= 48; i ++) {
          var w = buffer[i] / 2 + 1;
-         can.lineTo(128+i*4,  canvas.height / 2 - w / 2);
+         can.lineTo(128+i*2,  canvas.height / 2 - w / 2);
        }
-       for (var i=32;i >=0; i --) {
+       for (var i=48;i >=0; i --) {
          var w = buffer[i] / 2 + 1;
-         can.lineTo(128+i*4,  canvas.height / 2 + w / 2);
+         can.lineTo(128+i*2,  canvas.height / 2 + w / 2);
        }
-         for (var i=0;i <= 32; i ++) {
+         for (var i=0;i <= 48; i ++) {
          var w = buffer[i] / 2 + 1;
-         can.lineTo(128-i*4,  canvas.height / 2 + w / 2);
+         can.lineTo(128-i*2,  canvas.height / 2 + w / 2);
        }
-         for (var i=32;i >=0; i --) {
+         for (var i=48;i >=0; i --) {
          var w = buffer[i] / 2 + 1;
-         can.lineTo(128-i*4,  canvas.height / 2 - w / 2);
+         can.lineTo(128-i*2,  canvas.height / 2 - w / 2);
        }
 
        can.closePath();
@@ -248,17 +248,15 @@ class WebAudioPlayer{
   }
 
   playAudio() {
-    let i: number, node: AudioNode;
+    let i: number;
     if (this.buffer) {
 
       this.source = this.context.createBufferSource();
       this.source.buffer = this.buffer;
-      node = this.source;
       for (i = 0; i < this.nodes.length; i ++) {
-        node.connect(this.nodes[i]);
-        node = this.nodes[i];
+        this.source.connect(this.nodes[i]);
       }
-      node.connect(this.context.destination);
+      this.source.connect(this.context.destination);
       var that = this;
       this.source.onended = function() {
         that.playing = false;
@@ -313,10 +311,10 @@ class WebAudioByteFrequencyVisualiser {
     }
     let filter = context.createBiquadFilter();
     filter.type = 'highpass';
-    filter.frequency.value = 250;
-    filter.Q.value = 0.;
+    filter.frequency.value = 1000;
+    filter.Q.value = 0.5;
     player.addNode(filter);
-    player.addNode(this.analyser);
+    filter.connect(this.analyser);
     this.buffer = new Uint8Array(this.analyser.frequencyBinCount);
   }
 
