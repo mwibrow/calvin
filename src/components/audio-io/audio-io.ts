@@ -67,28 +67,6 @@ export class AudioIOComponent {
 
     visualiser.initialise(this.webAudioPlayer);
     this.webAudioPlayer.initialise();
-    // this.WebAudioPlayer.onInitialise = function(ctx) {
-    //   let analyser = ctx.createAnalyser();
-    //   analyser.fftSize = 64;
-    //   let buffer = new Uint8Array(analyser.frequencyBinCount);
-    //   WebAudioPlayer.setAnalyser(analyser);
-
-
-
-    //   WebAudioPlayer.setVisualiser(function() {
-    //     analyser.getByteTimeDomainData(buffer);
-    //     can.clearRect(0, 0, canvas.width, canvas.height);
-    //      can.beginPath();
-    //      let r =  buffer.reduce((a, b) => Math.max(a, b));
-    //      r = (r / 255);
-    //     can.arc(64, 64,r * 64, 0, 2 * Math.PI, false);
-    //   can.fillStyle = 'green';
-    //  can.fill()
-    //     //console.log();
-    //   }
-    // );
-
-    // }
 
 
     console.log(this.audio)
@@ -339,6 +317,126 @@ class WebAudioByteFrequencyVisualiser {
 }
 
 
+const WORKER_PATH: string = '../../assets/js/recorderWorker.js';
+
+class WebAudioRecorder {
+
+  nodes: Array<AudioNode>;
+  context: AudioContext;
+  streamSource: MediaStreamAudioSourceNode;
+  recordBuffer: AudioBuffer;
+  settings: any;
+  onInitialise: any;
+  onStartRecording: any;
+  onStopRecording: any;
+  onMessage: any;
+  worker: Worker;
+  recording: boolean;
+  scriptNode: ScriptProcessorNode;
+
+  constructor() {
+    this.settings = {
+      bufferSize: 2048,
+      channels: 1
+    };
+    this.recording = false;
+
+    this.onInitialise = null;
+    this.onStartRecording = null;
+    this.onStopRecording = null;
+    this.onMessage = null;
+    this.scriptNode = null;
+    this.streamSource = null;
+    this.worker = null
+    this.nodes = new Array<AudioNode>();
+  }
+
+   initialise() {
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({audio: true, video: false})
+        .then((stream) => {
+           this.initialiseSuccess(stream)
+      })
+        .catch((err) => {
+          this.raise(err, 'Error occured while excuting getUserMedia');
+        })
+    }
+  }
+
+  initialiseSuccess(stream) {
+    this.context = new AudioContext();
+    this.scriptNode = this.context.createScriptProcessor(
+      this.settings.bufferSize,
+      this.settings.channels,
+      this.settings.channels);
+    this.streamSource = this.context.createMediaStreamSource(stream);
+    this.onInitialise && this.onInitialise(this.context)
+  }
+
+  raise(err, msg='') {
+    console.error();
+    console.log(err)
+  }
+
+  addNode(node: AudioNode) {
+    this.nodes.push(node);
+  }
+
+  recordAudio() {
+    let i: number;
+    this.worker = new Worker(WORKER_PATH);
+    this.worker.postMessage({
+      command: 'initialise',
+      config: {
+        sampleRate: this.context.sampleRate
+      }
+    });
+
+    this.recording = true;
+
+    this.scriptNode.onaudioprocess = (event) => this.processAudio(event);
+    this.worker.onmessage = (message) => this.processMessage(message);
+
+
+    this.streamSource.connect(this.scriptNode);
+    // This shouldn't be necessary.
+    this.scriptNode.connect(this.context.destination);
+    for (i = 0; i < this.nodes.length; i ++) {
+      this.streamSource.connect(this.nodes[i]);
+    }
+  }
+
+  stop() {
+    this.recording = false;
+    this.getAudioBuffers()
+  }
+
+  getAudioBuffers() {
+    this.onMessage = (data) => this._setRecordBuffer(data);
+    this.worker.postMessage({
+      comment: 'getAudioBuffers'
+    })
+  }
+
+  _setRecordBuffer(buffer: AudioBuffer) {
+    this.recordBuffer = buffer;
+    this.worker.terminate();
+  }
+
+  processMessage(message) {
+    this.onMessage && this.onMessage(message.data);
+  }
+
+  processAudio(event) {
+    if (!this.recording) return;
+    this.worker.postMessage({
+      command: 'record',
+      buffer: [
+        event.inputBuffer.getChannelData(0)
+      ]
+    });
+  }
+}
 
 class WebRecorder {
 
