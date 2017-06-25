@@ -33,6 +33,32 @@ this.onmessage = function(event){
 }
 
 
+var RingBuffer = function(size, empty) {
+    this.size = size;
+    this.buffer = [];
+    for (var i = 0; i < this.size; i ++) {
+        this.Buffer.push(empty);
+    }
+    this.end = 0;
+    this.full = false;
+}
+
+RingBuffer.prototype.append = function(data) {
+    this.buffer(this.end) = data;
+    this.end = (this.end + 1) % this.size;
+    if (this.end === 0) {
+        this.full = true;
+    }
+}
+
+RingBuffer.prototype.get = function(i) {
+    this.full ? this.buffer[(this.end + i) % this.size] : this.buffer[i];
+}
+
+Ringbuffer.prototype.length = function() {
+    return this.full ? this.size : this.end;
+}
+
 function initialise(settings) {
     that.channelCount = settings.channelCount || that.channelCount;
     that.sampleRate = settings.sampleRate || that.sampleRate;
