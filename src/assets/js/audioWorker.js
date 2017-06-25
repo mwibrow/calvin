@@ -9,22 +9,37 @@ var sampleRate = 44100;
 
 
 this.onmessage = function(event){
+    console.log('Worker message')
+    console.log(event)
     var command = event.data.command;
-    var outputs;
-    if (that[command]) {
-        outputs = that[command].apply(that, event.data);
-        that.postMessage(outputs);
-    } else {
-        console.error("Unknown function '" + command + "' in audioWorker");
+    var success, buffers;
+    switch (command) {
+        case 'initialise':
+            success = that.initialise(event.data.settings || {});
+            that.postMessage(success);
+            break;
+        case 'clear':
+            success = that.clear();
+            that.postMessage(success);
+            break;
+        case 'record':
+            that.record(event.data.buffer);
+            break;
+        case 'getBuffers':
+            buffers = that.getBuffers();
+            that.postMessage(buffers);
+            break;
+        default:
+            console.error("Unknown function '" + command + "' in audioWorker");
     }
 }
 
 
-function configure(config) {
-    var i;
-    that.channelCount = config.channelCount || that.channelCount;
-    that.sampleRate = config.sampleRate || that.sampleRate;
+function initialise(settings) {
+    that.channelCount = settings.channelCount || that.channelCount;
+    that.sampleRate = settings.sampleRate || that.sampleRate;
     that.clear();
+    return true;
 }
 
 function record(inputBuffer) {
@@ -32,14 +47,16 @@ function record(inputBuffer) {
         that.buffers[i].push(inputBuffer[i]);
     }
     that.frameCount += inputBuffer[0].length;
+    return true;
 }
 
 function clear(){
     that.buffers = [];
-    for (i = 0; i < that.channelCount; i++) {
+    for (var i = 0; i < that.channelCount; i++) {
         that.buffers.push([]);
     }
     that.frameCount = 0;
+    return true;
 }
 
 function flattenBuffer(buffer, frameCount){
@@ -68,6 +85,15 @@ function interleave(buffers){
         j ++;
     }
     return interleaved;
+}
+
+function getBuffers() {
+    var i;
+    var buffers = [];
+    for (i = 0; i < that.channelCount; i ++) {
+        buffers.push(flattenBuffer(that.buffers[i], that.frameCount));
+    };
+    return buffers;
 }
 
 
