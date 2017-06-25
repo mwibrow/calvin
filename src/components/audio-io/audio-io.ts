@@ -1,5 +1,7 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 
+import { WebAudioPlayer, WebAudioRecorder, WebAudioIO } from './web-audio';
+
 @Component({
   selector: 'audio-io',
   templateUrl: 'audio-io.html'
@@ -70,7 +72,7 @@ export class AudioIOComponent {
     visualiser.initialise(this.webRecorder);
     this.webAudioPlayer.initialise();
 
-    this.webRecorder.onEnded = () => this.webAudioPlayer.playBuffer(this.webRecorder.recordBuffer);
+    this.webRecorder.onEnded.add(() => this.webAudioPlayer.playBuffer(this.webRecorder.recordBuffer));
 
     this.webRecorder.initialise();
   }
@@ -150,143 +152,6 @@ export class AudioIOComponent {
 }
 
 
-class Callback {
-  callbacks: Array<any>;
-}
-
-interface WebAudioIO {
-
-  context: AudioContext;
-  nodes: Array<AudioNode>;
-
-  onInitialise: any;
-  onStart: any;
-  onStop: any;
-  onEnded: any;
-
-  initialise();
-  start();
-  stop();
-  addNode(node: AudioNode);
-
-}
-
-
-class WebAudioPlayer implements WebAudioIO{
-
-  context: AudioContext;
-  buffer: AudioBuffer;
-  playing: boolean;
-  source: AudioBufferSourceNode;
-  nodes: Array<AudioNode>;
-  onInitialise: any;
-  onStart: any;
-  onStop: any;
-  onEnded: any;
-  constructor() {
-    this.context = null;
-    this.buffer = null;
-    this.playing = false;
-    this.nodes = new Array<AudioNode>();
-    this.onInitialise = null;
-    this.onStart = null;
-    this.onStop = null;
-    this.onEnded = null;
-  }
-
-  initialise() {
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({audio: true, video: false})
-        .then((stream) => {
-           this.initialiseSuccess(stream)
-      })
-        .catch((err) => {
-          this.raise(err, 'Error occured while excuting getUserMedia');
-        })
-    }
-  }
-
-  initialiseSuccess(stream) {
-    this.context = new AudioContext();
-    this.onInitialise && this.onInitialise(this.context)
-  }
-
-  raise(err, msg='') {
-    console.error();
-    console.log(err)
-  }
-
-  loadAudio(url: string, cb?: any) {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
-
-    let that: WebAudioPlayer= this;
-    request.onload = function() {
-      that.context.decodeAudioData(request.response, function(buffer) {
-        that.buffer = buffer;
-        if (cb) {
-          cb(buffer);
-        }
-      }, function (e) { that.raise(e, 'Error decoding audio data')});
-    }
-    request.send();
-  }
-
-  addNode(node: AudioNode) {
-    this.nodes.push(node);
-  }
-
-  playBuffer(buffer: AudioBuffer) {
-    this.stopAudio();
-    this.buffer = buffer;
-    this.playAudio();
-  }
-
-  playUrl(url: string) {
-    this.stopAudio();
-    let that: WebAudioPlayer = this;
-    this.loadAudio(url, function() {
-      that.playAudio();
-    })
-  }
-
-  playAudio() {
-    let i: number;
-    if (this.buffer) {
-
-      this.source = this.context.createBufferSource();
-      this.source.buffer = this.buffer;
-      for (i = 0; i < this.nodes.length; i ++) {
-        this.source.connect(this.nodes[i]);
-      }
-      this.source.connect(this.context.destination);
-      var that = this;
-      this.source.onended = function() {
-        that.playing = false;
-        that.onEnded && that.onEnded();
-      }
-      this.playing = true;
-      this.onStart && this.start();
-      this.source.start(0);
-    }
-  }
-
-
-  stopAudio() {
-    if (this.source && this.playing) {
-      this.source.stop();
-      this.onStop && this.onStop();
-      this.playing = false;
-    }
-  }
-
-  start() { this.playAudio(); }
-  stop() { this.stopAudio(); }
-
-}
-
-
 class WebAudioByteFrequencyVisualiser {
 
   analyser: AnalyserNode;
@@ -303,14 +168,14 @@ class WebAudioByteFrequencyVisualiser {
   }
 
   initialise(player: WebAudioIO) {
-    player.onInitialise = (context) => this._initialise(context, player);
+    player.onInitialise.add((context) => this._initialise(context, player));
   }
 
   _initialise(context, player: WebAudioIO) {
     let property: any;
-    player.onStart = () => this.start();
-    player.onStop = () => this.stop();
-    player.onEnded = () => this.stop();
+    player.onStart.add(() => this.start());
+    player.onStop.add(() => this.stop());
+    player.onEnded.add(() => this.stop());
     this.analyser = player.context.createAnalyser()
 
     for (property in this.analyserProperties) {
@@ -363,13 +228,13 @@ class WebAudioFloatFrequencyVisualiser {
   }
 
   initialise(player: WebAudioIO) {
-    player.onInitialise = (context) => this._initialise(context, player);
+    player.onInitialise.add((context) => this._initialise(context, player));
   }
 
   _initialise(context, player: WebAudioIO) {
     let property: any;
-    player.onStart = () => this.start();
-    player.onStop = () => this.stop();
+    player.onStart.add(() => this.start());
+    player.onStop.add(() => this.stop());
    // player.onEnded = () => this.stop();
     this.analyser = player.context.createAnalyser()
 
@@ -405,150 +270,5 @@ class WebAudioFloatFrequencyVisualiser {
   };
 
 
-}
-
-
-const WORKER_PATH: string = '../../assets/js/audioWorker.js';
-
-class WebAudioRecorder implements WebAudioIO {
-
-  nodes: Array<AudioNode>;
-  context: AudioContext;
-  streamSource: MediaStreamAudioSourceNode;
-  recordBuffer: AudioBuffer;
-  settings: any;
-  onInitialise: any;
-  onStart: any;
-  onStop: any;
-  onEnded: any;
-  onMessage: any;
-  worker: Worker;
-  recording: boolean;
-  scriptNode: ScriptProcessorNode;
-
-  constructor() {
-    this.settings = {
-      bufferSize: 2048,
-      channels: 1
-    };
-    this.recording = false;
-
-    this.onInitialise = null;
-    this.onStart = null;
-    this.onStop = null;
-    this.onMessage = null;
-    this.scriptNode = null;
-    this.streamSource = null;
-    this.worker = null
-    this.nodes = new Array<AudioNode>();
-  }
-
-   initialise() {
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({audio: true, video: false})
-        .then((stream) => {
-           this.initialiseSuccess(stream)
-      })
-        .catch((err) => {
-          this.raise(err, 'Error occured while excuting getUserMedia');
-        })
-    }
-  }
-
-  initialiseSuccess(stream) {
-    this.context = new AudioContext();
-    this.scriptNode = this.context.createScriptProcessor(
-      this.settings.bufferSize,
-      this.settings.channels,
-      this.settings.channels);
-    this.streamSource = this.context.createMediaStreamSource(stream);
-    this.onInitialise && this.onInitialise(this.context)
-  }
-
-  raise(err, msg='') {
-    console.error();
-    console.log(err)
-  }
-
-  addNode(node: AudioNode) {
-    this.nodes.push(node);
-  }
-
-  recordAudio() {
-    this.worker = new Worker(WORKER_PATH);
-    this.worker.onmessage = (message) => this.processMessage(message);
-    this.onMessage = () => this._recordAudio();
-    this.worker.postMessage({
-      command: 'initialise',
-      settings: {
-        sampleRate: this.context.sampleRate
-      }
-    });
-  }
-
-  _recordAudio() {
-    let i: number;
-    this.recording = true;
-    this.scriptNode.onaudioprocess = (event) => this.processAudio(event);
-    this.streamSource.connect(this.scriptNode);
-    // This shouldn't be necessary.
-    this.scriptNode.connect(this.context.destination);
-    for (i = 0; i < this.nodes.length; i ++) {
-      this.streamSource.connect(this.nodes[i]);
-    }
-    this.onStart && this.onStart();
-  }
-
-  start() {
-    this.recordAudio();
-  }
-
-  stop() {
-    this.recording = false;
-    this.getAudioBuffers()
-  }
-
-  quit() {
-    this.worker.terminate();
-  }
-
-  clear(){
-    this.onMessage = null;
-    this.worker.postMessage({ command: 'clear' });
-  }
-
-  getAudioBuffers() {
-    this.onMessage = (buffer) => this._setRecordBuffer(buffer);
-    this.worker.postMessage({
-      command: 'getBuffers'
-    })
-  }
-
-  _setRecordBuffer(buffer: Array<Float32Array>) {
-    let i: number;
-    this.recordBuffer = this.context.createBuffer(
-      buffer.length,
-      buffer[0].length,
-      this.context.sampleRate);
-    for (i = 0; i < buffer.length; i ++) {
-      this.recordBuffer.copyToChannel(buffer[i], i, 0);
-    }
-    this.worker.terminate();
-    this.onEnded && this.onEnded();
-  }
-
-  processMessage(message) {
-    this.onMessage && this.onMessage(message.data);
-  }
-
-  processAudio(event) {
-    if (!this.recording) return;
-    this.worker.postMessage({
-      command: 'record',
-      buffer: [
-        event.inputBuffer.getChannelData(0)
-      ]
-    });
-  }
 }
 
