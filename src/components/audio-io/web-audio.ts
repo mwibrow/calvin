@@ -1,5 +1,5 @@
 
-export class Callbacks {
+export class CallbackCollection {
   callbacks: Array<any>;
 
   constructor() {
@@ -22,10 +22,10 @@ export interface WebAudioIO {
   context: AudioContext;
   nodes: Array<AudioNode>;
 
-  onInitialise: Callbacks;
-  onStart: Callbacks;
-  onStop: Callbacks;
-  onEnded: Callbacks;
+  onInitialise: CallbackCollection;
+  onStart: CallbackCollection;
+  onStop: CallbackCollection;
+  onEnded: CallbackCollection;
 
   running: boolean;
 
@@ -44,19 +44,19 @@ export class WebAudioPlayer implements WebAudioIO{
   running: boolean;
   source: AudioBufferSourceNode;
   nodes: Array<AudioNode>;
-  onInitialise: Callbacks;
-  onStart: Callbacks;
-  onStop: Callbacks;
-  onEnded: Callbacks;
+  onInitialise: CallbackCollection;
+  onStart: CallbackCollection;
+  onStop: CallbackCollection;
+  onEnded: CallbackCollection;
   constructor() {
     this.context = null;
     this.buffer = null;
     this.running = false;
     this.nodes = new Array<AudioNode>();
-    this.onInitialise = new Callbacks();
-    this.onStart = new Callbacks();
-    this.onStop = new Callbacks();
-    this.onEnded = new Callbacks();
+    this.onInitialise = new CallbackCollection();
+    this.onStart = new CallbackCollection();
+    this.onStop = new CallbackCollection();
+    this.onEnded = new CallbackCollection();
   }
 
   initialise() {
@@ -162,13 +162,14 @@ export class WebAudioRecorder implements WebAudioIO {
   streamSource: MediaStreamAudioSourceNode;
   recordBuffer: AudioBuffer;
   settings: any;
-  onInitialise: any;
-  onStart: any;
-  onStop: any;
-  onEnded: any;
+  onInitialise: CallbackCollection;
+  onStart: CallbackCollection;
+  onStop: CallbackCollection;
+  onEnded: CallbackCollection;
   onMessage: any;
   worker: Worker;
   running: boolean;
+  monitor: boolean;
   scriptNode: ScriptProcessorNode;
 
   constructor() {
@@ -178,15 +179,16 @@ export class WebAudioRecorder implements WebAudioIO {
     };
     this.running = false;
 
-    this.onInitialise = new Callbacks();
-    this.onStart = new Callbacks();
-    this.onStop = new Callbacks();
-    this.onEnded = new Callbacks();
+    this.onInitialise = new CallbackCollection();
+    this.onStart = new CallbackCollection();
+    this.onStop = new CallbackCollection();
+    this.onEnded = new CallbackCollection();
     this.onMessage = null;
     this.scriptNode = null;
     this.streamSource = null;
     this.worker = null
     this.nodes = new Array<AudioNode>();
+    this.monitor = false;
   }
 
    initialise() {
@@ -220,6 +222,11 @@ export class WebAudioRecorder implements WebAudioIO {
     this.nodes.push(node);
   }
 
+  monitorAudio() {
+    this.monitor = true;
+    this.recordAudio();
+  }
+
   recordAudio() {
     this.worker = new Worker(WORKER_PATH);
     this.worker.onmessage = (message) => this.processMessage(message);
@@ -251,7 +258,9 @@ export class WebAudioRecorder implements WebAudioIO {
 
   stop() {
     this.running = false;
-    this.getAudioBuffers()
+    if (!this.monitor) {
+      this.getAudioBuffers();
+    }
   }
 
   quit() {
@@ -288,7 +297,8 @@ export class WebAudioRecorder implements WebAudioIO {
   }
 
   processAudio(event) {
-    if (!this.running) return;
+    if (!this.running || this.monitor) return;
+
     this.worker.postMessage({
       command: 'record',
       buffer: [
