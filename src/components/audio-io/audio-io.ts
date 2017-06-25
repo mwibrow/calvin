@@ -29,7 +29,7 @@ export class AudioIOComponent {
 
     let WebAudioPlayer = this.webAudioPlayer;
 
-    let visualiser = new WebAudioByteFrequencyVisualiser({
+    let visualiser = new WebAudioFloatFrequencyVisualiser({
       fftSize: 128,
       smoothingTimeConstant: 0.85
     });
@@ -42,33 +42,35 @@ export class AudioIOComponent {
     visualiser.visualise = function(buffer) {
        can.clearRect(0, 0, canvas.width, canvas.height);
        can.beginPath();
-       can.moveTo(0, canvas.height / 2)
+      can.moveTo(0, canvas.height / 2)
+      let w: number;
        for (var i=0;i <= 48; i ++) {
-         var w = buffer[i] / 2 + 1;
+         w = 128+buffer[i];
          can.lineTo(128+i*2,  canvas.height / 2 - w / 2);
        }
        for (var i=48;i >=0; i --) {
-         var w = buffer[i] / 2 + 1;
+         w = 128+buffer[i];
          can.lineTo(128+i*2,  canvas.height / 2 + w / 2);
        }
          for (var i=0;i <= 48; i ++) {
-         var w = buffer[i] / 2 + 1;
+         w = 128+buffer[i];
          can.lineTo(128-i*2,  canvas.height / 2 + w / 2);
        }
          for (var i=48;i >=0; i --) {
-         var w = buffer[i] / 2 + 1;
+         w = 128+buffer[i];
          can.lineTo(128-i*2,  canvas.height / 2 - w / 2);
        }
+
 
        can.closePath();
       can.fillStyle = 'red';
      can.fill()
     }
 
-    // visualiser.initialise(this.webAudioPlayer);
-    // this.webAudioPlayer.initialise();
+    visualiser.initialise(this.webRecorder);
+    this.webAudioPlayer.initialise();
 
-
+    this.webRecorder.onEnded = () => this.webAudioPlayer.playBuffer(this.webRecorder.recordBuffer);
 
     this.webRecorder.initialise();
   }
@@ -148,7 +150,29 @@ export class AudioIOComponent {
 }
 
 
-class WebAudioPlayer{
+class Callback {
+  callbacks: Array<any>;
+}
+
+interface WebAudioIO {
+
+  context: AudioContext;
+  nodes: Array<AudioNode>;
+
+  onInitialise: any;
+  onStart: any;
+  onStop: any;
+  onEnded: any;
+
+  initialise();
+  start();
+  stop();
+  addNode(node: AudioNode);
+
+}
+
+
+class WebAudioPlayer implements WebAudioIO{
 
   context: AudioContext;
   buffer: AudioBuffer;
@@ -156,7 +180,7 @@ class WebAudioPlayer{
   source: AudioBufferSourceNode;
   nodes: Array<AudioNode>;
   onInitialise: any;
-  onPlay: any;
+  onStart: any;
   onStop: any;
   onEnded: any;
   constructor() {
@@ -165,7 +189,7 @@ class WebAudioPlayer{
     this.playing = false;
     this.nodes = new Array<AudioNode>();
     this.onInitialise = null;
-    this.onPlay = null;
+    this.onStart = null;
     this.onStop = null;
     this.onEnded = null;
   }
@@ -243,10 +267,11 @@ class WebAudioPlayer{
         that.onEnded && that.onEnded();
       }
       this.playing = true;
-      this.onPlay && this.onPlay();
+      this.onStart && this.start();
       this.source.start(0);
     }
   }
+
 
   stopAudio() {
     if (this.source && this.playing) {
@@ -255,6 +280,10 @@ class WebAudioPlayer{
       this.playing = false;
     }
   }
+
+  start() { this.playAudio(); }
+  stop() { this.stopAudio(); }
+
 }
 
 
@@ -273,13 +302,13 @@ class WebAudioByteFrequencyVisualiser {
 
   }
 
-  initialise(player: WebAudioPlayer) {
+  initialise(player: WebAudioIO) {
     player.onInitialise = (context) => this._initialise(context, player);
   }
 
-  _initialise(context, player: WebAudioPlayer) {
+  _initialise(context, player: WebAudioIO) {
     let property: any;
-    player.onPlay = () => this.start();
+    player.onStart = () => this.start();
     player.onStop = () => this.stop();
     player.onEnded = () => this.stop();
     this.analyser = player.context.createAnalyser()
@@ -318,10 +347,70 @@ class WebAudioByteFrequencyVisualiser {
 
 }
 
+class WebAudioFloatFrequencyVisualiser {
+
+  analyser: AnalyserNode;
+  buffer: Float32Array;
+  visualise: any;
+  running: boolean;
+  analyserProperties: any;
+
+  constructor(analyserProperties?: any) {
+    this.analyser = this.buffer = this.visualise = null;
+    this.running = false;
+    this.analyserProperties = analyserProperties;
+
+  }
+
+  initialise(player: WebAudioIO) {
+    player.onInitialise = (context) => this._initialise(context, player);
+  }
+
+  _initialise(context, player: WebAudioIO) {
+    let property: any;
+    player.onStart = () => this.start();
+    player.onStop = () => this.stop();
+   // player.onEnded = () => this.stop();
+    this.analyser = player.context.createAnalyser()
+
+    for (property in this.analyserProperties) {
+      if (this.analyserProperties.hasOwnProperty(property)) {
+        this.analyser[property] = this.analyserProperties[property];
+      }
+    }
+    let filter = context.createBiquadFilter();
+    filter.type = 'highpass';
+    filter.frequency.value = 1000;
+    filter.Q.value = 0.5;
+    player.addNode(filter);
+    filter.connect(this.analyser);
+    this.buffer = new Float32Array(this.analyser.frequencyBinCount);
+  }
+
+  start() {
+    this.running = true;
+    window.requestAnimationFrame((event) => this._visualise(event));
+  }
+
+  stop() {
+    this.running = false;
+  }
+
+  _visualise(event: any) {
+    this.analyser.getFloatFrequencyData(this.buffer);
+    this.visualise && this.visualise(this.buffer);
+    if (this.running) {
+       window.requestAnimationFrame((event) => this._visualise(event));
+    }
+  };
+
+
+}
+
 
 const WORKER_PATH: string = '../../assets/js/audioWorker.js';
 
-class WebAudioRecorder {
+class WebAudioRecorder implements WebAudioIO {
 
   nodes: Array<AudioNode>;
   context: AudioContext;
@@ -329,8 +418,9 @@ class WebAudioRecorder {
   recordBuffer: AudioBuffer;
   settings: any;
   onInitialise: any;
-  onStartRecording: any;
-  onStopRecording: any;
+  onStart: any;
+  onStop: any;
+  onEnded: any;
   onMessage: any;
   worker: Worker;
   recording: boolean;
@@ -344,8 +434,8 @@ class WebAudioRecorder {
     this.recording = false;
 
     this.onInitialise = null;
-    this.onStartRecording = null;
-    this.onStopRecording = null;
+    this.onStart = null;
+    this.onStop = null;
     this.onMessage = null;
     this.scriptNode = null;
     this.streamSource = null;
@@ -406,6 +496,11 @@ class WebAudioRecorder {
     for (i = 0; i < this.nodes.length; i ++) {
       this.streamSource.connect(this.nodes[i]);
     }
+    this.onStart && this.onStart();
+  }
+
+  start() {
+    this.recordAudio();
   }
 
   stop() {
@@ -439,6 +534,7 @@ class WebAudioRecorder {
       this.recordBuffer.copyToChannel(buffer[i], i, 0);
     }
     this.worker.terminate();
+    this.onEnded && this.onEnded();
   }
 
   processMessage(message) {

@@ -9,8 +9,6 @@ var sampleRate = 44100;
 
 
 this.onmessage = function(event){
-    console.log('Worker message')
-    console.log(event)
     var command = event.data.command;
     var success, buffers;
     switch (command) {
