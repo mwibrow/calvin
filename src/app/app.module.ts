@@ -25,6 +25,7 @@ import { HttpModule } from '@angular/http';
 import { AnimationDirective } from '../directives/animation/animation';
 import { VideoPlayerComponent } from '../components/video-player/video-player';
 import { VideoDirective } from '../directives/video/video';
+import { AudioProvider } from '../providers/audio/audio';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { VideoDirective } from '../directives/video/video';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AppStateProvider,
     AppDataProvider,
-    HttpModule
+    HttpModule,
+    AudioProvider
   ]
 })
 export class AppModule {}
