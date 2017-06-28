@@ -55,7 +55,7 @@ RingBuffer.prototype.get = function(i) {
     this.full ? this.buffer[(this.end + i) % this.size] : this.buffer[i];
 }
 
-Ringbuffer.prototype.length = function() {
+RingBuffer.prototype.length = function() {
     return this.full ? this.size : this.end;
 }
 

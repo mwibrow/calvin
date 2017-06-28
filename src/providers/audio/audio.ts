@@ -21,7 +21,7 @@ export class AudioProvider {
   }
 
   getAudioRecorder() {
-    return new WebAudioPlayer();
+    return new WebAudioRecorder();
   }
 
 }

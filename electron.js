@@ -67,7 +67,7 @@ let mainWindow
 
 function createWindow () {
     mainWindow = new BrowserWindow({width: 800, height: 600})
-
+    console.log(__dirname)
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'www/index.html'),
         protocol: 'file:',
@@ -79,6 +79,8 @@ function createWindow () {
     })
 
     mainWindow.setMenu(null);
+
+    mainWindow.webContents.openDevTools();
 }
 
 app.on('ready', createWindow)

@@ -1,35 +1,38 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 
-import { WebAudioPlayer, WebAudioRecorder, WebAudioIO } from './web-audio';
+import { AudioProvider } from '../../providers/audio/audio';
 
 @Component({
   selector: 'audio-io',
-  templateUrl: 'audio-io.html'
+  templateUrl: 'audio-io.html',
+  providers: [ AudioProvider ]
 })
 export class AudioIOComponent {
 
   private audio: any;
-  private webRecorder: WebAudioRecorder;
-  private webAudioPlayer: WebAudioPlayer;
+  private webRecorder: any;
+  private webAudioPlayer: any;
   private playing: boolean;
   private recording: boolean;
   @ViewChild('canvas')
   canvas:ElementRef;
-  constructor(private me: ElementRef ) {
+  constructor(private me: ElementRef, public webAudio: AudioProvider ) {
     this.audio = null;
 
-    this.webRecorder = new WebAudioRecorder();
-    this.webAudioPlayer = new WebAudioPlayer();
-
+    // this.webRecorder = new WebAudioRecorder();
+    // this.webAudioPlayer = new WebAudioPlayer();
+    this.webRecorder = webAudio.getAudioRecorder();
+    this.webAudioPlayer = webAudio.getAudioPlayer();
 
     this.playing = false;
     this.recording = false;
   }
 
   ngAfterViewInit() {
+    console.log(__dirname)
     this.audio = this.me.nativeElement.querySelector('audio');
 
-    let WebAudioPlayer = this.webAudioPlayer;
+    //let WebAudioPlayer = this.webAudioPlayer;
 
     let visualiser = new WebAudioFloatFrequencyVisualiser({
       fftSize: 128,
@@ -167,11 +170,11 @@ class WebAudioByteFrequencyVisualiser {
 
   }
 
-  initialise(player: WebAudioIO) {
+  initialise(player: any) {
     player.onInitialise.add((context) => this._initialise(context, player));
   }
 
-  _initialise(context, player: WebAudioIO) {
+  _initialise(context, player: any) {
     let property: any;
     player.onStart.add(() => this.start());
     player.onStop.add(() => this.stop());
@@ -227,11 +230,11 @@ class WebAudioFloatFrequencyVisualiser {
 
   }
 
-  initialise(player: WebAudioIO) {
+  initialise(player: any) {
     player.onInitialise.add((context) => this._initialise(context, player));
   }
 
-  _initialise(context, player: WebAudioIO) {
+  _initialise(context, player: any) {
     let property: any;
     player.onStart.add(() => this.start());
     player.onStop.add(() => this.stop());

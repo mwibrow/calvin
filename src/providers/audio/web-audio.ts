@@ -151,7 +151,7 @@ export class WebAudioPlayer implements WebAudioIO{
 
 
 
-const WORKER_PATH: string = '../../assets/js/audioWorker.js';
+const WORKER_PATH: string = 'assets/js/audioWorker.js';
 
 export class WebAudioRecorder implements WebAudioIO {
 
