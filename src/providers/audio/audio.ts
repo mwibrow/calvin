@@ -1,27 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 
-import { WebAudioPlayer, WebAudioRecorder } from './web-audio';
-/*
-  Generated class for the AudioProvider provider.
+import { WebAudioIO, WebAudioPlayer, WebAudioRecorder } from './web-audio';
 
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class AudioProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello AudioProvider Provider');
+  private audioPlayer: WebAudioIO;
+  private audioRecorder: WebAudioIO;
+  constructor() {
+    this.audioPlayer = null;
+    this.audioRecorder = null;
   }
 
+
   getAudioPlayer() {
-    return new WebAudioPlayer();
+    if (!this.audioPlayer) {
+      this.audioPlayer = new WebAudioPlayer();
+    }
+    return this.audioPlayer;
   }
 
   getAudioRecorder() {
-    return new WebAudioRecorder();
+    if (!this.audioRecorder) {
+      this.audioRecorder = new WebAudioRecorder();
+    }
+    return this.audioRecorder;
   }
 
 }
