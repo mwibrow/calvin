@@ -57,6 +57,7 @@
 // });
 
 const electron = require('electron')
+const http = require('http')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
@@ -67,10 +68,19 @@ let mainWindow
 
 function createWindow () {
     mainWindow = new BrowserWindow({width: 800, height: 600})
+
     console.log(__dirname)
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'www/index.html'),
-        protocol: 'file:',
+
+
+    // mainWindow.loadURL(url.format({
+    //     pathname: path.join(__dirname, 'www/index.html'),
+    //     protocol: 'file:',
+    //     slashes: true
+    // }))
+
+     mainWindow.loadURL(url.format({
+        pathname: 'localhost:8100',
+        protocol: 'http:',
         slashes: true
     }))
 
