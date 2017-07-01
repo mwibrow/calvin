@@ -85,6 +85,9 @@ export class WebAudioPlayer implements WebAudioIO{
 
   loadAudio(url: string) {
     var request = new XMLHttpRequest();
+    request.addEventListener('error', (e) => function(e) {
+      console.log(e);
+    });
     request.open('GET', url, true);
     request.responseType = 'arraybuffer';
 
@@ -92,7 +95,7 @@ export class WebAudioPlayer implements WebAudioIO{
     request.onload = function() {
       that.context.decodeAudioData(request.response, function(buffer) {
         that.buffer = buffer;
-        this.onLoad && this.onLoad(buffer);
+        that.onLoad && that.onLoad.do(buffer);
       }, function (e) { that.raise(e, 'Error decoding audio data')});
     }
     request.send();
@@ -112,6 +115,7 @@ export class WebAudioPlayer implements WebAudioIO{
   playUrl(url: string) {
     this.stopAudio();
     this.onLoad.add(() => this.playAudio());
+    this.loadAudio(url);
   }
 
   playAudio() {

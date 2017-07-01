@@ -1,30 +1,178 @@
 import { Component, ElementRef } from '@angular/core';
-
-/**
- * Generated class for the NarratorComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
+import { AudioProvider } from '../../providers/audio/audio';
 @Component({
   selector: 'narrator',
-  templateUrl: 'narrator.html'
+  templateUrl: 'narrator.html',
+  providers: [ AudioProvider ]
 })
 export class NarratorComponent {
 
   text: string;
   svg: any;
   currentGroupId: string;
-  constructor(public elementRef: ElementRef) {
+  lastGroupId: string;
+  visualiser: SpeechVisualiser;
+  allGroupIds: Array<string>;
+  groupIds: Array<string>;
+  groups: any;
+  value: number;
+  lastValue: number;
+  silenceCount: number;
+  constructor(public elementRef: ElementRef, public audio: AudioProvider) {
      this.elementRef.nativeElement.querySelector('svg');
-     this. currentGroupId = 'medium-rounded';
+
+     this.lastGroupId = '';
+     this.allGroupIds = ['neutral', 'small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];
+    this.groupIds = ['small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];
+     this.audio.getAudioPlayer();
+     this.visualiser = new SpeechVisualiser({
+       fftSize: 128,
+       smoothingTimeConstant: 0.85
+     });
+     this.groups = {};
+     this.value = this.lastValue = 0;
+    this.silenceCount = 0;
   }
 
-  ngOnInit() {
+   ngOnInit() {
+    let i: number, svgGroup: any, svgGroups: Array<any>, id: string;
+
+    svgGroups = this.elementRef.nativeElement.querySelectorAll('g[svg-label]');
+    for (i = 0; i < svgGroups.length; i++) {
+
+      svgGroup = svgGroups[i];
+      id = svgGroup.getAttribute('id')
+      this.groups[id] = svgGroup;
+    }
+    console.log(this.groups)
+    for (i = 0; i < this.allGroupIds.length; i++) {
+        this.hideGroup(this.allGroupIds[i]);
+    }
+
+    this.currentGroupId = 'neutral';
+    this.showGroup('neutral');
+   }
+
+   showGroup(group:string) {
+    this.groups[group].setAttribute('class', '');
+   }
+
+   hideGroup(group:string) {
+     this.groups[group].setAttribute('class', 'hidden');
+   }
+
+
+  ngAfterViewInit() {
+    let that: any = this;
+    this.visualiser.visualise = function(timeBuffer, frequencyBuffer) {
+      var buffer = timeBuffer;
+      var n = Math.floor(Math.random() * that.groupIds.length);
+      that.lastValue = that.value;
+      that.value = Math.sqrt(buffer.reduce(function(s,v){return s + v ** 2;}) / buffer.length) || 0.0;
+
+      that.value = Math.floor(that.value * 15);
+      //console.log(that.value)
+      if (that.value > 0 && that.value !== that.lastValue) {
+         that.silenceCount = 0;
+        that.lastGroupId = that.currentGroupId;
+        that.currentGroupId = that.groupIds[n];
+        if (that.currentGroupId !== that.lastGroupId) {
+          that.showGroup(that.currentGroupId);
+          that.hideGroup(that.lastGroupId);
+        }
+      } else {
+        that.silenceCount = that.silenceCount + 1;
+        if (that.silenceCount > 15 && that.currentGroupId !== 'neutral') {
+          that.lastGroupId = that.currentGroupId;
+          that.currentGroupId = 'neutral';
+          that.showGroup(that.currentGroupId);
+
+          that.hideGroup(that.lastGroupId);
+        }
+      }
+
+
+    };
+
+    this.visualiser.initialise(this.audio.audioPlayer);
+    this.audio.audioPlayer.onInitialise.add(() => this.play());
+    this.audio.audioPlayer.initialise();
 
   }
 
-  showGroup(id: string) {
-     return this.currentGroupId === id;
+  play() {
+     this.audio.audioPlayer.playUrl('assets/audio/chloe.wav');
+    console.log('HERe')
   }
+
+}
+
+
+class SpeechVisualiser {
+
+
+  visualise: any;
+  running: boolean;
+  analyserProperties: any;
+
+  timeAnalyser: AnalyserNode;
+  timeBuffer: Float32Array;
+
+  frequencyAnalyser: AnalyserNode;
+  frequencyBuffer: Float32Array;
+
+  constructor(analyserProperties?: any) {
+    this.timeAnalyser = this.frequencyAnalyser = null;
+    this.timeBuffer = this.frequencyBuffer = null;
+    this.visualise = null;
+    this.running = false;
+    this.analyserProperties = analyserProperties;
+  }
+
+  initialise(player: any) {
+    player.onInitialise.add((context) => this._initialise(context, player));
+  }
+
+  _initialise(context, player: any) {
+    let property: any;
+    player.onStart.add(() => this.start());
+    player.onStop.add(() => this.stop());
+    player.onEnded.add(() => this.stop());
+
+    this.timeAnalyser = player.context.createAnalyser();
+    this.timeBuffer = new Float32Array(2048);
+    player.addNode(this.timeAnalyser);
+
+    this.frequencyAnalyser = player.context.createAnalyser()
+
+    let filter = context.createBiquadFilter();
+    filter.type = 'highpass';
+    filter.frequency.value = 1000;
+    filter.Q.value = 0.5;
+
+    player.addNode(filter);
+    filter.connect(this.frequencyAnalyser);
+
+    this.frequencyBuffer = new Float32Array(this.frequencyAnalyser.frequencyBinCount);
+  }
+
+  start() {
+    this.running = true;
+    window.requestAnimationFrame((event) => this._visualise(event));
+  }
+
+  stop() {
+    this.running = false;
+  }
+
+  _visualise(event: any) {
+    this.timeAnalyser.getFloatTimeDomainData(this.timeBuffer);
+    this.frequencyAnalyser.getFloatFrequencyData(this.frequencyBuffer);
+    this.visualise && this.visualise(this.timeBuffer, this.frequencyBuffer);
+    if (this.running) {
+       window.requestAnimationFrame((event) => this._visualise(event));
+    }
+  };
+
+
 }

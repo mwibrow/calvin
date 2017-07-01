@@ -5,8 +5,8 @@ import { WebAudioIO, WebAudioPlayer, WebAudioRecorder } from './web-audio';
 @Injectable()
 export class AudioProvider {
 
-  private audioPlayer: WebAudioIO;
-  private audioRecorder: WebAudioIO;
+  public audioPlayer: WebAudioPlayer;
+  public audioRecorder: WebAudioRecorder;
   constructor() {
     this.audioPlayer = null;
     this.audioRecorder = null;

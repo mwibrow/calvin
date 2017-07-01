@@ -27,8 +27,7 @@ export class VocalTractAnimationComponent {
   velumRotationCenter: Geometry.Point;
 
   constructor(public elementRef: ElementRef) {
-    console.log('Hello VocalTractAnimation Component');
-    this.text = 'Hello World';
+
     this.vocalTract = {};
 
     this.svg = this.elementRef.nativeElement.querySelector('svg')
