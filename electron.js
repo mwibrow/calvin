@@ -67,22 +67,29 @@ const url = require('url')
 let mainWindow
 
 function createWindow () {
-    mainWindow = new BrowserWindow({width: 800, height: 600})
+    mainWindow = new BrowserWindow({width: 800, height: 600, show: false})
 
-    console.log(__dirname)
-
-
-    // mainWindow.loadURL(url.format({
-    //     pathname: path.join(__dirname, 'www/index.html'),
-    //     protocol: 'file:',
-    //     slashes: true
-    // }))
-
-     mainWindow.loadURL(url.format({
+    var appUrl = url.format({
         pathname: 'localhost:8100',
         protocol: 'http:',
         slashes: true
-    }))
+    });
+    var args = process.argv.slice(2);
+    args.forEach(function (val) {
+        if (val === "dist") {
+            appUrl = url.format({
+                pathname: path.join(__dirname, 'www/index.html'),
+                protocol: 'file:',
+                slashes: true
+            });
+        }
+    });
+
+    mainWindow.webContents.on('did-finish-load', function() {
+         mainWindow.show();
+    });
+
+    mainWindow.loadURL(appUrl);
 
     mainWindow.on('closed', function () {
         mainWindow = null
