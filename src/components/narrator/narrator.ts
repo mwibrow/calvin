@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 /**
  * Generated class for the NarratorComponent component.
@@ -13,10 +13,18 @@ import { Component } from '@angular/core';
 export class NarratorComponent {
 
   text: string;
-
-  constructor() {
-    console.log('Hello NarratorComponent Component');
-    this.text = 'Hello World';
+  svg: any;
+  currentGroupId: string;
+  constructor(public elementRef: ElementRef) {
+     this.elementRef.nativeElement.querySelector('svg');
+     this. currentGroupId = 'medium-rounded';
   }
 
+  ngOnInit() {
+
+  }
+
+  showGroup(id: string) {
+     return this.currentGroupId === id;
+  }
 }

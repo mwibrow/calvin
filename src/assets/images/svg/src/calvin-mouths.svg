@@ -30,11 +30,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5339258"
-     inkscape:cx="495.33814"
-     inkscape:cy="193.5218"
+     inkscape:zoom="2.1628353"
+     inkscape:cx="206.15703"
+     inkscape:cy="245.99805"
      inkscape:document-units="px"
-     inkscape:current-layer="layer7"
+     inkscape:current-layer="calvin-neutral"
      showgrclass="calvin-true"
      units="px"
      fit-margin-top="0"
@@ -59,7 +59,7 @@
      inkscape:bbox-paths="true"
      inkscape:bbox-nodes="false"
      inkscape:snap-bbox-midpoints="false"
-     inkscape:snap-nodes="true"
+     inkscape:snap-nodes="false"
      id="namedview3340"
      showgrid="true">
     <inkscape:grid
@@ -96,8 +96,7 @@
      inkscape:groupmode="layer"
      class="calvin-neutral"
      style="display:inline"
-     id="calvin-neutral"
-     sodipodi:insensitive="true">
+     id="calvin-neutral">
     <path
        id="path3514"
        style="opacity:1;fill:#f44336;fill-opacity:1;stroke:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -122,10 +121,10 @@
     <path
        id="path3520"
        style="opacity:1;fill:#ffc107;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 367.42856,204.93357 L 144.57143,204.93361 L 153.14286,153.505 L 170.28572,102.07643 L 256,84.93358 L 341.71428,102.07643 L 358.85713,153.505 Z"
+       d="M 367.42856,204.93357 L 256.14525,228.05139 L 144.57143,204.93361 L 153.14286,153.505 L 170.28572,102.07643 L 256,84.93358 L 341.71428,102.07643 L 358.85713,153.505 Z"
        class="calvin-head"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccc" />
+       sodipodi:nodetypes="ccccccccc" />
     <path
        id="path3522"
        inkscape:connector-curvature="0"
@@ -180,7 +179,7 @@
      id="layer7"
      inkscape:label="neutral"
      sodipodi:insensitive="true"
-     style="display:inline">
+     style="display:none">
     <path
        id="path3920"
        style="display:inline;opacity:1;fill:#ffc107;fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
