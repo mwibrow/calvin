@@ -64,35 +64,8 @@ export class NarratorComponent {
 
   ngAfterViewInit() {
     let that: any = this;
-    this.visualiser.visualise = function(timeBuffer, frequencyBuffer) {
-      var buffer = timeBuffer;
-      var n = Math.floor(Math.random() * that.groupIds.length);
-      that.lastValue = that.value;
-      that.value = Math.sqrt(buffer.reduce(function(s,v){return s + v ** 2;}) / buffer.length) || 0.0;
+    this.visualiser.visualise = (timeBuffer, freqBuffer) => this.updateSpeaker(timeBuffer, freqBuffer);
 
-      that.value = Math.floor(that.value * 15);
-      //console.log(that.value)
-      if (that.value > 0 && that.value !== that.lastValue) {
-         that.silenceCount = 0;
-        that.lastGroupId = that.currentGroupId;
-        that.currentGroupId = that.groupIds[n];
-        if (that.currentGroupId !== that.lastGroupId) {
-          that.showGroup(that.currentGroupId);
-          that.hideGroup(that.lastGroupId);
-        }
-      } else {
-        that.silenceCount = that.silenceCount + 1;
-        if (that.silenceCount > 15 && that.currentGroupId !== 'neutral') {
-          that.lastGroupId = that.currentGroupId;
-          that.currentGroupId = 'neutral';
-          that.showGroup(that.currentGroupId);
-
-          that.hideGroup(that.lastGroupId);
-        }
-      }
-
-
-    };
 
     this.visualiser.initialise(this.audio.audioPlayer);
     this.audio.audioPlayer.onInitialise.add(() => this.play());
@@ -100,9 +73,37 @@ export class NarratorComponent {
 
   }
 
+  updateSpeaker(timeBuffer: Float32Array, frequencyBuffer: Float32Array) {
+     var buffer = timeBuffer;
+      var n = Math.floor(Math.random() * this.groupIds.length);
+      this.lastValue = this.value;
+      this.value = Math.sqrt(buffer.reduce(function(s,v){return s + v ** 2;}) / buffer.length) || 0.0;
+
+      this.value = Math.floor(this.value * 15);
+      //console.log(this.value)
+      if (this.value > 0 && this.value !== this.lastValue) {
+         this.silenceCount = 0;
+        this.lastGroupId = this.currentGroupId;
+        this.currentGroupId = this.groupIds[n];
+        if (this.currentGroupId !== this.lastGroupId) {
+          this.showGroup(this.currentGroupId);
+          this.hideGroup(this.lastGroupId);
+        }
+      } else {
+        this.silenceCount = this.silenceCount + 1;
+        if (this.silenceCount > 15 && this.currentGroupId !== 'neutral') {
+          this.lastGroupId = this.currentGroupId;
+          this.currentGroupId = 'neutral';
+          this.showGroup(this.currentGroupId);
+
+          this.hideGroup(this.lastGroupId);
+        }
+      }
+
+  }
+
   play() {
      this.audio.audioPlayer.playUrl('assets/audio/chloe.wav');
-    console.log('HERe')
   }
 
 }
