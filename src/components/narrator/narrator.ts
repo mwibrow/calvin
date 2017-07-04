@@ -12,6 +12,7 @@ export class NarratorComponent {
 
   text: string;
   svg: any;
+  inset: boolean;
   currentGroupId: string;
   lastGroupId: string;
   visualiser: SpeechVisualiser;
@@ -25,7 +26,7 @@ export class NarratorComponent {
   backWeights: Float32Array;
   constructor(public elementRef: ElementRef, public audio: AudioProvider) {
      this.elementRef.nativeElement.querySelector('svg');
-
+     this.inset = true;
      this.lastGroupId = '';
      this.allGroupIds = ['neutral', 'small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];
     this.groupIds = ['small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];
@@ -50,6 +51,12 @@ export class NarratorComponent {
       -0.222245, -0.222203, -0.129962, 0.329717, 0.142439, -0.132018, 0.103092,
       0.052337, -0.034299, -0.041558, 0.141547
     ]);
+  }
+
+  getInset() {
+    if (this.inset) {
+      return "inset";
+    }
   }
 
    ngOnInit() {
@@ -170,7 +177,6 @@ class SpeechVisualiser {
 
   frequencyAnalyser: AnalyserNode;
   frequencyBuffer: Float32Array;
-
 
   startTime: number;
 

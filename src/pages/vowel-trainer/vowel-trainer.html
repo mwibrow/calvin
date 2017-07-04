@@ -44,11 +44,9 @@
         </div>
 
         <div *ngIf="isViewState(ViewState.Recording)" class="centred">
-        <!--<ion-icon name="mic" class="icon-as-image"></ion-icon>-->
 
+          <audio-io></audio-io>
 
-          <!--<audio-io></audio-io>-->
-          <narrator></narrator>
         </div>
 
         <div *ngIf="isViewState(ViewState.Video)" class="centred">
@@ -65,7 +63,9 @@
 
 </div>
 
-
+  <ion-fab top left>
+          <narrator></narrator>
+          </ion-fab>
 </ion-content>
 
 <ion-footer padding>

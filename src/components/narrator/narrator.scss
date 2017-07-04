@@ -9,4 +9,21 @@ narrator {
 .hidden {
     display: none;
 }
+
+.inset {
+    .narrator-container {
+        width: 240px !important;
+        height: 240px !important;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .narrator-container-inner {
+        position: absolute;
+        left: -120px;
+        top:-80px;
+        transform: scale(0.625);
+    }
+}
 }
