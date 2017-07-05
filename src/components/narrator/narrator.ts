@@ -26,7 +26,7 @@ export class NarratorComponent {
   backWeights: Float32Array;
   constructor(public elementRef: ElementRef, public audio: AudioProvider) {
      this.elementRef.nativeElement.querySelector('svg');
-     this.inset = true;
+     this.inset = false;
      this.lastGroupId = '';
      this.allGroupIds = ['neutral', 'small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];
     this.groupIds = ['small', 'medium', 'large', 'small-rounded', 'medium-rounded', 'large-rounded'];

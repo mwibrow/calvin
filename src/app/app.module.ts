@@ -27,6 +27,7 @@ import { VideoPlayerComponent } from '../components/video-player/video-player';
 import { VideoDirective } from '../directives/video/video';
 import { AudioProvider } from '../providers/audio/audio';
 import { NarratorComponent } from '../components/narrator/narrator';
+import { NarratorInsetDirective } from '../directives/narrator-inset/narrator-inset';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NarratorComponent } from '../components/narrator/narrator';
     VideoPlayerComponent,
     VideoDirective,
     TalkerModeModal,
-    NarratorComponent
+    NarratorComponent,
+    NarratorInsetDirective
   ],
   imports: [
     BrowserModule,
