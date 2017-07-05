@@ -59,6 +59,8 @@ export class WebAudioPlayer implements WebAudioIO{
     this.onStart = new CallbackCollection();
     this.onStop = new CallbackCollection();
     this.onEnded = new CallbackCollection();
+
+    this.onLoad.add(() => this.playAudio());
   }
 
   initialise() {
@@ -114,14 +116,19 @@ export class WebAudioPlayer implements WebAudioIO{
 
   playUrl(url: string) {
     this.stopAudio();
-    this.onLoad.add(() => this.playAudio());
+
     this.loadAudio(url);
   }
 
   playAudio() {
     let i: number;
     if (this.buffer) {
-
+      if (this.source) {
+        this.source.disconnect(this.context.destination);
+          for (i = 0; i < this.nodes.length; i ++) {
+            this.source.disconnect(this.nodes[i]);
+          }
+      }
       this.source = this.context.createBufferSource();
       this.source.buffer = this.buffer;
       for (i = 0; i < this.nodes.length; i ++) {

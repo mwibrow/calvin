@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider } from '../../providers/app-data/app-data'
+import { AppDataProvider } from '../../providers/app-data/app-data';
+import { NarratorComponent } from '../../components/narrator/narrator';
 /**
  * Generated class for the VowelTrainerPage page.
  *
@@ -28,6 +29,7 @@ export class VowelTrainerPage {
     recording: 'recording'
   };
 
+  @ViewChild('narrator') narrator: NarratorComponent;
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
@@ -38,12 +40,16 @@ export class VowelTrainerPage {
     this.viewState = ViewState.Recording;
     this.wordIndex = 0;
     this.talker = appData.talker;
-
+    console.log(this.narrator);
   }
 
 
+ngAfterViewInit() {
+
+}
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
+     this.narrator.play();
   }
 
   isViewState(viewState: ViewState) {

@@ -93,7 +93,7 @@ export class NarratorComponent {
     this.visualiser.onStop = () => this.stopSpeaker();
 
     this.visualiser.initialise(this.audio.audioPlayer);
-    this.audio.audioPlayer.onInitialise.add(() => this.play());
+    //this.audio.audioPlayer.onInitialise.add(() => this.play());
     this.audio.audioPlayer.initialise();
 
   }
@@ -153,7 +153,10 @@ export class NarratorComponent {
     this.lastGroupId = this.currentGroupId;
     this.currentGroupId = 'neutral';
     this.showGroup(this.currentGroupId);
-    this.hideGroup(this.lastGroupId);
+    if (this.lastGroupId !== this.currentGroupId) {
+      this.hideGroup(this.lastGroupId);
+    }
+
   }
 
   play(cb?: any) {
@@ -197,6 +200,7 @@ class SpeechVisualiser {
   }
 
   _initialise(context, player: any) {
+
     let property: any;
     player.onStart.add(() => this.start());
     player.onStop.add(() => this.stop());
@@ -204,6 +208,7 @@ class SpeechVisualiser {
 
     this.timeAnalyser = player.context.createAnalyser();
     this.timeBuffer = new Float32Array(2048);
+
     player.addNode(this.timeAnalyser);
 
     this.frequencyAnalyser = player.context.createAnalyser()
