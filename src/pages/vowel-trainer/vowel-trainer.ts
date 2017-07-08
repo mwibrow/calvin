@@ -71,6 +71,9 @@ formatWord(highlightVowel: boolean=false) {
   }
 }
 
+  getKeyword(): string {
+    return this.appData.keywordList[this.wordIndex];
+  }
 
   getWord() {
    let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
@@ -118,6 +121,12 @@ formatWord(highlightVowel: boolean=false) {
     let talker = this.talker;
     let url: string = `assets/audio/${this.talker}/${word}.wav`;
     console.log(url);
+    this.player.playUrl(url);
+  }
+
+  playWord(word: string) {
+    let talker = this.talker;
+    let url: string = `assets/audio/${this.talker}/${word}.wav`;
     this.player.playUrl(url);
   }
 

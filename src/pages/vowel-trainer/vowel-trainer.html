@@ -44,11 +44,13 @@
 
           <ion-list>
             <ion-item no-lines>
-              <button ion-button block class="example-button" [innerHtml]="formatWord()">
+              <button ion-button block class="example-button" (click)="playWord(getKeyword())">
+                {{getKeyword()}}
               </button>
             </ion-item>
             <ion-item no-lines>
-              <button ion-button block class="example-button" [innerHtml]="formatWord(true)">
+              <button ion-button block class="example-button">
+                <span [innerHtml]="formatWord(true)"></span>
               </button>
             </ion-item>
           </ion-list>
