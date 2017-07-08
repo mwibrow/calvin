@@ -43,13 +43,15 @@
           <!--<ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>-->
 
           <ion-list>
-            <ion-item no-lines>
+              <ion-item no-lines></ion-item>
+
+             <ion-item no-lines>
               <button ion-button block class="example-button" (click)="playWord(getKeyword())">
                 {{getKeyword()}}
               </button>
             </ion-item>
             <ion-item no-lines>
-              <button ion-button block class="example-button">
+              <button ion-button block class="example-button" (click)="playVowel(getWord().vowel)">
                 <span [innerHtml]="formatWord(true)"></span>
               </button>
             </ion-item>
@@ -68,6 +70,7 @@
 
         <div *ngIf="isViewState(ViewState.Examples)" class="centred">
            <ion-list>
+
             <ion-item *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" no-lines>
               <button ion-button block class="example-button"
                  (click)="playExampleWord(item)">

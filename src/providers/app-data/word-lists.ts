@@ -314,7 +314,7 @@ export const WORDS: any = {
       earth: {
 				display: 'earth',
 				highlight: 'e<ar>th',
-        vowel: 'hears'
+        vowel: 'heard'
 			},
       stairs: {
 				display: 'stairs',

@@ -124,10 +124,14 @@ formatWord(highlightVowel: boolean=false) {
     this.player.playUrl(url);
   }
 
-  playWord(word: string) {
-    let talker = this.talker;
-    let url: string = `assets/audio/${this.talker}/${word}.wav`;
+  playWord(word: string, talker?: string) {
+    talker = talker || this.talker;
+    let url: string = `assets/audio/${talker}/${word}.wav`;
     this.player.playUrl(url);
+  }
+
+  playVowel(word) {
+    this.playWord(`vowels/${word}`, 'mark');
   }
 
 
