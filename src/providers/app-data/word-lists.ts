@@ -335,6 +335,37 @@ export const WORDS: any = {
         'coke', 'toad', 'soak', 'bag', 'tag', 'flag', 'near', 'cheer', 'fear', 'ear'
     ].sort();
 
+    export const KEYWORD_EXAMPLES_LIST: object = {
+      knot: ['cot', 'pot', 'clock'],
+      dart: ['card', 'shark', 'park'],
+      knee: ['seed', 'teeth', 'bees'],
+      tin: ['pin', 'bin', 'ring'],
+      bull: ['foot', 'wood', 'book'],
+      cloud: ['clown', 'mouse', 'house'],
+      crown: ['clown', 'mouse', 'house'],
+      light: ['kite', 'knife', 'bike'],
+      lake: ['spade', 'cake', 'gate'],
+      girl: ['nurse', 'skirt', 'shirt'],
+      dirt: ['nurse', 'skirt', 'shirt'],
+      earth: ['nurse', 'skirt', 'shirt'],
+      stairs: ['pears', 'bears', 'squares'],
+      joint: ['toys', 'boys', 'coin'],
+      joy: ['toys', 'boys', 'coin'],
+      soup: ['suit', 'food', 'room'],
+      port: ['sword', 'paws', 'ball'],
+      red: ['men', 'leg', 'ten'],
+      shed: ['men', 'leg', 'ten'],
+      coke: ['road', 'coat', 'loaf'],
+      toad: ['road', 'coat', 'loaf'],
+      soak: ['road', 'coat', 'loaf'],
+      bag: ['cat', 'hat', 'mat'],
+      tag: ['cat', 'hat', 'mat'],
+      flag: ['cat', 'hat', 'mat'],
+      near: ['gears', 'piers', 'tear'],
+      cheer: ['gears', 'piers', 'tear'],
+      fear: ['gears', 'piers', 'tear'],
+      ear: ['gears', 'piers', 'tear']
+    };
     let keywords:any = {}, i: number;
     for (i = 0; i < KEYWORD_LIST.length; i ++) {
       keywords[KEYWORD_LIST[i]] = WORDS[KEYWORD_LIST[i]];

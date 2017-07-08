@@ -74,4 +74,29 @@ page-vowel-trainer {
     right: 0%;
 }
 
+@keyframes popout {
+    0% { transform: translate(-80px,-80px) scale(0.25);}
+  100% { transform: translate(  0px,  0px) scale(1.00);}
+}
+
+@keyframes popin {
+      0% { transform: translate(  0px,  0px) scale(1.00);}
+    100% { transform: translate(-80px,-80px) scale(0.25);}
+}
+
+.narrator-fab {
+    position: absolute;
+    left: 8px !important;
+    bottom: 8px !important;
+}
+
+
+.example-button {
+    margin: auto;
+    font-size: 48px !important;
+    width: 50% !important;
+    height: 72px !important;
+    text-transform: none !important;
+}
+
 }

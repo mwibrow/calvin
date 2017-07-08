@@ -1,4 +1,5 @@
 'use strict';
+
 // const electron = require('electron');
 // // Module to control application life.
 // const {app} = electron;
@@ -56,6 +57,9 @@
 //     }
 // });
 
+var serverReady = require('server-ready')
+var port = 8100
+
 const electron = require('electron')
 const http = require('http')
 const app = electron.app
@@ -100,7 +104,20 @@ function createWindow () {
     mainWindow.webContents.openDevTools();
 }
 
-app.on('ready', createWindow)
+
+
+function prepareWindow () {
+    serverReady(port, function (err) {
+        if (err) {
+            console.error('timeout, can\'t connect to port');
+            return;
+        }
+        console.log('port is open or has just opened');
+        createWindow();
+    });
+}
+
+app.on('ready', prepareWindow)
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
@@ -110,6 +127,6 @@ app.on('window-all-closed', function () {
 
 app.on('activate', function () {
     if (mainWindow === null) {
-        createWindow()
+        prepareWindow()
     }
 })

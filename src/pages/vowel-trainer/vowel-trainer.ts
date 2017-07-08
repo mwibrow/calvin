@@ -13,7 +13,8 @@ enum ViewState {
   Audio,
   Video,
   Animation,
-  Recording
+  Recording,
+  Examples,
 }
 @IonicPage()
 @Component({
@@ -22,24 +23,19 @@ enum ViewState {
 })
 export class VowelTrainerPage {
 
-  static state: any = {
-    video: 'video',
-    audio: 'audio',
-    animation: 'animation',
-    recording: 'recording'
-  };
-
   @ViewChild('narrator') narrator: NarratorComponent;
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
   public talker: string;
+  public keywordExamples: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
 
-    this.viewState = ViewState.Recording;
+    this.viewState = ViewState.Examples;
     this.wordIndex = 0;
     this.talker = appData.talker;
+    this.keywordExamples = appData.keywordExamples;
     console.log(this.narrator);
   }
 
@@ -49,7 +45,7 @@ ngAfterViewInit() {
 }
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
-     this.narrator.play();
+    //this.narrator.play();
   }
 
   isViewState(viewState: ViewState) {
@@ -76,11 +72,11 @@ formatWord() {
    return word;
   }
 
-  getVideo() {
-    let talker = this.talker;
-    let word = this.appData.keywordList[this.wordIndex];
-    return `assets/video/${talker}/${word}.mp4`
-  }
+  // getVideo() {
+  //   let talker = this.talker;
+  //   let word = this.appData.keywordList[this.wordIndex];
+  //   return `assets/video/${talker}/${word}.mp4`
+  // }
   ionViewDidLoad() {
     console.log('ionViewDidLoad VowelTrainerPage');
   }
@@ -100,6 +96,7 @@ formatWord() {
   backWord() {
     if (this.wordIndex > 0) {
       this.wordIndex --;
+
     }
   }
 
@@ -108,5 +105,12 @@ formatWord() {
       this.wordIndex ++;
     }
   }
+
+  playExampleWord(word: string) {
+    let talker = this.talker;
+    let url: string = `assets/audio/${this.talker}/${word}.wav`;
+    console.log(url);
+  }
+
 
 }

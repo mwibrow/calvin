@@ -45,16 +45,23 @@
 
         <div *ngIf="isViewState(ViewState.Recording)" class="centred">
 
-          <audio-io></audio-io>
 
-        </div>
 
-        <div *ngIf="isViewState(ViewState.Video)" class="centred">
-          <video src="{{ getVideo() }}" class="display-block"></video>
         </div>
 
         <div *ngIf="isViewState(ViewState.Animation)" class="centred">
           <vocal-tract-animation animation="bed"></vocal-tract-animation>
+        </div>
+
+        <div *ngIf="isViewState(ViewState.Examples)" class="centred">
+           <ion-list>
+            <ion-item *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" no-lines>
+              <button ion-button block class="example-button"
+                 (click)="playExampleWord(item)">
+              {{item}}
+              </button>
+            </ion-item>
+          </ion-list>
         </div>
 
     </ion-col>
@@ -63,9 +70,10 @@
 
 </div>
 
-  <ion-fab top left>
+  <!--<div class="narrator-fab">
     <narrator narrator-inset #narrator></narrator>
-  </ion-fab>
+  </div>-->
+
 </ion-content>
 
 <ion-footer padding>
@@ -74,14 +82,16 @@
        <button ion-button icon-only large (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
         <ion-icon name="headset"></ion-icon>
       </button>
-      <button ion-button icon-only large (click)="changeViewState(ViewState.Video)" [disabled]="isViewState(ViewState.Video)">
-        <ion-icon name="film"></ion-icon>
-      </button>
       <button ion-button icon-only large (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
         <ion-icon name="person"></ion-icon>
       </button>
        <button ion-button icon-only large  (click)="changeViewState(ViewState.Recording)" [disabled]="isViewState(ViewState.Recording)">
         <ion-icon name="mic"></ion-icon>
+      </button>
+
+      <button ion-button icon-only large   (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
+        <ion-icon class="fa fa-list" style="margin: -6px !important;">
+        </ion-icon>
       </button>
 
     </div>

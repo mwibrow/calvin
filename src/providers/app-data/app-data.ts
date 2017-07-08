@@ -25,6 +25,7 @@ export class AppDataProvider {
   keywords: any;
   talkerList: Array<string>;
   keywordList: Array<string>;
+  keywordExamples: any;
   talkerMode: TalkerMode;
   talker: string;
 
@@ -34,7 +35,7 @@ export class AppDataProvider {
     this.words = WordLists.WORDS;
     this.keywordList = WordLists.KEYWORD_LIST;
     this.keywords = WordLists.KEYWORDS;
-
+    this.keywordExamples = WordLists.KEYWORD_EXAMPLES_LIST;
     this.talkers = Talkers.TALKERS;
     this.talkerList = Talkers.TALKER_LIST;
 
