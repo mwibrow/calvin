@@ -60,16 +60,18 @@ ngAfterViewInit() {
     }
   }
 
-formatWord() {
+formatWord(highlightVowel: boolean=false) {
   let word = this.getWord();
 
-  if (this.viewState === ViewState.Animation) {
+  if (this.viewState === ViewState.Animation || highlightVowel) {
     return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/,
-      '<span class="lowlight">$1<span class="highlight">$2</span>$3</span>')
+      '<div class="lowlight">$1</div><div class="highlight">$2</div><div class="lowlight">$3</div>')
   } else {
     return word.display;
   }
 }
+
+
   getWord() {
    let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
    if (word === undefined) {

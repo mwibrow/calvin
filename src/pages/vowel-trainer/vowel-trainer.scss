@@ -5,10 +5,12 @@ page-vowel-trainer {
     font-size: 96px !important;
     text-align: center;
     color: #404060;
+    display: inline-block;
 }
 
 .vowel-highlight {
     color: #e04040;
+     display: inline-block;
 }
 
 
@@ -60,10 +62,26 @@ page-vowel-trainer {
 
 .lowlight {
     color: color($colors, inactive);
+     display: inline-block;
 }
 
 .highlight {
     color: color($colors, danger);
+     display: inline-block;
+}
+
+.button {
+    .lowlight {
+    color: white;
+    opacity: 0.333;
+     display: inline-block;
+}
+
+.highlight {
+    color: white;
+    opacity: 1;
+     display: inline-block;
+}
 }
 
 .button-container {

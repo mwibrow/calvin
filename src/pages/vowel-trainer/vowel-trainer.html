@@ -40,7 +40,18 @@
     <ion-col>
 
         <div *ngIf="isViewState(ViewState.Audio)" class="centred">
-          <ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>
+          <!--<ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>-->
+
+          <ion-list>
+            <ion-item no-lines>
+              <button ion-button block class="example-button" [innerHtml]="formatWord()">
+              </button>
+            </ion-item>
+            <ion-item no-lines>
+              <button ion-button block class="example-button" [innerHtml]="formatWord(true)">
+              </button>
+            </ion-item>
+          </ion-list>
         </div>
 
         <div *ngIf="isViewState(ViewState.Recording)" class="centred">
