@@ -361,10 +361,10 @@ export const WORDS: any = {
       bag: ['cat', 'hat', 'mat'],
       tag: ['cat', 'hat', 'mat'],
       flag: ['cat', 'hat', 'mat'],
-      near: ['gears', 'piers', 'tear'],
-      cheer: ['gears', 'piers', 'tear'],
-      fear: ['gears', 'piers', 'tear'],
-      ear: ['gears', 'piers', 'tear']
+      near: ['gears', 'piers', 'tears'],
+      cheer: ['gears', 'piers', 'tears'],
+      fear: ['gears', 'piers', 'tears'],
+      ear: ['gears', 'piers', 'tears']
     };
     let keywords:any = {}, i: number;
     for (i = 0; i < KEYWORD_LIST.length; i ++) {

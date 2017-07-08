@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 import { NarratorComponent } from '../../components/narrator/narrator';
+import { AudioProvider } from '../../providers/audio/audio';
 /**
  * Generated class for the VowelTrainerPage page.
  *
@@ -19,7 +20,8 @@ enum ViewState {
 @IonicPage()
 @Component({
   selector: 'page-vowel-trainer',
-  templateUrl: 'vowel-trainer.html'
+  templateUrl: 'vowel-trainer.html',
+  providers: [ AudioProvider ]
 })
 export class VowelTrainerPage {
 
@@ -29,19 +31,23 @@ export class VowelTrainerPage {
   public wordIndex: number;
   public talker: string;
   public keywordExamples: any;
+  public player: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider,
+    private audioProvider: AudioProvider) {
 
     this.viewState = ViewState.Examples;
     this.wordIndex = 0;
     this.talker = appData.talker;
     this.keywordExamples = appData.keywordExamples;
+    this.player = this.audioProvider.getAudioPlayer();
+
     console.log(this.narrator);
   }
 
 
 ngAfterViewInit() {
-
+  this.player.initialise();
 }
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
@@ -110,6 +116,7 @@ formatWord() {
     let talker = this.talker;
     let url: string = `assets/audio/${this.talker}/${word}.wav`;
     console.log(url);
+    this.player.playUrl(url);
   }
 
 
