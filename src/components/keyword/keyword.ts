@@ -1,5 +1,6 @@
 import { Component, Directive, Input, NgZone } from '@angular/core';
 import { AudioProvider } from '../../providers/audio/audio'
+import { v4 } from 'uuid';
 
 @Component({
   selector: 'keyword',
@@ -18,6 +19,7 @@ export class KeywordComponent {
   canPlayKeyword: boolean;
   canRecord: boolean;
   zone: NgZone;
+  onEndedId: string;
   constructor(public audio: AudioProvider) {
     this.player = audio.getAudioPlayer();
     this.player.initialise();
@@ -30,7 +32,7 @@ export class KeywordComponent {
     this.canPlayKeyword = true;
     this.canRecord = true;
     this.zone = new NgZone({ enableLongStackTrace: false });
-
+    this.onEndedId = '';
   }
 
   setControls(controls: boolean) {
@@ -39,18 +41,19 @@ export class KeywordComponent {
       if (this.recorder === null) {
         this.recorder = this.audio.getAudioRecorder();
         this.recorder.initialise();
-        this.recorder.onEnded.add(() => this.getBuffer() );
+        this.recorder.onEnded.removeAll();
       }
     }
   }
 
   getBuffer() {
     this.audioBuffer = this.recorder.recordBuffer;
+    this.recorder.onEnded.remove(this.onEndedId);
     this.zone.run(() => {
-        this.canPlay = true;
-          this.recording = false;
-    this.canPlayKeyword = true;
-    })
+      this.canPlay = true;
+      this.recording = false;
+      this.canPlayKeyword = true;
+    });
   }
 
   playKeyword() {
@@ -68,6 +71,8 @@ export class KeywordComponent {
   startRecording() {
     this.recording = true;
     this.canPlayKeyword = this.canPlay = false;
+    this.onEndedId = v4();
+    this.recorder.onEnded.add(() => this.getBuffer(), this.onEndedId);
     this.recorder.start(5.0);
   }
 

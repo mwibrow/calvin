@@ -1,19 +1,35 @@
 
+import { v4 } from 'uuid';
+
 export class CallbackCollection {
-  callbacks: Array<any>;
+  callbacks: any;
 
   constructor() {
-    this.callbacks = new Array<any>();
+    this.callbacks = {};
   }
 
-  add(callback: any) {
-    this.callbacks.push(callback);
+  add(callback: any, name?:string) {
+    name = name || v4()
+    this.callbacks[name] = callback;
+  }
+
+  remove(name: string) {
+    if (this.callbacks.hasOwnProperty(name)) {
+      delete this.callbacks[name];
+    }
+  }
+
+  removeAll() {
+    this.callbacks = {};
   }
 
   do(...args: any[]) {
-    for (let i: number = 0; i < this.callbacks.length; i ++) {
-      this.callbacks[i](...args);
-    };
+    let callback: any;
+    for (callback in this.callbacks) {
+      if (this.callbacks.hasOwnProperty(callback)) {
+        this.callbacks[callback](...args);
+      }
+    }
   }
 }
 
