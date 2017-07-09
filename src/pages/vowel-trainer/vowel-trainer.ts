@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 import { NarratorComponent } from '../../components/narrator/narrator';
+import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider } from '../../providers/audio/audio';
 /**
  * Generated class for the VowelTrainerPage page.
@@ -26,6 +27,7 @@ enum ViewState {
 export class VowelTrainerPage {
 
   @ViewChild('narrator') narrator: NarratorComponent;
+  @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
@@ -41,17 +43,21 @@ export class VowelTrainerPage {
     this.talker = appData.talker;
     this.keywordExamples = appData.keywordExamples;
     this.player = this.audioProvider.getAudioPlayer();
-
     console.log(this.narrator);
   }
 
 
 ngAfterViewInit() {
   this.player.initialise();
+  console.log(this.vocalTractAnimation);
 }
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
     //this.narrator.play();
+    if (this.viewState === ViewState.Animation) {
+      this.vocalTractAnimation.setAnimation(this.getWord().vowel)
+    }
+
   }
 
   isViewState(viewState: ViewState) {
@@ -134,5 +140,9 @@ formatWord(highlightVowel: boolean=false) {
     this.playWord(`vowels/${word}`, 'mark');
   }
 
+  getUri(word:string) {
+    let uri: string = `assets/audio/${this.talker}/${word}.wav`;
+    return uri;
+  }
 
 }

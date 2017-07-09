@@ -114,6 +114,10 @@ export class WebAudioPlayer implements WebAudioIO{
     this.playAudio();
   }
 
+  playUri(uri: string) {
+    this.playUrl(uri);
+  }
+
   playUrl(url: string) {
     this.stopAudio();
 

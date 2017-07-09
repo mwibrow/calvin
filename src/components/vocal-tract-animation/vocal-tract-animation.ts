@@ -3,14 +3,17 @@ import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures}  from './animation'
 import { VocalTractGestures} from './vocal-tract-gestures';
+import { AudioProvider } from '../../providers/audio/audio';
 @Component({
   selector: 'vocal-tract-animation',
-  templateUrl: 'vocal-tract-animation.html'
+  templateUrl: 'vocal-tract-animation.html',
+  providers: [ AudioProvider ]
 })
 export class VocalTractAnimationComponent {
 
   text: string;
   vocalTract: any;
+  uri: string;
 
   svg: any;
   range: any;
@@ -18,6 +21,8 @@ export class VocalTractAnimationComponent {
   gestures: VocalTractGestures;
   speed: number;
 
+  player: any;
+  animation: string;
   @ViewChild('animationRange') animationRange: Range;
   @ViewChild('svgContainer') svgContainer: any;
 
@@ -26,7 +31,7 @@ export class VocalTractAnimationComponent {
   jawRotationCenter: Geometry.Point;
   velumRotationCenter: Geometry.Point;
 
-  constructor(public elementRef: ElementRef) {
+  constructor(public elementRef: ElementRef, public audio: AudioProvider) {
 
     this.vocalTract = {};
 
@@ -36,11 +41,16 @@ export class VocalTractAnimationComponent {
       max: "100"
     }
     this.speed = 5;
+    this.player = audio.getAudioPlayer();
+    this.player.initialise();
   }
 
-  setAnimation(animation: string) {
-
+  setAnimation(animation: string, uri?:string) {
+    this.animation = animation;
+    this.uri = uri;
   }
+
+
   ngOnInit() {
     let i: number, svgPath: any, svgPaths: Array<any>;
 
@@ -64,8 +74,6 @@ export class VocalTractAnimationComponent {
     this.gestures.addVocalFoldVibration(20, 80);
   }
 
-
-
   clickOverlay(event) {
     event.preventDefault();
   }
@@ -83,6 +91,9 @@ export class VocalTractAnimationComponent {
     let win: any = window;
     let that = this;
     window.requestAnimationFrame((ev) => this._playAnimation(ev));
+    if (this.uri) {
+      this.player.playUri(this.uri);
+    }
   }
 
   _playAnimation(event) {
