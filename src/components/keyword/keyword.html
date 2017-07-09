@@ -1,18 +1,18 @@
 <!-- Generated template for the KeywordComponent component -->
 <div>
 
-<button ion-button class="keyword-button" [disabled]="!canPlayKeyword" (click)="playKeyword()">
+<button ion-button color="primary" class="keyword-button" [disabled]="!canPlayKeyword" (click)="playKeyword()">
 <ng-content></ng-content>
 </button>
 
-<button *ngIf="controls" ion-button icon-only [disabled]="!canRecord" (click)="toggleRecording()">
+<button *ngIf="controls" color="secondary" ion-button icon-only [disabled]="!canRecord" (click)="toggleRecording()" class="control-button">
   <ion-icon *ngIf="!recording" name='mic'>
   </ion-icon>
    <ion-icon *ngIf="recording" name='square'>
   </ion-icon>
 </button>
 
-<button *ngIf="controls" ion-button icon-only [disabled]="!canPlay" (click)="playRecording()">
+<button *ngIf="controls" color="secondary" ion-button icon-only [disabled]="!canPlay" (click)="playRecording()" class="control-button">
   <ion-icon name='play'>
   </ion-icon>
 </button>

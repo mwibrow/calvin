@@ -78,14 +78,13 @@ export class KeywordComponent {
 
   playRecording() {
     if (this.audioBuffer) {
-      console.log(this.audioBuffer);
       this.player.playBuffer(this.audioBuffer);
     }
   }
 
   startRecording() {
     this.recording = true;
-    this.canPlayKeyword = false;
+    this.canPlayKeyword = this.canPlay = false;
     this.recorder.start();
   }
 
