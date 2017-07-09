@@ -49,8 +49,8 @@ export class WebAudioPlayer implements WebAudioIO{
   onStart: CallbackCollection;
   onStop: CallbackCollection;
   onEnded: CallbackCollection;
-  constructor() {
-    this.context = null;
+  constructor(context: AudioContext) {
+    this.context = context;
     this.buffer = null;
     this.running = false;
     this.nodes = new Array<AudioNode>();
@@ -76,7 +76,7 @@ export class WebAudioPlayer implements WebAudioIO{
   }
 
   initialiseSuccess(stream) {
-    this.context = new AudioContext();
+    //this.context = new AudioContext();
     this.onInitialise && this.onInitialise.do(this.context)
   }
 
@@ -184,8 +184,9 @@ export class WebAudioRecorder implements WebAudioIO {
   running: boolean;
   monitor: boolean;
   scriptNode: ScriptProcessorNode;
+  timeout: any;
 
-  constructor() {
+  constructor(context: AudioContext) {
     this.settings = {
       bufferSize: 2048,
       channels: 1
@@ -202,6 +203,8 @@ export class WebAudioRecorder implements WebAudioIO {
     this.worker = null
     this.nodes = new Array<AudioNode>();
     this.monitor = false;
+    this.context = context;
+    this.timeout = null;
   }
 
    initialise() {
@@ -217,7 +220,7 @@ export class WebAudioRecorder implements WebAudioIO {
   }
 
   initialiseSuccess(stream) {
-    this.context = new AudioContext();
+    //this.context = new AudioContext();
     this.scriptNode = this.context.createScriptProcessor(
       this.settings.bufferSize,
       this.settings.channels,
@@ -265,12 +268,16 @@ export class WebAudioRecorder implements WebAudioIO {
     this.onStart && this.onStart.do();
   }
 
-  start() {
+  start(timeout?: number) {
     this.recordAudio();
+    if (timeout) {
+      this.timeout = setTimeout(()=> this.stop(), timeout * 1000);
+    }
   }
 
   stop() {
     this.running = false;
+    this.timeout && clearTimeout(this.timeout);
     if (!this.monitor) {
       this.getAudioBuffers();
     }

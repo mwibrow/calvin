@@ -74,19 +74,10 @@
         <div  [hidden]="!isViewState(ViewState.Examples)" class="centred">
            <ion-list>
 
-            <ion-item *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" no-lines>
-              <ion-buttons right>
-              <button ion-button class="example-button"
-                 (click)="playExampleWord(item)">
-              {{item}}
-              </button>
-              <button ion-button icon-only right>
-                <ion-icon name='mic'></ion-icon>
-              </button>
-              <button ion-button icon-only right>
-                <ion-icon name='play'></ion-icon>
-              </button>
-              </ion-buttons>
+            <ion-item *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" no-lines text-center>
+
+              <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
+
             </ion-item>
           </ion-list>
         </div>
@@ -117,7 +108,7 @@
       </button>
 
       <button ion-button icon-only large   (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
-        <ion-icon name="list" style="margin: -6px !important;">
+        <ion-icon name="list">
         </ion-icon>
       </button>
 

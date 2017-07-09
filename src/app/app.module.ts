@@ -28,9 +28,7 @@ import { VideoDirective } from '../directives/video/video';
 import { AudioProvider } from '../providers/audio/audio';
 import { NarratorComponent } from '../components/narrator/narrator';
 import { NarratorInsetDirective } from '../directives/narrator-inset/narrator-inset';
-import { KeywordComponent } from '../components/keyword/keyword';
-import { KeywordUriDirective } from '../directives/keyword-uri/keyword-uri';
-import { KeywordControlsDirective } from '../directives/keyword-controls/keyword-controls';
+import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from '../components/keyword/keyword';
 
 
 @NgModule({

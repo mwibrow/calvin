@@ -3,8 +3,7 @@ import { AudioProvider } from '../../providers/audio/audio'
 
 @Component({
   selector: 'keyword',
-  templateUrl: 'keyword.html',
-  providers: [ AudioProvider ]
+  templateUrl: 'keyword.html'
 })
 export class KeywordComponent {
 
@@ -17,6 +16,7 @@ export class KeywordComponent {
   recording: boolean;
   canPlay: boolean;
   canPlayKeyword: boolean;
+  canRecord: boolean;
   zone: NgZone;
   constructor(public audio: AudioProvider) {
     this.player = audio.getAudioPlayer();
@@ -28,6 +28,7 @@ export class KeywordComponent {
     this.controls = false;
     this.canPlay = false;
     this.canPlayKeyword = true;
+    this.canRecord = true;
     this.zone = new NgZone({ enableLongStackTrace: false });
 
   }
@@ -47,27 +48,9 @@ export class KeywordComponent {
     this.audioBuffer = this.recorder.recordBuffer;
     this.zone.run(() => {
         this.canPlay = true;
+          this.recording = false;
+    this.canPlayKeyword = true;
     })
-  }
-
-
-  canRecord() {
-    return !this.isPlaying() && !this.isPlaying();
-  }
-  hasAudioBuffer() {
-    return this.audioBuffer !== null;
-  }
-
-  isPlaying() {
-    return this.player.running;
-  }
-
-  getKeywordContent() {
-    return '';
-  }
-
-  isRecording() {
-    return (this.recorder !== null) && this.recorder.running;
   }
 
   playKeyword() {
@@ -85,12 +68,11 @@ export class KeywordComponent {
   startRecording() {
     this.recording = true;
     this.canPlayKeyword = this.canPlay = false;
-    this.recorder.start();
+    this.recorder.start(5.0);
   }
 
   stopRecording() {
-    this.recording = false;
-    this.canPlayKeyword = true;
+
     this.recorder.stop();
 
   }
@@ -103,4 +85,31 @@ export class KeywordComponent {
     }
   }
 
+}
+
+
+
+@Directive({
+  selector: '[keyword-controls]' // Attribute selector
+})
+export class KeywordControlsDirective {
+
+  constructor(public keywordComponent: KeywordComponent) {}
+
+  ngOnInit() {
+    this.keywordComponent.setControls(true);
+  }
+}
+
+
+@Directive({
+  selector: '[keyword-uri]' // Attribute selector
+})
+export class KeywordUriDirective {
+  @Input('keyword-uri') keywordUri: string;
+   constructor(public keywordComponent: KeywordComponent) {}
+
+  ngOnInit() {
+    this.keywordComponent.uri = this.keywordUri;
+  }
 }
