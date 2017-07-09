@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 import { NarratorComponent } from '../../components/narrator/narrator';
 import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider } from '../../providers/audio/audio';
+import { KeywordComponent } from '../../components/keyword/keyword';
 /**
  * Generated class for the VowelTrainerPage page.
  *
@@ -22,12 +23,15 @@ enum ViewState {
 @Component({
   selector: 'page-vowel-trainer',
   templateUrl: 'vowel-trainer.html',
-  providers: [ AudioProvider ]
+  providers: [AudioProvider]
 })
 export class VowelTrainerPage {
 
   @ViewChild('narrator') narrator: NarratorComponent;
   @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
+  @ViewChild('keyword') keyword: KeywordComponent;
+  @ViewChild('keywordVowel') keywordVowel: KeywordComponent;
+
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
@@ -35,22 +39,26 @@ export class VowelTrainerPage {
   public keywordExamples: any;
   public player: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private appData: AppDataProvider,
-    private audioProvider: AudioProvider) {
+  constructor(public navCtrl: NavController,
+      public navParams: NavParams,
+      private appData: AppDataProvider,
+      private audioProvider: AudioProvider,
+      public ngZone: NgZone) {
 
-    this.viewState = ViewState.Examples;
+    this.viewState = ViewState.Audio;
     this.wordIndex = 0;
     this.talker = appData.talker;
     this.keywordExamples = appData.keywordExamples;
     this.player = this.audioProvider.getAudioPlayer();
-    console.log(this.narrator);
+
   }
 
 
-ngAfterViewInit() {
-  this.player.initialise();
-  console.log(this.vocalTractAnimation);
-}
+  ngAfterViewInit() {
+    this.player.initialise();
+    this.setWords();
+  }
+
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
     //this.narrator.play();
@@ -66,37 +74,30 @@ ngAfterViewInit() {
     }
   }
 
-formatWord(highlightVowel: boolean=false) {
-  let word = this.getWord();
+  formatWord(highlightVowel: boolean = false) {
+    let word = this.getWord();
 
-  if (this.viewState === ViewState.Animation || highlightVowel) {
-    return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/,
-      '<div class="lowlight">$1</div><div class="highlight">$2</div><div class="lowlight">$3</div>')
-  } else {
-    return word.display;
+    if (this.viewState === ViewState.Animation || highlightVowel) {
+      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/,
+        '<div class="lowlight">$1</div><div class="highlight">$2</div><div class="lowlight">$3</div>')
+    } else {
+      return word.display;
+    }
   }
-}
 
   getKeyword(): string {
     return this.appData.keywordList[this.wordIndex];
   }
 
   getWord() {
-   let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
-   if (word === undefined) {
-     console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
-   }
-   return word;
+    let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+    if (word === undefined) {
+      console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
+    }
+    return word;
   }
 
-  // getVideo() {
-  //   let talker = this.talker;
-  //   let word = this.appData.keywordList[this.wordIndex];
-  //   return `assets/video/${talker}/${word}.mp4`
-  // }
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad VowelTrainerPage');
-  }
+  ionViewDidLoad() {}
 
   backButtonDisabled() {
     if (this.wordIndex === 0) {
@@ -112,14 +113,25 @@ formatWord(highlightVowel: boolean=false) {
 
   backWord() {
     if (this.wordIndex > 0) {
-      this.wordIndex --;
-
+      this.ngZone.run(() => {
+        this.wordIndex--;
+        this.setWords();
+      });
     }
+  }
+
+  setWords() {
+    let word = this.getWord();
+    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
+    this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
   }
 
   forwardWord() {
     if (this.wordIndex < this.appData.keywordList.length - 1) {
-      this.wordIndex ++;
+      this.ngZone.run(() => {
+        this.wordIndex++;
+        this.setWords();
+      });
     }
   }
 
@@ -140,13 +152,8 @@ formatWord(highlightVowel: boolean=false) {
     this.playWord(`vowels/${word}`, 'mark');
   }
 
-  getUri(word:string) {
+  getUri(word: string) {
     let uri: string = `assets/audio/${this.talker}/${word}.wav`;
-    return uri;
-  }
-
-   getVowelUri(word:string) {
-    let uri: string = `assets/audio/mark/vowels/${word}.wav`;
     return uri;
   }
 

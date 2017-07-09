@@ -293,7 +293,7 @@ export const WORDS: any = {
 			},
       light: {
 				display: 'light',
-				highlight: 'l<i>ght',
+				highlight: 'l<igh>t',
         vowel: 'hide'
 			},
       lake: {

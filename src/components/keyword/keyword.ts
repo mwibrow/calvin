@@ -22,6 +22,7 @@ export class KeywordComponent {
   onEndedId: string;
   constructor(public audio: AudioProvider) {
     this.player = audio.getAudioPlayer();
+
     this.player.initialise();
     this.recorder = null;
     this.recording = false;
@@ -35,6 +36,9 @@ export class KeywordComponent {
     this.onEndedId = '';
   }
 
+  setUri(uri: string) {
+    this.uri = uri;
+  }
   setControls(controls: boolean) {
     this.controls = controls;
     if (this.controls) {
@@ -77,9 +81,7 @@ export class KeywordComponent {
   }
 
   stopRecording() {
-
     this.recorder.stop();
-
   }
 
   toggleRecording() {
@@ -92,15 +94,11 @@ export class KeywordComponent {
 
 }
 
-
-
 @Directive({
   selector: '[keyword-controls]' // Attribute selector
 })
 export class KeywordControlsDirective {
-
   constructor(public keywordComponent: KeywordComponent) {}
-
   ngOnInit() {
     this.keywordComponent.setControls(true);
   }
@@ -115,6 +113,6 @@ export class KeywordUriDirective {
    constructor(public keywordComponent: KeywordComponent) {}
 
   ngOnInit() {
-    this.keywordComponent.uri = this.keywordUri;
+    this.keywordComponent.setUri(this.keywordUri);
   }
 }

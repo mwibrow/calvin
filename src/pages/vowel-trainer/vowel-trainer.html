@@ -43,28 +43,19 @@
           <!--<ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>-->
 
           <ion-list>
-              <ion-item no-lines>
-
-
-              </ion-item>
-
-             <ion-item text-center no-lines>
-                 <keyword keyword-controls [keyword-uri]="getUri(getKeyword())">{{getKeyword()}}</keyword>
-
+            <ion-item no-lines>
             </ion-item>
             <ion-item text-center no-lines>
-              <keyword keyword-controls [keyword-uri]="getVowelUri(getWord().vowel)">
+              <keyword  keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>{{getKeyword()}}</keyword>
+            </ion-item>
+            <ion-item text-center no-lines>
+              <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
                 <span [innerHtml]="formatWord(true)"></span>
-             </keyword>
+              </keyword>
             </ion-item>
           </ion-list>
         </div>
 
-        <div  [hidden]="!isViewState(ViewState.Recording)" class="centred">
-
-
-
-        </div>
 
         <div  [hidden]="!isViewState(ViewState.Animation)" class="centred">
           <vocal-tract-animation [animation]="getWord().vowel" #vocalTractAnimation></vocal-tract-animation>
