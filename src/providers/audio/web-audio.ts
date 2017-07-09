@@ -65,6 +65,8 @@ export class WebAudioPlayer implements WebAudioIO{
   onStart: CallbackCollection;
   onStop: CallbackCollection;
   onEnded: CallbackCollection;
+
+  private isInitialsed: boolean;
   constructor(context: AudioContext) {
     this.context = context;
     this.buffer = null;
@@ -75,11 +77,14 @@ export class WebAudioPlayer implements WebAudioIO{
     this.onStart = new CallbackCollection();
     this.onStop = new CallbackCollection();
     this.onEnded = new CallbackCollection();
+    this.isInitialsed = false;
 
     this.onLoad.add(() => this.playAudio());
   }
 
   initialise() {
+    if (this.isInitialsed) return;
+    this.isInitialsed = true;
     if (navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({audio: true, video: false})
         .then((stream) => {
@@ -202,6 +207,8 @@ export class WebAudioRecorder implements WebAudioIO {
   scriptNode: ScriptProcessorNode;
   timeout: any;
 
+  private isInitialised: boolean;
+
   constructor(context: AudioContext) {
     this.settings = {
       bufferSize: 2048,
@@ -221,6 +228,7 @@ export class WebAudioRecorder implements WebAudioIO {
     this.monitor = false;
     this.context = context;
     this.timeout = null;
+    this.isInitialised = false;
   }
 
    initialise() {
@@ -236,6 +244,8 @@ export class WebAudioRecorder implements WebAudioIO {
   }
 
   initialiseSuccess(stream) {
+    if (this.isInitialised) return;
+    this.isInitialised = true;
     //this.context = new AudioContext();
     this.scriptNode = this.context.createScriptProcessor(
       this.settings.bufferSize,

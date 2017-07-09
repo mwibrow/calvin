@@ -145,4 +145,9 @@ formatWord(highlightVowel: boolean=false) {
     return uri;
   }
 
+   getVowelUri(word:string) {
+    let uri: string = `assets/audio/mark/vowels/${word}.wav`;
+    return uri;
+  }
+
 }

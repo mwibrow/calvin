@@ -45,18 +45,17 @@
           <ion-list>
               <ion-item no-lines>
 
-                <keyword  [keyword-uri]="getUri('cat')" keyword-controls>cat</keyword>
+
               </ion-item>
 
-             <ion-item center no-lines>
-              <button ion-button block class="example-button" (click)="playWord(getKeyword())">
-                {{getKeyword()}}
-              </button>
+             <ion-item text-center no-lines>
+                 <keyword keyword-controls [keyword-uri]="getUri(getKeyword())">{{getKeyword()}}</keyword>
+
             </ion-item>
-            <ion-item no-lines>
-              <button ion-button block class="example-button" (click)="playVowel(getWord().vowel)">
+            <ion-item text-center no-lines>
+              <keyword keyword-controls [keyword-uri]="getVowelUri(getWord().vowel)">
                 <span [innerHtml]="formatWord(true)"></span>
-              </button>
+             </keyword>
             </ion-item>
           </ion-list>
         </div>
@@ -103,10 +102,6 @@
       <button ion-button icon-only large (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
         <ion-icon name="person"></ion-icon>
       </button>
-       <button ion-button icon-only large  (click)="changeViewState(ViewState.Recording)" [disabled]="isViewState(ViewState.Recording)">
-        <ion-icon name="mic"></ion-icon>
-      </button>
-
       <button ion-button icon-only large   (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
         <ion-icon name="list">
         </ion-icon>
