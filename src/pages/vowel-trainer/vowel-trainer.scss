@@ -1,17 +1,17 @@
 page-vowel-trainer {
 
 
-.vowel-example {
-    font-size: 96px !important;
-    text-align: center;
-    color: #404060;
-    display: inline-block;
-}
+// .vowel-example {
+//     font-size: 96px !important;
+//     text-align: center;
+//     color: #404060;
+//     display: inline-block;
+// }
 
-.vowel-highlight {
-    color: #e04040;
-     display: inline-block;
-}
+// .vowel-highlight {
+//     color: #e04040;
+//      display: inline-block;
+// }
 
 
 @keyframes glow {
@@ -51,9 +51,9 @@ page-vowel-trainer {
 }
 
 
-.icon-as-image {
-   font-size: 320px;
-}
+// .icon-as-image {
+//    font-size: 320px;
+// }
 .centred {
   text-align: center;
   width: 100% !important;
@@ -84,23 +84,14 @@ page-vowel-trainer {
 }
 }
 
-.button-container {
-    top: 25%;
-}
+// .button-container {
+//     top: 25%;
+// }
 
-.forward-button-container {
-    right: 0%;
-}
+// .forward-button-container {
+//     right: 0%;
+// }
 
-@keyframes popout {
-    0% { transform: translate(-80px,-80px) scale(0.25);}
-  100% { transform: translate(  0px,  0px) scale(1.00);}
-}
-
-@keyframes popin {
-      0% { transform: translate(  0px,  0px) scale(1.00);}
-    100% { transform: translate(-80px,-80px) scale(0.25);}
-}
 
 .narrator-fab {
     position: absolute;
@@ -109,12 +100,17 @@ page-vowel-trainer {
 }
 
 
-.example-button, .keyword-button {
-    margin: auto;
-    font-size: 48px !important;
-    width: 50% !important;
-    height: 72px !important;
-    text-transform: none !important;
-}
+// .example-button, .keyword-button {
+//     margin: auto;
+//     font-size: 48px !important;
+//     width: 50% !important;
+//     height: 72px !important;
+//     text-transform: none !important;
+// }
 
+.keyword-display {
+    display: inline-block;
+    font-size: $button-md-large-font-size;
+    transform: translatey(0.4rem);
+}
 }

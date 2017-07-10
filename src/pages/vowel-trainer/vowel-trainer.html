@@ -20,19 +20,26 @@
   <ion-row justify-content-center>
 
     <ion-col>
-      <div class="centered">
-        <div class="contained button-container" *ngIf="!backButtonDisabled()">
-        <button ion-button icon-only large [disabled]="backButtonDisabled()" (click)="backWord()">
+      <!--<div class="centered">-->
+        <!--<div class="contained button-container" *ngIf="!backButtonDisabled()">-->
+        <button ion-button icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
           <ion-icon name="arrow-back"></ion-icon>
         </button>
-        </div>
-        <div class="contained button-container forward-button-container"  *ngIf="!forwardButtonDisabled()">
-        <button ion-button icon-only large [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+    </ion-col>
+    <ion-col>
+        <!--</div>-->
+        <!--<div class="contained button-container forward-button-container"  *ngIf="!forwardButtonDisabled()">-->
+
+        <!--</div>-->
+
+       <div class="keyword-display" [innerHtml]="formatWord()"></div>
+    </ion-col>
+    <ion-col>
+       <button ion-button icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-        </div>
-       <span class="vowel-example" [innerHtml]="formatWord()"></span>
-       </div>
+
+       <!--</div>-->
     </ion-col>
 
   </ion-row>

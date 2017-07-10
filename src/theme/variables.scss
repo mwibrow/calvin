@@ -104,3 +104,16 @@ $colors: (
     font-weight: normal;
     font-style: normal;
 }
+
+
+$font-family-base: "Crafty Girls";
+$font-family-md-base: "Crafty Girls";
+$font-size-base: 1.4rem;
+
+* {
+    font-weight: bold;
+}
+
+button {
+    text-transform: none !important;
+}
