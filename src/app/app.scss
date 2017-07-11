@@ -15,15 +15,14 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-// body, div, span, p,
-// h1, h2, h3, h4, h5, h6,
-// button,
-// ion-item, ion-title,
-// ion-button, ion-content, ion-label {
-//   font-family: 'Crafty Girls', cursive !important;
-//   font-weight: bold !important;
-// }
 
+* {
+    font-weight: bold;
+}
+
+button {
+    text-transform: none !important;
+}
 
 
 .no-scroll .scroll-content{
@@ -117,14 +116,39 @@
 }
 
 @media only screen
-    and (min-device-width: 1024px)
-    and (min-device-height: 768px)
-    and (orientation: landscape) {
+    and (min-width: 512px)
+    and (min-height: 768px) {
 
 ion-content {
-    width: 40%;
-    left: 30%;
+    width: 50%;
+    left: 25%;
 }
 
+}
+
+@media only screen
+    and (min-width: 828px)
+    and (min-height: 768px) {
+
+ion-content {
+    width: 50%;
+    left: 25%;
+}
+
+* {
+    font-size: 1.25rem !important;
+}
+
+button span, .keyword-display{
+     font-size: 2rem !important;
+}
+button[icon-only] {
+     font-size: 4rem !important;
+}
+
+ion-icon {
+    font-size: 2rem !important;
+}
 
     }
+
