@@ -4,6 +4,7 @@ vocal-tract-animation {
     display: inline-block;
 }
 .svg-container {
+     width: 100% !important;
      background-color: lighten(color($md-palette, md-blue-grey), 40%);
      position: relative;
 }
