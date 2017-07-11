@@ -115,3 +115,15 @@
 {
     fill: #cfd8dc;
 }
+
+@media only screen
+    and (min-device-width: 1024px)
+    and (min-device-height: 768px)
+    and (orientation: landscape) {
+
+ion-content {
+    width: 40%;
+    left: 30%;
+}
+
+    }
