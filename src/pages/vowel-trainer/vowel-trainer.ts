@@ -78,8 +78,8 @@ export class VowelTrainerPage {
     let word = this.getWord();
 
     if (this.viewState === ViewState.Animation || highlightVowel) {
-      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/,
-        '<div class="lowlight">$1</div><div class="highlight">$2</div><div class="lowlight">$3</div>')
+      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, '<span class="keyword-display">$1$2$3</span>');
+       // '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
     } else {
       return word.display;
     }
