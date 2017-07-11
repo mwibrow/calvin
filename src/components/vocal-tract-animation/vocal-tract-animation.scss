@@ -4,7 +4,7 @@ vocal-tract-animation {
     display: inline-block;
 }
 .svg-container {
-     background-color: #cfd8dc;
+     background-color: lighten(color($md-palette, md-blue-grey), 40%);
      position: relative;
 }
 
@@ -20,29 +20,29 @@ ion-range {
 .head, .laryngeal-wall,
 .lip,
 {
-    fill: #607d8b;
+    fill: color($md-palette, md-blue-grey);
 }
 
 .tongue, .larynx,
 .velum
 {
-    fill: #263238;
+    fill: darken(color($md-palette, md-blue-grey), 25%);
 }
 
 .tongue
 {
-    stroke: #263238;
+    stroke: darken(color($md-palette, md-blue-grey), 25%);
     stroke-width: 2px;
 }
 
 .gum
 {
-    fill: #9e9e9e;
+    fill: color($md-palette, md-grey);
 }
 
 .teeth
 {
-    fill: #ffffff;
+    fill: color($md-palette, md-white);
 }
 
 }

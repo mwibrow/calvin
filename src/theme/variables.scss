@@ -23,14 +23,37 @@ $font-path: "../assets/fonts";
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+$md-palette: (
+  md-red:         #F44336,
+  md-pink:        #E91E63,
+  md-purple:      #9C27B0,
+  md-deep-purple: #673AB7,
+  md-indigo:      #3F51B5,
+  md-blue:        #2196F3,
+  md-light-blue:  #03A9F4,
+  md-cyan:        #00BCD4,
+  md-teal:        #009688,
+  md-green:       #4CAF50,
+  md-light-green: #8BC34A,
+  md-lime:        #CDDC39,
+  md-yellow:      #FFEB3B,
+  md-orange:      #FF9800,
+  md-deep-orange: #FF5722,
+  md-brown:       #795548,
+  md-grey:        #9E9E9E,
+  md-blue-grey:   #607D8B,
+  md-black:       #000000,
+  md-white:       #FFFFFF
+);
+
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222,
-  active:     #80a0e0,
-  inactive:   #d0d0d0
+  primary:   color($md-palette, md-blue),
+  secondary: color($md-palette, md-green),
+  danger:    color($md-palette, md-red),
+  light:     darken(color($md-palette, md-white), 5%),
+  dark:      lighten(color($md-palette, md-black), 5%),
+  active:    darken(color($md-palette, md-blue), 5%),
+  inactive:  lighten(color($md-palette, md-grey), 5%),
 );
 
 
