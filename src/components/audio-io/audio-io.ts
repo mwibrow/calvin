@@ -29,7 +29,6 @@ export class AudioIOComponent {
   }
 
   ngAfterViewInit() {
-    console.log(__dirname)
     this.audio = this.me.nativeElement.querySelector('audio');
 
     //let WebAudioPlayer = this.webAudioPlayer;

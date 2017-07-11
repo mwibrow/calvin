@@ -16,68 +16,57 @@
 
 <ion-content padding class="no-scroll">
   <div class="content-container">
-<ion-grid justify-content-center>
-  <ion-row align-items-center>
+<ion-grid>
+  <ion-row justify-content-center>
 
-    <ion-col>
-      <!--<div class="centered">-->
-        <!--<div class="contained button-container" *ngIf="!backButtonDisabled()">-->
+    <ion-col col-1>
         <button ion-button icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
           <ion-icon name="arrow-back"></ion-icon>
         </button>
     </ion-col>
-    <ion-col col-2>
-        <!--</div>-->
-        <!--<div class="contained button-container forward-button-container"  *ngIf="!forwardButtonDisabled()">-->
-
-        <!--</div>-->
-
+    <ion-col col-6>
        <div class="keyword-display" [innerHtml]="formatWord()"></div>
     </ion-col>
-    <ion-col>
+    <ion-col col-1>
        <button ion-button icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
-
-       <!--</div>-->
     </ion-col>
 
   </ion-row>
   <ion-row justify-content-center>
     <ion-col>
 
-        <div [hidden]="!isViewState(ViewState.Audio)" class="centred">
-          <!--<ion-icon name="volume-up" class="icon-as-image inactive"></ion-icon>-->
+      <ion-grid [hidden]="!isViewState(ViewState.Audio)">
+        <ion-row text-center>
+          <ion-col>
+            <keyword  keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>{{getKeyword()}}</keyword>
+          </ion-col>
+        </ion-row>
+        <ion-row text-center>
+          <ion-col text-center>
+            <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
+              <span [innerHtml]="formatWord(true)"></span>
+            </keyword>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-          <ion-list>
-            <ion-item no-lines>
-            </ion-item>
-            <ion-item text-center no-lines>
-              <keyword  keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>{{getKeyword()}}</keyword>
-            </ion-item>
-            <ion-item text-center no-lines>
-              <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
-                <span [innerHtml]="formatWord(true)"></span>
-              </keyword>
-            </ion-item>
-          </ion-list>
-        </div>
+      <ion-grid [hidden]="!isViewState(ViewState.Animation)">
+        <ion-row justify-content-center>
+          <ion-col>
+            <vocal-tract-animation [animation]="getWord().vowel" #vocalTractAnimation></vocal-tract-animation>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-
-        <div  [hidden]="!isViewState(ViewState.Animation)" class="centred">
-          <vocal-tract-animation [animation]="getWord().vowel" #vocalTractAnimation></vocal-tract-animation>
-        </div>
-
-        <div  [hidden]="!isViewState(ViewState.Examples)" class="centred">
-           <ion-list>
-
-            <ion-item *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" no-lines text-center>
-
-              <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
-
-            </ion-item>
-          </ion-list>
-        </div>
+      <ion-grid [hidden]="!isViewState(ViewState.Examples)">
+        <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center>
+          <ion-col>
+            <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
     </ion-col>
   </ion-row>
