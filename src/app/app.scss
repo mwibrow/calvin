@@ -117,7 +117,7 @@ button {
 
 @media only screen
     and (min-width: 512px)
-    and (min-height: 768px) {
+    and (min-height: 512px) {
 
 ion-content {
     width: 50%;
@@ -213,4 +213,28 @@ ion-icon {
 
 }
 
+ion-app, ion-content {
+    background-color: lighten(color($md-palette, md-light-blue), 20) !important;
+}
+
+ion-footer {
+     background-color: color($md-palette, md-green) !important;
+}
+
+.toolbar-background {
+     background-color: color($md-palette, md-white) !important;
+
+}
+
+.header-md::after {
+    background-image: none !important;
+}
+
+.footer-md::before {
+    background-image: none !important;
+}
+
+* {
+    box-shadow: none !important;
+}
 
