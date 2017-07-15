@@ -4,9 +4,12 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
 
-  <ion-navbar>
+
+
+<ion-header transparent>
+
+  <ion-navbar transparent>
     <ion-title><logo></logo></ion-title>
 
   </ion-navbar>
@@ -14,13 +17,17 @@
 </ion-header>
 
 
-<ion-content padding class="no-scroll">
+<ion-content class="no-scroll">
+
+<background></background>
+
   <!--<div class="content-container">-->
-<ion-grid>
+<ion-grid class="content-container">
+    <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
   <ion-row justify-content-center>
 
     <ion-col col-auto>
-        <button ion-button clear icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+        <button ion-button color="danger" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
           <ion-icon name="arrow-round-back"></ion-icon>
         </button>
     </ion-col>
@@ -28,7 +35,7 @@
        <div class="keyword-display" [innerHtml]="formatWord()"></div>
     </ion-col>
     <ion-col col-auto>
-       <button ion-button clear icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+       <button ion-button color="danger" round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
           <ion-icon name="arrow-round-forward"></ion-icon>
         </button>
     </ion-col>
@@ -46,7 +53,7 @@
         <ion-row text-center>
           <ion-col text-center>
             <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
-              <span [innerHtml]="formatWord(true)"></span>
+              <span style="margin:0px !important; padding: 0px !important; top: 0% !important;" [innerHtml]="formatWord(true)"></span>
             </keyword>
           </ion-col>
         </ion-row>
@@ -61,7 +68,7 @@
       </ion-grid>
 
       <ion-grid [hidden]="!isViewState(ViewState.Examples)">
-        <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center>
+        <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center class="row-no-padding">
           <ion-col>
             <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
           </ion-col>

@@ -47,8 +47,8 @@ $md-palette: (
 );
 
 $colors: (
-  primary:   color($md-palette, md-blue),
-  secondary: color($md-palette, md-green),
+  primary:   color($md-palette, md-orange),
+  secondary: color($md-palette, md-purple),
   danger:    color($md-palette, md-red),
   light:     darken(color($md-palette, md-white), 5%),
   dark:      lighten(color($md-palette, md-black), 5%),

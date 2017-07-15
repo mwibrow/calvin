@@ -29,6 +29,7 @@ import { AudioProvider } from '../providers/audio/audio';
 import { NarratorComponent } from '../components/narrator/narrator';
 import { NarratorInsetDirective } from '../directives/narrator-inset/narrator-inset';
 import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from '../components/keyword/keyword';
+import { BackgroundComponent } from '../components/background/background';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from 
     NarratorInsetDirective,
     KeywordComponent,
     KeywordUriDirective,
-    KeywordControlsDirective
+    KeywordControlsDirective,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,

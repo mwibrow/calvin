@@ -26,7 +26,15 @@ button {
 
 
 .no-scroll .scroll-content{
-    overflow: hidden !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    top: 0 !important;
+  bottom: 0 !important;
+  height: 100% !important;
+overflow: visible !important;
+background-color: red;
 }
 
 // @media only screen
@@ -119,7 +127,7 @@ button {
     and (min-width: 512px)
     and (min-height: 512px) {
 
-ion-content {
+.content-container {
     width: 50%;
     left: 25%;
 }
@@ -147,7 +155,7 @@ ion-icon {
     and (min-height: 768px)
 {
 
-ion-content {
+.content-container {
     width: 50%;
     left: 25%;
 }
@@ -180,7 +188,7 @@ ion-icon {
     and (min-height: 768px)
 {
 
-ion-content {
+.content-container {
     width: 50%;
     left: 25%;
 }
@@ -196,7 +204,8 @@ ion-content {
 }
 
 button span {
-     font-size: 2.5rem !important;
+
+     font-size: 2rem !important;
 }
 
 .keyword-display {
@@ -204,7 +213,7 @@ button span {
 }
 
 button[icon-only] {
-     font-size: 4rem !important;
+     font-size: 3rem !important;
 }
 
 ion-icon {
@@ -213,16 +222,17 @@ ion-icon {
 
 }
 
-ion-app, ion-content {
-    background-color: lighten(color($md-palette, md-light-blue), 20) !important;
-}
+// ion-app, ion-content {
+//     background-color: lighten(color($md-palette, md-light-blue), 20) !important;
+// }
 
-ion-footer {
-     background-color: color($md-palette, md-green) !important;
+ion-footer, .footer, .footer-md {
+    background-color: transparent !important;
 }
 
 .toolbar-background {
-     background-color: color($md-palette, md-white) !important;
+     background-color: transparent !important;
+
 
 }
 
@@ -238,3 +248,47 @@ ion-footer {
     box-shadow: none !important;
 }
 
+// button[color="secondary"]{
+//     // border-left-style: solid !important;
+//     // border-left-color: darken(color($colors, secondary), 5) !important;
+//     // border-left-width: 10px !important;
+//     // border-right-style: solid !important;
+//     // border-right-color: darken(color($colors, secondary),  5) !important;
+//     // border-right-width: 10px !important;
+//     // border-bottom-style: solid !important;
+//     // border-bottom-color: darken(color($colors, secondary),  10) !important;
+//     // border-bottom-width: 10px !important;
+//     border-style: solid !important;
+//     border-color: darken(color($colors, secondary), 10) !important;
+//     border-width: 10px;
+// }
+
+// button[color="danger"]{
+//     // border-left-style: solid !important;
+//     // border-left-color: darken(color($colors, danger), 10) !important;
+//     // border-left-width: 10px;
+//     // border-right-style: solid !important;
+//     // border-right-color: darken(color($colors, danger),  10) !important;
+//     // border-right-width: 10px;
+//     // border-bottom-style: solid !important;
+//     // border-bottom-color: darken(color($colors, danger),  20) !important;
+//     // border-bottom-width: 10px;
+//     border-style: solid !important;
+//     border-color: darken(color($colors, danger), 20) !important;
+//     border-width: 10px;
+// }
+
+// button[color="primary"]{
+//     border-style: solid !important;
+//     border-color: darken(color($colors, primary), 10) !important;
+//     border-width: 10px;
+// }
+
+ion-row {
+    margin: 0px !important;
+    padding: 0px !important;
+      display: border-box;
+}
+button {
+     height: 4rem !important;
+}
