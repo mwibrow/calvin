@@ -173,6 +173,15 @@ export class VocalTractGestures {
   }
 
 
+  addVowelNeutral(start: number, end: number) {
+    let action = new Actions.MorphAction(this.vocalTractPaths['tongue'].getPoints(Geometry.seq(0,9), Geometry.seq(32,50)).copy());
+    action.canHaveParent = false;
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,9), Geometry.seq(32,50));
+    let gesture: Gesture = new Gesture(start, end);
+    gesture.setAction(action);
+    this.tongue.appendGesture(gesture);
+  }
+
   addVowelHeed(start: number, end: number) {
     let heed = Geometry.SvgPath.fromSvg(HEED_SVG);
     let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,9), Geometry.seq(32,50)));

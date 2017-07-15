@@ -76,6 +76,7 @@ export class VocalTractAnimationComponent {
     this.gestures.addVelumRaised(21, 79);
     this.gestures.addVelumLower(80, 100);
     this.gestures.addVocalFoldVibration(20, 80);
+    this.gestures.addVowelNeutral(0, 20);
     this.gestures.addVowelHeed(20, 80);
   }
 
