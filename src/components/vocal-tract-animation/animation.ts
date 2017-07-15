@@ -117,6 +117,7 @@ export namespace Actions {
 
 export class BaseAction {
   parent: BaseAction;
+  canHaveParent: boolean;
   paths: Array<Geometry.SvgPath>;
   easing: Easings.BaseEasing;
   pathPoints: Array<Geometry.Points>;
@@ -126,6 +127,7 @@ export class BaseAction {
 
   constructor() {
     this.parent = null;
+    this.canHaveParent = true;
     this.paths = new Array<Geometry.SvgPath>();
     this.easing = new Easings.Linear();
     this.pathPoints = new Array<Geometry.Points>();
@@ -139,7 +141,9 @@ export class BaseAction {
     this.t = this.easing.ease(0);
   }
   setParent(action: BaseAction) {
-    this.parent = action;
+    if (this.canHaveParent) {
+      this.parent = action;
+    }
   }
 
   setT(t: number) {
@@ -174,7 +178,7 @@ export class BaseAction {
   }
 
   update() {
-    let i:  number;
+    let i:  number, j: number;
     for (i = 0; i < this.paths.length; i ++) {
       this.paths[i].update();
     }
@@ -200,10 +204,11 @@ export class MorphAction extends BaseAction {
         this.pathPoints[i].get(j).update(point);
       }
     }
+
   }
 
-  actOn(point: Geometry.Point, target: Geometry.Point) {
-    return Geometry.Point.pointAtTime(this.t, point, target);
+  actOn(source: Geometry.Point, target: Geometry.Point) {
+    return Geometry.Point.pointAtTime(this.t, source, target);
   }
 }
 

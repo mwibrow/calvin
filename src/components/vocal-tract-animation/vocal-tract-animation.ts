@@ -5,6 +5,8 @@ import { Easings, Actions, Gesture, Gestures}  from './animation'
 import { VocalTractGestures} from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
+
+
 @Component({
   selector: 'vocal-tract-animation',
   templateUrl: 'vocal-tract-animation.html',
@@ -74,6 +76,7 @@ export class VocalTractAnimationComponent {
     this.gestures.addVelumRaised(21, 79);
     this.gestures.addVelumLower(80, 100);
     this.gestures.addVocalFoldVibration(20, 80);
+    this.gestures.addVowelHeed(20, 80);
   }
 
   clickOverlay(event) {
@@ -100,7 +103,6 @@ export class VocalTractAnimationComponent {
 
   _playAnimation(event:any) {
     this.frame += this.speed;
-    console.log(this.frame)
     this.animationRange.setValue(this.frame);
     this.rangeChange({value: this.animationRange.value});
     if (this.frame < this.range.max) {

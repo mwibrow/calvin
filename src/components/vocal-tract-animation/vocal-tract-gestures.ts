@@ -1,5 +1,5 @@
 import { Geometry } from './geometry';
-import { Easings, Actions, Gesture, Gestures }  from './animation'
+import { Easings, Actions, Gesture, Gestures }  from './animation';
 
 
 
@@ -7,6 +7,10 @@ const lipUpperRotationCenter = new Geometry.Point(85, 170);
 const lipLowerRotationCenter = new Geometry.Point(90, 230);
 const jawRotationCenter = new Geometry.Point(280, 140);
 const velumRotationCenter = new Geometry.Point(260, 140);
+
+
+const HEED_SVG: string = 'M 152.51721,142.85788 C 131.53447,142.72716 118.99801,171.99808 121.48532,180.72673 C 124.25892,190.46002 139.50914,212.78562 135.94141,218.60352 C 132.61062,224.03502 125.68701,222.94452 122.85938,229.60938 C 127.64298,238.45402 137.69987,265.8246 134.1543,280.60156 C 133.12643,284.36759 130.6133,286.91324 127.34766,288.48633 C 138.37677,286.79074 151.06198,283.60658 162.11719,283.17383 C 185.23499,282.26889 199.41262,286.29295 213.34961,290.75977 C 227.2866,295.22659 255.405,297.48072 263.12695,296.21484 C 263.28009,296.18974 263.39634,296.16033 263.54492,296.13477 C 266.04771,280.41467 271.17141,268.14737 266.20117,250.47461 C 261.23093,232.80185 222.45731,176.39789 202.15589,163.05514 C 181.85447,149.71239 173.49995,142.9886 152.51721,142.85788 Z';
+
 
 export class VocalTractGestures {
 
@@ -148,7 +152,8 @@ export class VocalTractGestures {
     action.addPath(this.vocalTractPaths['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
     action.addPath(this.vocalTractPaths['teeth-lower']);
     action.addPath(this.vocalTractPaths['gum-lower']);
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
+    //action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(9,32));
     gesture.setAction(action);
     this.jaw.appendGesture(gesture);
   }
@@ -165,6 +170,17 @@ export class VocalTractGestures {
     this.addJawOpen(start, end, howWide);
     action = this.jaw.gestures[this.jaw.gestures.length - 1].action;
     action.setEasing(new Easings.Out());
+  }
+
+
+  addVowelHeed(start: number, end: number) {
+    let heed = Geometry.SvgPath.fromSvg(HEED_SVG);
+    let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,9), Geometry.seq(32,50)));
+    action.canHaveParent = false;
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,9), Geometry.seq(32,50));
+    let gesture: Gesture = new Gesture(start, end);
+    gesture.setAction(action);
+    this.tongue.appendGesture(gesture);
   }
 
 }
