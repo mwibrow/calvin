@@ -4,6 +4,7 @@ import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures}  from './animation'
 import { VocalTractGestures} from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
+import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 @Component({
   selector: 'vocal-tract-animation',
   templateUrl: 'vocal-tract-animation.html',
@@ -31,7 +32,8 @@ export class VocalTractAnimationComponent {
   jawRotationCenter: Geometry.Point;
   velumRotationCenter: Geometry.Point;
 
-  constructor(public elementRef: ElementRef, public audio: AudioProvider) {
+  constructor(public elementRef: ElementRef, public audio: AudioProvider,
+    public animationFrameRequest: AnimationFrameRequestProvider) {
 
     this.vocalTract = {};
 
@@ -90,18 +92,19 @@ export class VocalTractAnimationComponent {
     this.rangeChange({value: this.animationRange.value});
     let win: any = window;
     let that = this;
-    window.requestAnimationFrame((ev) => this._playAnimation(ev));
+    this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     if (this.uri) {
       this.player.playUri(this.uri);
     }
   }
 
-  _playAnimation(event) {
+  _playAnimation(event:any) {
     this.frame += this.speed;
+    console.log(this.frame)
     this.animationRange.setValue(this.frame);
     this.rangeChange({value: this.animationRange.value});
     if (this.frame < this.range.max) {
-      window.requestAnimationFrame((ev) => this._playAnimation(ev));
+      this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     } else {
       this.frame = this.range.max;
       this.animationRange.setValue(this.frame);

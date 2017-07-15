@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
+import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SplashPage } from '../pages/splash/splash';
 import { SelectTalkerPage } from '../pages/select-talker/select-talker';
@@ -29,11 +29,12 @@ import { AudioProvider } from '../providers/audio/audio';
 import { NarratorComponent } from '../components/narrator/narrator';
 import { NarratorInsetDirective } from '../directives/narrator-inset/narrator-inset';
 import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from '../components/keyword/keyword';
+import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 
 
 @NgModule({
   declarations: [
-    MyApp,
+    CalvinApp,
     HomePage,
     IntroductionPage,
     VowelTrainerPage,
@@ -57,11 +58,11 @@ import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from 
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(CalvinApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    CalvinApp,
     HomePage,
     IntroductionPage,
     VowelTrainerPage,
@@ -76,7 +77,8 @@ import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from 
     AppStateProvider,
     AppDataProvider,
     HttpModule,
-    AudioProvider
+    AudioProvider,
+    AnimationFrameRequestProvider
   ]
 })
 export class AppModule {}
