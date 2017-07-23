@@ -153,7 +153,7 @@ export class VocalTractGestures {
     action.addPath(this.vocalTractPaths['teeth-lower']);
     action.addPath(this.vocalTractPaths['gum-lower']);
     //action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(9,32));
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(13,32));
     gesture.setAction(action);
     this.jaw.appendGesture(gesture);
   }
@@ -174,9 +174,11 @@ export class VocalTractGestures {
 
 
   addVowelNeutral(start: number, end: number) {
-    let action = new Actions.MorphAction(this.vocalTractPaths['tongue'].getPoints(Geometry.seq(0,9), Geometry.seq(32,50)).copy());
+    let action = new Actions.MorphAction(this.vocalTractPaths['tongue-neutral'].getPoints(Geometry.seq(0,12), Geometry.seq(32,50)).copy());
     action.canHaveParent = false;
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,9), Geometry.seq(32,50));
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
+    action.setEasing(new Easings.Function(function(t){ return 0; }));
+
     let gesture: Gesture = new Gesture(start, end);
     gesture.setAction(action);
     this.tongue.appendGesture(gesture);
@@ -185,9 +187,9 @@ export class VocalTractGestures {
   addVowelHeed(start: number, end: number) {
     let heed: any;
     heed = this.vocalTractPaths['tongue-whod'];//Geometry.SvgPath.fromSvg(HEED_SVG);
-    let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,9), Geometry.seq(32,50)));
+    let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,12), Geometry.seq(32,50)));
     action.canHaveParent = false;
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,9), Geometry.seq(32,50));
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
     let gesture: Gesture = new Gesture(start, end);
     gesture.setAction(action);
     this.tongue.appendGesture(gesture);

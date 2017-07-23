@@ -67,6 +67,7 @@ export class VocalTractAnimationComponent {
       if (svgPath.getAttribute('svg-label').startsWith('tongue-')) {
         svgPath.setAttribute('style', 'opacity:0;');
       }
+
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
     }
@@ -83,7 +84,7 @@ export class VocalTractAnimationComponent {
     this.gestures.addVelumLower(80, 100);
     this.gestures.addVocalFoldVibration(20, 80);
     this.gestures.addVowelNeutral(0, 20);
-    this.gestures.addVowelHeed(20, 80);
+    this.gestures.addVowelHeed(21, 80);
   }
 
   clickOverlay(event) {

@@ -7,8 +7,9 @@ vocal-tract-animation {
 
 .svg-container {
      width: 100% !important;
-     background-color: lighten(color($md-palette, md-blue-grey), 40%);
+     background-color: color($md-palette, md-light-blue);
      position: relative;
+     border-radius: 5%;
 }
 
 svg {
