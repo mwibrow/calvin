@@ -60,7 +60,9 @@ export class VocalTractAnimationComponent {
 
     svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
     for (i = 0; i < svgPaths.length; i++) {
+
       svgPath = svgPaths[i];
+       console.log(svgPath.getAttribute('svg-label'))
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
     }
