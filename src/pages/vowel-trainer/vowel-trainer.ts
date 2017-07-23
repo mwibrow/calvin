@@ -45,7 +45,7 @@ export class VowelTrainerPage {
       private audioProvider: AudioProvider,
       public ngZone: NgZone) {
 
-    this.viewState = ViewState.Audio;
+    this.viewState = ViewState.Animation;
     this.wordIndex = 0;
     this.talker = appData.talker;
     this.keywordExamples = appData.keywordExamples;

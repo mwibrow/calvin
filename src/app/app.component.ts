@@ -11,9 +11,8 @@ import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class CalvinApp {
   rootPage:any = VowelTrainerPage;
-
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -23,4 +22,5 @@ export class MyApp {
     });
   }
 }
+
 

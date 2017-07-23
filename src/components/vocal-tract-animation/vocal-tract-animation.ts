@@ -4,6 +4,9 @@ import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures}  from './animation'
 import { VocalTractGestures} from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
+import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
+
+
 @Component({
   selector: 'vocal-tract-animation',
   templateUrl: 'vocal-tract-animation.html',
@@ -31,7 +34,8 @@ export class VocalTractAnimationComponent {
   jawRotationCenter: Geometry.Point;
   velumRotationCenter: Geometry.Point;
 
-  constructor(public elementRef: ElementRef, public audio: AudioProvider) {
+  constructor(public elementRef: ElementRef, public audio: AudioProvider,
+    public animationFrameRequest: AnimationFrameRequestProvider) {
 
     this.vocalTract = {};
 
@@ -52,11 +56,17 @@ export class VocalTractAnimationComponent {
 
 
   ngOnInit() {
-    let i: number, svgPath: any, svgPaths: Array<any>;
+    let i: number, svgPath: any, svgPaths: Array<any>, name: string;
 
     svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
     for (i = 0; i < svgPaths.length; i++) {
+
       svgPath = svgPaths[i];
+      svgPath.setAttribute('style', '');
+
+      if (svgPath.getAttribute('svg-label').startsWith('tongue-')) {
+        svgPath.setAttribute('style', 'opacity:0;');
+      }
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
     }
@@ -72,6 +82,8 @@ export class VocalTractAnimationComponent {
     this.gestures.addVelumRaised(21, 79);
     this.gestures.addVelumLower(80, 100);
     this.gestures.addVocalFoldVibration(20, 80);
+    this.gestures.addVowelNeutral(0, 20);
+    this.gestures.addVowelHeed(20, 80);
   }
 
   clickOverlay(event) {
@@ -90,18 +102,18 @@ export class VocalTractAnimationComponent {
     this.rangeChange({value: this.animationRange.value});
     let win: any = window;
     let that = this;
-    window.requestAnimationFrame((ev) => this._playAnimation(ev));
+    this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     if (this.uri) {
       this.player.playUri(this.uri);
     }
   }
 
-  _playAnimation(event) {
+  _playAnimation(event:any) {
     this.frame += this.speed;
     this.animationRange.setValue(this.frame);
     this.rangeChange({value: this.animationRange.value});
     if (this.frame < this.range.max) {
-      window.requestAnimationFrame((ev) => this._playAnimation(ev));
+      this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     } else {
       this.frame = this.range.max;
       this.animationRange.setValue(this.frame);
