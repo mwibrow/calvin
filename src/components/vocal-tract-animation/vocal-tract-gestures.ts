@@ -183,7 +183,8 @@ export class VocalTractGestures {
   }
 
   addVowelHeed(start: number, end: number) {
-    let heed = Geometry.SvgPath.fromSvg(HEED_SVG);
+    let heed: any;
+    heed = this.vocalTractPaths['tongue-whod'];//Geometry.SvgPath.fromSvg(HEED_SVG);
     let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,9), Geometry.seq(32,50)));
     action.canHaveParent = false;
     action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,9), Geometry.seq(32,50));

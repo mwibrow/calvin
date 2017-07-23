@@ -56,13 +56,17 @@ export class VocalTractAnimationComponent {
 
 
   ngOnInit() {
-    let i: number, svgPath: any, svgPaths: Array<any>;
+    let i: number, svgPath: any, svgPaths: Array<any>, name: string;
 
     svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
     for (i = 0; i < svgPaths.length; i++) {
 
       svgPath = svgPaths[i];
-       console.log(svgPath.getAttribute('svg-label'))
+      svgPath.setAttribute('style', '');
+
+      if (svgPath.getAttribute('svg-label').startsWith('tongue-')) {
+        svgPath.setAttribute('style', 'opacity:0;');
+      }
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
     }
