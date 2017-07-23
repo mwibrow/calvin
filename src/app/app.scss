@@ -115,3 +115,10 @@ body, .font-normal {
 {
     fill: #cfd8dc;
 }
+
+
+@media screen and (min-height: 768px) {
+    .content-container {
+            width: 512px !important;
+    }
+}
