@@ -79,9 +79,9 @@ export class VocalTractAnimationComponent {
     let gesture: Gesture;
     this.gestures = new VocalTractGestures(this.vocalTract);
 
-    this.gestures.addJawOpen(0, 25, 0.25);
-    this.gestures.addJawOpened(26, 75, 0.25);
-    this.gestures.addJawClose(76, 100, 0.25);
+    // this.gestures.addJawOpen(0, 25, 0.25);
+    // this.gestures.addJawOpened(26, 75, 0.25);
+    // this.gestures.addJawClose(76, 100, 0.25);
     this.gestures.addLipRounding(0, 25);
     this.gestures.addLipRounded(26, 75);
     this.gestures.addLipUnrounding(76, 100);

@@ -24,6 +24,7 @@ export class Point {
       return new Point(this.x * factor, this.y * factor);
     }
   }
+
   translate(point: Point, inPlace=true) {
     if (inPlace) {
       this.x += point.x;
@@ -400,7 +401,18 @@ export function seq(from: number,to?: number) :Array<number> {
 }
 
 
-
+export function sequence(...indices: Array<number>[]) {
+    let i: number, j: number, numbers: Array<number>;
+    numbers = []
+    if (indices.length) {
+        for (i = 0; i < indices.length; i ++ ) {
+            for (j = 0; j < indices[i].length; j ++) {
+                numbers.push(indices[i][j]);
+            }
+        }
+    }
+    return sequence;
+}
 
 
 }

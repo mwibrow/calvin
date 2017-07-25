@@ -219,7 +219,8 @@ export class VocalTractGestures {
       this.getTongueMovementPoints(endPath)
     );
      action.canHaveParent = false;
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
+    action.addPoints(this.vocalTractPaths['tongue'],
+      this.getTongueMovementPoints(this.vocalTractPaths['tongue']));
     let gesture: Gesture = new Gesture(start, end);
     gesture.setAction(action);
     this.tongue.appendGesture(gesture);
