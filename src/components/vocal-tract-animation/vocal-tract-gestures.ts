@@ -145,10 +145,20 @@ export class VocalTractGestures {
     action.setEasing(new Easings.Reverse(action.easing));
   }
 
+  addLipRounded(start: number, end: number) {
+    let action: Actions.BaseAction;
+    this.addLipRounding(start, end);
+    action = this.lipUpper.gestures[this.lipUpper.gestures.length - 1].action;
+    action.setEasing(new Easings.Out());
+    action = this.lipLower.gestures[this.lipLower.gestures.length - 1].action;
+    action.setEasing(new Easings.Out());
+  }
+
   addJawOpen(start: number, end: number, howWide=1) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
-    action = new Actions.TranslateAndRotateAroundAction(new Geometry.Vector(-8, 4), -8, jawRotationCenter);
+    action = new Actions.TranslateAndRotateAroundAction(
+      new Geometry.Vector(-8 * howWide, 4 * howWide), -8 * howWide, jawRotationCenter);
     action.addPath(this.vocalTractPaths['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
     action.addPath(this.vocalTractPaths['teeth-lower']);
     action.addPath(this.vocalTractPaths['gum-lower']);
@@ -184,15 +194,39 @@ export class VocalTractGestures {
     this.tongue.appendGesture(gesture);
   }
 
-  addVowelHeed(start: number, end: number) {
+  addVowelHeed(start: number, end: number, reverse:boolean=false) {
     let heed: any;
     heed = this.vocalTractPaths['tongue-whod'];//Geometry.SvgPath.fromSvg(HEED_SVG);
     let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,12), Geometry.seq(32,50)));
     action.canHaveParent = false;
     action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
+    if (reverse) {
+      action.setEasing(new Easings.Reverse(action.easing));
+    }
     let gesture: Gesture = new Gesture(start, end);
     gesture.setAction(action);
     this.tongue.appendGesture(gesture);
+  }
+
+  addTongueMovement(start: number, end: number, startPosition: string, endPosition?: string) {
+
+    endPosition = endPosition || startPosition;
+    let startPath = this.vocalTractPaths[`tongue-${startPosition}`];
+    let endPath = this.vocalTractPaths[`tongue-${endPosition}`];
+
+    let action = new Actions.MorphBetweenAction(
+      this.getTongueMovementPoints(startPath),
+      this.getTongueMovementPoints(endPath)
+    );
+     action.canHaveParent = false;
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
+    let gesture: Gesture = new Gesture(start, end);
+    gesture.setAction(action);
+    this.tongue.appendGesture(gesture);
+  }
+
+  getTongueMovementPoints(path: Geometry.SvgPath) {
+    return path.getPoints(Geometry.seq(0,12), Geometry.seq(32,50));
   }
 
 }

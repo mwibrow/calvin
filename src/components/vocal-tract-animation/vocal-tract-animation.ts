@@ -39,12 +39,12 @@ export class VocalTractAnimationComponent {
 
     this.vocalTract = {};
 
-    this.svg = this.elementRef.nativeElement.querySelector('svg')
+
     this.range = {
       min: "0",
       max: "100"
     }
-    this.speed = 5;
+    this.speed = 2;
     this.player = audio.getAudioPlayer();
     this.player.initialise();
   }
@@ -57,7 +57,7 @@ export class VocalTractAnimationComponent {
 
   ngOnInit() {
     let i: number, svgPath: any, svgPaths: Array<any>, name: string;
-
+     this.svg = this.elementRef.nativeElement.querySelector('svg')
     svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
     for (i = 0; i < svgPaths.length; i++) {
 
@@ -70,21 +70,29 @@ export class VocalTractAnimationComponent {
 
       this.vocalTract[svgPath.getAttribute('svg-label')] =
         Geometry.SvgPath.fromPathNode(svgPath);
+
+      this.vocalTract[svgPath.getAttribute('svg-label')].parentSvg = this.svg;
+
+      this.vocalTract['tongue'].showPathConstruction = true;
     }
 
     let gesture: Gesture;
     this.gestures = new VocalTractGestures(this.vocalTract);
 
-    this.gestures.addJawOpen(0, 50);
-    this.gestures.addJawClose(51, 100);
-    this.gestures.addLipRounding(0, 50);
-    this.gestures.addLipUnrounding(51, 100);
+    this.gestures.addJawOpen(0, 25, 0.25);
+    this.gestures.addJawOpened(26, 75, 0.25);
+    this.gestures.addJawClose(76, 100, 0.25);
+    this.gestures.addLipRounding(0, 25);
+    this.gestures.addLipRounded(26, 75);
+    this.gestures.addLipUnrounding(76, 100);
     this.gestures.addVelumRaise(0, 20);
     this.gestures.addVelumRaised(21, 79);
     this.gestures.addVelumLower(80, 100);
     this.gestures.addVocalFoldVibration(20, 80);
-    this.gestures.addVowelNeutral(0, 20);
-    this.gestures.addVowelHeed(21, 80);
+    this.gestures.addTongueMovement(0, 20, 'neutral');
+    this.gestures.addTongueMovement(21, 50, 'neutral', 'whod');
+    this.gestures.addTongueMovement(21, 50, 'whod');
+    this.gestures.addTongueMovement(81, 100, 'whod', 'neutral');
   }
 
   clickOverlay(event) {

@@ -150,19 +150,25 @@ ion-icon {
 
 }
 
+
+.vocal-tract-animation {
+    margin: auto;
+    max-width: 320px !important;
+}
+
 @media only screen
     and (min-width: 828px)
     and (min-height: 768px)
 {
 
 .content-container {
-    width: 50%;
-    left: 25%;
+    width: 33%;
+    left: 33%;
 }
 
 .vocal-tract-animation {
     margin: auto;
-    max-width: 440px !important;
+    max-width: 320px !important;
 }
 
 

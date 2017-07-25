@@ -212,6 +212,35 @@ export class MorphAction extends BaseAction {
   }
 }
 
+export class MorphBetweenAction extends BaseAction {
+
+  constructor(private source: Geometry.Points, private target: Geometry.Points) {
+    super();
+  }
+
+  resetPoints() {
+    super.resetPoints();
+  }
+
+  act() {
+    let i: number, j: number;
+    let point: Geometry.Point;
+    this.resetPoints();
+    for (i = 0; i < this.points.length; i ++) {
+      for (j = 0; j < this.points[i].length(); j ++) {
+        point = this.actOn(this.source.get(j), this.target.get(j));
+        this.pathPoints[i].get(j).update(point);
+      }
+    }
+
+  }
+
+  actOn(source: Geometry.Point, target: Geometry.Point) {
+    return Geometry.Point.pointAtTime(this.t, source, target);
+  }
+
+}
+
 
 export class TranslateAndRotateAroundAction extends BaseAction {
 

@@ -348,15 +348,38 @@ class CurveToSegment extends PathSegment {
 export class SvgPath extends Path {
 
   domNode: any;
-
+  showPathConstruction: boolean;
+  parentSvg: any;
   constructor() {
     super();
     this.domNode = null;
+    this.showPathConstruction = false;
+    this.parentSvg = null;
   }
 
   update() {
     let d: string = this.toSvg();
     this.domNode.setAttribute('d', d);
+
+    if (this.showPathConstruction && this.parentSvg) {
+      this.drawPathConstruction()
+    }
+  }
+
+  drawPathConstruction() {
+
+    // let i: number, j: number, points: Point[], path: any;
+    // for (i = 0; i < this.segments.length; i ++) {
+    //   points = this.segments[i].getPoints()
+    //   for (j = 0; j < 1; j ++) {
+    //     path = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    //     path.setAttribute('cx', `${points[j].x}px`);
+    //     path.setAttribute('cy', `${points[j].y}px`);
+    //     path.setAttribute('r', '2');
+    //     path.setAttribute('fill', 'black');
+    //     this.parentSvg.appendChild(path);
+    //   }
+    // }
   }
 
   static fromPathNode(domNode: any): SvgPath {
