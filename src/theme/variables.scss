@@ -56,12 +56,27 @@ $colors: (
   inactive:  lighten(color($md-palette, md-grey), 5%)
 );
 
+$view-button-bg: color($md-palette, md-light-blue);
+$view-button-fg: color($md-palette, md-white);
 
+
+$navigate-button-bg: color($md-palette, md-red);
+$navigate-button-fg: color($md-palette, md-white);
 $keyword-button-bg: color($md-palette, md-orange);
 $keyword-button-fg: color($md-palette, md-white);
 $keyword-control-button-bg: color($md-palette, md-purple);
 $keyword-control-button-fg: color($md-palette, md-white);
 
+@mixin button-hover($bg, $fg) {
+    background-color: $bg;
+    & span {
+       color: $fg;
+    };
+    &:hover {
+        background-color: lighten($bg, 10) !important;
+        border-bottom: 0.5rem solid darken($bg, 10) !important;
+    }
+}
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

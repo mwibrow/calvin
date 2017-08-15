@@ -27,7 +27,7 @@
   <ion-row justify-content-center>
 
     <ion-col col-auto>
-        <button ion-button color="danger" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+        <button ion-button class="navigate-button" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
           <ion-icon name="arrow-round-back"></ion-icon>
         </button>
     </ion-col>
@@ -35,7 +35,7 @@
        <div class="keyword-display" [innerHtml]="formatWord()"></div>
     </ion-col>
     <ion-col col-auto>
-       <button ion-button color="danger" round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+       <button ion-button class="navigate-button" round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
           <ion-icon name="arrow-round-forward"></ion-icon>
         </button>
     </ion-col>
@@ -90,13 +90,13 @@
 <ion-footer padding>
   <ion-buttons text-center>
 
-       <button ion-button icon-only (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
+       <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
         <ion-icon name="headset"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
+      <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
         <ion-icon name="person"></ion-icon>
       </button>
-      <button ion-button icon-only  (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
+      <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
         <ion-icon name="list">
         </ion-icon>
       </button>

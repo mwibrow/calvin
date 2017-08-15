@@ -1,21 +1,16 @@
 keyword {
 
 .keyword-button {
-    padding: 0px;
-    background-color: $keyword-button-bg;
-    & span {
-       color: $keyword-button-fg;
-    }
+    @include button-hover($keyword-button-bg, $keyword-button-fg);
 }
+
 .keyword-control-button {
     border-radius: 50% !important;
-    background-color: $keyword-control-button-bg;
-    & span {
-       color: $keyword-control-button-fg;
-    }
+    @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
 }
 
 ion-icon[name='play'] {
     margin-left: 7.5%;
 }
+
 }

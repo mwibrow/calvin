@@ -1,18 +1,13 @@
 page-vowel-trainer {
 
+.navigate-button {
+    border-radius: 50%;
+    @include button-hover($navigate-button-bg, $navigate-button-fg);
+}
 
-// .vowel-example {
-//     font-size: 96px !important;
-//     text-align: center;
-//     color: #404060;
-//     display: inline-block;
-// }
-
-// .vowel-highlight {
-//     color: #e04040;
-//      display: inline-block;
-// }
-
+.view-button {
+    @include button-hover($view-button-bg, $view-button-fg);
+}
 
 @keyframes glow {
     0% {
