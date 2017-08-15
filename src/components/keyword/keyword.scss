@@ -2,12 +2,17 @@ keyword {
 
 .keyword-button {
     padding: 0px;
+    background-color: $keyword-button-bg;
+    & span {
+       color: $keyword-button-fg;
+    }
 }
-.control-button {
-    width: 48px !important;
-    height: 48px !important;
+.keyword-control-button {
     border-radius: 50% !important;
-
+    background-color: $keyword-control-button-bg;
+    & span {
+       color: $keyword-control-button-fg;
+    }
 }
 
 ion-icon[name='play'] {

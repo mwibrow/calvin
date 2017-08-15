@@ -4,12 +4,12 @@
 <ion-grid>
   <ion-row justify-content-center>
     <ion-col>
-      <button ion-button color="primary" full class="keyword-button" (click)="playKeyword()">
+      <button ion-button full class="keyword-button" (click)="playKeyword()">
         <ng-content></ng-content>
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button *ngIf="controls" color="secondary" ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
+      <button *ngIf="controls" class="keyword-control-button" ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
         <ion-icon *ngIf="!recording" name='mic'>
         </ion-icon>
         <ion-icon *ngIf="recording" name='square'>
@@ -17,7 +17,7 @@
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button *ngIf="controls" color="secondary" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
+      <button *ngIf="controls" class="keyword-control-button" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
         <ion-icon name='play'>
         </ion-icon>
       </button>

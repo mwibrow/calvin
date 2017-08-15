@@ -47,15 +47,20 @@ $md-palette: (
 );
 
 $colors: (
-  primary:   color($md-palette, md-orange),
+  primary:   color($md-palette, md-blue),
   secondary: color($md-palette, md-purple),
   danger:    color($md-palette, md-red),
   light:     darken(color($md-palette, md-white), 5%),
   dark:      lighten(color($md-palette, md-black), 5%),
   active:    darken(color($md-palette, md-blue), 5%),
-  inactive:  lighten(color($md-palette, md-grey), 5%),
+  inactive:  lighten(color($md-palette, md-grey), 5%)
 );
 
+
+$keyword-button-bg: color($md-palette, md-orange);
+$keyword-button-fg: color($md-palette, md-white);
+$keyword-control-button-bg: color($md-palette, md-purple);
+$keyword-control-button-fg: color($md-palette, md-white);
 
 // App iOS Variables
 // --------------------------------------------------
