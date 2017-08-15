@@ -12,7 +12,7 @@ import { KeywordComponent } from '../../components/keyword/keyword';
  * on Ionic pages and navigation.
  */
 
-declare var fs;
+
 
 enum ViewState {
   Audio,
@@ -53,13 +53,6 @@ export class VowelTrainerPage {
     this.keywordExamples = appData.keywordExamples;
     this.player = this.audioProvider.getAudioPlayer();
 
-    fs.lstat('results', (err, stats) => {
-      if (!stats.isDirectory()) {
-        fs.mkdir('results', 0o777, (err) => {
-          console.log(err)
-        });
-      }
-    });
   }
 
 

@@ -1,13 +1,12 @@
 <div svg-label="vocal-tract-animation" class="vocal-tract-animation">
+
+  <div class="wrapper">
   <div (click)="playAnimation()" #svgContainer class="svg-container">
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    version="1.1"
    id="svg2"
+   height="auto"
    viewBox="0 0 440 380">
   <g
      style="display:inline"
@@ -28,6 +27,7 @@
        id="gum-lower" />
     <path
       svg-label="larynx"
+      class="larynx"
        id="larynx"
        d="M 289.68076,346.49757 C 279.29857,346.4975 270.88113,348.89499 270.87802,351.85304 C 270.87735,354.81186 279.2959,357.21053 289.68076,357.21046 C 300.06486,357.21022 308.48221,354.81164 308.48154,351.85304 C 308.47843,348.8952 300.06219,346.49781 289.68076,346.49757 Z"
        style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.00000012;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
@@ -181,15 +181,12 @@
        style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
+
 </div>
 <div class="range-container">
-  <ion-grid  >
-    <ion-row justify-content-center>
-      <ion-col>
+
       <ion-range #animationRange min="{{range.min}}" max="{{range.max}}" value="0" (ionChange)="rangeChange($event)"></ion-range>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</div>
+    </div>
+  </div>
 </div>
 

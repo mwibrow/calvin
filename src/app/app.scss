@@ -34,7 +34,6 @@ button {
   bottom: 0 !important;
   height: 100% !important;
 overflow: visible !important;
-background-color: red;
 }
 
 // @media only screen
@@ -100,61 +99,10 @@ background-color: red;
     fill: #ffffff;
 }
 
-.vocal-tract-head, .vocal-tract-laryngeal-wall,
-.vocal-tract-lip-lower, .vocal-tract-lip-upper
-{
-    fill: #607d8b;
-}
-
-.vocal-tract-tongue, .vocal-tract-pharynx,
-.vocal-tract-velum
-{
-    fill: #263238;
-}
-
-.vocal-tract-gum-lower, .vocal-tract-alveolar-ridge
-{
-    fill: #9e9e9e;
-}
-
-.vocal-tract-teeth-upper,
-.vocal-tract-teeth-lower
-{
-    fill: #cfd8dc;
-}
-
-@media only screen
-    and (min-width: 512px)
-    and (min-height: 512px) {
-
-.content-container {
-    width: 50%;
-    left: 25%;
-}
 
 
-* {
-    font-size: 1rem !important;
-}
-
-button span, .keyword-display{
-     font-size: 2rem !important;
-}
-button[icon-only] {
-     font-size: 4rem !important;
-}
-
-ion-icon {
-    font-size: 2rem !important;
-}
-
-}
 
 
-.vocal-tract-animation {
-    margin: auto;
-    max-width: 320px !important;
-}
 
 @media only screen
     and (min-width: 828px)
@@ -298,3 +246,6 @@ ion-row {
 button {
      height: 4rem !important;
 }
+
+
+$vocal-tract-animation-height: 65vh;

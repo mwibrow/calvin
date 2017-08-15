@@ -1,20 +1,26 @@
 vocal-tract-animation {
 
 .vocal-tract-animation {
-
-
+   //margin: 1em auto;
+   //width: 60vh;
 }
 
+.wrapper {
+    display: inline-block;
+}
 .svg-container {
-     width: 100% !important;
-     background-color: color($md-palette, md-light-blue);
-     position: relative;
-     border-radius: 5%;
+
+
+    // height: 100%;
+    //display: inline-block;
+    //   margin: auto;
+    background-color: lighten(color($md-palette, md-light-blue), 40);
+    //  position: relative;
+    border-radius: 5%;
 }
 
 svg {
-    width: 100%;
-    height: 100%;
+height: 40rem;
 }
 
 circle {
@@ -29,18 +35,21 @@ ion-range {
 .head, .laryngeal-wall,
 .lip,
 {
-    fill: color($md-palette, md-blue-grey);
+    fill: lighten(color($md-palette, md-blue-grey), 0%);
 }
 
-.tongue, .larynx,
+.larynx {
+    fill: darken(color($md-palette, md-pink), 0%);
+}
 .velum
 {
-    fill: darken(color($md-palette, md-blue-grey), 25%);
+    fill: darken(color($md-palette, md-pink), 0%);
 }
 
 .tongue
 {
-    stroke: darken(color($md-palette, md-blue-grey), 25%);
+    fill: darken(color($md-palette, md-red), 0%);
+    stroke: darken(color($md-palette, md-red), 0%);
     stroke-width: 2px;
 }
 
