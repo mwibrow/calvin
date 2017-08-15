@@ -60,12 +60,16 @@ $view-button-bg: color($md-palette, md-light-blue);
 $view-button-fg: color($md-palette, md-white);
 
 
-$navigate-button-bg: color($md-palette, md-red);
+$navigate-button-bg: color($md-palette, md-light-green);
 $navigate-button-fg: color($md-palette, md-white);
 $keyword-button-bg: color($md-palette, md-orange);
 $keyword-button-fg: color($md-palette, md-white);
 $keyword-control-button-bg: color($md-palette, md-purple);
 $keyword-control-button-fg: color($md-palette, md-white);
+
+$keyword-label-fg: color($md-palette, md-white);
+$keyword-label-highlight-fg: color($md-palette, md-red);
+$keyword-label-lowlight-fg: color($md-palette, md-white);
 
 @mixin button-hover($bg, $fg, $bd:10, $fd:10) {
     background-color: $bg;

@@ -1,5 +1,15 @@
 page-vowel-trainer {
 
+
+.highlight {
+    color: $keyword-label-highlight-fg !important;
+}
+
+.keyword-display {
+    color: $keyword-label-fg;
+}
+
+
 .navigate-button {
     border-radius: 50%;
     @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
@@ -45,7 +55,7 @@ page-vowel-trainer {
     justify-content: center !important;
     text-align: center !important;
     margin: auto !important;
-    width: 768px !important;
+    width: $vowel-trainer-content-width !important;
 }
 
 }

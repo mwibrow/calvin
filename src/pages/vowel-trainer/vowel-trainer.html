@@ -35,7 +35,7 @@
        <div class="keyword-display" [innerHtml]="formatWord()"></div>
     </ion-col>
     <ion-col col-auto>
-       <button ion-button class="navigate-button" round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+       <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
           <ion-icon name="arrow-round-forward"></ion-icon>
         </button>
     </ion-col>
