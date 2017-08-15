@@ -47,13 +47,13 @@
       <ion-grid [hidden]="!isViewState(ViewState.Audio)">
         <ion-row text-center>
           <ion-col>
-            <keyword  keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>{{getKeyword()}}</keyword>
+            <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
           </ion-col>
         </ion-row>
         <ion-row text-center>
           <ion-col text-center>
             <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
-              <span style="margin:0px !important; padding: 0px !important; top: 0% !important;" [innerHtml]="formatWord(true)"></span>
+              <span [innerHtml]="formatWord(true)"></span>
             </keyword>
           </ion-col>
         </ion-row>

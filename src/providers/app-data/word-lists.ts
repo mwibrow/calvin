@@ -313,7 +313,7 @@ export const WORDS: any = {
 			},
       earth: {
 				display: 'earth',
-				highlight: 'e<ar>th',
+				highlight: '<ear>th',
         vowel: 'heard'
 			},
       stairs: {

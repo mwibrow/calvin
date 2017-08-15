@@ -38,7 +38,9 @@ export class KeywordComponent {
 
   setUri(uri: string) {
     this.uri = uri;
+    this.canPlay = false;
   }
+
   setControls(controls: boolean) {
     this.controls = controls;
     if (this.controls) {

@@ -8,20 +8,20 @@ vocal-tract-animation {
 .wrapper {
     display: inline-block;
 }
+
 .svg-container {
-
-
-    // height: 100%;
-    //display: inline-block;
-    //   margin: auto;
     background-color: lighten(color($md-palette, md-light-blue), 40);
-    //  position: relative;
     border-radius: 5%;
 }
 
+
 svg {
-height: 40rem;
+    height: 4rem;
+    @media only screen and (min-height: 41rem) {
+        height: 40rem;
+    }
 }
+
 
 circle {
     fill: red;

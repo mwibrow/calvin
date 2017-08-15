@@ -44,7 +44,7 @@ export class VocalTractAnimationComponent {
       min: "0",
       max: "100"
     }
-    this.speed = 1;
+    this.speed = 2;
     this.player = audio.getAudioPlayer();
     this.player.initialise();
   }
