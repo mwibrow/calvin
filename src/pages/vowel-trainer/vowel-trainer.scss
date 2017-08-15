@@ -2,110 +2,50 @@ page-vowel-trainer {
 
 .navigate-button {
     border-radius: 50%;
-    @include button-hover($navigate-button-bg, $navigate-button-fg);
+    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transition: opacity 1s;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transition: opacity 1s;
 }
 
 .view-button {
-    @include button-hover($view-button-bg, $view-button-fg);
-}
-
-@keyframes glow {
-    0% {
-        text-shadow: 0px 0px 8px color($colors, active);
+    background-color: darken($view-button-bg, 10);
+    span {
+        color: darken($view-button-bg, 20);
+    };
+    border-bottom: 0.5rem solid darken($view-button-bg, 20);
+    &:hover {
+        background-color: lighten($view-button-bg, 10);
+        span {
+            color: $view-button-fg;
+        }
+        border-bottom: 0.25rem solid darken($view-button-bg, 10);
     }
-    50% {
-        text-shadow: 0px 0px 32px color($colors, active);
-    }
-    100% {
-        text-shadow: 0px 0px 8px color($colors, active);
-    }
+    &:disabled {
+        opacity: 1;
+        background-color: $view-button-bg;
+        span {
+            color: $view-button-fg;
+        }
+        border-bottom: 0.5rem solid darken($view-button-bg, 10);
+    };
 }
 
 
-.container {
-    position: relative;
-}
-
-.contained {
-    position: absolute;
-}
 
 .content-container {
+    display: flex !important;
+    justify-content: center !important;
     text-align: center !important;
     margin: auto !important;
     width: 768px !important;
 }
 
-.inactive {
-    color: color($colors, inactive);
-}
-
-.active {
-     color: color($colors, active);
-     animation: glow 2s infinite;
-}
-
-
-// .icon-as-image {
-//    font-size: 320px;
-// }
-.centred {
-  text-align: center;
-  width: 100% !important;
-
-}
-
-.lowlight {
-    color: color($colors, inactive);
-     display: inline-block;
-}
-
-.highlight {
-    color: color($colors, danger);
-     display: inline-block;
-}
-
-.button {
-    .lowlight {
-    color: white;
-    opacity: 0.333;
-     display: inline-block;
-}
-
-.highlight {
-    color: white;
-    opacity: 1;
-     display: inline-block;
-}
-}
-
-// .button-container {
-//     top: 25%;
-// }
-
-// .forward-button-container {
-//     right: 0%;
-// }
-
-
-.narrator-fab {
-    position: absolute;
-    left: 8px !important;
-    bottom: 8px !important;
-}
-
-
-// .example-button, .keyword-button {
-//     margin: auto;
-//     font-size: 48px !important;
-//     width: 50% !important;
-//     height: 72px !important;
-//     text-transform: none !important;
-// }
-
-// .keyword-display {
-//     display: inline-block;
-//     font-size: $button-md-large-font-size;
-//     transform: translatey(0.4rem);
-// }
 }

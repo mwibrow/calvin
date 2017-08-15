@@ -5,12 +5,24 @@ keyword {
 }
 
 .keyword-control-button {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
     border-radius: 50% !important;
     @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
 }
 
 ion-icon[name='play'] {
     margin-left: 7.5%;
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transition: opacity 1s;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transition: opacity 1s;
 }
 
 }

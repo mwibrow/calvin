@@ -27,7 +27,7 @@
   <ion-row justify-content-center>
 
     <ion-col col-auto>
-        <button ion-button class="navigate-button" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+        <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
           <ion-icon name="arrow-round-back"></ion-icon>
         </button>
     </ion-col>
@@ -43,7 +43,7 @@
   </ion-row>
   <ion-row justify-content-center>
     <ion-col>
-
+      <div class="keyword-container">
       <ion-grid [hidden]="!isViewState(ViewState.Audio)">
         <ion-row text-center>
           <ion-col>
@@ -58,6 +58,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
+    </div>
 
       <ion-grid [hidden]="!isViewState(ViewState.Animation)">
         <ion-row justify-content-center>
@@ -90,7 +91,8 @@
 <ion-footer padding>
   <ion-buttons text-center>
 
-       <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
+       <button ion-button icon-only class="view-button"
+         (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
         <ion-icon name="headset"></ion-icon>
       </button>
       <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">

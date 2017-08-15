@@ -9,7 +9,7 @@
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button *ngIf="controls" class="keyword-control-button" ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
+      <button *ngIf="controls" [class]="canRecord ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out' " ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
         <ion-icon *ngIf="!recording" name='mic'>
         </ion-icon>
         <ion-icon *ngIf="recording" name='square'>
@@ -17,7 +17,7 @@
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button *ngIf="controls" class="keyword-control-button" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
+      <button *ngIf="controls"  [class]="canPlay ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out'" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
         <ion-icon name='play'>
         </ion-icon>
       </button>

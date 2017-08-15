@@ -67,14 +67,18 @@ $keyword-button-fg: color($md-palette, md-white);
 $keyword-control-button-bg: color($md-palette, md-purple);
 $keyword-control-button-fg: color($md-palette, md-white);
 
-@mixin button-hover($bg, $fg) {
+@mixin button-hover($bg, $fg, $bd:10, $fd:10) {
     background-color: $bg;
+    border-bottom: 0.5rem solid darken($bg, $bd) !important;
     & span {
        color: $fg;
     };
+    &:disabled {
+       opacity: 0.0;
+    }
     &:hover {
-        background-color: lighten($bg, 10) !important;
-        border-bottom: 0.5rem solid darken($bg, 10) !important;
+        background-color: lighten($bg, $fd) !important;
+        border-bottom: 0.25rem solid darken($bg, $bd) !important;
     }
 }
 // App iOS Variables
