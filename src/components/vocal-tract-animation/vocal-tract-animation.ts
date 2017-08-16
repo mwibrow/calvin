@@ -1,8 +1,8 @@
-import { Component, ElementRef, ViewChild} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
-import { Easings, Actions, Gesture, Gestures}  from './animation'
-import { VocalTractGestures} from './vocal-tract-gestures';
+import { Easings, Actions, Gesture, Gestures } from './animation'
+import { VocalTractGestures } from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 
@@ -10,7 +10,7 @@ import { AnimationFrameRequestProvider } from '../../providers/animation-frame-r
 @Component({
   selector: 'vocal-tract-animation',
   templateUrl: 'vocal-tract-animation.html',
-  providers: [ AudioProvider ]
+  providers: [AudioProvider]
 })
 export class VocalTractAnimationComponent {
 
@@ -49,7 +49,7 @@ export class VocalTractAnimationComponent {
     this.player.initialise();
   }
 
-  setAnimation(animation: string, uri?:string) {
+  setAnimation(animation: string, uri?: string) {
     this.animation = animation;
     this.uri = uri;
   }
@@ -57,7 +57,7 @@ export class VocalTractAnimationComponent {
 
   ngOnInit() {
     let i: number, svgPath: any, svgPaths: Array<any>, name: string;
-     this.svg = this.elementRef.nativeElement.querySelector('svg')
+    this.svg = this.elementRef.nativeElement.querySelector('svg')
     svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
     for (i = 0; i < svgPaths.length; i++) {
 
@@ -73,26 +73,32 @@ export class VocalTractAnimationComponent {
 
       this.vocalTract[svgPath.getAttribute('svg-label')].parentSvg = this.svg;
 
-      this.vocalTract['tongue'].showPathConstruction = true;
+      //this.vocalTract['tongue'].showPathConstruction = true;
     }
+
+
 
     let gesture: Gesture;
     this.gestures = new VocalTractGestures(this.vocalTract);
+    console.log(this.vocalTract)
+
+    this.vocalTract['tongue'].segments = this.gestures.morph(this.vocalTract['tongue-heed'], this.vocalTract['tongue-whod'], 0.0).segments;
+    this.vocalTract['tongue'].update()
 
     // this.gestures.addJawOpen(0, 25, 0.25);
     // this.gestures.addJawOpened(26, 75, 0.25);
     // this.gestures.addJawClose(76, 100, 0.25);
-    this.gestures.addLipRounding(0, 25);
-    this.gestures.addLipRounded(26, 75);
-    this.gestures.addLipUnrounding(76, 100);
-    this.gestures.addVelumRaise(0, 20);
-    this.gestures.addVelumRaised(21, 79);
-    this.gestures.addVelumLower(80, 100);
-    this.gestures.addVocalFoldVibration(20, 80);
-    this.gestures.addTongueMovement(0, 20, 'neutral');
-    this.gestures.addTongueMovement(21, 50, 'neutral', 'whod');
-    this.gestures.addTongueMovement(21, 50, 'whod');
-    this.gestures.addTongueMovement(81, 100, 'whod', 'neutral');
+    // this.gestures.addLipRounding(0, 25);
+    // this.gestures.addLipRounded(26, 75);
+    // this.gestures.addLipUnrounding(76, 100);
+    // this.gestures.addVelumRaise(0, 20);
+    // this.gestures.addVelumRaised(21, 79);
+    // this.gestures.addVelumLower(80, 100);
+    // this.gestures.addVocalFoldVibration(20, 80);
+    // this.gestures.addTongueMovement(0, 20, 'neutral');
+    // this.gestures.addTongueMovement(21, 50, 'neutral', 'whod');
+    // this.gestures.addTongueMovement(21, 50, 'whod');
+    // this.gestures.addTongueMovement(81, 100, 'whod', 'neutral');
   }
 
   clickOverlay(event) {
@@ -108,7 +114,7 @@ export class VocalTractAnimationComponent {
   playAnimation() {
     this.frame = 0;
     this.animationRange.setValue(0);
-    this.rangeChange({value: this.animationRange.value});
+    this.rangeChange({ value: this.animationRange.value });
     let win: any = window;
     let that = this;
     this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
@@ -117,16 +123,16 @@ export class VocalTractAnimationComponent {
     }
   }
 
-  _playAnimation(event:any) {
+  _playAnimation(event: any) {
     this.frame += this.speed;
     this.animationRange.setValue(this.frame);
-    this.rangeChange({value: this.animationRange.value});
+    this.rangeChange({ value: this.animationRange.value });
     if (this.frame < this.range.max) {
       this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     } else {
       this.frame = this.range.max;
       this.animationRange.setValue(this.frame);
-      this.rangeChange({value: this.animationRange.value});
+      this.rangeChange({ value: this.animationRange.value });
     }
   }
 

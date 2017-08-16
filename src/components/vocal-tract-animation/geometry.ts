@@ -172,6 +172,14 @@ class Path {
     this.segments = new Array<PathSegment>();
   }
 
+  copy(): Path {
+    let path: Path = new Path();
+    for (let i = 0; i < this.segments.length; i++) {
+      path.segments.push(this.segments[i].copy())
+    }
+    return path;
+  }
+
   append(segment: PathSegment) {
     let segmentCount: number = this.segments.length;
     if (segmentCount > 0) {
@@ -356,6 +364,16 @@ export class SvgPath extends Path {
     this.domNode = null;
     this.showPathConstruction = false;
     this.parentSvg = null;
+  }
+
+  copySegments(): SvgPath {
+    let path: SvgPath = new SvgPath();
+    for (let i = 0; i < this.segments.length; i++) {
+      path.segments.push(this.segments[i].copy())
+    }
+    path.domNode = null;
+    path.parentSvg = null;
+    return path;
   }
 
   update() {
