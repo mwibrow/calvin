@@ -291,16 +291,16 @@ class PathSegment {
     let pathSegment: PathSegment;
     switch (this.command) {
       case 'M':
-        pathSegment = new MoveToSegment(this.from, this.to);
+        pathSegment = new MoveToSegment(this.from.copy(), this.to.copy());
       break;
       case 'L':
-        pathSegment = new LineToSegment(this.from, this.to);
+        pathSegment = new LineToSegment(this.from.copy(), this.to.copy());
       break;
       case 'Z':
-        pathSegment = new ClosePathSegment(this.from, this.to);
+        pathSegment = new ClosePathSegment(this.from.copy(), this.to.copy());
       break;
       case 'C':
-        pathSegment = new CurveToSegment(this.from, this.fromSupport, this.toSupport, this.to);
+        pathSegment = new CurveToSegment(this.from.copy(), this.fromSupport.copy(), this.toSupport.copy(), this.to.copy());
       break;
     }
     return pathSegment;

@@ -238,62 +238,107 @@ export class VocalTractGestures {
      */
     let tonguePositions: Array<Array<Geometry.SvgPath>> = [
       [
-        this.vocalTractPaths['tongue-heed'],
-        null,
         this.vocalTractPaths['tongue-whod'],
+        this.morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-whod'], 0.5),
+        this.vocalTractPaths['tongue-heed']
       ],
       [
-        null,
-        this.vocalTractPaths['neutral'],
-        null
+        this.morph(this.vocalTractPaths['tongue-whod'], this.vocalTractPaths['tongue-hard'], 0.5),
+        this.vocalTractPaths['tongue-neutral'],
+        this.morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-had'], 0.5)
       ],
       [
-        this.vocalTractPaths['tongue-hat'],
-        null,
         this.vocalTractPaths['tongue-hard'],
+        this.morph(this.vocalTractPaths['tongue-had'], this.vocalTractPaths['tongue-hard'], 0.5),
+        this.vocalTractPaths['tongue-had']
       ]
     ];
 
-    let ia, ib, ic, id;
+    if (open < -1) open = -1;
+    if (open > 1) open = 1;
+    if (front < -1) front = -1;
+    if (front > 1) front = 1
 
-    ia = Math.floor(front);
-    ib = Math.floor(open);
-    ic = Math.floor(front + 1);
-    id = Math.floor(open + 1);
+    let i, j, ii, jj;
 
+    open += 1;
+    front += 1;
+    i = Math.floor(open);
+    j = Math.floor(front);
+    ii = i === 2 ? 2 : i + 1;
+    jj = j === 2 ? 2 : j + 1;
 
-
-    let frontIndex = Math.floor(front);
-    let openIndex = Math.floor(open);
-
-
-    let tongueA = tonguePositions[openIndex][frontIndex];
-    let tongueB = tonguePositions[openIndex][frontIndex + 1];
-    let t = open - openIndex;
-
-    tongueA = this.morph(tongueA, tonguePositions[openIndex + 1][frontIndex], t);
-    tongueB = this.morph(tongueB, tonguePositions[openIndex + 1][frontIndex + 1], t);
-
-    t = front - frontIndex;
-    let tongueTarget = this.morph(tongueA, tongueB, t);
+    console.log(i, j, ii, jj, open - i, front - j)
+    return this.morph(
+      this.morph(tonguePositions[i][j], tonguePositions[ii][j], open - i),
+      this.morph(tonguePositions[i][jj],  tonguePositions[ii][jj], open - i),
+      front - j);
   }
 
   morph(path1: Geometry.SvgPath, path2: Geometry.SvgPath, t: number): any {
     let path: Geometry.SvgPath = path1.copySegments();
 
-    let points1 = path1.getPoints();
+    let points1 = path.getPoints();
     let points2 = path2.getPoints();
-    console.log(points1, points2)
     for (let i = 0; i < points1.length(); i ++) {
       points1.get(i).x = points1.get(i).x * (1 - t) + points2.get(i).x * t;
       points1.get(i).y = points1.get(i).y * (1 - t) + points2.get(i).y * t;
     }
-    return path
+    return path;
   }
+
+
 
 }
 
+export const vowelPositionMap = (spec: string) => {
 
+  let tokens = spec.replace(/\s+/, ' ').toLowerCase().split(' ');
+  let front: number, open: number;
+
+  front = open = 0;
+  for (let i: number = 0; i < tokens.length; i ++) {
+    switch (tokens[i]) {
+      case 'front':
+        front = 1;
+        break;
+      case 'near-front':
+        front = 0.5;
+        break;
+      case 'central':
+        front = 0;
+        break;
+      case 'near-back':
+        front = -0.5;
+        break;
+      case 'back':
+        front = -1;
+        break;
+      case 'close':
+        open = -1;
+        break;
+      case 'near-close':
+        open = -0.666;
+        break;
+      case 'close-mid':
+        open = -0.333;
+        break;
+      case 'mid':
+        open = 0;
+        break;
+      case 'open-mid':
+        open = 0.333;
+        break;
+      case 'near-open':
+        open = 0.666;
+        break;
+      case 'open':
+        open = 1;
+        break;
+    }
+  }
+  return {front: front, open: open};
+}
 
 
 

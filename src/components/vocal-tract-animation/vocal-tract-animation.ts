@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures } from './animation'
-import { VocalTractGestures } from './vocal-tract-gestures';
+import { VocalTractGestures, vowelPositionMap  } from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 
@@ -82,7 +82,11 @@ export class VocalTractAnimationComponent {
     this.gestures = new VocalTractGestures(this.vocalTract);
     console.log(this.vocalTract)
 
-    this.vocalTract['tongue'].segments = this.gestures.morph(this.vocalTract['tongue-heed'], this.vocalTract['tongue-whod'], 0.0).segments;
+    let position = vowelPositionMap('central mid');
+    let tongue = this.gestures.getTongueTarget(1,-1);
+    // console.log(tongue)
+    // console.log(this.vocalTract['tongue-whod'])
+    this.vocalTract['tongue'].segments = tongue.segments
     this.vocalTract['tongue'].update()
 
     // this.gestures.addJawOpen(0, 25, 0.25);
