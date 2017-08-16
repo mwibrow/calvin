@@ -83,7 +83,7 @@ export class VocalTractAnimationComponent {
     console.log(this.vocalTract)
 
     let position = vowelPositionMap('central mid');
-    let tongue = this.gestures.getTongueTarget(1,-1);
+    let tongue = this.gestures.getTongueTarget(-1,-1);
     // console.log(tongue)
     // console.log(this.vocalTract['tongue-whod'])
     this.vocalTract['tongue'].segments = tongue.segments

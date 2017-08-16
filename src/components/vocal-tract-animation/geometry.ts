@@ -407,6 +407,18 @@ export class SvgPath extends Path {
     svgPath.domNode = domNode;
     return svgPath;
   }
+
+  static morph(path1: Geometry.SvgPath, path2: Geometry.SvgPath, t: number): SvgPath  {
+    let path: Geometry.SvgPath = path1.copySegments();
+
+    let points1 = path.getPoints();
+    let points2 = path2.getPoints();
+    for (let i = 0; i < points1.length(); i ++) {
+      points1.get(i).x = points1.get(i).x * (1 - t) + points2.get(i).x * t;
+      points1.get(i).y = points1.get(i).y * (1 - t) + points2.get(i).y * t;
+    }
+    return path;
+  }
 }
 
 export function seq(from: number,to?: number) :Array<number> {

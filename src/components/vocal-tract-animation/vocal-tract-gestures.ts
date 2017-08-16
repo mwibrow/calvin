@@ -231,25 +231,27 @@ export class VocalTractGestures {
   }
 
 
-  getTongueTarget(front: number, open: number) {
+  getTongueTarget(front: number, open: number): Geometry.SvgPath {
     /**
      * front: -1 = back, 0 = central, 1 = front
      * open: -1 = close, 0 = mid, 1 = open
      */
+    let morph = Geometry.SvgPath.morph;
+
     let tonguePositions: Array<Array<Geometry.SvgPath>> = [
       [
         this.vocalTractPaths['tongue-whod'],
-        this.morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-whod'], 0.5),
+        morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-whod'], 0.5),
         this.vocalTractPaths['tongue-heed']
       ],
       [
-        this.morph(this.vocalTractPaths['tongue-whod'], this.vocalTractPaths['tongue-hard'], 0.5),
+        morph(this.vocalTractPaths['tongue-whod'], this.vocalTractPaths['tongue-hard'], 0.5),
         this.vocalTractPaths['tongue-neutral'],
-        this.morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-had'], 0.5)
+        morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-had'], 0.5)
       ],
       [
         this.vocalTractPaths['tongue-hard'],
-        this.morph(this.vocalTractPaths['tongue-had'], this.vocalTractPaths['tongue-hard'], 0.5),
+        morph(this.vocalTractPaths['tongue-had'], this.vocalTractPaths['tongue-hard'], 0.5),
         this.vocalTractPaths['tongue-had']
       ]
     ];
@@ -268,27 +270,16 @@ export class VocalTractGestures {
     ii = i === 2 ? 2 : i + 1;
     jj = j === 2 ? 2 : j + 1;
 
-    console.log(i, j, ii, jj, open - i, front - j)
-    return this.morph(
-      this.morph(tonguePositions[i][j], tonguePositions[ii][j], open - i),
-      this.morph(tonguePositions[i][jj],  tonguePositions[ii][jj], open - i),
+    return morph(
+      morph(tonguePositions[i][j], tonguePositions[ii][j], open - i),
+      morph(tonguePositions[i][jj], tonguePositions[ii][jj], open - i),
       front - j);
   }
 
-  morph(path1: Geometry.SvgPath, path2: Geometry.SvgPath, t: number): any {
-    let path: Geometry.SvgPath = path1.copySegments();
-
-    let points1 = path.getPoints();
-    let points2 = path2.getPoints();
-    for (let i = 0; i < points1.length(); i ++) {
-      points1.get(i).x = points1.get(i).x * (1 - t) + points2.get(i).x * t;
-      points1.get(i).y = points1.get(i).y * (1 - t) + points2.get(i).y * t;
-    }
-    return path;
+  tongueTargetFromVowel(spec: string) {
+    let position = vowelPositionMap(spec);
+    return this.getTongueTarget(position.front, position.open);
   }
-
-
-
 }
 
 export const vowelPositionMap = (spec: string) => {
