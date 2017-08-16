@@ -9,11 +9,6 @@ page-vowel-trainer {
     color: $keyword-label-fg;
 }
 
-@mixin hover-box-shadow ($cl) {
-    &:hover {
-        box-shadow: 0px 0px 20px $cl !important;
-    }
-}
 
 .navigate-button {
     border-radius: 50%;

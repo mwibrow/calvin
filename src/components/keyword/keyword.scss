@@ -2,6 +2,7 @@ keyword {
 
 .keyword-button {
     @include button-hover($keyword-button-bg, $keyword-button-fg);
+    @include hover-box-shadow($keyword-button-bg);
 }
 
 .keyword-control-button {
@@ -9,6 +10,7 @@ keyword {
     margin-left: 1rem;
     border-radius: 50% !important;
     @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
+    @include hover-box-shadow($keyword-control-button-bg);
 }
 
 ion-icon[name='play'] {

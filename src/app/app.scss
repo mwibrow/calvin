@@ -65,6 +65,7 @@ ion-row {
 
 
 
+
 $font-size: 1.5rem;
 $font-size-keyword: 2.5rem;
 $button-size: 4rem;
@@ -144,6 +145,13 @@ ion-icon {
 .vocal-tract-animation {
     svg {
         height: $svg-size !important;
+    }
+}
+
+
+@mixin hover-box-shadow ($cl) {
+    &:hover {
+        box-shadow: 0px 0px 30px $cl !important;
     }
 }
 
