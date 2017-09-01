@@ -4,262 +4,315 @@ export const WORDS: any = {
       cot: {
         display: 'cot',
         highlight: 'c<o>t',
-        vowel: 'hod'
+        vowel: 'back open rounded',
+        ipa: 'ɒ'
       },
       pot: {
         display: 'pot',
         highlight: 'p<o>t',
-        vowel: 'hod'
+        vowel: 'back open rounded',
+        ipa: 'ɒ'
       },
       clock: {
         display: 'clock',
         highlight: 'cl<o>ck',
-        vowel: 'hod'
+        vowel: 'back open rounded',
+        ipa: 'ɒ'
       },
       card: {
         display: 'card',
         highlight: 'c<ar>d',
-        vowel: 'hard'
+        vowel: 'back open',
+        ipa: 'ɑ'
       },
       shard: {
         display: 'shark',
         highlight: 'sh<ar>k',
-        vowel: 'hard'
+        vowel: 'back open',
+        ipa: 'ɑ'
       },
       park: {
         display: 'park',
         highlight: 'p<ar>k',
-        vowel: 'hard'
+        vowel: 'back open',
+        ipa: 'ɑ'
       },
       seed: {
         display: 'seed',
         highlight: 's<ee>d',
-        vowel: 'heed'
+        vowel: 'front close',
+        ipa: 'i'
       },
       teeth: {
         display: 'teeth',
         highlight: 't<ee>th',
-        vowel: 'heed'
+        vowel: 'front close',
+        ipa: 'i'
       },
       bees: {
         display: 'bees',
         highlight: 'b<ee>s',
-        vowel: 'heed'
+        vowel: 'front close',
+        ipa: 'i'
       },
       pin: {
         display: 'pin',
         highlight: 'p<i>n',
-        vowel: 'hid'
+        vowel: 'near-close near-front',
+        ipa: 'ɪ'
       },
       bin: {
         display: 'bin',
         highlight: 'b<i>n',
-        vowel: 'hid'
+        vowel: 'near-close near-front',
+        ipa: 'ɪ'
       },
       ring: {
         display: 'ring',
         highlight: 'r<i>ng',
-        vowel: 'hid'
+        vowel: 'near-close near-front',
+        ipa: 'ɪ'
       },
       foot: {
         display: 'foot',
         highlight: 'f<oo>t',
-        vowel: 'hood'
+        vowel: 'near-back near-close rounded',
+        ipa: 'ʊ'
       },
       wood: {
         display: 'wood',
         highlight: 'w<oo>d',
-        vowel: 'hood'
+        vowel: 'near-back near-close rounded',
+        ipa: 'ʊ'
       },
       book: {
         display: 'book',
         highlight: 'b<oo>k',
-        vowel: 'hood'
+        vowel: 'near-back near-close rounded',
+        ipa: 'ʊ'
       },
       clown: {
         display: 'clown',
         highlight: 'cl<ow>n',
-        vowel: 'howd'
+        vowel: 'front open; near-close near-back rounded',
+        ipa: 'ʊ'
       },
       mouse: {
         display: 'mouse',
         highlight: 'm<ou>se',
-        vowel: 'howd'
+        vowel: 'front open; near-close near-back rounded',
+        ipa: 'aʊ'
       },
       house: {
         display: 'house',
         highlight: 'h<ou>se',
-        vowel: 'howd'
+        vowel: 'front open; near-close near-back rounded',
+        ipa: 'aʊ'
       },
       kite: {
         display: 'kite',
         highlight: 'k<i>te',
-        vowel: 'hide'
+        vowel: 'front open; near-close near-front',
+        ipa: 'aɪ'
       },
       knife: {
         display: 'knife',
         highlight: 'kn<i>fe',
-        vowel: 'hide'
+        vowel: 'front open; near-close near-front',
+        ipa: 'aɪ'
       },
       bike: {
         display: 'bike',
         highlight: 'b<i>ke',
-        vowel: 'hide'
+        vowel: 'front open; near-close near-front',
+        ipa: 'aɪ'
       },
       spade: {
         display: 'spade',
         highlight: 'sp<a>de',
-        vowel: 'hayed'
+        vowel: 'front close-mid; near-close near-front',
+        ipa: 'eɪ'
       },
       cake: {
         display: 'cake',
         highlight: 'c<a>ke',
-        vowel: 'hayed'
+        vowel: 'front close-mid; near-close near-front',
+        ipa: 'eɪ'
       },
       gate: {
         display: 'gate',
         highlight: 'g<a>te',
-        vowel: 'hayed'
+        vowel: 'front close-mid; near-close near-front',
+        ipa: 'eɪ'
       },
       nurse: {
         display: 'nurse',
         highlight: 'n<ur>se',
-        vowel: 'heard'
+        vowel: 'open-mid central',
+        ipa: 'ɜ'
       },
       skirt: {
         display: 'skirt',
         highlight: 'sk<ir>t',
-        vowel: 'heard'
+        vowel: 'open-mid central',
+        ipa: 'ɜ'
       },
       shirt: {
         display: 'shirt',
         highlight: 'sh<ir>t',
-        vowel: 'heard'
+        vowel: 'open-mid central',
+        ipa: 'ɜ'
       },
       pears: {
         display: 'pears',
         highlight: 'p<ear>s',
-        vowel: 'haired'
+        vowel: 'front close-mid; central mid',
+        ipa: 'eə'
       },
       bears: {
         display: 'display',
         highlight: 'b<ear>s',
-        vowel: 'haired'
+        vowel: 'front close-mid; central mid',
+        ipa: 'eə'
       },
       squares: {
         display: 'squares',
         highlight: 'squ<are>s',
-        vowel: 'haired'
+        vowel: 'front close-mid; central mid',
+        ipa: 'eə'
       },
       toys: {
         display: 'toys',
         highlight: 't<oy>s',
-        vowel: 'hoyed'
+        vowel: 'back open-mid rounded; near-front near-close',
+        ipa: 'ɔɪ'
       },
       boys: {
         display: 'boys',
         highlight: 'b<oy>s',
-        vowel: 'hoyed'
+        vowel: 'back open-mid rounded; near-front near-close',
+        ipa: 'ɔɪ'
       },
       coin: {
         display: 'coin',
         highlight: 'c<oi>n',
-        vowel: 'hoyed'
+        vowel: 'back open-mid rounded; near-front near-close',
+        ipa: 'ɔɪ'
       },
       suit: {
         display: 'suit',
         highlight: 's<ui>t',
-        vowel: 'whod'
+        vowel: 'back close rounded',
+        ipa: 'u'
       },
       food: {
         display: 'food',
         highlight: 'f<oo>d',
-        vowel: 'whod'
+        vowel: 'back close rounded',
+        ipa: 'u'
       },
       room: {
         display: 'room',
         highlight: 'r<oo>m',
-        vowel: 'whod'
+        vowel: 'back close rounded',
+        ipa: 'u'
       },
       sword: {
         display: 'sword',
         highlight: 'sw<or>d',
-        vowel: 'hoard'
+        vowel: 'back open-mid rounded',
+        ipa: 'ɔ'
       },
       paws: {
         dispay: 'paws',
         highlight: 'p<aw>s',
-        vowel: 'hoard'
+        vowel: 'back open-mid rounded',
+        ipa: 'ɔ'
       },
       ball: {
         display: 'ball',
         highlight: 'b<a>ll',
-        vowel: 'hoard'
+        vowel: 'back open-mid rounded',
+        ipa: 'ɔ'
       },
       men: {
         display: 'men',
         highlight: 'm<e>n',
-        vowel: 'head'
+        vowel: 'front open-mid',
+        ipa: 'ɛ'
       },
       leg: {
         display: 'leg',
         highlight: 'l<e>g',
-        vowel: 'head'
+        vowel: 'front open-mid',
+        ipa: 'ɛ'
       },
       ten: {
         display: 'ten',
         highlight: 't<e>n',
-        vowel: 'head'
+        vowel: 'front open-mid',
+        ipa: 'ɛ'
       },
       road: {
         display: 'road',
         highlight: 'r<oa>d',
-        vowel: 'hoed'
+        vowel: 'central mid; near-back near-close',
+        ipa: 'əʊ'
       },
       coat: {
         display: 'coat',
         highlight: 'c<oa>t',
-        vowel: 'hoed'
+        vowel: 'hoed',
+        ipa: 'əʊ'
       },
       loaf: {
         display: 'load',
         highlight: 'l<oa>f',
-        vowel: 'hoed'
+        vowel: 'hoed',
+        ipa: 'əʊ'
       },
       cat: {
         display: 'cat',
         highlight: 'c<a>t',
-        vowel: 'had'
+        vowel: 'front near-open',
+        ipa: 'æ'
       },
       hat: {
         display: 'hat',
         highlight: 'h<a>t',
-        vowel: 'had'
+        vowel: 'front near-open',
+        ipa: 'æ'
       },
       mat: {
         display: 'mat',
         highlight: 'm<a>t',
-        vowel: 'had'
+        vowel: 'front near-open',
+        ipa: 'æ'
       },
       gears: {
         display: 'gears',
-        highlight: 'g<ear>s'
+        highlight: 'g<ear>s',
+        vowel: 'near-front near-close; central mid',
+        ipa: 'ɪə'
       },
       piers: {
         display: 'piers',
         highlight: 'p<ier>s',
-        vowel: 'hear'
+        vowel: 'near-front near-close; central mid',
+        ipa: 'ɪə'
       },
       tears: {
         display: 'tears',
         highlight: 't<ear>s',
-        vowel: 'hear'
+        vowel: 'near-front near-close; central mid',
+        ipa: 'ɪə'
       },
       // Keywords
       knot: {
         display: 'knot',
         highlight: 'kn<o>t',
-        vowel: 'hod'
+        vowel: 'back open',
+        ipa: 'ɒ'
       },
       dart: {
 				display: 'dart',
