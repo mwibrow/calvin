@@ -317,22 +317,24 @@ export const WORDS: any = {
       dart: {
 				display: 'dart',
 				highlight: 'd<ar>t',
-        vowel: 'hard'
+        vowel: 'back open',
+        ipa: 'ɑ'
 			},
       knee: {
 				display: 'knee',
 				highlight: 'kn<ee>',
-        vowel: 'heed'
+        vowel: 'front close'
 			},
       tin: {
 				display: 'tin',
 				highlight: 't<i>n',
-        vowel: 'hid'
+        vowel: 'near-front near-close'
 			},
       bull: {
 				display: 'bull',
 				highlight: 'b<u>ll',
-        vowel: 'hood'
+        vowel: 'near-back near-close rounded',
+        ipa: 'ʊ'
 			},
       cloud: {
 				display: 'cloud',
