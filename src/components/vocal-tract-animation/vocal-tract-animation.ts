@@ -42,14 +42,15 @@ export class VocalTractAnimationComponent {
     this.vocalTract = {};
 
     this.rangeMin = 0;
-    this.rangeMax = 100;
+    this.rangeMax = 99;
     this.range = {
       min: `${this.rangeMin}`,
-      max: `${this.rangeMax}`
+      max: `${this.rangeMax + 1}`
     }
     this.speed = 2;
     this.player = audio.getAudioPlayer();
     this.player.initialise();
+
   }
 
   setAnimation(animation: string, uri?: string) {
@@ -58,58 +59,56 @@ export class VocalTractAnimationComponent {
   }
 
 
-  ngOnInit() {
-    let i: number, svgPath: any, svgPaths: Array<any>, name: string;
-    this.svg = this.elementRef.nativeElement.querySelector('svg')
-    svgPaths = this.elementRef.nativeElement.querySelectorAll('path[svg-label]');
-    for (i = 0; i < svgPaths.length; i++) {
-
-      svgPath = svgPaths[i];
-      svgPath.setAttribute('style', '');
-
-      if (svgPath.getAttribute('svg-label').startsWith('tongue-')) {
-        svgPath.setAttribute('style', 'opacity:0;');
-      }
-
-      this.vocalTract[svgPath.getAttribute('svg-label')] =
-        Geometry.SvgPath.fromPathNode(svgPath);
-
-      this.vocalTract[svgPath.getAttribute('svg-label')].parentSvg = this.svg;
-
-      //this.vocalTract['tongue'].showPathConstruction = true;
-    }
-
-
-
-    let gesture: Gesture;
-    this.gestures = new VocalTractGestures(this.vocalTract);
-    console.log(this.vocalTract)
-
-    // let position = vowelPositionMap('central mid');
-    // let tongue = this.gestures.getTongueTarget(-1,-1);
-    // console.log(tongue)
-    // console.log(this.vocalTract['tongue-whod'])
-    // this.vocalTract['tongue'].segments = tongue.segments
-    // this.vocalTract['tongue'].update()
-
-    // this.gestures.addJawOpen(0, 25, 0.25);
-    // this.gestures.addJawOpened(26, 75, 0.25);
-    // this.gestures.addJawClose(76, 100, 0.25);
-    // this.gestures.addLipRounding(0, 25);
-    // this.gestures.addLipRounded(26, 75);
-    // this.gestures.addLipUnrounding(76, 100);
-    // this.gestures.addVelumRaise(0, 20);
-    // this.gestures.addVelumRaised(21, 79);
-    // this.gestures.addVelumLower(80, 100);
-    // this.gestures.addVocalFoldVibration(20, 80);
-    // this.gestures.addTongueMovement(0, 20, 'neutral');
-    // this.gestures.addTongueMovement(21, 50, 'neutral', 'whod');
-    // this.gestures.addTongueMovement(21, 50, 'whod');
-    // this.gestures.addTongueMovement(81, 100, 'whod', 'neutral');
+  ngAfterViewInit() {
+    this.setupVocalTract()
   }
 
 
+  setupVocalTract() {
+    let i: number, paths: any, path: any, name: string, group: any;
+    this.svg = this.elementRef.nativeElement.querySelector('svg')
+
+
+    group = this.svg.querySelector('g[id="template"')
+    group.setAttribute('style', 'opacity:0;')
+
+    group = this.svg.querySelector('g[id="foreground"')
+    if (group) {
+      this.svg.removeChild(group);
+    }
+
+    group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group.setAttribute('id', 'foreground')
+    this.svg.appendChild(group);
+
+    this.vocalTract = {};
+    paths = this.svg.querySelectorAll('path[svg-label]');
+    for (i = 0; i < paths.length; i ++) {
+      path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      group.appendChild(path);
+      path.setAttribute('id', paths[i].getAttribute('svg-label'));
+      path.setAttribute('class', paths[i].getAttribute('class'));
+      path.setAttribute('d', paths[i].getAttribute('d'));
+
+      if (path.getAttribute('id').startsWith('tongue-')) {
+        path.setAttribute('style', 'opacity:0;');
+      }
+
+
+      this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path);
+      this.vocalTract[path.getAttribute('id')].parentSvg = this.svg;
+
+    }
+
+    console.log(this.vocalTract)
+  }
+
+  resetVocalTract() {
+    if (this.svg) this.setupVocalTract();
+  }
+
   setupVowelAnimation(description: string) {
+    this.resetVocalTract();
     let vowels = parseVowelDescriptions(description);
     switch (vowels.length) {
       case 1:
@@ -160,11 +159,11 @@ export class VocalTractAnimationComponent {
     let n: number = 20;
     let p: number = Math.floor((n + this.rangeMax) / 3)
     let q: number = Math.floor((2 * this.rangeMax - n) / 3)
-    console.log(p, q)
+    console.log(vowels)
     let howWide1 = (vowels[0].open + 1) / 2;
     let howWide2 = (vowels[1].open + 1) / 2;
-    this.gestures.addJawOpen(0, p, howWide1);
-    this.gestures.addJawOpened(p + 1, q, howWide2);
+    this.gestures.addJawMovement(0, p, 0, howWide1);
+    this.gestures.addJawMovement(p + 1, q, howWide1, howWide2);
     this.gestures.addJawClose(q + 1, this.rangeMax, howWide2);
 
     if (vowels[0].rounded) {
@@ -173,7 +172,8 @@ export class VocalTractAnimationComponent {
         this.gestures.addLipRounded(p + 1, q);
         this.gestures.addLipUnrounding(q + 1, this.rangeMax);
       } else {
-        this.gestures.addLipUnrounded(p + 1, this.rangeMax);
+        this.gestures.addLipUnrounding(p + 1, q);
+        this.gestures.addLipUnrounded(q + 1, this.rangeMax);
       }
     } else {
       this.gestures.addLipUnrounded(0, p);

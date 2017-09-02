@@ -403,6 +403,17 @@ export class Linear extends BaseEasing {
   ease(t: number): number { return t; }
 }
 
+export class Range extends BaseEasing {
+
+  constructor(public min: number, public max: number) {
+    super()
+  }
+
+  ease(t: number): number {
+    return this.min * (1 - t) + this.max * t;
+  }
+}
+
 export class ReverseLinear extends BaseEasing {
   ease(t: number): number { return 1 - t; }
 }

@@ -163,6 +163,21 @@ export class VocalTractGestures {
     action.setEasing(new Easings.In());
   }
 
+  addJawMovement(start: number, end: number, fromWide: number=0, toWide:number=1, howWide: number=1) {
+    let gesture: Gesture, action: Actions.BaseAction;
+    gesture = new Gesture(start, end);
+    action = new Actions.TranslateAndRotateAroundAction(
+      new Geometry.Vector(-8 * howWide, 4 * howWide), -8 * howWide, jawRotationCenter);
+    action.addPath(this.vocalTractPaths['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
+    action.addPath(this.vocalTractPaths['teeth-lower']);
+    action.addPath(this.vocalTractPaths['gum-lower']);
+    //action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
+    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(13,32));
+    action.setEasing(new Easings.Range(fromWide, toWide));
+    gesture.setAction(action);
+    this.jaw.appendGesture(gesture);
+  }
+
   addJawOpen(start: number, end: number, howWide=1) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
@@ -320,7 +335,7 @@ export const parseVowelDescriptions = (description: string) => {
 export const parseVowelDescription = (spec: string) => {
 
   let tokens = spec.replace(/\s+/, ' ').toLowerCase().split(' ');
-  let front: number, open: number, rounded: boolean, nasal: boolean;
+  let front: number, open: number, rounded: boolean, nasal: boolean = false;
 
   front = open = 0;
   for (let i: number = 0; i < tokens.length; i ++) {
