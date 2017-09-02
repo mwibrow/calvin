@@ -154,6 +154,15 @@ export class VocalTractGestures {
     action.setEasing(new Easings.Out());
   }
 
+  addLipUnrounded(start: number, end: number) {
+    let action: Actions.BaseAction;
+    this.addLipRounding(start, end);
+    action = this.lipUpper.gestures[this.lipUpper.gestures.length - 1].action;
+    action.setEasing(new Easings.In());
+    action = this.lipLower.gestures[this.lipLower.gestures.length - 1].action;
+    action.setEasing(new Easings.In());
+  }
+
   addJawOpen(start: number, end: number, howWide=1) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
@@ -208,23 +217,39 @@ export class VocalTractGestures {
     this.tongue.appendGesture(gesture);
   }
 
-  addTongueMovement(start: number, end: number, startPosition: string, endPosition?: string) {
+  // addTongueMovement(start: number, end: number, startPosition: string, endPosition?: string) {
 
-    endPosition = endPosition || startPosition;
-    let startPath = this.vocalTractPaths[`tongue-${startPosition}`];
-    let endPath = this.vocalTractPaths[`tongue-${endPosition}`];
+  //   endPosition = endPosition || startPosition;
+  //   let startPath = this.vocalTractPaths[`tongue-${startPosition}`];
+  //   let endPath = this.vocalTractPaths[`tongue-${endPosition}`];
 
-    let action = new Actions.MorphBetweenAction(
-      this.getTongueMovementPoints(startPath),
-      this.getTongueMovementPoints(endPath)
-    );
-     action.canHaveParent = false;
-    action.addPoints(this.vocalTractPaths['tongue'],
-      this.getTongueMovementPoints(this.vocalTractPaths['tongue']));
-    let gesture: Gesture = new Gesture(start, end);
-    gesture.setAction(action);
-    this.tongue.appendGesture(gesture);
-  }
+  //   let action = new Actions.MorphBetweenAction(
+  //     this.getTongueMovementPoints(startPath),
+  //     this.getTongueMovementPoints(endPath)
+  //   );
+  //    action.canHaveParent = false;
+  //   action.addPoints(this.vocalTractPaths['tongue'],
+  //     this.getTongueMovementPoints(this.vocalTractPaths['tongue']));
+  //   let gesture: Gesture = new Gesture(start, end);
+  //   gesture.setAction(action);
+  //   this.tongue.appendGesture(gesture);
+  // }
+
+  addTongueMovement(start: number, end: number, startTongue: Geometry.SvgPath, endTongue?: Geometry.SvgPath) {
+
+        endTongue = endTongue || startTongue;
+
+        let action = new Actions.MorphBetweenAction(
+          this.getTongueMovementPoints(startTongue),
+          this.getTongueMovementPoints(endTongue)
+        );
+         action.canHaveParent = false;
+        action.addPoints(this.vocalTractPaths['tongue'],
+          this.getTongueMovementPoints(this.vocalTractPaths['tongue']));
+        let gesture: Gesture = new Gesture(start, end);
+        gesture.setAction(action);
+        this.tongue.appendGesture(gesture);
+      }
 
   getTongueMovementPoints(path: Geometry.SvgPath) {
     return path.getPoints(Geometry.seq(0,12), Geometry.seq(32,50));
@@ -277,15 +302,25 @@ export class VocalTractGestures {
   }
 
   tongueTargetFromVowel(spec: string) {
-    let position = vowelPositionMap(spec);
-    return this.getTongueTarget(position.front, position.open);
+    // let position = vowelSpec(spec);
+    // return this.getTongueTarget(position.front, position.open);
+  }
+
+  setupMonophthong(vowel) {
+    let tongueTarget = this.getTongueTarget(vowel.front, vowel.open);
   }
 }
 
-export const vowelPositionMap = (spec: string) => {
+
+
+export const parseVowelDescriptions = (description: string) => {
+  return description.split(';').map(v => parseVowelDescription(v))
+}
+
+export const parseVowelDescription = (spec: string) => {
 
   let tokens = spec.replace(/\s+/, ' ').toLowerCase().split(' ');
-  let front: number, open: number;
+  let front: number, open: number, rounded: boolean, nasal: boolean;
 
   front = open = 0;
   for (let i: number = 0; i < tokens.length; i ++) {
@@ -326,9 +361,15 @@ export const vowelPositionMap = (spec: string) => {
       case 'open':
         open = 1;
         break;
+      case 'rounded':
+        rounded = true;
+        break;
+      case 'unrounded':
+        rounded = false;
+        break;
     }
   }
-  return {front: front, open: open};
+  return {front: front, open: open, rounded: rounded, nasal: nasal};
 }
 
 

@@ -59,6 +59,7 @@ export class VowelTrainerPage {
   ngAfterViewInit() {
     this.player.initialise();
     this.setWords();
+
   }
 
   changeViewState(viewState: ViewState) {
@@ -127,6 +128,8 @@ export class VowelTrainerPage {
     let word = this.getWord();
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
+    console.log(word)
+    this.vocalTractAnimation.setupVowelAnimation(word.description)
   }
 
   forwardWord() {

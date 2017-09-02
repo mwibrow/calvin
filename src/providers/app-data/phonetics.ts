@@ -27,14 +27,14 @@ export const arpa_to_description_map = {
     "iy": "front close unrounded",
     "aa": "back open unrounded",
     "ao": "back open-mid rounded",
-    "ia": "near-front near-close unrounded; central mid rounded",
+    "ia": "near-front near-close unrounded; central mid unrounded",
     "ae": "front near-open unrounded",
     "eh": "fronr open-mid",
     "oh": "back open rounded",
     "ah": "back open-mid unrounded",
     "uw": "back close rounded",
-    "ea": "front close-mid unrouned; central mid rounded",
-    "ow": "central mid rounded; near-back near-close rounded",
+    "ea": "front close-mid unrouned; central mid unrounded",
+    "ow": "central mid unrounded; near-back near-close rounded",
     "ih": "near-front near-close unrounded",
     "ay": "front open unrounded; near-front near-close unrounded",
     "ua": "near-back near close rounded; central mid unrounded",
@@ -44,7 +44,30 @@ export const arpa_to_description_map = {
     "ax": "central mid unrounded",
     "aw": "front open unrounded ; near-back near-close rounded",
     "er": "central open-mid unrounded",
-}
+};
+
+export const arpa_vowels = [
+    "iy",
+    "aa",
+    "ao",
+    "ia",
+    "ae",
+    "eh",
+    "oh",
+    "ah",
+    "uw",
+    "ea",
+    "ow",
+    "ih",
+    "ay",
+    "ua",
+    "ey",
+    "uh",
+    "oy",
+    "ax",
+    "aw",
+    "er"
+];
 
 export const arpa_ipa_map = {
     "p": "p",
@@ -91,4 +114,27 @@ export const arpa_ipa_map = {
     "ax": "ə",
     "aw": "aʊ",
     "er": "ɜ"
-}
+};
+
+export const arpa_to_hvd_map = {
+    "iy": "heed",
+    "aa": "hard",
+    "ao": "hoard",
+    "ia": "hear",
+    "ae": "had",
+    "eh": "head",
+    "oh": "hod",
+    "ah": "ʌ",
+    "uw": "whod",
+    "ea": "haired",
+    "ow": "hoed",
+    "ih": "hid",
+    "ay": "hide",
+    "ua": "ʊə",
+    "ey": "hayed",
+    "uh": "hood",
+    "oy": "hoyed",
+    "ax": "ə",
+    "aw": "howd",
+    "er": "heard"
+};

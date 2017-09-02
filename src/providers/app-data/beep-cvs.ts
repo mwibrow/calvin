@@ -1,7 +1,21 @@
 /**
  * CVS from the BEEP 1.0 corpus
  */
-export const cvs = {
+export const beep = {
+    "ear": "ia r",
+    "joy": "jh oy",
+    "clock": "k l oh k",
+    "clown": "k l aw n",
+    "spade": "s p ey d",
+    "skirt": "s k er t",
+    "squares": "s k w ea z",
+    "cloud": "k l aw d",
+    "crown": "k r ow n",
+    "earth": "er th",
+    "stairs": "s t ea z",
+    "joint": "jh oy n t",
+    "flag": "f l ae g",
+    "knee": "n iy",
     "fawn": "f ao n",
     "derv": "d er v",
     "foul": "f aw l",

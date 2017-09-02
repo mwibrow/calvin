@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures } from './animation'
-import { VocalTractGestures, vowelPositionMap  } from './vocal-tract-gestures';
+import { VocalTractGestures, parseVowelDescriptions  } from './vocal-tract-gestures';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 
@@ -20,6 +20,8 @@ export class VocalTractAnimationComponent {
 
   svg: any;
   range: any;
+  rangeMin: number;
+  rangeMax: number;
   frame: number;
   gestures: VocalTractGestures;
   speed: number;
@@ -39,10 +41,11 @@ export class VocalTractAnimationComponent {
 
     this.vocalTract = {};
 
-
+    this.rangeMin = 0;
+    this.rangeMax = 100;
     this.range = {
-      min: "0",
-      max: "100"
+      min: `${this.rangeMin}`,
+      max: `${this.rangeMax}`
     }
     this.speed = 2;
     this.player = audio.getAudioPlayer();
@@ -82,12 +85,12 @@ export class VocalTractAnimationComponent {
     this.gestures = new VocalTractGestures(this.vocalTract);
     console.log(this.vocalTract)
 
-    let position = vowelPositionMap('central mid');
-    let tongue = this.gestures.getTongueTarget(-1,-1);
+    // let position = vowelPositionMap('central mid');
+    // let tongue = this.gestures.getTongueTarget(-1,-1);
     // console.log(tongue)
     // console.log(this.vocalTract['tongue-whod'])
-    this.vocalTract['tongue'].segments = tongue.segments
-    this.vocalTract['tongue'].update()
+    // this.vocalTract['tongue'].segments = tongue.segments
+    // this.vocalTract['tongue'].update()
 
     // this.gestures.addJawOpen(0, 25, 0.25);
     // this.gestures.addJawOpened(26, 75, 0.25);
@@ -103,6 +106,96 @@ export class VocalTractAnimationComponent {
     // this.gestures.addTongueMovement(21, 50, 'neutral', 'whod');
     // this.gestures.addTongueMovement(21, 50, 'whod');
     // this.gestures.addTongueMovement(81, 100, 'whod', 'neutral');
+  }
+
+
+  setupVowelAnimation(description: string) {
+    let vowels = parseVowelDescriptions(description);
+    switch (vowels.length) {
+      case 1:
+        this.setupMonophthong(vowels[0]);
+        break;
+      case 2:
+        this.setupDiphthong(vowels);
+        break;
+      default:
+        console.error(`Cannot current animate ${vowels.length} vowels`)
+    }
+  }
+
+  setupMonophthong(vowel) {
+    this.gestures = new VocalTractGestures(this.vocalTract);
+    let tongueTarget = this.gestures.getTongueTarget(vowel.front, vowel.open);
+
+    let n: number = 20;
+    let howWide = 0.33 + (vowel.open + 1) / 2;
+    this.gestures.addJawOpen(0, n, howWide);
+    this.gestures.addJawOpened(n + 1, this.rangeMax - n - 1, howWide);
+    this.gestures.addJawClose(this.rangeMax - n, this.rangeMax, howWide);
+
+    if (vowel.rounded) {
+      this.gestures.addLipRounding(0, n);
+      this.gestures.addLipRounded(n + 1, this.rangeMax - n - 1);
+      this.gestures.addLipUnrounding(this.rangeMax - n, this.rangeMax);
+    }
+
+    this.gestures.addVocalFoldVibration(n, this.rangeMax - n);
+    if (!vowel.nasal) {
+      this.gestures.addVelumRaise(0, n);
+      this.gestures.addVelumRaised(n + 1, this.rangeMax - n - 1);
+      this.gestures.addVelumLower(this.rangeMax - n, this.rangeMax);
+    }
+
+    this.gestures.addTongueMovement(0, n, this.gestures.getTongueTarget(0, 0), tongueTarget)
+    this.gestures.addTongueMovement(n + 1, this.rangeMax - n - 1, tongueTarget, tongueTarget)
+    this.gestures.addTongueMovement(this.rangeMax - n, this.rangeMax, tongueTarget, this.gestures.getTongueTarget(0, 0))
+
+  }
+
+  setupDiphthong(vowels) {
+    this.gestures = new VocalTractGestures(this.vocalTract);
+    let tongueTarget1 = this.gestures.getTongueTarget(vowels[0].front, vowels[0].open);
+    let tongueTarget2 = this.gestures.getTongueTarget(vowels[1].front, vowels[1].open);
+
+    let n: number = 20;
+    let p: number = Math.floor((n + this.rangeMax) / 3)
+    let q: number = Math.floor((2 * this.rangeMax - n) / 3)
+    console.log(p, q)
+    let howWide1 = (vowels[0].open + 1) / 2;
+    let howWide2 = (vowels[1].open + 1) / 2;
+    this.gestures.addJawOpen(0, p, howWide1);
+    this.gestures.addJawOpened(p + 1, q, howWide2);
+    this.gestures.addJawClose(q + 1, this.rangeMax, howWide2);
+
+    if (vowels[0].rounded) {
+      this.gestures.addLipRounding(0, p);
+      if (vowels[1].rounded) {
+        this.gestures.addLipRounded(p + 1, q);
+        this.gestures.addLipUnrounding(q + 1, this.rangeMax);
+      } else {
+        this.gestures.addLipUnrounded(p + 1, this.rangeMax);
+      }
+    } else {
+      this.gestures.addLipUnrounded(0, p);
+      if (vowels[1].rounded) {
+        this.gestures.addLipRounding(p + 1, q);
+        this.gestures.addLipUnrounding(q + 1, this.rangeMax);
+      } else {
+        this.gestures.addLipUnrounded(p + 1, this.rangeMax);
+      }
+    }
+
+    this.gestures.addVocalFoldVibration(n, this.rangeMax - n);
+
+      this.gestures.addVelumRaise(0, n);
+      this.gestures.addVelumRaised(n + 1, this.rangeMax - n - 1);
+      this.gestures.addVelumLower(this.rangeMax - n, this.rangeMax);
+
+
+    this.gestures.addTongueMovement(0, p, this.gestures.getTongueTarget(0, 0), tongueTarget1)
+    this.gestures.addTongueMovement(p + 1, q, tongueTarget1, tongueTarget2)
+    this.gestures.addTongueMovement(q + 1, this.rangeMax, tongueTarget2, this.gestures.getTongueTarget(0, 0))
+
   }
 
   clickOverlay(event) {
