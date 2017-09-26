@@ -42,7 +42,7 @@ export class VocalTractAnimationComponent {
     this.vocalTract = {};
 
     this.rangeMin = 0;
-    this.rangeMax = 99;
+    this.rangeMax = 299;
     this.range = {
       min: `${this.rangeMin}`,
       max: `${this.rangeMax + 1}`
@@ -126,8 +126,8 @@ export class VocalTractAnimationComponent {
     this.gestures = new VocalTractGestures(this.vocalTract);
     let tongueTarget = this.gestures.getTongueTarget(vowel.front, vowel.open);
 
-    let n: number = 20;
-    let howWide = 0.33 + (vowel.open + 1) / 2;
+    let n: number = Math.floor(this.rangeMax * 0.2);
+    let howWide = (vowel.open + 1) / 3;
     this.gestures.addJawOpen(0, n, howWide);
     this.gestures.addJawOpened(n + 1, this.rangeMax - n - 1, howWide);
     this.gestures.addJawClose(this.rangeMax - n, this.rangeMax, howWide);
@@ -156,12 +156,12 @@ export class VocalTractAnimationComponent {
     let tongueTarget1 = this.gestures.getTongueTarget(vowels[0].front, vowels[0].open);
     let tongueTarget2 = this.gestures.getTongueTarget(vowels[1].front, vowels[1].open);
 
-    let n: number = 20;
+    let n: number = Math.floor(this.rangeMax * 0.2);
     let p: number = Math.floor((n + this.rangeMax) / 3)
     let q: number = Math.floor((2 * this.rangeMax - n) / 3)
     console.log(vowels)
-    let howWide1 = (vowels[0].open + 1) / 2;
-    let howWide2 = (vowels[1].open + 1) / 2;
+    let howWide1 = (vowels[0].open + 1) / 3;
+    let howWide2 = (vowels[1].open + 1) / 3;
     this.gestures.addJawMovement(0, p, 0, howWide1);
     this.gestures.addJawMovement(p + 1, q, howWide1, howWide2);
     this.gestures.addJawClose(q + 1, this.rangeMax, howWide2);

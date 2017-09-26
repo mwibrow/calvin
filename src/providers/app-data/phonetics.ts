@@ -124,7 +124,7 @@ export const arpa_to_hvd_map = {
     "ae": "had",
     "eh": "head",
     "oh": "hod",
-    "ah": "ʌ",
+    "ah": "hud",
     "uw": "whod",
     "ea": "haired",
     "ow": "hoed",

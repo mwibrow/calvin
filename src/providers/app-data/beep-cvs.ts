@@ -10,7 +10,7 @@ export const beep = {
     "skirt": "s k er t",
     "squares": "s k w ea z",
     "cloud": "k l aw d",
-    "crown": "k r ow n",
+    "crown": "k r aw n",
     "earth": "er th",
     "stairs": "s t ea z",
     "joint": "jh oy n t",
