@@ -27,27 +27,27 @@ calvin-logo {
 
 
 .logo-c {
-    color: color($md-palette, 'red');
+    color: color($md-palette, md-red);
     position: absolute;
 }
 .logo-a {
-    color: color($md-palette, 'light-green');
+    color: color($md-palette, md-light-green);
     position: absolute;
 }
 .logo-l {
-    color: color($md-palette, 'light-blue');
+    color: color($md-palette, md-light-blue);
     position: absolute;
 }
 .logo-v {
-    color: color($md-palette, 'amber');
+    color: color($md-palette, md-amber);
     position: absolute;
 }
 .logo-i {
-    color: color($md-palette, 'purple');
+    color: color($md-palette, md-purple);
     position: absolute;
 }
 .logo-n {
-    color: color($md-palette, 'pink');
+    color: color($md-palette, md-pink);
     position: absolute;
 }
 

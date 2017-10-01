@@ -24,8 +24,8 @@ html, body,
 .app-root,
 .ion-page,
 .content {
-    background-color: color($md-palette, 'black');
-    color: color($md-palette, 'white');
+    background-color: color($md-palette, md-black);
+    color: color($md-palette, md-white);
 }
 
 .no-scroll .scroll-content{
@@ -84,5 +84,5 @@ button {
 
 .button-primary {
     background-color: color($colors, primary);
-    color: color($md-palette, 'white');
+    color: color($md-palette, md-white);
 }

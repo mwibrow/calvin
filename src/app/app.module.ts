@@ -8,6 +8,7 @@ import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
 import { CalvinLogoComponent } from '../components/calvin-logo/calvin-logo';
+import { AudioProvider } from '../providers/audio/audio';
 @NgModule({
   declarations: [
     CalvinApp,
@@ -26,7 +27,8 @@ import { CalvinLogoComponent } from '../components/calvin-logo/calvin-logo';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AudioProvider
   ]
 })
 export class AppModule {}
