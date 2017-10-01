@@ -86,3 +86,38 @@ button {
     background-color: color($colors, primary);
     color: color($md-palette, md-white);
 }
+
+$spinner-size: 50px;
+$spinner-time: 2s;
+$spinner-border: 10px;
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
+
+.loader {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+
+    .spinner {
+      border-radius: 50%;
+      border-top: $spinner-border solid color($md-palette, md-red);
+      border-left: $spinner-border solid color($md-palette, md-orange);
+      border-right: $spinner-border solid color($md-palette, md-light-green);
+      border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+      width: $spinner-size !important;
+      height: $spinner-size !important;
+      margin: $spinner-size / 4;
+      animation: spin $spinner-time linear infinite;
+    }
+  }
