@@ -1,20 +1,13 @@
 {
-  "name": "calvin",
+  "name": "CALVin",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
-  "private": true,
-  "scripts": {
-    "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
-    "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve",
-    "electron": "electron .",
-    "electron dist": "electron .",
-    "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
-    "electron:build": "npm run build && node_modules/.bin/build"
+  "author": {
+    "name": "Mark Wibrow",
+    "email": "m.wibrow@gmail.com",
+    "url": "https://github.com/mwibrow"
   },
+  "homepage": "https://github.com/mwibrow/CALVin",
+  "private": true,
   "main": "electron/electron.js",
   "config": {
     "ionic_bundler": "webpack",
@@ -32,6 +25,18 @@
       "category": "Education"
     }
   },
+  "scripts": {
+    "start":"ionic-app-scripts serve",
+    "clean": "ionic-app-scripts clean",
+    "build": "ionic-app-scripts build",
+    "lint": "ionic-app-scripts lint",
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve",
+    "electron": "electron .",
+    "electron dist": "electron .",
+    "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
+    "electron:build":"npm run build && node_modules/.bin/build"
+  },
   "dependencies": {
     "@angular/common": "4.4.3",
     "@angular/compiler": "4.4.3",
@@ -45,15 +50,10 @@
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
     "@ionic/storage": "2.0.1",
-    "@types/uuid": "^3.0.0",
-    "font-awesome": "^4.7.0",
     "ionic-angular": "3.7.1",
     "ionicons": "3.0.0",
-    "meyda": "^4.0.5",
     "rxjs": "5.4.3",
-    "svg-path-parser": "^1.0.1",
     "sw-toolbox": "3.6.0",
-    "uuid": "^3.1.0",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
@@ -61,8 +61,8 @@
     "@types/electron": "^1.6.10",
     "electron": "^1.7.8",
     "electron-builder": "^19.33.0",
-    "svgo": "^0.7.2",
+    "foreman": "^2.0.0",
     "typescript": "2.3.4"
   },
-  "description": "An Ionic project"
+  "description": "Computer Assisted Learning of Vowels Interface"
 }

@@ -1,0 +1,54 @@
+calvin-logo {
+
+.logo-letter {
+    display: inline-block;
+    height: 2ex;
+}
+
+
+.logo-letter:nth-child(1) {
+    width: 0.625ex;
+}
+.logo-letter:nth-child(2) {
+    width: 0.75ex;
+}
+.logo-letter:nth-child(3) {
+    width: 0.25ex;
+}
+.logo-letter:nth-child(4) {
+    width: 0.625ex;
+}
+.logo-letter:nth-child(5) {
+    width: 0ex;
+}
+.logo-letter:nth-child(6) {
+    width: 0.5ex;
+}
+
+
+.logo-c {
+    color: color($md-palette, 'red');
+    position: absolute;
+}
+.logo-a {
+    color: color($md-palette, 'light-green');
+    position: absolute;
+}
+.logo-l {
+    color: color($md-palette, 'light-blue');
+    position: absolute;
+}
+.logo-v {
+    color: color($md-palette, 'amber');
+    position: absolute;
+}
+.logo-i {
+    color: color($md-palette, 'purple');
+    position: absolute;
+}
+.logo-n {
+    color: color($md-palette, 'pink');
+    position: absolute;
+}
+
+}

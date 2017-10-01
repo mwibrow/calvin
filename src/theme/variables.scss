@@ -1,6 +1,16 @@
 // Ionic Variables and Theming. For more info, please see:
-// http://ionicframework.com/docs/v2/theming/
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
 
 @import "ionic.globals";
 
@@ -10,7 +20,7 @@ $font-path: "../assets/fonts";
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
 
 
@@ -24,52 +34,53 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $md-palette: (
-  md-red:         #F44336,
-  md-pink:        #E91E63,
-  md-purple:      #9C27B0,
-  md-deep-purple: #673AB7,
-  md-indigo:      #3F51B5,
-  md-blue:        #2196F3,
-  md-light-blue:  #03A9F4,
-  md-cyan:        #00BCD4,
-  md-teal:        #009688,
-  md-green:       #4CAF50,
-  md-light-green: #8BC34A,
-  md-lime:        #CDDC39,
-  md-yellow:      #FFEB3B,
-  md-orange:      #FF9800,
-  md-deep-orange: #FF5722,
-  md-brown:       #795548,
-  md-grey:        #9E9E9E,
-  md-blue-grey:   #607D8B,
-  md-black:       #000000,
-  md-white:       #FFFFFF
+  'red':         #F44336,
+  'pink':        #E91E63,
+  'purple':      #9C27B0,
+  'deep-purple': #673AB7,
+  'indigo':      #3F51B5,
+  'blue':        #2196F3,
+  'light-blue':  #03A9F4,
+  'cyan':        #00BCD4,
+  'teal':        #009688,
+  'green':       #4CAF50,
+  'light-green': #8BC34A,
+  'lime':        #CDDC39,
+  'yellow':      #FFEB3B,
+  'amber':       #FFC107,
+  'orange':      #FF9800,
+  'deep-orange': #FF5722,
+  'brown':       #795548,
+  'grey':        #9E9E9E,
+  'blue-grey':   #607D8B,
+  'black':       #000000,
+  'white':       #FFFFFF
 );
 
 $colors: (
-  primary:   color($md-palette, md-blue),
-  secondary: color($md-palette, md-purple),
-  danger:    color($md-palette, md-red),
-  light:     darken(color($md-palette, md-white), 5%),
-  dark:      lighten(color($md-palette, md-black), 5%),
-  active:    darken(color($md-palette, md-blue), 5%),
-  inactive:  lighten(color($md-palette, md-grey), 5%)
+  primary:   color($md-palette, 'light-blue'),
+  secondary: color($md-palette, 'light-green'),
+  danger:    color($md-palette, 'red'),
+  light:     darken(color($md-palette, 'white'), 5%),
+  dark:      lighten(color($md-palette, 'black'), 5%),
+  active:    darken(color($md-palette, 'blue'), 5%),
+  inactive:  lighten(color($md-palette, 'grey'), 5%)
 );
 
-$view-button-bg: color($md-palette, md-light-blue);
-$view-button-fg: color($md-palette, md-white);
+$view-button-bg: color($md-palette, 'light-blue');
+$view-button-fg: color($md-palette, 'white');
 
 
-$navigate-button-bg: color($md-palette, md-light-green);
-$navigate-button-fg: color($md-palette, md-white);
-$keyword-button-bg: color($md-palette, md-orange);
-$keyword-button-fg: color($md-palette, md-white);
-$keyword-control-button-bg: color($md-palette, md-purple);
-$keyword-control-button-fg: color($md-palette, md-white);
+$navigate-button-bg: color($md-palette, 'light-green');
+$navigate-button-fg: color($md-palette, 'white');
+$keyword-button-bg: color($md-palette, 'orange');
+$keyword-button-fg: color($md-palette, 'white');
+$keyword-control-button-bg: color($md-palette, 'purple');
+$keyword-control-button-fg: color($md-palette, 'white');
 
-$keyword-label-fg: color($md-palette, md-white);
-$keyword-label-highlight-fg: color($md-palette, md-red);
-$keyword-label-lowlight-fg: color($md-palette, md-white);
+$keyword-label-fg: color($md-palette, 'white');
+$keyword-label-highlight-fg: color($md-palette, 'red');
+$keyword-label-lowlight-fg: color($md-palette, 'white');
 
 @mixin button-hover($bg, $fg, $bd:10, $fd:10) {
     background-color: $bg;
@@ -85,6 +96,7 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
         border-bottom: 0.25rem solid darken($bg, $bd) !important;
     }
 }
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -119,7 +131,7 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/v2/ionicons/
+// http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
 
@@ -131,36 +143,17 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
 @import "noto-sans";
 
 @import '../assets/fonts/crafty_girls/CraftyGirls.ttf';
-@import '../assets/fonts/Roboto/Roboto-Regular.ttf';
-@import '../assets/fonts/DoulosSIL/DoulosSIL-R.ttf';
-
 
 @font-face {
-    font-family: 'Crafty Girls';
-    src: url('../assets/fonts/crafty_girls/CraftyGirls.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Crafty Girls';
+  src: url('../assets/fonts/crafty_girls/CraftyGirls.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
-
-@font-face {
-    font-family: 'Roboto';
-    src: url('../assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'DoulosSIL';
-    src: url('../assets/fonts/DoulosSIL/DoulosSIL-R.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 
 $font-family-base: "Crafty Girls";
 $font-family-md-base: "Crafty Girls";
 $font-size-base: 1.4rem;
 
 $font-size-desktop: 2.4rem;
-
 

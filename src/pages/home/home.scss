@@ -1,12 +1,18 @@
 page-home {
 
-ion-content {
-    overflow: hidden !important;
+calvin-logo {
+    font-size: 400% !important;
 }
 
-
-.logo {
-    font-weight: 800;
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
+.subtitle {
+    margin-bottom: 5rem;
+}
 }

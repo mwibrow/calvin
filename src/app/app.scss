@@ -1,4 +1,4 @@
-// http://ionicframework.com/docs/v2/theming/
+// http://ionicframework.com/docs/theming/
 
 
 // App Global Sass
@@ -20,10 +20,13 @@
     font-weight: bold;
 }
 
-button {
-    text-transform: none !important;
+html, body,
+.app-root,
+.ion-page,
+.content {
+    background-color: color($md-palette, 'black');
+    color: color($md-palette, 'white');
 }
-
 
 .no-scroll .scroll-content{
     margin-top: 0px !important;
@@ -41,7 +44,7 @@ ion-footer, .footer, .footer-md {
 }
 
 .toolbar-background {
-     background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 .header-md::after {
@@ -52,222 +55,34 @@ ion-footer, .footer, .footer-md {
     background-image: none !important;
 }
 
-ion-row {
-    margin: 0px !important;
-    padding: 0px !important;
-    display: border-box;
-}
-
-* {
-    box-shadow: none !important;
-}
-
-
-
-
-
-$font-size: 1.5rem;
-$font-size-keyword: 2.5rem;
-$button-size: 4rem;
-$button-font-size: 4rem;
-$icon-size: 2rem;
-$svg-size: 20rem;
-$vowel-trainer-content-width: 50%;
-
 html {
-    font-size: 0.75rem !important;
-}
-
-
-@media only screen and (min-height: 600px) {
-    html {
-        font-size: 0.9rem !important;
-    }
-}
-
-@media only screen and (min-height: 675px) {
-    html {
-        font-size: 1.1rem !important;
-    }
-}
-
-@media only screen and (min-height: 750px) {
-    html {
-        font-size: 1.25rem !important;
-    }
-}
-
-@media only screen and (min-height: 825px) {
-    html {
-        font-size: 1.375rem !important;
-    }
-}
-
-@media only screen and (min-height: 900px)
- {
-    html {
-        font-size: 1.5rem !important;
-    }
- }
-
-
-@media only screen and (min-height: 1000px)
-{
-    html {
-        font-size: 1.75rem !important;
-    }
-
+    font-size: 1.5rem;
 }
 
 button {
-    font-size: $button-size !important;
-    min-height: $button-size !important;
-    min-width: $button-size !important;
-}
-
-button span, .keyword-display{
-    font-size: $font-size !important;
-}
-
-ion-icon {
-    font-size: $icon-size !important;
+    text-transform: none !important;
 }
 
 
-.keyword-display {
-    font-size: $button-size !important;
-}
-
-.keyword-button span {
-    font-size: $font-size-keyword !important;
-}
-
-.vocal-tract-animation {
-    svg {
-        height: $svg-size !important;
+@mixin button-hover($bg, $fg, $bd:10, $fd:10) {
+    background-color: $bg;
+    border-bottom: 0.5rem solid darken($bg, $bd) !important;
+    color: $fg;
+    & span {
+       color: $fg;
+    };
+    &:disabled {
+       opacity: 0.0;
     }
-}
-
-
-@mixin hover-box-shadow ($cl) {
     &:hover {
-        box-shadow: 0px 0px 30px $cl !important;
+        background-color: lighten($bg, $fd) !important;
+        border-bottom: 0.25rem solid darken($bg, $bd) !important;
     }
 }
 
-// @media only screen and (min-width: 1920px) and (min-height: 1080px) {
-
-// }
-
-// .content-container {
-//     width: 33%;
-//     left: 33%;
-// }
-
-// .vocal-tract-animation {
-//     margin: auto;
-//     max-width: 320px !important;
-// }
 
 
-// * {
-//     font-size: 1.25rem !important;
-// }
-
-// button span, .keyword-display{
-//      font-size: 2rem !important;
-// }
-// button[icon-only] {
-//      font-size: 4rem !important;
-// }
-
-// ion-icon {
-//     font-size: 2rem !important;
-// }
-
-// }
-
-// @media only screen
-//     and (min-width: 1024px)
-//     and (min-height: 768px)
-// {
-
-// .content-container {
-//     width: 50%;
-//     left: 25%;
-// }
-
-// .vocal-tract-animation {
-//     margin: auto;
-//     max-width: 608px !important;
-// }
-
-
-// * {
-//     font-size: 1.5rem !important;
-// }
-
-// button span {
-
-//      font-size: 2rem !important;
-// }
-
-// .keyword-display {
-//      font-size: 2.5rem !important;
-// }
-
-// button[icon-only] {
-//      font-size: 3rem !important;
-// }
-
-// ion-icon {
-//     font-size: 2.5rem !important;
-// }
-
-// }
-
-// ion-app, ion-content {
-//     background-color: lighten(color($md-palette, md-light-blue), 20) !important;
-// }
-
-
-
-// button[color="secondary"]{
-//     // border-left-style: solid !important;
-//     // border-left-color: darken(color($colors, secondary), 5) !important;
-//     // border-left-width: 10px !important;
-//     // border-right-style: solid !important;
-//     // border-right-color: darken(color($colors, secondary),  5) !important;
-//     // border-right-width: 10px !important;
-//     // border-bottom-style: solid !important;
-//     // border-bottom-color: darken(color($colors, secondary),  10) !important;
-//     // border-bottom-width: 10px !important;
-//     border-style: solid !important;
-//     border-color: darken(color($colors, secondary), 10) !important;
-//     border-width: 10px;
-// }
-
-// button[color="danger"]{
-//     // border-left-style: solid !important;
-//     // border-left-color: darken(color($colors, danger), 10) !important;
-//     // border-left-width: 10px;
-//     // border-right-style: solid !important;
-//     // border-right-color: darken(color($colors, danger),  10) !important;
-//     // border-right-width: 10px;
-//     // border-bottom-style: solid !important;
-//     // border-bottom-color: darken(color($colors, danger),  20) !important;
-//     // border-bottom-width: 10px;
-//     border-style: solid !important;
-//     border-color: darken(color($colors, danger), 20) !important;
-//     border-width: 10px;
-// }
-
-// button[color="primary"]{
-//     border-style: solid !important;
-//     border-color: darken(color($colors, primary), 10) !important;
-//     border-width: 10px;
-// }
-
-
-
-
+.button-primary {
+    background-color: color($colors, primary);
+    color: color($md-palette, 'white');
+}

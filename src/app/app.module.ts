@@ -6,81 +6,27 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { SplashPage } from '../pages/splash/splash';
-import { SelectTalkerPage } from '../pages/select-talker/select-talker';
-import { IntroductionPage } from '../pages/introduction/introduction';
-import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 
-import { TalkerModeModal } from '../pages/talker-mode-modal/talker-mode-modal';
-
-import { AudioIOComponent } from '../components/audio-io/audio-io';
-import { SvgImageComponent } from '../components/svg-image/svg-image';
-import { SvgSrcDirective } from '../directives/svg-src/svg-src';
-import { VocalTractAnimationComponent } from '../components/vocal-tract-animation/vocal-tract-animation';
-import { AppStateProvider } from '../providers/app-state/app-state';
-import { AppDataProvider } from '../providers/app-data/app-data';
-import { LogoComponent } from '../components/logo/logo';
-
-import { HttpModule } from '@angular/http';
-import { AnimationDirective } from '../directives/animation/animation';
-import { VideoPlayerComponent } from '../components/video-player/video-player';
-import { VideoDirective } from '../directives/video/video';
-import { AudioProvider } from '../providers/audio/audio';
-import { NarratorComponent } from '../components/narrator/narrator';
-import { NarratorInsetDirective } from '../directives/narrator-inset/narrator-inset';
-import { KeywordComponent, KeywordUriDirective, KeywordControlsDirective } from '../components/keyword/keyword';
-import { BackgroundComponent } from '../components/background/background';
-import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
-
-
+import { CalvinLogoComponent } from '../components/calvin-logo/calvin-logo';
 @NgModule({
   declarations: [
     CalvinApp,
     HomePage,
-    IntroductionPage,
-    VowelTrainerPage,
-    SplashPage,
-    SelectTalkerPage,
-    AudioIOComponent,
-    SvgImageComponent,
-    SvgSrcDirective,
-    VocalTractAnimationComponent,
-    LogoComponent,
-    AnimationDirective,
-    VideoPlayerComponent,
-    VideoDirective,
-    TalkerModeModal,
-    NarratorComponent,
-    NarratorInsetDirective,
-    KeywordComponent,
-    KeywordUriDirective,
-    KeywordControlsDirective,
-    BackgroundComponent
+    CalvinLogoComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule,
-    IonicModule.forRoot(CalvinApp),
+    IonicModule.forRoot(CalvinApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     CalvinApp,
-    HomePage,
-    IntroductionPage,
-    VowelTrainerPage,
-    SplashPage,
-    SelectTalkerPage,
-    TalkerModeModal
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AppStateProvider,
-    AppDataProvider,
-    HttpModule,
-    AudioProvider,
-    AnimationFrameRequestProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
