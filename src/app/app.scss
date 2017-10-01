@@ -138,3 +138,29 @@ $spinner-border: 10px;
 .error {
     color: color($colors, danger);
 }
+
+
+.alert {
+    color: color($md-palette, md-black);
+    * {
+        font-weight: bold;
+        line-height: 1.5;
+    }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+            width: auto;
+            color: color($md-palette, md-white);
+            line-height: 1;
+        }
+        width: 5rem;
+    }
+    button:first-of-type {
+        background: color($colors, primary);
+    }
+    button:last-of-type {
+        background: color($colors, danger);
+    }
+}
