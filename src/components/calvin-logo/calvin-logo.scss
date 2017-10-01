@@ -16,12 +16,13 @@ calvin-logo {
     width: 0.25ex;
 }
 .logo-letter:nth-child(4) {
-    width: 0.625ex;
+    width: 0.75ex;
 }
 .logo-letter:nth-child(5) {
     width: 0ex;
 }
 .logo-letter:nth-child(6) {
+    margin-left: -0.25ex;
     width: 0.5ex;
 }
 
@@ -47,7 +48,7 @@ calvin-logo {
     position: absolute;
 }
 .logo-n {
-    color: color($md-palette, md-pink);
+    color: color($md-palette, md-purple);
     position: absolute;
 }
 

@@ -14,17 +14,36 @@
           <calvin-logo></calvin-logo>
         </ion-col>
       </ion-row>
-
       <ion-row justify-content-center>
         <ion-col col-auto class="subtitle">
-            <span>Computer Assisted Learning for Vowel INterface</span>
+            <span>Computer Assisted Learning for Vowel Iterface</span>
         </ion-col>
       </ion-row>
-      <ion-row justify-content-center>
+      <ion-row  *ngIf="!this.audioAvailable" justify-content-center>
         <ion-col col-auto>
-          <button ion-button class="button button-primary">Start</button>
+          <div class="error">
+            Cannot access audio for recording
+            <br>
+            Please check computer audio settings and restart
+            <br>
+            &nbsp;
+          </div>
         </ion-col>
-    </ion-row>
+      </ion-row>
+      <ion-row *ngIf="this.audioAvailable"  justify-content-center>
+        <ion-col col-auto>
+          <button ion-button small color="secondary">
+            <span>Start</span>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="this.audioAvailable"  justify-content-center>
+        <ion-col col-auto>
+          <button ion-button small color="danger" (click)="exitApplication()">
+            <span>Exit</span>
+          </button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 </ion-content>
