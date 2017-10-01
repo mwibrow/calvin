@@ -18,7 +18,8 @@ function createWindow() {
     // Create the browser window.
     win = new BrowserWindow({
         width: 1024,
-        height: 600
+        height: 600,
+        title: 'CALVin'
     });
 
     var dev = !!process.env.IONIC_ELECTRON_DEBUG;

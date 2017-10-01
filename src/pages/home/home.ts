@@ -1,8 +1,9 @@
 import { Component, HostListener } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { AudioProvider } from '../../providers/audio/audio';
 
 const remote = window['require']('electron').remote;
+
 
 @Component({
   selector: 'page-home',
@@ -17,12 +18,17 @@ export class HomePage {
   audioAvailable: boolean;
   constructor(
     private audio: AudioProvider,
-    public navCtrl: NavController) {
+    public navCtrl: NavController,
+    private app: App) {
   }
 
   ngOnInit() {
     this.audioAvailable = true;
     this.checkAudio();
+  }
+
+  ionViewDidEnter() {
+    this.app.setTitle('CALVin');
   }
 
   checkAudio() {
