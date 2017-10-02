@@ -49,8 +49,8 @@ export class HomePage {
 
   exitApplication() {
     let alert = this.alertCtrl.create({
-      title: '<span>Quit?</span?',
-      subTitle: 'Are you sure you want to quit <div class="calvin-logo"><span>C</span><span>A</span><span>L</span><span>V</span><span>in</span></div>&nbsp;?',
+      title: 'Are you sure you want to quit <div class="calvin-logo"><span>C</span><span>A</span><span>L</span><span>V</span><span>in</span></div>&nbsp;?',
+      subTitle: '',
       buttons: [
         {
           text: 'Cancel',

@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CalvinLogoComponent } from './calvin-logo/calvin-logo';
+
 @NgModule({
-	declarations: [
-    CalvinLogoComponent],
+	declarations: [],
 	imports: [],
-	exports: [
-    CalvinLogoComponent]
+	exports: []
 })
 export class ComponentsModule {}
