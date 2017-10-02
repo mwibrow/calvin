@@ -1,6 +1,6 @@
 page-home {
 
-calvin-logo {
+.title {
     font-size: 500% !important;
 }
 
@@ -20,8 +20,12 @@ calvin-logo {
     text-align: center;
 }
 
-.button-small-md {
-    height: 2.1rem;
-    width: 7.5rem;
+// .button-small-md {
+//     height: 2.1rem;
+//     width: 7.5rem;
+// }
+
+button {
+    // width: auto !important;
 }
 }

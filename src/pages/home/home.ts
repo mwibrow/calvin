@@ -1,8 +1,15 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
 import { AudioProvider } from '../../providers/audio/audio';
-const remote = window['require']('electron').remote;
 
+let _remote = null
+try {
+  _remote = window['require']('electron').remote;
+} catch (err) {
+  console.debug('No electron remote detected');
+}
+
+const remote = _remote;
 
 @Component({
   selector: 'page-home',
@@ -51,7 +58,7 @@ export class HomePage {
         }, 
         { 
           text: 'OK',
-          handler: () => remote.getCurrentWindow().close()
+          handler: () => remote && remote.getCurrentWindow().close()
         }],
       cssClass: 'alert'
     });

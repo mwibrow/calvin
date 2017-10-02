@@ -11,12 +11,12 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col col-auto>
-          <calvin-logo></calvin-logo>
+          <div class="title calvin-logo"><span>C</span><span>A</span><span>L</span><span>V</span><span>in</span></div>
         </ion-col>
       </ion-row>
       <ion-row justify-content-center>
         <ion-col col-auto class="subtitle">
-            <span>Computer Assisted Learning for Vowels Interface</span>
+            <span>Computer Assisted Learning for Vowels interface</span>
         </ion-col>
       </ion-row>
       <ion-row  *ngIf="!this.audioAvailable" justify-content-center>
@@ -32,14 +32,21 @@
       </ion-row>
       <ion-row *ngIf="this.audioAvailable"  justify-content-center>
         <ion-col col-auto>
-          <button ion-button small color="secondary">
-            <span>Start</span>
+          <button ion-button color="secondary">
+            <span>Vowel trainer</span>
           </button>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="this.audioAvailable"  justify-content-center>
         <ion-col col-auto>
-          <button ion-button small color="danger" (click)="exitApplication()">
+          <button ion-button color="primary">
+            <span>Word trainer</span>
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col col-auto>
+          <button ion-button color="danger" (click)="exitApplication()">
             <span>Exit</span>
           </button>
         </ion-col>
