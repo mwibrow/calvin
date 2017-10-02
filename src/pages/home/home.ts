@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
 import { AudioProvider } from '../../providers/audio/audio';
-import { ExitAppPage } from '../exit-app/exit-app';
 const remote = window['require']('electron').remote;
 
 
@@ -42,13 +41,18 @@ export class HomePage {
   }
 
   exitApplication() {
-    //remote.getCurrentWindow().close();
-    // const profileModal = this.modalCtrl.create(ExitAppPage, { userId: 8675309 });
-    // profileModal.present();
     let alert = this.alertCtrl.create({
       title: '<span>Quit?</span?',
-      subTitle: 'Are you sure you want to quit <span class="logo-c">C</span>ALVin?',
-      buttons: ['Cancel', 'OK'],
+      subTitle: 'Are you sure you want to quit <div class="calvin-logo"><span>C</span><span>A</span><span>L</span><span>V</span><span>in</span></div>&nbsp;?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }, 
+        { 
+          text: 'OK',
+          handler: () => remote.getCurrentWindow().close()
+        }],
       cssClass: 'alert'
     });
     alert.present();

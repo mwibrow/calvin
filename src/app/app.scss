@@ -163,4 +163,34 @@ $spinner-border: 10px;
     button:last-of-type {
         background: color($colors, danger);
     }
+    .alert-wrapper {
+        border-radius: 2rem !important;
+        border-top: $spinner-border solid color($md-palette, md-red);
+        border-left: $spinner-border solid color($md-palette, md-orange);
+        border-right: $spinner-border solid color($md-palette, md-light-green);
+        border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+        padding-bottom: 1rem;
+    }
+    .alert-head {
+        padding-top: 1rem;
+    }
+}
+
+.calvin-logo {
+    display: inline-block;
+    span:nth-child(1) {
+        color: color($md-palette, md-red);
+    }
+    span:nth-child(2) {
+        color: color($md-palette, md-light-green);
+    }
+    span:nth-child(3) {
+        color: color($md-palette, md-light-blue);
+    }
+    span:nth-child(4) {
+        color: color($md-palette, md-amber);
+    }
+    span:nth-child(5), span:nth-child(6) {
+        color: color($md-palette, md-purple);
+    }
 }
