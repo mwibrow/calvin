@@ -20,12 +20,22 @@ page-home {
     text-align: center;
 }
 
-// .button-small-md {
-//     height: 2.1rem;
-//     width: 7.5rem;
-// }
-
-button {
-    // width: auto !important;
+.calvin-frame-circle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: color($md-palette, md-light-blue-100);
+  width: 224px;
+  height: 224px;
+  border-radius: 50%;
+  @include border();
+  svg {
+    position: absolute;
+    top: 16px;
+    width: 256px !important;
+    height: 256px !important;
+  }
 }
 }

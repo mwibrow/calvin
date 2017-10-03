@@ -16,6 +16,7 @@
 // automatically applied to the <body> element in the app.
 
 
+
 * {
     font-weight: bold;
 }
@@ -80,7 +81,12 @@ button {
     }
 }
 
-
+@mixin border() {
+    border-top: $spinner-border solid color($md-palette, md-red);
+    border-left: $spinner-border solid color($md-palette, md-orange);
+    border-right: $spinner-border solid color($md-palette, md-light-green);
+    border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+}
 
 .md-button {
     padding: 0 6px 0 6px;
@@ -198,4 +204,48 @@ $spinner-border: 10px;
     span:nth-child(5), span:nth-child(6) {
         color: color($md-palette, md-purple);
     }
+}
+
+
+.calvin-head, .calvin-ear-left, .calvin-ear-right {
+    fill: color($md-palette, md-amber);
+}
+
+.calvin-neck, .calvin-ear-left-inner, .calvin-ear-right-inner, .calvin-lips {
+    fill: color($md-palette, md-amber-700);
+}
+
+.calvin-arms {
+    fill: color($md-palette, md-red-800);
+}
+
+.calvin-chest {
+    fill: color($md-palette, md-red);
+}
+
+.calvin-hair {
+    fill: darken(color($md-palette, md-brown), 10);
+}
+
+.calvin-eye-left, .calvin-eye-right {
+    fill: color($md-palette, md-blue-grey-900);
+}
+
+@keyframes Blink {
+    0% { transform: scaleY(1) }
+   33% { transform: scaleY(1) }
+   34% { transform: scaleY(0.1) }
+   35% { transform: scaleY(1) }
+   75% { transform: scaleY(1) }
+   76% { transform: scaleY(0.1) }
+   77% { transform: scaleY(1) }
+   81% { transform: scaleY(1) }
+   82% { transform: scaleY(0.1) }
+   83% { transform: scaleY(1) }
+  100% { transform: scaleY(1) }
+}
+
+.calvin-eye-left, .calvin-eye-right {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 10s infinite;
 }

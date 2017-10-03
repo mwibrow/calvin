@@ -4,6 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { InlineSVGModule } from 'ng-inline-svg';
+
 import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
@@ -21,6 +23,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
   ],
   imports: [
     BrowserModule,
+    InlineSVGModule,
     IonicModule.forRoot(CalvinApp)
   ],
   bootstrap: [IonicApp],
