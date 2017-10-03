@@ -24,7 +24,7 @@
             <span>Computer Assisted Learning for Vowels interface</span>
         </ion-col>
       </ion-row>
-      <ion-row  *ngIf="!this.audioAvailable" justify-content-center>
+      <ion-row  *ngIf="!audioAvailable" justify-content-center>
         <ion-col col-auto>
           <div class="error">
             Cannot access audio for recording
@@ -35,21 +35,21 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="this.audioAvailable"  justify-content-center>
+      <ion-row *ngIf="audioAvailable"  justify-content-center>
         <ion-col col-auto>
           <button ion-button color="secondary">
             <span>Vowel trainer</span>
           </button>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="this.audioAvailable"  justify-content-center>
+      <ion-row *ngIf="audioAvailable"  justify-content-center>
         <ion-col col-auto>
           <button ion-button color="primary">
             <span>Word trainer</span>
           </button>
         </ion-col>
       </ion-row>
-      <ion-row justify-content-center>
+      <ion-row *ngIf="remote" justify-content-center>
         <ion-col col-auto>
           <button ion-button color="danger" (click)="exitApplication()">
             <span>Exit</span>
