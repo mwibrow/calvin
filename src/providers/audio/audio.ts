@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import * as InlineWorker from 'inline-worker';
@@ -62,6 +61,7 @@ class AudioEventHandler {
   }
 }
 
+// tslint:disable-next-line
 const raise = (err, msg='') => {
     console.error(msg);
     console.log(err);
@@ -349,7 +349,7 @@ export class AudioRecorder extends AudioEventHandler {
     }
   }
 
-  private quit() {
+  quit() {
     this.worker.terminate();
   }
 
@@ -379,6 +379,7 @@ export class AudioRecorder extends AudioEventHandler {
     });
   }
 
+  // tslint:disable-next-line
   private setRecordBuffer(buffer: Array<Float32Array>) {
     let i: number;
     this.recordBuffer = this.context.createBuffer(
@@ -426,6 +427,7 @@ export class AudioRecorder extends AudioEventHandler {
   }
 }
 
+/* tslint:disable */
 const getAudioWorker = () => {
   let self: any = {};
   let worker: Worker = new InlineWorker(function(self){
