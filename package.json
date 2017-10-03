@@ -35,7 +35,9 @@
     "electron": "electron .",
     "electron dist": "electron .",
     "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
-    "electron:build": "npm run build && node_modules/.bin/build"
+    "electron:build": "npm run build && node_modules/.bin/build",
+    "build:setup": "node scripts/setup.js",
+    "build:svg": "npm run build:setup && svgo --pretty -f artwork -o src/assets/images"
   },
   "dependencies": {
     "@angular/common": "4.4.3",
@@ -61,8 +63,9 @@
     "@types/electron": "^1.6.10",
     "electron": "^1.7.8",
     "electron-builder": "^19.33.0",
-    "foreman": "^2.0.0",
+    "fs-extra": "^4.0.2",
     "inline-worker": "^1.1.0",
+    "svgo": "^0.7.2",
     "typescript": "2.3.4",
     "wav-decoder": "^1.3.0",
     "wav-encoder": "^1.3.0"
