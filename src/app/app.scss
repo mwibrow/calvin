@@ -250,16 +250,3 @@ $spinner-border: 10px;
     animation: Blink 10s infinite;
 }
 
-@keyframes Grin {
-    0% { transform: scale(0.5,0.25) }
-   40% { transform: scale(0.5, 0.25)}
-   45% { transform: scale(1.5, 1.75)}
-   55% { transform: scale(1.5, 1.75)}
-   60% { transform: scale(0.5,0.25) }
-  100% { transform: scale(0.5,0.25) }
-}
-
-.calvin-lips {
-    transform-origin: 256px 256px;
-    animation: Grin 10s infinite;
-}
