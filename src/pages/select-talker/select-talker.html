@@ -14,5 +14,11 @@
 
 
 <ion-content padding>
-
+<ion-list>
+  <ion-item *ngFor="let talker of appData.talkerList">
+    <ion-avatar item-start>
+      <div class="avatar" [inlineSVG]="'assets/images/avatars/' + talker + '.svg'"></div>
+    </ion-avatar>
+  </ion-item>
+</ion-list>
 </ion-content>

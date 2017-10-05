@@ -1,3 +1,28 @@
 page-select-talker {
 
+  ion-avatar  {     
+    width: 100% !important;  
+    height : 100% !important;  
+    max-width: 128px !important;  //any size
+    max-height: 128px !important; //any size 
+  }
+
+  .avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background-color: color($md-palette, md-blue-grey-100);
+    svg {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      top: 0;
+      left: -16px;
+    }
+  }
 }

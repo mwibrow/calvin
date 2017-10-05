@@ -39,7 +39,7 @@ export namespace Talkers {
             talkerList.push(property);
         }
     }
-    export const TALKER_LIST: Array<string> = talkerList;
+    export const TALKER_LIST: Array<string> = talkerList.sort();
 
 
 }

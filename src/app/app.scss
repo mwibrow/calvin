@@ -234,7 +234,7 @@ $spinner-border: 10px;
         fill: color($md-palette, md-red);
     }
     .hair {
-        fill: darken(color($md-palette, md-brown), 10);
+        fill: color($md-palette, md-brown);
     }
     .eye {
         fill: color($md-palette, md-blue-grey-900);
@@ -242,6 +242,110 @@ $spinner-border: 10px;
     .eye {
         transform-origin: 230.28571px 172.79071px;
         animation: Blink 10s infinite;
+    }
+}
+
+.avatar-emma {
+    .head, .ear {
+        fill: color($md-palette, md-brown-600);
+    }
+    .neck, .ear-hole, .lips {
+        fill: color($md-palette, md-brown-700);
+    }
+    .arms {
+        fill: color($md-palette, md-amber-800);
+    }
+    .chest {
+        fill: color($md-palette, md-amber);
+    }
+    .hair {
+        fill: color($md-palette, md-grey-900);
+    }
+    .eye {
+        fill: color($md-palette, md-blue-grey-900);
+    }
+    .eye {
+        transform-origin: 230.28571px 172.79071px;
+        animation: Blink 10s infinite;
+        animation-delay: 7s;
+    }
+}
+
+.avatar-dan {
+    .head, .ear {
+        fill: color($md-palette, md-brown-600);
+    }
+    .neck, .ear-hole, .lips {
+        fill: color($md-palette, md-brown-700);
+    }
+    .arms {
+        fill: color($md-palette, md-light-green-900);
+    }
+    .chest {
+        fill: color($md-palette, md-light-green-700);
+    }
+    .hair {
+        fill: darken(color($md-palette, md-grey-900), 10);
+    }
+    .eye {
+        fill: color($md-palette, md-blue-grey-900);
+    }
+    .eye {
+        transform-origin: 230.28571px 172.79071px;
+        animation: Blink 10s infinite;
+        animation-delay: 5s;
+    }
+}
+
+.avatar-kerry {
+    .head, .ear {
+        fill: color($md-palette, md-pink-100);
+    }
+    .neck, .ear-hole, .lips {
+        fill: color($md-palette, md-pink-200);
+    }
+    .arms {
+        fill: color($md-palette, md-light-blue-800);
+    }
+    .chest {
+        fill: color($md-palette, md-light-blue);
+    }
+    .hair {
+        fill: color($md-palette, md-orange-900);
+    }
+    .eye {
+        fill: color($md-palette, md-blue-grey-900);
+    }
+    .eye {
+        transform-origin: 230.28571px 172.79071px;
+        animation: Blink 10s infinite;
+        animation-delay: 3s;
+    }
+}
+
+.avatar-mark {
+    .head, .ear {
+        fill: color($md-palette, md-pink-100);
+    }
+    .neck, .ear-hole, .lips {
+        fill: color($md-palette, md-pink-200);
+    }
+    .arms {
+        fill: color($md-palette, md-purple-800);
+    }
+    .chest {
+        fill: color($md-palette, md-purple);
+    }
+    .hair {
+        fill: color($md-palette, md-yellow);
+    }
+    .eye {
+        fill: color($md-palette, md-blue-grey-900);
+    }
+    .eye {
+        transform-origin: 230.28571px 172.79071px;
+        animation: Blink 10s infinite;
+        animation-delay: 9s;
     }
 }
 

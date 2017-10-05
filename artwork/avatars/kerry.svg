@@ -8,7 +8,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 512 512"
-   class="avatar-kelly"
+   class="avatar-kerry"
    id="svg4208"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -139,5 +139,6 @@
   <path
      style="fill:#f4511e;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="M 248 40 L 240 48 L 224 48 L 220 52 L 216 48 L 200 48 L 184 64 L 184 80 L 176 72 L 160 72 L 144 88 L 144 104 L 148 108 L 144 112 L 128 128 L 128 144 L 136 152 L 136 168 L 149.33398 184 L 162.66602 184 L 176 168 L 176 152 L 184 152 L 200 136 L 200 120 L 208 120 L 216 112 L 224 120 L 240 120 L 256 104 L 272 120 L 288 120 L 296 112 L 304 120 L 304 128 L 320 144 L 328 152 L 336 152 L 336 168 L 349.33398 184 L 362.66602 184 L 376 168 L 376 152 L 384 144 L 384 128 L 368 112 L 364 108 L 368 104 L 368 88 L 352 72 L 336 72 L 328 80 L 328 64 L 312 48 L 296 48 L 292 52 L 288 48 L 272 48 L 264 40 L 248 40 z "
+     class="hair"
      id="path6369" />
 </svg>
