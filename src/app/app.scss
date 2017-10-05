@@ -221,35 +221,27 @@ $spinner-border: 10px;
 }
 
 .avatar-calvin {
-
     .head, .ear {
         fill: color($md-palette, md-amber);
     }
-
     .neck, .ear-hole, .lips {
         fill: color($md-palette, md-amber-700);
     }
-
     .arms {
         fill: color($md-palette, md-red-800);
     }
-
     .chest {
         fill: color($md-palette, md-red);
     }
-
     .hair {
         fill: darken(color($md-palette, md-brown), 10);
     }
-
     .eye {
         fill: color($md-palette, md-blue-grey-900);
     }
-
     .eye {
         transform-origin: 230.28571px 172.79071px;
         animation: Blink 10s infinite;
     }
-
 }
 

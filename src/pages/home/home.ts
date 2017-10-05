@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
+import { SelectTalkerPage } from '../select-talker/select-talker';
 import { AudioProvider } from '../../providers/audio/audio';
 
 let _remote = null
@@ -65,6 +66,16 @@ export class HomePage {
     alert.present();
   }
 
+  onVowelTrainer() {
+    console.log('V')
+    this.showSelectTalkerModal()
+  }
+
+  showSelectTalkerModal() {
+    const profileModal = this.modalCtrl.create(SelectTalkerPage);
+    profileModal.present();
+  }
+  
   handleKeyboardEvents(event) {
     let key = event.key || event.keyCode;
     console.log(event)

@@ -19,7 +19,8 @@ import { AppDataProvider } from '../providers/app-data/app-data';
     CalvinApp,
     HomePage,
     VowelTrainerPage,
-    KeywordTrainerPage
+    KeywordTrainerPage,
+    SelectTalkerPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,8 @@ import { AppDataProvider } from '../providers/app-data/app-data';
   bootstrap: [IonicApp],
   entryComponents: [
     CalvinApp,
-    HomePage
+    HomePage,
+    SelectTalkerPage
   ],
   providers: [
     StatusBar,

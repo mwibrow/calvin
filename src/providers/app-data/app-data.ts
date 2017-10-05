@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
-
 import { WordLists } from './word-lists';
 import { Talkers } from './talkers';
 
-export enum TalkerMode {
-    Single,
-    Multiple
-};
 
 @Injectable()
 export class AppDataProvider {
@@ -20,10 +13,9 @@ export class AppDataProvider {
   talkerList: Array<string>;
   keywordList: Array<string>;
   keywordExamples: any;
-  talkerMode: TalkerMode;
   talker: string;
 
-  constructor(public http: Http) {
+  constructor() {
 
     this.words = WordLists.WORDS;
     this.keywordList = WordLists.KEYWORD_LIST;
@@ -32,8 +24,6 @@ export class AppDataProvider {
     this.talkers = Talkers.TALKERS;
     this.talkerList = Talkers.TALKER_LIST;
 
-
-    this.talkerMode = TalkerMode.Multiple;
     this.talker = 'emma';
   }
 
