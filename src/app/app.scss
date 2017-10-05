@@ -206,31 +206,6 @@ $spinner-border: 10px;
     }
 }
 
-
-.calvin-head, .calvin-ear-left, .calvin-ear-right {
-    fill: color($md-palette, md-amber);
-}
-
-.calvin-neck, .calvin-ear-left-inner, .calvin-ear-right-inner, .calvin-lips {
-    fill: color($md-palette, md-amber-700);
-}
-
-.calvin-arms {
-    fill: color($md-palette, md-red-800);
-}
-
-.calvin-chest {
-    fill: color($md-palette, md-red);
-}
-
-.calvin-hair {
-    fill: darken(color($md-palette, md-brown), 10);
-}
-
-.calvin-eye-left, .calvin-eye-right {
-    fill: color($md-palette, md-blue-grey-900);
-}
-
 @keyframes Blink {
     0% { transform: scaleY(1) }
    33% { transform: scaleY(1) }
@@ -245,8 +220,36 @@ $spinner-border: 10px;
   100% { transform: scaleY(1) }
 }
 
-.calvin-eye-left, .calvin-eye-right {
-    transform-origin: 230.28571px 172.79071px;
-    animation: Blink 10s infinite;
+.avatar-calvin {
+
+    .head, .ear {
+        fill: color($md-palette, md-amber);
+    }
+
+    .neck, .ear-hole, .lips {
+        fill: color($md-palette, md-amber-700);
+    }
+
+    .arms {
+        fill: color($md-palette, md-red-800);
+    }
+
+    .chest {
+        fill: color($md-palette, md-red);
+    }
+
+    .hair {
+        fill: darken(color($md-palette, md-brown), 10);
+    }
+
+    .eye {
+        fill: color($md-palette, md-blue-grey-900);
+    }
+
+    .eye {
+        transform-origin: 230.28571px 172.79071px;
+        animation: Blink 10s infinite;
+    }
+
 }
 
