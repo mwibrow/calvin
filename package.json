@@ -37,7 +37,7 @@
     "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
     "electron:build": "npm run build && node_modules/.bin/build",
     "build:setup": "node scripts/setup.js",
-    "build:svg": "npm run build:setup && svgo --pretty -f artwork -o src/assets/images"
+    "build:svg": "npm run build:setup && svgo --config=config/svgo.yml --pretty -f artwork -o src/assets/images"
   },
   "dependencies": {
     "@angular/common": "4.4.3",
