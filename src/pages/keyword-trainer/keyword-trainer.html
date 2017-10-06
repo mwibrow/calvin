@@ -1,18 +1,23 @@
-<!--
-  Generated template for the KeywordTrainerPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>KeywordTrainer</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+<ion-grid>
+  <ion-row justify-content-center>
+    <ion-col>
+      <button ion-button full strong class="keyword-button" (click)="playKeyword()">
+        <ng-content></ng-content>
+      </button>
+    </ion-col>
+    <ion-col col-auto>
+      <button *ngIf="controls" [class]="canRecord ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out' " ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
+        <ion-icon *ngIf="!recording" name='mic'>
+        </ion-icon>
+        <ion-icon *ngIf="recording" name='square'>
+        </ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-auto>
+      <button *ngIf="controls"  [class]="canPlay ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out'" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
+        <ion-icon name='play'>
+        </ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
