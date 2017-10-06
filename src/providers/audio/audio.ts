@@ -147,6 +147,24 @@ export class AudioPlayer extends AudioEventHandler {
     this.nodes.push(node);
   }
 
+  loadUrl(url: string) {
+    return new Promise((resolve, reject) => {
+      let request = new XMLHttpRequest();
+      request.addEventListener('error', (e) => function(e) {
+        console.log(e);
+      });
+      request.open('GET', url, true);
+      request.responseType = 'arraybuffer';
+      request.onload = () =>
+        this.context.decodeAudioData(request.response, (buffer) => {
+          this.buffer = buffer;
+          resolve();
+        },
+        (e) => reject(e))
+      request.send();
+    });
+  }
+
   loadBuffer(buffer: AudioBuffer) {
     this.stop();
     this.buffer = buffer;
@@ -183,6 +201,19 @@ export class AudioPlayer extends AudioEventHandler {
         this.source.start(0);
       }
     });
+  }
+
+  playBuffer(buffer: AudioBuffer) {
+    this.loadBuffer(buffer);
+    return this.play();
+  }
+
+  playUrl(url: string) {
+    return new Promise((resolve, reject) => {
+      this.loadUrl(url)
+        .then(() => this.play().then(() => resolve()))
+        .catch((e) => reject(e))
+    })
   }
 
   playTone(frequency: number, duration: number, amplitude=Math.SQRT1_2, numberOfChannels=1, sampleRate=44100, rampLength=0.050) {
@@ -332,10 +363,11 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   record(timeout?: number) {
-    this.recordInit();
-    if (timeout) {
-      this.timeout = setTimeout(()=> this.stop(), timeout * 1000);
-    }
+    return new Promise((resolve, reject) => {
+      this.recordInit();
+      if (timeout) {
+        this.timeout = setTimeout(() => this.stop().then(() => resolve()), timeout * 1000);
+      }})
   }
 
   stop() {

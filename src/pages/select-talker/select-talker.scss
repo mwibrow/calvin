@@ -6,6 +6,7 @@ page-select-talker {
     background: transparent !important;
     .scroll-content {
       margin-bottom: 0.0rem !important;
+      overflow-x: hidden;
     }
   }
 
@@ -13,16 +14,20 @@ page-select-talker {
     font-weight: bold;
     color: color($md-palette, md-light-blue);
   }
+
+  ion-list {
+    width: 100% !important;
+  }
   ion-label.is-selected {
     color: color($md-palette, md-light-blue);
     font-size: 2rem;
   }
 
-  ion-avatar  {     
-    width: 100% !important;  
-    height : 100% !important;  
-    max-width: 128px !important; 
-    max-height: 96px !important;  
+  ion-avatar  {
+    width: 100% !important;
+    height : 100% !important;
+    max-width: 128px !important;
+    max-height: 96px !important;
   }
 
   .avatar {
@@ -52,5 +57,5 @@ page-select-talker {
       }
     }
   }
-  
+
 }

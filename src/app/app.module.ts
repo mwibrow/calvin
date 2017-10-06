@@ -8,9 +8,9 @@ import { InlineSVGModule } from 'ng-inline-svg';
 
 import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { KeywordTrainerPage } from '../pages/keyword-trainer/keyword-trainer';
 import { SelectTalkerPage } from '../pages/select-talker/select-talker';
+import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { AudioProvider } from '../providers/audio/audio';
 import { AppDataProvider } from '../providers/app-data/app-data';
 
@@ -31,7 +31,8 @@ import { AppDataProvider } from '../providers/app-data/app-data';
   entryComponents: [
     CalvinApp,
     HomePage,
-    SelectTalkerPage
+    SelectTalkerPage,
+    VowelTrainerPage
   ],
   providers: [
     StatusBar,

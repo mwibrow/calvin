@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
 import { SelectTalkerPage } from '../select-talker/select-talker';
+import { VowelTrainerPage } from '../vowel-trainer/vowel-trainer';
 import { AudioProvider } from '../../providers/audio/audio';
 
 let _remote = null
@@ -56,8 +57,8 @@ export class HomePage {
         {
           text: 'Cancel',
           role: 'cancel'
-        }, 
-        { 
+        },
+        {
           text: 'OK',
           handler: () => remote && remote.getCurrentWindow().close()
         }],
@@ -73,11 +74,13 @@ export class HomePage {
   showSelectTalkerModal() {
     const selectTalkerModal = this.modalCtrl.create(SelectTalkerPage);
     selectTalkerModal.onDidDismiss(data => {
-      console.log(data);
+      if (data) {
+        this.navCtrl.push(VowelTrainerPage);
+      }
     });
     selectTalkerModal.present();
   }
-  
+
   handleKeyboardEvents(event) {
     let key = event.key || event.keyCode;
     console.log(event)

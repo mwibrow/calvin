@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
+import { KeywordComponent } from './keyword/keyword';
 
 @NgModule({
-	declarations: [],
+	declarations: [KeywordComponent],
 	imports: [],
-	exports: []
+	exports: [KeywordComponent]
 })
 export class ComponentsModule {}
