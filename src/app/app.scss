@@ -81,6 +81,12 @@ button {
     }
 }
 
+@mixin hover-box-shadow ($cl) {
+    &:hover {
+        box-shadow: 0px 0px 30px $cl !important;
+    }
+}
+
 @mixin border() {
     border-top: $spinner-border solid color($md-palette, md-red);
     border-left: $spinner-border solid color($md-palette, md-orange);
