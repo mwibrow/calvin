@@ -24,12 +24,14 @@ const remote = _remote;
 export class HomePage {
 
   audioAvailable: boolean;
+  remote: any;
   constructor(
     private audio: AudioProvider,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     private app: App) {
+      this.remote = remote;
   }
 
   ngOnInit() {
