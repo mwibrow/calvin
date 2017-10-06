@@ -29,7 +29,7 @@ export namespace Talkers {
     export const CALVIN: any = {
       id: 'mark',
       realName: 'Mark',
-      display: 'Calvin',
+      displayName: 'Calvin',
       avatar: 'calvin'
     };
 

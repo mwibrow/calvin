@@ -285,14 +285,15 @@ $spinner-border: 10px;
         fill: color($md-palette, md-light-green-700);
     }
     .hair {
-        fill: darken(color($md-palette, md-grey-900), 10);
+        fill: color($md-palette, md-grey-900);
     }
     .eye {
         fill: color($md-palette, md-blue-grey-900);
     }
     .eye {
         transform-origin: 230.28571px 172.79071px;
-        animation: Blink 10s infinite;
+        animation: Blink 9s infinite;
+        animation-direction: reverse;
         animation-delay: 5s;
     }
 }
@@ -344,8 +345,18 @@ $spinner-border: 10px;
     }
     .eye {
         transform-origin: 230.28571px 172.79071px;
-        animation: Blink 10s infinite;
+        animation: Blink 9s infinite;
+        animation-direction: reverse;
         animation-delay: 9s;
     }
 }
 
+$media-width-medium: 1024px;
+$media-height-medium: 768;
+
+@media screen and (width: $media-width-medium) {
+
+    ion-list {
+        width: 768px;
+    }
+}

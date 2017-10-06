@@ -1,10 +1,28 @@
 page-select-talker {
+  @include border();
+  border-radius: 1rem;
+  background: color($md-palette, md-white) !important;
+  ion-content, .content {
+    background: transparent !important;
+    .scroll-content {
+      margin-bottom: 0.0rem !important;
+    }
+  }
+
+  .toolbar-title {
+    font-weight: bold;
+    color: color($md-palette, md-light-blue);
+  }
+  ion-label.is-selected {
+    color: color($md-palette, md-light-blue);
+    font-size: 2rem;
+  }
 
   ion-avatar  {     
     width: 100% !important;  
     height : 100% !important;  
-    max-width: 128px !important;  //any size
-    max-height: 128px !important; //any size 
+    max-width: 128px !important; 
+    max-height: 96px !important;  
   }
 
   .avatar {
@@ -13,16 +31,26 @@ page-select-talker {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 128px;
-    height: 128px;
+    width: 96px;
+    height: 96px;
     border-radius: 50%;
     background-color: color($md-palette, md-blue-grey-100);
     svg {
       position: absolute;
-      width: 160px;
-      height: 160px;
+      width: 128px;
+      height: 128px;
       top: 0;
       left: -16px;
     }
+    &.is-selected {
+      background-color: color($md-palette, md-light-blue-100);
+      svg {
+        .lips {
+          transform-origin: 256px 256px;
+          transform: scale(1.5, 1.75);
+        }
+      }
+    }
   }
+  
 }

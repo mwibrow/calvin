@@ -67,13 +67,15 @@ export class HomePage {
   }
 
   onVowelTrainer() {
-    console.log('V')
     this.showSelectTalkerModal()
   }
 
   showSelectTalkerModal() {
-    const profileModal = this.modalCtrl.create(SelectTalkerPage);
-    profileModal.present();
+    const selectTalkerModal = this.modalCtrl.create(SelectTalkerPage);
+    selectTalkerModal.onDidDismiss(data => {
+      console.log(data);
+    });
+    selectTalkerModal.present();
   }
   
   handleKeyboardEvents(event) {
