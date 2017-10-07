@@ -44,7 +44,7 @@
       </ion-row>
       <ion-row *ngIf="audioAvailable"  justify-content-center>
         <ion-col col-auto>
-          <button ion-button color="primary">
+          <button ion-button color="primary" (click)="onKeywordTrainer()">
             <span>Word trainer</span>
           </button>
         </ion-col>

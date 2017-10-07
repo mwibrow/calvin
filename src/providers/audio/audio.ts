@@ -28,6 +28,16 @@ export class AudioProvider {
   getContext() {
     return this.context;
   }
+
+  stop() {
+    if (this.player.isRunning()) {
+      this.player.stop()
+    }
+    if (this.recorder.isRunning()) {
+      this.recorder.stop();
+      this.recorder.quit();
+    }
+  }
 }
 
 
@@ -171,6 +181,10 @@ export class AudioPlayer extends AudioEventHandler {
   }
 
   playing() {
+    return this.running;
+  }
+
+  isRunning() {
     return this.running;
   }
 
@@ -337,6 +351,10 @@ export class AudioRecorder extends AudioEventHandler {
     this.recordInit();
   }
 
+  isRunning() {
+    return this.running;
+  }
+
   private recordInit() {
     this.worker = getAudioWorker();
     this.worker.onmessage = (message) => this.processMessage(message);
@@ -382,7 +400,9 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   quit() {
-    this.worker.terminate();
+    if (this.worker) {
+      this.worker.terminate();
+    }
   }
 
   clear(){

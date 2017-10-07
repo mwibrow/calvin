@@ -1,23 +1,67 @@
-<ion-grid>
-  <ion-row justify-content-center>
-    <ion-col>
-      <button ion-button full strong class="keyword-button" (click)="playKeyword()">
-        <ng-content></ng-content>
-      </button>
-    </ion-col>
-    <ion-col col-auto>
-      <button *ngIf="controls" [class]="canRecord ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out' " ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
-        <ion-icon *ngIf="!recording" name='mic'>
-        </ion-icon>
-        <ion-icon *ngIf="recording" name='square'>
-        </ion-icon>
-      </button>
-    </ion-col>
-    <ion-col col-auto>
-      <button *ngIf="controls"  [class]="canPlay ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out'" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
-        <ion-icon name='play'>
-        </ion-icon>
-      </button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+
+<ion-header transparent>
+  <ion-navbar transparent hideBackButton>
+    <ion-title><logo (click)="goHome()"></logo></ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="no-scroll">
+  <ion-grid class="content-container">
+      <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
+    <ion-row justify-content-center>
+
+      <ion-col col-auto>
+          <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+            <ion-icon name="arrow-round-back"></ion-icon>
+          </button>
+      </ion-col>
+      <ion-col text-center>
+          <div class="keyword-display" [innerHtml]="formatWord()"></div>
+      </ion-col>
+      <ion-col col-auto>
+          <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+            <ion-icon name="arrow-round-forward"></ion-icon>
+          </button>
+      </ion-col>
+
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col>
+        <div class="keyword-container">
+          <ion-grid [hidden]="!isViewState(ViewState.Image)">
+            <ion-row text-center>
+              <ion-col>
+                <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
+              </ion-col>
+            </ion-row>
+            <ion-row text-center>
+              <ion-col text-center>
+                <!-- <img [src]="getImageSrc()"/> -->
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-grid [hidden]="!isViewState(ViewState.Video)">
+          <ion-row justify-content-center>
+            <ion-col text-center>
+              <!-- <img [src]="getVideoSrc()"/> -->
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer padding>
+  <ion-buttons text-center>
+    <button ion-button icon-only class="view-button"
+        (click)="changeViewState(ViewState.Image)" [disabled]="isViewState(ViewState.image)">
+      <ion-icon name="image"></ion-icon>
+    </button>
+    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Film)" [disabled]="isViewState(ViewState.Film)">
+      <ion-icon name="film"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-footer>

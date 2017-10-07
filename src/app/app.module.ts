@@ -39,7 +39,8 @@ import { LogoComponent } from '../components/logo/logo';
     CalvinApp,
     HomePage,
     SelectTalkerPage,
-    VowelTrainerPage
+    VowelTrainerPage,
+    KeywordTrainerPage
   ],
   providers: [
     StatusBar,

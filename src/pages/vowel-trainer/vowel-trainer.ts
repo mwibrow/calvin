@@ -62,6 +62,7 @@ export class VowelTrainerPage {
   }
 
   goHome() {
+    this.audio.stop();
     this.navCtrl.pop();
   }
 

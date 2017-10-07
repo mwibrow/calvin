@@ -8,6 +8,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+enum ViewState {
+  Audio,
+  Video,
+  Examples
+}
+
 @IonicPage()
 @Component({
   selector: 'page-keyword-trainer',
