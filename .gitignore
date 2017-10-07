@@ -35,4 +35,7 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 
 scripts/audio/
+scripts/video
 src/assets/images/
+src/assets/audio/
+src/assets/video/
