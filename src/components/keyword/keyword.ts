@@ -101,7 +101,6 @@ export class KeywordControlsDirective {
   }
 }
 
-
 @Directive({
   selector: '[keyword-uri]' // Attribute selector
 })

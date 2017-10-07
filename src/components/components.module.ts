@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
-import { KeywordComponent } from './keyword/keyword';
+import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from './keyword/keyword';
+import { LogoComponent } from './logo/logo';
 
 @NgModule({
-	declarations: [KeywordComponent],
+	declarations: [KeywordComponent,
+    LogoComponent],
 	imports: [],
-	exports: [KeywordComponent]
+	exports: [KeywordComponent,
+		KeywordControlsDirective,
+		KeywordUriDirective,
+    LogoComponent]
 })
 export class ComponentsModule {}

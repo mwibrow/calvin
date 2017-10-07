@@ -54,7 +54,7 @@ const hvds = [
 var generateAudio = function(talkers, words, wordType) {
     talkers.map(
         function(talker) {
-            return fs.ensureDirSync(path.join(__dirname, "audio", talker.name, wordType));
+            return fs.ensureDirSync(path.join(__dirname, "..", "src", "assets", "audio", talker.name, wordType));
         }
     );
     var i, j, wavPath;
@@ -75,7 +75,7 @@ var main = function() {
         .toString()
         .split("\n")
         .filter(function(word) { return word.length });
-    
+
     generateAudio(talkers, words, 'words');
     generateAudio(talkers, hvds, 'vowels');
 }

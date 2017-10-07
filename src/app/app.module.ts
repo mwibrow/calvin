@@ -14,13 +14,20 @@ import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { AudioProvider } from '../providers/audio/audio';
 import { AppDataProvider } from '../providers/app-data/app-data';
 
+import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
+import { LogoComponent } from '../components/logo/logo';
+
 @NgModule({
   declarations: [
     CalvinApp,
     HomePage,
     VowelTrainerPage,
     KeywordTrainerPage,
-    SelectTalkerPage
+    SelectTalkerPage,
+    LogoComponent,
+    KeywordComponent,
+    KeywordControlsDirective,
+    KeywordUriDirective
   ],
   imports: [
     BrowserModule,

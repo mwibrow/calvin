@@ -1,3 +1,65 @@
 page-vowel-trainer {
 
+	.highlight {
+		color: $keyword-label-highlight-fg !important;
+	}
+
+	.keyword-display {
+		color: $keyword-label-fg;
+	}
+
+
+	.navigate-button {
+    width: 4rem;
+    height: 4rem;
+		border-radius: 50%;
+		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+		@include hover-box-shadow($navigate-button-bg);
+	}
+
+	.fade-out {
+		opacity: 0 !important;
+		transition: opacity 1s;
+	}
+
+
+	.fade-in {
+		opacity: 1 !important;
+		transition: opacity 1s;
+	}
+
+	.view-button {
+		background-color: darken($view-button-bg, 10);
+		span {
+			color: darken($view-button-bg, 20);
+		};
+		border-bottom: 0.5rem solid darken($view-button-bg, 20);
+		&:hover {
+			background-color: lighten($view-button-bg, 10);
+			span {
+				color: $view-button-fg;
+			}
+			border-bottom: 0.25rem solid darken($view-button-bg, 10);
+		}
+		@include hover-box-shadow($view-button-bg);
+		&:disabled {
+			opacity: 1;
+			background-color: $view-button-bg;
+			span {
+				color: $view-button-fg;
+			}
+			border-bottom: 0.5rem solid darken($view-button-bg, 10);
+		};
+	}
+
+
+
+	.content-container {
+		display: flex !important;
+		justify-content: center !important;
+		text-align: center !important;
+		margin: auto !important;
+		width: 50% !important;
+	}
+
 }

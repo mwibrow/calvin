@@ -84,6 +84,7 @@ button {
 @mixin hover-box-shadow ($cl) {
     &:hover {
         box-shadow: 0px 0px 30px $cl !important;
+        transition: none !important;
     }
 }
 
