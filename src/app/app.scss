@@ -79,12 +79,25 @@ button {
         background-color: lighten($bg, $fd) !important;
         border-bottom: 0.25rem solid darken($bg, $bd) !important;
     }
+    &.semi-disabled {
+        opacity: 0.5;
+        & span {
+            color: darken($bg, $bd);
+        };
+        &:hover {
+            background-color: $bg !important;
+            border-bottom: 0.5rem solid darken($bg, $bd) !important;
+        }
+    }
 }
 
 @mixin hover-box-shadow ($cl) {
     &:hover {
         box-shadow: 0px 0px 30px $cl !important;
         transition: none !important;
+    }
+    &.semi-disabled:hover {
+        box-shadow: none;
     }
 }
 

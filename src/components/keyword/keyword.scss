@@ -29,4 +29,13 @@ keyword {
         transition: opacity 1s;
     }
 
+    .disabled {
+        &:hover {
+            box-shadow: none !important
+        }
+        transition: opacity 0.5s;
+        opacity: 0.5!important;
+        color: darken($keyword-control-button-bg, 10);
+    }
+
 }

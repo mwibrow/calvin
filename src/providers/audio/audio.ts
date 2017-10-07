@@ -376,7 +376,7 @@ export class AudioRecorder extends AudioEventHandler {
     this.emit('stop');
     if (!this.monitor) {
       return new Promise((resolve, reject) => {
-        this.getAudioBuffers().then(resolve);
+        this.getAudioBuffers().then(() => resolve());
       });
     }
   }

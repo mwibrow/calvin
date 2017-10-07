@@ -67,7 +67,8 @@ export class KeywordComponent {
 
   playRecording() {
     if (this.audioBuffer) {
-      this.player.playBuffer(this.audioBuffer);
+      this.canRecord = false;
+      this.player.playBuffer(this.audioBuffer).then(() => this.canRecord = true);
     }
   }
 
@@ -78,7 +79,7 @@ export class KeywordComponent {
   }
 
   stopRecording() {
-    this.recorder.stop();
+    this.recorder.stop().then(() => this.getBuffer());
   }
 
   toggleRecording() {
