@@ -61,6 +61,10 @@ export class VowelTrainerPage {
 
   }
 
+  goHome() {
+    this.navCtrl.pop();
+  }
+
   changeViewState(viewState: ViewState) {
     this.viewState = viewState;
     //this.narrator.play();
@@ -83,12 +87,12 @@ export class VowelTrainerPage {
       return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
        '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
     } else {
-      return word.display;
+      return `<span class="keyword-display">${word.display}</span>`;
     }
   }
 
   getKeyword(): string {
-    return this.appData.keywordList[this.wordIndex];
+    return `<span class="keyword-display">${this.appData.keywordList[this.wordIndex]}</span>`;
   }
 
   getWord() {

@@ -6,12 +6,13 @@ page-vowel-trainer {
 
 	.keyword-display {
 		color: $keyword-label-fg;
+		font-size: 2rem;
 	}
 
 
 	.navigate-button {
-    width: 4rem;
-    height: 4rem;
+    	width: 3.5rem;
+    	height: 3.5rem;
 		border-radius: 50%;
 		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
 		@include hover-box-shadow($navigate-button-bg);
