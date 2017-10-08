@@ -7,13 +7,10 @@ page-keyword-trainer {
 
 	.keyword-display {
 		color: $keyword-label-fg;
-		font-size: 2rem;
 	}
 
 
 	.navigate-button {
-    	width: 3.5rem;
-    	height: 3.5rem;
 		border-radius: 50%;
 		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
 		@include hover-box-shadow($navigate-button-bg);
@@ -53,15 +50,5 @@ page-keyword-trainer {
 			border-bottom: 0.25rem solid darken($view-button-bg, 10);
 		};
 	}
-
-
-
-	.content-container {
-		display: flex !important;
-		justify-content: center !important;
-		text-align: center !important;
-		margin: auto !important;
-		width: 50% !important;
-    }
 
 }

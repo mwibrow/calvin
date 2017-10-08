@@ -391,13 +391,31 @@ $media-height-medium: 768;
 
 
 ion-content {
-    width: calc(100vh / 1.618034);
-    margin-left: calc(50vw - 50vh / 1.618034);
+    width: calc(100vh / 1.25) !important;
+    margin-left: calc(50vw - 50vh / 1.25);
+    background-color: magenta !important;
 }
 
 .video-player-container, .image-container {
-    width: calc(90vh / 1.618034);
-    height: calc(90vh / 1.618034);
+    width: calc(90vh / 1.5);
+    height: calc(90vh / 1.5);
 }
 
+.keyword-button {
+    height: 10vh;
+    .keyword-display {
+    font-size: 5vh;
+    }
+}
 
+.keyword-control-button, .view-button {
+    width: 10vh;
+    height: 10vh;
+    font-size: 3.333vh;
+}
+
+.navigate-button {
+    width: 10vh;
+    height: 10vh;
+    font-size: 3.333vh;
+}

@@ -9,13 +9,9 @@ keyword {
     }
 
     .keyword-control-button {
-        margin-top: 0.25rem;
-        margin-left: 1rem;
         border-radius: 50% !important;
         @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
         @include hover-box-shadow($keyword-control-button-bg);
-        width: 3.5rem;
-        height: 3.5rem;
     }
 
     ion-icon[name='play'] {
