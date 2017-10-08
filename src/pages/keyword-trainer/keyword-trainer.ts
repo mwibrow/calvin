@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
+import { VideoPlayerComponent } from '../../components/video-player/video-player';
 
 enum ViewState {
   Image,
@@ -26,6 +27,7 @@ export class KeywordTrainerPage {
   public exampleList: Array<string>;
 
   @ViewChild('keyword') keyword: KeywordComponent;
+  @ViewChild('videoPlayer') videoPlayer: VideoPlayerComponent;
 
   constructor(
     public navCtrl: NavController,
@@ -99,6 +101,7 @@ export class KeywordTrainerPage {
   setWords() {
     let word = this.getWord();
     this.keyword.setUri(this.getAudio());
+    this.videoPlayer.setSrc(this.getVideo())
     console.log(word)
     //this.vocalTractAnimation.setupVowelAnimation(word.description)
   }

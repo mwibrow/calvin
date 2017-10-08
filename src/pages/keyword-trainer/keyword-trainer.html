@@ -45,9 +45,9 @@
         <ion-grid [hidden]="!isViewState(ViewState.Video)">
           <ion-row justify-content-center>
             <ion-col text-center>
-              <video controls>
-                <source [src]="getVideo()" type="video/mp4">
-              </video>
+              <video-player [video-src]="getVideo()" #videoPlayer>
+                <!-- <source [src]="getVideo()" type="video/mp4"> -->
+              </video-player>
             </ion-col>
           </ion-row>
         </ion-grid>

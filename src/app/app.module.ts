@@ -16,6 +16,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
+import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import { LogoComponent } from '../components/logo/logo';
     LogoComponent,
     KeywordComponent,
     KeywordControlsDirective,
-    KeywordUriDirective
+    KeywordUriDirective,
+    VideoPlayerComponent,
+    VideoSrcDirective
   ],
   imports: [
     BrowserModule,

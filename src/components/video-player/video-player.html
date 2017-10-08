@@ -1,0 +1,9 @@
+<!-- Generated template for the VideoPlayerComponent component -->
+<div class="video-player-container">
+  <video #videoPlayer>
+    <source type="video/mp4" #source>
+  </video>
+  <div class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
+    <ion-icon name="play"></ion-icon>
+  </div>
+</div>

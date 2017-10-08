@@ -112,4 +112,5 @@ export class KeywordUriDirective {
   ngOnInit() {
     this.keywordComponent.setUri(this.keywordUri);
   }
+
 }
