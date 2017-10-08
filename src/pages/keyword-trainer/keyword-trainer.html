@@ -32,12 +32,12 @@
           <ion-grid [hidden]="!isViewState(ViewState.Image)">
             <ion-row text-center>
               <ion-col>
-                <keyword keyword-controls [keyword-uri]="getAudio(getWord())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
+                <keyword keyword-controls [keyword-uri]="getAudio()" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
               </ion-col>
             </ion-row>
             <ion-row text-center>
               <ion-col text-center>
-                <img [src]="getImage(getWord())"/>
+                <img [src]="getImage()"/>
               </ion-col>
             </ion-row>
           </ion-grid>

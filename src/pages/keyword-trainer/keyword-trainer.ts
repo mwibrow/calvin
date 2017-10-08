@@ -36,8 +36,9 @@ export class KeywordTrainerPage {
       this.viewState = ViewState.Image;
       this.wordIndex = 0;
       this.talker = 'emma';
-      this.exampleList = appData.exampleList
+      this.exampleList = appData.exampleList;
       this.player = this.audio.player;
+      console.log(this.appData)
 
   }
 
@@ -87,7 +88,7 @@ export class KeywordTrainerPage {
   }
 
   forwardWord() {
-    if (this.wordIndex < this.appData.keywordList.length - 1) {
+    if (this.wordIndex < this.exampleList.length - 1) {
       this.ngZone.run(() => {
         this.wordIndex++;
         this.setWords();
@@ -107,7 +108,7 @@ export class KeywordTrainerPage {
   }
 
   getWord() {
-    return this.exampleList[this.wordIndex]
+    return this.exampleList[this.wordIndex];
   }
 
   getAudio() {
