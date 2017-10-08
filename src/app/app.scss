@@ -64,6 +64,12 @@ button {
     text-transform: none !important;
 }
 
+.centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 @mixin button-hover($bg, $fg, $bd:10, $fd:10) {
     background-color: $bg;
@@ -382,3 +388,16 @@ $media-height-medium: 768;
         width: 768px;
     }
 }
+
+
+ion-content {
+    width: calc(100vh / 1.618034);
+    margin-left: calc(50vw - 50vh / 1.618034);
+}
+
+.video-player-container, .image-container {
+    width: calc(90vh / 1.618034);
+    height: calc(90vh / 1.618034);
+}
+
+

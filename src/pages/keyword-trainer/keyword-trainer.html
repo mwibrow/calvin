@@ -7,45 +7,25 @@
 
 
 <ion-content class="no-scroll">
-  <ion-grid class="content-container">
-      <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
-    <ion-row justify-content-center>
+  <ion-grid>
+    <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
 
-      <ion-col col-auto>
-          <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
-            <ion-icon name="arrow-round-back"></ion-icon>
-          </button>
-      </ion-col>
-      <ion-col text-center>
-          <div class="keyword-display" [innerHtml]="getKeyword()"></div>
-      </ion-col>
-      <ion-col col-auto>
-          <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
-            <ion-icon name="arrow-round-forward"></ion-icon>
-          </button>
-      </ion-col>
-
-    </ion-row>
     <ion-row justify-content-center>
       <ion-col>
-        <div class="keyword-container">
-          <ion-grid [hidden]="!isViewState(ViewState.Image)">
-            <ion-row text-center>
-              <ion-col>
-                <keyword keyword-controls [keyword-uri]="getAudio()" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
-              </ion-col>
-            </ion-row>
-            <ion-row text-center>
-              <ion-col text-center>
-                <img [src]="getImage()"/>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-        <ion-grid [hidden]="!isViewState(ViewState.Video)">
-          <ion-row justify-content-center>
+        <ion-grid>
+          <ion-row text-center>
+            <ion-col>
+              <keyword keyword-controls [keyword-uri]="getAudio()" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
+            </ion-col>
+          </ion-row>
+          <ion-row text-center [hidden]="!isViewState(ViewState.Image)">
             <ion-col text-center>
-              <video-player [video-src]="getVideo()" #videoPlayer>
+              <img class="image-container" [src]="getImage()"/>
+            </ion-col>
+          </ion-row>
+          <ion-row justify-content-center [hidden]="!isViewState(ViewState.Video)">
+            <ion-col col-auto>
+              <video-player justify-content-center [video-src]="getVideo()" #videoPlayer>
                 <!-- <source [src]="getVideo()" type="video/mp4"> -->
               </video-player>
             </ion-col>
@@ -54,6 +34,16 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab bottom left>
+    <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab bottom right>
+    <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
 
 <ion-footer padding>

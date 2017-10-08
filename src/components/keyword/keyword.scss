@@ -1,5 +1,8 @@
 keyword {
 
+    ion-grid {
+        width: 100%;
+    }
     .keyword-button {
         @include button-hover($keyword-button-bg, $keyword-button-fg);
         @include hover-box-shadow($keyword-button-bg);

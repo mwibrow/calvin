@@ -41,7 +41,7 @@ page-keyword-trainer {
 			span {
 				color: $view-button-fg;
 			}
-			border-bottom: 0.25rem solid darken($view-button-bg, 10);
+			border-bottom: 0.5rem solid darken($view-button-bg, 10);
 		}
 		@include hover-box-shadow($view-button-bg);
 		&:disabled {
@@ -50,7 +50,7 @@ page-keyword-trainer {
 			span {
 				color: $view-button-fg;
 			}
-			border-bottom: 0.5rem solid darken($view-button-bg, 10);
+			border-bottom: 0.25rem solid darken($view-button-bg, 10);
 		};
 	}
 
