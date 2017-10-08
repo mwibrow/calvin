@@ -72,7 +72,6 @@ export class VowelTrainerPage {
     if (this.viewState === ViewState.Animation) {
       // this.vocalTractAnimation.setAnimation(this.getWord().vowel)
     }
-
   }
 
   isViewState(viewState: ViewState) {

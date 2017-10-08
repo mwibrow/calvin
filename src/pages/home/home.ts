@@ -4,6 +4,7 @@ import { KeywordTrainerPage } from '../keyword-trainer/keyword-trainer';
 import { SelectTalkerPage } from '../select-talker/select-talker';
 import { VowelTrainerPage } from '../vowel-trainer/vowel-trainer';
 import { AudioProvider } from '../../providers/audio/audio';
+import { AppDataProvider } from '../../providers/app-data/app-data';
 
 let _remote = null
 try {
@@ -31,6 +32,7 @@ export class HomePage {
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public alertCtrl: AlertController,
+    public appData: AppDataProvider,
     private app: App) {
       this.remote = remote;
   }
@@ -38,6 +40,7 @@ export class HomePage {
   ngOnInit() {
     this.audioAvailable = true;
     this.checkAudio();
+    console.log(this.appData);
   }
 
   ionViewDidEnter() {

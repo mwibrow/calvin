@@ -3,7 +3,7 @@ import { beep } from './beep-cvs';
 import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phonetics';
 
 export namespace WordLists {
- 
+
   export const WORD_LIST: Array<string> = [
     'cot',
     'pot',
@@ -157,4 +157,7 @@ export namespace WordLists {
   }
   export const KEYWORDS: any = keywords;
 
+  let examples = new Set<string>();
+  Object.keys(KEYWORD_EXAMPLES_LIST).map(key => KEYWORD_EXAMPLES_LIST[key].map(word => examples.add(word)))
+  export const EXAMPLE_LIST: Array<string> = Array.from(examples).sort((a, b) => a.toString().localeCompare(b.toString()));
 }

@@ -17,7 +17,7 @@
           </button>
       </ion-col>
       <ion-col text-center>
-          <div class="keyword-display" [innerHtml]="formatWord()"></div>
+          <div class="keyword-display" [innerHtml]="getKeyword()"></div>
       </ion-col>
       <ion-col col-auto>
           <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
@@ -32,12 +32,12 @@
           <ion-grid [hidden]="!isViewState(ViewState.Image)">
             <ion-row text-center>
               <ion-col>
-                <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
+                <keyword keyword-controls [keyword-uri]="getAudio(getWord())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
               </ion-col>
             </ion-row>
             <ion-row text-center>
               <ion-col text-center>
-                <!-- <img [src]="getImageSrc()"/> -->
+                <img [src]="getImage(getWord())"/>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -45,7 +45,9 @@
         <ion-grid [hidden]="!isViewState(ViewState.Video)">
           <ion-row justify-content-center>
             <ion-col text-center>
-              <!-- <img [src]="getVideoSrc()"/> -->
+              <video controls>
+                <source [src]="getVideo()" type="video/mp4">
+              </video>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -57,10 +59,10 @@
 <ion-footer padding>
   <ion-buttons text-center>
     <button ion-button icon-only class="view-button"
-        (click)="changeViewState(ViewState.Image)" [disabled]="isViewState(ViewState.image)">
+        (click)="changeViewState(ViewState.Image)" [disabled]="isViewState(ViewState.Image)">
       <ion-icon name="image"></ion-icon>
     </button>
-    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Film)" [disabled]="isViewState(ViewState.Film)">
+    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Video)" [disabled]="isViewState(ViewState.Video)">
       <ion-icon name="film"></ion-icon>
     </button>
   </ion-buttons>
