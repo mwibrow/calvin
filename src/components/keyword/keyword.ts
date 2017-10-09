@@ -61,7 +61,10 @@ export class KeywordComponent {
 
   playKeyword() {
     if (this.uri) {
-      this.player.playUrl(this.uri);
+      this.player.playUrl(this.uri)
+        .catch((err) => {
+          console.error('AN ERROR OCCURED')
+        });
     }
   }
 

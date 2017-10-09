@@ -2,7 +2,7 @@ WHEREAMI="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd $WHEREAMI
 
-readarray -t WORDS < word-list.txt
+WORDS=($(cut -f1 word-list.txt))
 
 echo "${#WORDS[@]} words"
 

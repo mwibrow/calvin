@@ -102,8 +102,6 @@ export class KeywordTrainerPage {
     let word = this.getWord();
     this.keyword.setUri(this.getAudio());
     this.videoPlayer.setSrc(this.getVideo())
-    console.log(word)
-    //this.vocalTractAnimation.setupVowelAnimation(word.description)
   }
 
   getKeyword(): string {
