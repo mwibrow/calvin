@@ -28,15 +28,15 @@ page-home {
   justify-content: center;
   overflow: hidden;
   background-color: color($md-palette, md-light-blue-100);
-  width: 224px;
-  height: 224px;
+  width: 12.5rem;
+  height: 12.5rem;
   border-radius: 50%;
   @include border();
   svg {
     position: absolute;
-    top: 16px;
-    width: 256px !important;
-    height: 256px !important;
+    top: 0;
+    left: 0;
+    transform: translateY(15%) scale(1.25);
   }
 }
 }

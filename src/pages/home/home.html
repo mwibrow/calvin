@@ -7,55 +7,55 @@
 </ion-header>
 
 <ion-content padding class="no-scroll">
-  <div class="center-content">
-    <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col col-auto>
-          <div class="title calvin-logo"><span>C</span><span>A</span><span>L</span><span>V</span><span>in</span></div>
-        </ion-col>
-      </ion-row>
-      <ion-row justify-content-center>
-        <ion-col col-auto no-padding>
-          <div class="calvin-frame-circle" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
-        </ion-col>
-      </ion-row>
-      <ion-row justify-content-center>
-        <ion-col col-auto class="subtitle">
-            <span>Computer Assisted Learning for Vowels interface</span>
-        </ion-col>
-      </ion-row>
-      <ion-row  *ngIf="!audioAvailable" justify-content-center>
-        <ion-col col-auto>
-          <div class="error">
-            Cannot access audio for recording
-            <br>
-            Please check computer audio settings and restart
-            <br>
-            &nbsp;
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="audioAvailable"  justify-content-center>
-        <ion-col col-auto>
-          <button ion-button color="secondary" (click)="onVowelTrainer()">
-            <span>Vowel trainer</span>
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="audioAvailable"  justify-content-center>
-        <ion-col col-auto>
-          <button ion-button color="primary" (click)="onKeywordTrainer()">
-            <span>Word trainer</span>
-          </button>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="remote" justify-content-center>
-        <ion-col col-auto>
-          <button ion-button color="danger" (click)="exitApplication()">
-            <span>Exit</span>
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-auto>
+        <div class="title">
+          <logo></logo>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col col-auto no-padding>
+        <div class="calvin-frame-circle" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col col-auto class="subtitle">
+          <span>Computer Assisted Learning for Vowels interface</span>
+      </ion-col>
+    </ion-row>
+    <ion-row  *ngIf="!audioAvailable" justify-content-center>
+      <ion-col col-auto>
+        <div class="error">
+          Cannot access audio for recording
+          <br>
+          Please check computer audio settings and restart
+          <br>
+          &nbsp;
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="audioAvailable"  justify-content-center>
+      <ion-col col-auto>
+        <button ion-button color="secondary" (click)="onVowelTrainer()">
+          <span>Vowel trainer</span>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="audioAvailable"  justify-content-center>
+      <ion-col col-auto>
+        <button ion-button color="primary" (click)="onKeywordTrainer()">
+          <span>Word trainer</span>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="remote" justify-content-center>
+      <ion-col col-auto>
+        <button ion-button color="danger" (click)="exitApplication()">
+          <span>Exit</span>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

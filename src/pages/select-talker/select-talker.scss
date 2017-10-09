@@ -18,16 +18,10 @@ page-select-talker {
   ion-list {
     width: 100% !important;
   }
+
   ion-label.is-selected {
     color: color($md-palette, md-light-blue);
     font-size: 2rem;
-  }
-
-  ion-avatar  {
-    width: 100% !important;
-    height : 100% !important;
-    max-width: 128px !important;
-    max-height: 96px !important;
   }
 
   .avatar {
@@ -36,16 +30,13 @@ page-select-talker {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 96px;
-    height: 96px;
+    width: 7.5rem;
+    height: 7.5rem;
     border-radius: 50%;
     background-color: color($md-palette, md-blue-grey-100);
     svg {
       position: absolute;
-      width: 128px;
-      height: 128px;
-      top: 0;
-      left: -16px;
+      transform: translateY(12.5%) scale(1.333);
     }
     &.is-selected {
       background-color: color($md-palette, md-light-blue-100);
