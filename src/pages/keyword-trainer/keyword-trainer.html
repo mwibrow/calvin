@@ -25,7 +25,7 @@
           </ion-row>
           <ion-row justify-content-center [hidden]="!isViewState(ViewState.Video)">
             <ion-col col-auto>
-              <video-player justify-content-center [video-src]="getVideo()" #videoPlayer>
+              <video-player class="video-container" justify-content-center [video-src]="getVideo()" #videoPlayer>
                 <!-- <source [src]="getVideo()" type="video/mp4"> -->
               </video-player>
             </ion-col>
