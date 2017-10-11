@@ -394,21 +394,43 @@ $media-height-medium: 768;
 ion-content {
     max-width: 40rem;
     margin-left: calc(50% - 20rem);
+    // .navigate-button, .keyword-control-button, .view-button {
+    //     width: 4rem;
+    //     height: 4rem;
+    //     font-size: 1.25rem;
+    // }
+    // .keyword-button {
+    //     height: 4rem;
+    //     width: 100%;
+    //     font-size: 2rem;
+    // }
+    // .image-container, .video-player-container {
+    //     width: 25rem;
+    //     height: 25rem;
+    // }
+}
+
+@media screen and (min-height: 768px) {
+    ion-footer {
+        height: 20vh;
+    }
     .navigate-button, .keyword-control-button, .view-button {
-        width: 4rem;
-        height: 4rem;
-        font-size: 1.25rem;
+        width: 7.5vh;
+        height: 7.5vh;
+        font-size: 3.25vh;
     }
     .keyword-button {
-        height: 4rem;
+        height: 7.5vh;
         width: 100%;
-        font-size: 2rem;
+        font-size: 5vh;
+        margin: 1vh 2vh;
     }
-    .image-container, .video-player-container {
-        width: 25rem;
-        height: 25rem;
+   .image-container, .video-player-container {
+        width: 50vh;
+        height: 50vh;
     }
 }
+
 // ion-content {
 //     width: calc(100vh / 1.25) !important;
 //     margin-left: calc(50vw - 50vh / 1.25);
