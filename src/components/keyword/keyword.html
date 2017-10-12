@@ -15,7 +15,7 @@
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button *ngIf="controls"  [class]="canPlay ? 'keyword-control-button fade-in' : 'keyword-control-button fade-out'" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
+      <button *ngIf="controls"  [class]="canPlay ? 'keyword-control-button fade-in' : 'keyword-control-button semi-disabled'" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
         <ion-icon name='play'>
         </ion-icon>
       </button>

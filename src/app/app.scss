@@ -392,8 +392,8 @@ $media-height-medium: 768;
 
 
 ion-content {
-    max-width: 40rem;
-    margin-left: calc(50% - 20rem);
+    // max-width: 40rem;
+    // margin-left: calc(50% - 20rem);
     // .navigate-button, .keyword-control-button, .view-button {
     //     width: 4rem;
     //     height: 4rem;
@@ -411,19 +411,28 @@ ion-content {
 }
 
 @media screen and (min-height: 768px) {
+    ion-content {
+        margin-top: 10vh;
+        max-width: 75vh;
+        left: calc(50% - 37.5vh);
+    }
+    ion-grid {
+
+    }
     ion-footer {
         height: 20vh;
     }
     .navigate-button, .keyword-control-button, .view-button {
-        width: 7.5vh;
-        height: 7.5vh;
+        width: 8.75vh;
+        height: 8.75vh;
         font-size: 3.25vh;
     }
     .keyword-button {
-        height: 7.5vh;
+        height: 8.75vh;
         width: 100%;
         font-size: 5vh;
-        margin: 1vh 2vh;
+        margin: 0 !important;
+        padding: 0 !important;
     }
    .image-container, .video-player-container {
         width: 50vh;
