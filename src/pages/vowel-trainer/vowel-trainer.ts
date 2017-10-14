@@ -2,7 +2,7 @@ import { Component, ViewChild, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
-// import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
+ import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
 /**
@@ -29,7 +29,7 @@ enum ViewState {
 export class VowelTrainerPage {
 
   // @ViewChild('narrator') narrator: NarratorComponent;
-  // @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
+  @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
   @ViewChild('keyword') keyword: KeywordComponent;
   @ViewChild('keywordVowel') keywordVowel: KeywordComponent;
 
@@ -70,7 +70,7 @@ export class VowelTrainerPage {
     this.viewState = viewState;
     //this.narrator.play();
     if (this.viewState === ViewState.Animation) {
-      // this.vocalTractAnimation.setAnimation(this.getWord().vowel)
+      this.vocalTractAnimation.setAnimation(this.getWord().vowel)
     }
   }
 

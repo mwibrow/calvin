@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, Directive, ElementRef, Input, ViewChild } from '@angular/core';
 import { Range } from 'ionic-angular';
 import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures } from './animation'
@@ -63,28 +63,10 @@ export class VocalTractAnimationComponent {
   }
 
   svgInserted(e) {
-    // let groups: Array<SVGGraphicsElement>, group: SVGGraphicsElement;
-    // let paths: Array<SVGPathElement>, path: SVGPathElement, i: number;
-    // this.svg = this.elementRef.nativeElement.querySelector('svg');
-
-    // this.vocalTract = {};
-    // this.svg.querySelectorAll('g').forEach(
-    //   g => g.setAttribute('style', 'opacity: 0;'));
-    // this.svg.querySelectorAll('path').forEach(
-    //   path => this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path));
-
-    // group = this.svg.querySelector('g[id="foreground"')
-    // if (group) {
-    //   this.svg.removeChild(group);
-    // }
-
-    // group = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    // group.setAttribute('id', 'foreground')
-    // this.svg.appendChild(group);
-
     this.setupVocalTract();
-
+    this.setupVowelAnimation('front close');
   }
+
   setupVocalTract() {
     let i: number, paths: any, path: any, name: string, group: any;
     this.svg = this.elementRef.nativeElement.querySelector('svg')
@@ -116,6 +98,8 @@ export class VocalTractAnimationComponent {
       this.vocalTract[path.getAttribute('id')].parentSvg = this.svg;
     }
 
+    console.log(this.vocalTract)
+
   }
 
   resetVocalTract() {
@@ -139,6 +123,7 @@ export class VocalTractAnimationComponent {
 
   setupMonophthong(vowel) {
     this.gestures = new VocalTractGestures(this.vocalTract);
+    console.log(this.gestures)
     let tongueTarget = this.gestures.getTongueTarget(vowel.front, vowel.open);
 
     let n: number = Math.floor(this.rangeMax * 0.2);
@@ -244,6 +229,21 @@ export class VocalTractAnimationComponent {
       this.animationRange.setValue(this.frame);
       this.rangeChange({ value: this.animationRange.value });
     }
+  }
+
+}
+
+
+@Directive({
+  selector: '[animation]' // Attribute selector
+})
+export class AnimationDirective {
+
+  @Input('animation') animation: string;
+  constructor(public vocalTractAnimation: VocalTractAnimationComponent) {}
+
+  ngOnInit(){
+    this.vocalTractAnimation.setAnimation(this.animation);
   }
 
 }
