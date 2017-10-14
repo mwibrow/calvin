@@ -64,9 +64,11 @@ export class VocalTractAnimationComponent {
 
   svgInserted(e) {
     this.setupVocalTract();
-    this.setupVowelAnimation('front close');
   }
 
+  ready() {
+    return !!this.svg
+  }
   setupVocalTract() {
     let i: number, paths: any, path: any, name: string, group: any;
     this.svg = this.elementRef.nativeElement.querySelector('svg')
@@ -109,6 +111,7 @@ export class VocalTractAnimationComponent {
   setupVowelAnimation(description: string) {
     this.resetVocalTract();
     let vowels = parseVowelDescriptions(description);
+    console.log(vowels)
     switch (vowels.length) {
       case 1:
         this.setupMonophthong(vowels[0]);

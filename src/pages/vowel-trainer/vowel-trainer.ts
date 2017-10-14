@@ -70,8 +70,12 @@ export class VowelTrainerPage {
     this.viewState = viewState;
     //this.narrator.play();
     if (this.viewState === ViewState.Animation) {
-      this.vocalTractAnimation.setAnimation(this.getWord().vowel)
+      this.setUpAnimation();
     }
+  }
+
+  setUpAnimation() {
+    this.vocalTractAnimation.setupVowelAnimation(this.getWord().description);
   }
 
   isViewState(viewState: ViewState) {
@@ -131,7 +135,7 @@ export class VowelTrainerPage {
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
     console.log(word)
-    //this.vocalTractAnimation.setupVowelAnimation(word.description)
+    //this.setUpAnimation();
   }
 
   forwardWord() {
