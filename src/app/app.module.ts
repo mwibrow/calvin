@@ -17,6 +17,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
+import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-pla
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioProvider,
-    AppDataProvider
+    AppDataProvider,
+    AnimationFrameRequestProvider
   ]
 })
 export class AppModule {}
