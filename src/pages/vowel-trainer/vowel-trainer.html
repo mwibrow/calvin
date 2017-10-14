@@ -7,10 +7,9 @@
 
 
 <ion-content class="no-scroll">
-  <ion-grid class="content-container">
-      <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
-    <ion-row justify-content-center>
-
+  <ion-grid>
+    <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
+    <!-- <ion-row justify-content-center>
       <ion-col col-auto>
           <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
             <ion-icon name="arrow-round-back"></ion-icon>
@@ -25,7 +24,7 @@
           </button>
       </ion-col>
 
-    </ion-row>
+    </ion-row> -->
     <ion-row justify-content-center>
       <ion-col>
         <div class="keyword-container">
@@ -35,20 +34,27 @@
               <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
             </ion-col>
           </ion-row>
-          <ion-row text-center>
+          <!-- <ion-row text-center>
             <ion-col text-center>
               <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
                 <span [innerHtml]="formatWord(true)"></span>
               </keyword>
             </ion-col>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
       </div>
 
         <ion-grid [hidden]="!isViewState(ViewState.Animation)">
           <ion-row justify-content-center>
+                  <ion-col text-center>
+                    <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
+                      <span [innerHtml]="formatWord(true)"></span>
+                    </keyword>
+                  </ion-col>
+                </ion-row>
+                <ion-row justify-content-center>
             <ion-col text-center>
-              <!-- <vocal-tract-animation [animation]="getWord().vowel" #vocalTractAnimation></vocal-tract-animation> -->
+              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -64,7 +70,16 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <ion-fab middle left edge>
+    <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab middle right edge>
+    <button ion-button [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+      <ion-icon name="arrow-round-forward"></ion-icon>
+    </button>
+  </ion-fab>
   </ion-content>
 
   <ion-footer padding>

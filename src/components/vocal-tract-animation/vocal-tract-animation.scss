@@ -10,7 +10,7 @@ vocal-tract-animation {
 }
 
 .svg-container {
-    background-color: lighten(color($md-palette, md-light-blue), 40);
+    background-color: color($md-palette, md-black);
     border-radius: 5%;
 }
 
@@ -18,7 +18,7 @@ vocal-tract-animation {
 svg {
     height: 4rem;
     @media only screen and (min-height: 41rem) {
-        height: 40rem;
+        height: 20rem;
     }
 }
 

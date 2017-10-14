@@ -26,7 +26,7 @@ export class AppDataProvider {
     this.talkers = Talkers.TALKERS;
     this.talkerList = Talkers.TALKER_LIST;
 
-    this.talker = null;
+    this.talker = 'dan';
   }
 
   getAudio(talker: string, word: string, type: string='words', extension: string='wav'): string {

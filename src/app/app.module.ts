@@ -18,6 +18,8 @@ import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from 
 import { LogoComponent } from '../components/logo/logo';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
+import { VocalTractAnimationComponent } from '../components/vocal-tract-animation/vocal-tract-animation';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { AnimationFrameRequestProvider } from '../providers/animation-frame-requ
     KeywordControlsDirective,
     KeywordUriDirective,
     VideoPlayerComponent,
-    VideoSrcDirective
+    VideoSrcDirective,
+    VocalTractAnimationComponent
   ],
   imports: [
     BrowserModule,

@@ -59,7 +59,7 @@ export class VocalTractAnimationComponent {
   }
 
   ngAfterViewInit() {
-    this.setupVocalTract()
+    //this.setupVocalTract()
   }
 
   setupVocalTract() {
