@@ -210,11 +210,9 @@ export class VocalTractAnimationComponent {
     this.frame = 0;
     this.animationRange.setValue(0);
     this.rangeChange({ value: this.animationRange.value });
-    let win: any = window;
-    let that = this;
     this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
     if (this.uri) {
-      this.player.playUri(this.uri);
+      this.player.playUrl(this.uri);
     }
   }
 

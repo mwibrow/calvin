@@ -7,7 +7,7 @@ export class AnimationFrameRequestProvider {
   private callbacks: Array<any>;
   private running: boolean;
 
-  private constructor() {
+  public constructor() {
     this.callbacks =  [];
     this.running = false;
   }
