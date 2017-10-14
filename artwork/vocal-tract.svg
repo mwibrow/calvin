@@ -10,7 +10,7 @@
    width="440"
    height="380"
    viewBox="0 0 440.00002 379.99999"
-   id="svg2"
+   class="vocal-tract-svg"
    version="1.1"
    inkscape:version="0.91 r13725"
    sodipodi:docname="vocal-tract.svg">
@@ -54,6 +54,7 @@
        style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.00000012;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 289.68076,346.49757 C 279.29857,346.4975 270.88113,348.89499 270.87802,351.85304 C 270.87735,354.81186 279.2959,357.21053 289.68076,357.21046 C 300.06486,357.21022 308.48221,354.81164 308.48154,351.85304 C 308.47843,348.8952 300.06219,346.49781 289.68076,346.49757 Z"
        id="larynx"
+       class="larynx"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccc" />
     <path

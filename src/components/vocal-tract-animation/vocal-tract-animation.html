@@ -1,6 +1,6 @@
 <div class="vocal-tract-animation">
   <div class="wrapper">
-    <div (click)="playAnimation()" #svgContainer class="svg-container" [inlineSVG]="'assets/images/vocal-tract.svg'">
+    <div (click)="playAnimation()" #svgContainer class="svg-container" [inlineSVG]="'assets/images/vocal-tract.svg'" (onSVGInserted)="svgInserted()">
 
     </div>
     <div class="range-container">

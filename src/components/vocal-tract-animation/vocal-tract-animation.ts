@@ -62,13 +62,35 @@ export class VocalTractAnimationComponent {
     //this.setupVocalTract()
   }
 
+  svgInserted(e) {
+    // let groups: Array<SVGGraphicsElement>, group: SVGGraphicsElement;
+    // let paths: Array<SVGPathElement>, path: SVGPathElement, i: number;
+    // this.svg = this.elementRef.nativeElement.querySelector('svg');
+
+    // this.vocalTract = {};
+    // this.svg.querySelectorAll('g').forEach(
+    //   g => g.setAttribute('style', 'opacity: 0;'));
+    // this.svg.querySelectorAll('path').forEach(
+    //   path => this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path));
+
+    // group = this.svg.querySelector('g[id="foreground"')
+    // if (group) {
+    //   this.svg.removeChild(group);
+    // }
+
+    // group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    // group.setAttribute('id', 'foreground')
+    // this.svg.appendChild(group);
+
+    this.setupVocalTract();
+
+  }
   setupVocalTract() {
     let i: number, paths: any, path: any, name: string, group: any;
     this.svg = this.elementRef.nativeElement.querySelector('svg')
 
-
-    group = this.svg.querySelector('g[id="template"')
-    group.setAttribute('style', 'opacity:0;')
+    this.svg.querySelectorAll('g').forEach(
+      g => g.setAttribute('style', 'opacity: 0;'));
 
     group = this.svg.querySelector('g[id="foreground"')
     if (group) {
@@ -80,25 +102,20 @@ export class VocalTractAnimationComponent {
     this.svg.appendChild(group);
 
     this.vocalTract = {};
-    paths = this.svg.querySelectorAll('path[svg-label]');
+    paths = this.svg.querySelectorAll('path');
     for (i = 0; i < paths.length; i ++) {
       path = document.createElementNS("http://www.w3.org/2000/svg", "path");
       group.appendChild(path);
-      path.setAttribute('id', paths[i].getAttribute('svg-label'));
+      path.setAttribute('id', paths[i].getAttribute('id'));
       path.setAttribute('class', paths[i].getAttribute('class'));
       path.setAttribute('d', paths[i].getAttribute('d'));
-
-      if (path.getAttribute('id').startsWith('tongue-')) {
+      if (/tongue-(?!neutral)/.test(path.getAttribute('id'))) {
         path.setAttribute('style', 'opacity:0;');
       }
-
-
       this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path);
       this.vocalTract[path.getAttribute('id')].parentSvg = this.svg;
-
     }
 
-    console.log(this.vocalTract)
   }
 
   resetVocalTract() {
