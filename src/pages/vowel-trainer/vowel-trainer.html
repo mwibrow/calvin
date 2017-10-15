@@ -8,7 +8,7 @@
 
 <ion-content class="no-scroll">
   <ion-grid>
-    <ion-row justify-content-center><ion-col><p></ion-col></ion-row>
+    <!-- <ion-row justify-content-center><ion-col><p></ion-col></ion-row> -->
     <!-- <ion-row justify-content-center>
       <ion-col col-auto>
           <button ion-button [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
@@ -54,7 +54,7 @@
                 </ion-row>
                 <ion-row justify-content-center>
             <ion-col text-center>
-              <vocal-tract-animation #vocalTractAnimation [animation]="getWord().vowel"></vocal-tract-animation>
+              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -70,32 +70,30 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab middle left edge>
+  <ion-fab bottom left>
     <button ion-fab [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
       <ion-icon name="arrow-round-back"></ion-icon>
     </button>
   </ion-fab>
-  <ion-fab middle right edge>
-    <button ion-fab [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+  <ion-fab  bottom right>
+    <button  ion-fab [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
       <ion-icon name="arrow-round-forward"></ion-icon>
     </button>
   </ion-fab>
-  </ion-content>
+</ion-content>
 
-  <ion-footer padding>
-    <ion-buttons text-center>
-
-         <button ion-button icon-only class="view-button"
-           (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
-          <ion-icon name="headset"></ion-icon>
-        </button>
-        <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
-          <ion-icon name="person"></ion-icon>
-        </button>
-        <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
-          <ion-icon name="list">
-          </ion-icon>
-        </button>
-
-    </ion-buttons>
-  </ion-footer>
+<ion-footer padding>
+  <ion-buttons text-center>
+    <button ion-button icon-only class="view-button"
+        (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
+      <ion-icon name="headset"></ion-icon>
+    </button>
+    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
+      <ion-icon name="person"></ion-icon>
+    </button>
+    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
+      <ion-icon name="list">
+      </ion-icon>
+    </button>
+  </ion-buttons>
+</ion-footer>

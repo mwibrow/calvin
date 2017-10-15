@@ -56,7 +56,6 @@ export class VowelTrainerPage {
   ngAfterViewInit() {
     this.player.initialise();
     this.setWords();
-
   }
 
   goHome() {
