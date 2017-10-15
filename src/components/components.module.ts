@@ -3,18 +3,21 @@ import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from 
 import { LogoComponent } from './logo/logo';
 import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
+import { HelpComponent } from './help/help';
 
 @NgModule({
 	declarations: [KeywordComponent,
 		LogoComponent,
 		VideoPlayerComponent,
-		VocalTractAnimationComponent],
+		VocalTractAnimationComponent,
+    HelpComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
 		KeywordUriDirective,
 		LogoComponent,
 		VideoPlayerComponent,
-    	VocalTractAnimationComponent]
+    	VocalTractAnimationComponent,
+    HelpComponent]
 })
 export class ComponentsModule {}
