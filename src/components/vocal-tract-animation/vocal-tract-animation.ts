@@ -166,7 +166,6 @@ export class VocalTractAnimationComponent {
     let n: number = Math.floor(this.rangeMax * 0.2);
     let p: number = Math.floor((n + this.rangeMax) / 3)
     let q: number = Math.floor((2 * this.rangeMax - n) / 3)
-    console.log(vowels)
     let howWide1 = (vowels[0].open + 1) / 3;
     let howWide2 = (vowels[1].open + 1) / 3;
     this.gestures.addJawMovement(0, p, 0, howWide1);
