@@ -103,9 +103,6 @@ export class VocalTractAnimationComponent {
       this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path);
       this.vocalTract[path.getAttribute('id')].parentSvg = this.svg;
     }
-
-    console.log(this.vocalTract)
-
   }
 
   resetVocalTract() {
@@ -113,9 +110,10 @@ export class VocalTractAnimationComponent {
   }
 
   setupVowelAnimation(description: string) {
+
     this.resetVocalTract();
     let vowels = parseVowelDescriptions(description);
-    console.log(vowels)
+
     switch (vowels.length) {
       case 1:
         this.setupMonophthong(vowels[0]);
