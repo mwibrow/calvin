@@ -1,18 +1,10 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
  import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
-/**
- * Generated class for the VowelTrainerPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-
-
 
 enum ViewState {
   Audio,
@@ -21,6 +13,7 @@ enum ViewState {
   Recording,
   Examples
 }
+
 @IonicPage()
 @Component({
   selector: 'page-vowel-trainer',
@@ -44,13 +37,18 @@ export class VowelTrainerPage {
       public navParams: NavParams,
       private appData: AppDataProvider,
       private audio: AudioProvider,
-      public ngZone: NgZone) {
+      public ngZone: NgZone,
+      public events: Events) {
 
     this.viewState = ViewState.Animation;
     this.wordIndex = 0;
     this.talker = appData.talker;
     this.keywordExamples = appData.keywordExamples;
     this.player = this.audio.player;
+    this.events.subscribe('svg:loaded', () => {
+      console.log('Loaded')
+      this.setUpAnimation();
+    })
 
   }
 
@@ -75,7 +73,9 @@ export class VowelTrainerPage {
   }
 
   setUpAnimation() {
-    this.vocalTractAnimation.setupVowelAnimation(this.getWord().description);
+    if (this.vocalTractAnimation.ready()) {
+      this.vocalTractAnimation.setupVowelAnimation(this.getWord().description);
+    }
   }
 
   isViewState(viewState: ViewState) {
@@ -135,7 +135,8 @@ export class VowelTrainerPage {
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
     console.log(word)
-    //this.setUpAnimation();
+    this.setUpAnimation();
+
   }
 
   forwardWord() {

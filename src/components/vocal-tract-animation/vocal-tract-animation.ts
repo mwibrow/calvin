@@ -1,11 +1,12 @@
 import { Component, Directive, ElementRef, Input, ViewChild } from '@angular/core';
-import { Range } from 'ionic-angular';
+import { Events, Range } from 'ionic-angular';
 import { Geometry } from './geometry';
 import { Easings, Actions, Gesture, Gestures } from './animation'
 import { VocalTractGestures, parseVowelDescriptions  } from './vocal-tract-gestures';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 
+const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 
 @Component({
   selector: 'vocal-tract-animation',
@@ -37,7 +38,8 @@ export class VocalTractAnimationComponent {
   velumRotationCenter: Geometry.Point;
 
   constructor(public elementRef: ElementRef, public audio: AudioProvider,
-    public animationFrameRequest: AnimationFrameRequestProvider) {
+    public animationFrameRequest: AnimationFrameRequestProvider,
+    public events: Events) {
 
     this.vocalTract = {};
 
@@ -64,11 +66,13 @@ export class VocalTractAnimationComponent {
 
   svgInserted(e) {
     this.setupVocalTract();
+    this.events.publish('svg:loaded');
   }
 
   ready() {
     return !!this.svg
   }
+
   setupVocalTract() {
     let i: number, paths: any, path: any, name: string, group: any;
     this.svg = this.elementRef.nativeElement.querySelector('svg')
@@ -81,19 +85,19 @@ export class VocalTractAnimationComponent {
       this.svg.removeChild(group);
     }
 
-    group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    group = document.createElementNS(SVG_NAMESPACE, 'g');
     group.setAttribute('id', 'foreground')
     this.svg.appendChild(group);
 
     this.vocalTract = {};
     paths = this.svg.querySelectorAll('path');
     for (i = 0; i < paths.length; i ++) {
-      path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path = document.createElementNS(SVG_NAMESPACE, 'path');
       group.appendChild(path);
       path.setAttribute('id', paths[i].getAttribute('id'));
       path.setAttribute('class', paths[i].getAttribute('class'));
       path.setAttribute('d', paths[i].getAttribute('d'));
-      if (/tongue-(?!neutral)/.test(path.getAttribute('id'))) {
+      if (/tongue-.*/.test(path.getAttribute('id'))) {
         path.setAttribute('style', 'opacity:0;');
       }
       this.vocalTract[path.getAttribute('id')] = Geometry.SvgPath.fromPathNode(path);
