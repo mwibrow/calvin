@@ -1,5 +1,11 @@
 page-vowel-trainer {
 
+	logo {
+		cursor: pointer;
+		span {
+			cursor: pointer;
+		}
+	}
 	.highlight {
 		color: $keyword-label-highlight-fg !important;
 	}
