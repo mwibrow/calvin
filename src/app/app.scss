@@ -392,7 +392,7 @@ $media-height-medium: 768;
 
 
 ion-content {
-    // max-width: 40rem;
+    max-width: 60vw;
     // margin-left: calc(50% - 20rem);
     // .navigate-button, .keyword-control-button, .view-button {
     //     width: 4rem;
@@ -430,7 +430,9 @@ ion-content {
     .keyword-button {
         height: 8.75vh;
         width: 100%;
-        font-size: 5vh;
+        span {
+            font-size: 5vh !important;
+        }
         margin: 0 !important;
         padding: 0 !important;
     }

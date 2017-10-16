@@ -37,7 +37,7 @@
     "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
     "electron:build": "npm run build && node_modules/.bin/build",
     "build:setup": "node scripts/setup.js",
-    "build:svg": "npm run build:svg-avatars",
+    "build:svg": "npm run build:svg-avatars && npm run build:svg-vocal-tract",
     "build:svg-avatars": "npm run build:setup && svgo --config=config/svgo-avatars.yml --pretty -f artwork/avatars -o src/assets/images/avatars",
     "build:svg-vocal-tract": "npm run build:setup && svgo --config=config/svgo-vocal-tract.yml --pretty artwork/vocal-tract.svg -o src/assets/images/vocal-tract.svg"
   },
