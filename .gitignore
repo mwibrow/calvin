@@ -40,3 +40,5 @@ scripts/video
 src/assets/audio/
 src/assets/images/
 src/assets/video/
+media/audio/
+media/video/
