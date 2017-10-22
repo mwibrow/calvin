@@ -14,12 +14,11 @@ fs.removeSync(path.join(assetsDir, 'audio'))
 fs.removeSync(path.join(assetsDir, 'video'))
 fs.removeSync(path.join(assetsDir, 'images'))
 
-fs.ensureDirSync(path.join(assetsDir, 'images'))
-fs.ensureDirSync(path.join(assetsDir, 'images', 'avatars'))
-fs.ensureDirSync(path.join(assetsDir, 'images', 'words'))
-
 fs.copySync(path.join(mediaDir, 'audio'), path.join(assetsDir, 'audio'))
 fs.copySync(path.join(mediaDir, 'video'), path.join(assetsDir, 'video'))
+
+fs.ensureDirSync(path.join(assetsDir, 'images'))
+fs.copySync(path.join(mediaDir, 'images', 'words'), path.join(assetsDir, 'images', 'words'))
 
 config = yaml.readSync(path.join('..', 'config', 'svgo-vocal-tract.yaml'))
 svgOptimizer = new svgo(config)
@@ -28,15 +27,12 @@ fs.readFile(path.join(mediaDir, 'images', 'vocal-tract.svg'), function(err, data
         throw err
     }
     svgOptimizer.optimize(data, function(result) {
-        console.log(result)
         fs.outputFileSync(path.join(assetsDir, 'images', 'vocal-tract.svg'), result.data)
     })
 })
 
-
 config = yaml.readSync(path.join('..', 'config', 'svgo-avatars.yaml'))
 svgOptimizer = new svgo(config)
-
 talkers = data.talkers.concat('calvin')
 talkers.map(function(talker) {
     fs.readFile(path.join(mediaDir, 'images', 'avatars', talker + '.svg'), function(err, data) {
