@@ -9,7 +9,7 @@ import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
   templateUrl: 'app.html'
 })
 export class CalvinApp {
-  rootPage:any = VowelTrainerPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

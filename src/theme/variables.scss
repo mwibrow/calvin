@@ -129,8 +129,17 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
   font-style: normal;
 }
 
-$font-family-base: "Crafty Girls";
-$font-family-md-base: "Crafty Girls";
+@import '../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf';
+
+@font-face {
+  font-family: 'BubblegumSans';
+  src: url('../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$font-family-base: "BubblegumSans";
+$font-family-md-base: "BubblegumSans";
 $font-size-base: 1.4rem;
 
 $font-size-desktop: 2.4rem;
