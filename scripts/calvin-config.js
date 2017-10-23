@@ -18,7 +18,7 @@ fs.copySync(path.join(mediaDir, 'audio'), path.join(assetsDir, 'audio'))
 fs.copySync(path.join(mediaDir, 'video'), path.join(assetsDir, 'video'))
 
 fs.ensureDirSync(path.join(assetsDir, 'images'))
-fs.copySync(path.join(mediaDir, 'images', 'words'), path.join(assetsDir, 'images', 'words'))
+fs.copySync(path.join(mediaDir, 'images', 'example_words'), path.join(assetsDir, 'images', 'example_words'))
 
 config = yaml.readSync(path.join('..', 'config', 'svgo-vocal-tract.yaml'))
 svgOptimizer = new svgo(config)

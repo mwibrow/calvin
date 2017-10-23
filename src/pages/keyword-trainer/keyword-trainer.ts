@@ -38,7 +38,7 @@ export class KeywordTrainerPage {
       this.viewState = ViewState.Image;
       this.wordIndex = 0;
       this.talker = 'emma';
-      this.exampleList = appData.exampleList;
+      this.exampleList = appData.exampleWordList;
       this.player = this.audio.player;
       console.log(this.appData)
 
@@ -119,7 +119,7 @@ export class KeywordTrainerPage {
   }
 
   getVideo() {
-    let uri: string = this.appData.getVideo(this.talker, this.getWord());
+    let uri: string = this.appData.getVideo(this.talker, 'example_words', this.getWord());
     console.log('Video URI', uri)
     return uri;
   }

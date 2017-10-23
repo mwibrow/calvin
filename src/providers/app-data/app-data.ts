@@ -29,7 +29,7 @@ export class AppDataProvider {
   talkerList: Array<string>;
   keywords: any;
   keywordList: Array<string>;
-  exampleWords: Array<string>;
+  exampleWords: any;
   exampleWordList: Array<string>;
 
   talker: string;
@@ -84,6 +84,7 @@ export class AppDataProvider {
 
   setUpKeywords(config) {
     this.keywordList = config.keywords;
+    console.log(config)
     this.keywords = this.keywordList.map((keyword) => this.setUpWord(keyword))
   }
 
@@ -93,19 +94,19 @@ export class AppDataProvider {
   }
 
   setUpWord(word) {
-    let arpa: string, arpa_vowels: Array<string>, arpa_vowel: string, hvd: string;
+    let arpa: string, vowels: Array<string>, vowel: string, hvd: string;
     arpa = beep[word];
     if (!arpa) console.error(`No ARPAbet transliteration for '${word}'`)
-    arpa_vowels = arpa.split(' ').filter(v => arpa_vowels.indexOf(v) !== -1)
-    if (!arpa_vowels.length) console.error(`No ARPAbet vowel in '${word}'`)
-    arpa_vowel = arpa_vowels[0]
-    hvd = arpa_to_hvd_map[arpa_vowel]
-    if (!hvd) console.error(`No HVD for ARPAbet syllable '${arpa_vowel}'`)
+    vowels = arpa.split(' ').filter(v => arpa_vowels.indexOf(v) !== -1)
+    if (!vowels.length) console.error(`No ARPAbet vowel in '${word}'`)
+    vowel = arpa_vowels[0]
+    hvd = arpa_to_hvd_map[vowel]
+    if (!hvd) console.error(`No HVD for ARPAbet syllable '${vowel}'`)
     return {
         display: word,
         highlight: highlightVowel(word),
         vowel: hvd,
-        description: arpa_to_description_map[arpa_vowel]
+        description: arpa_to_description_map[vowel]
     }
   }
 

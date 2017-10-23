@@ -3,7 +3,10 @@
  */
 export const beep = {
     "ear": "ia r",
+    "nest": "n eh s t",
+    "nuts": "n ah t s",
     "joy": "jh oy",
+    "cars": "k aa s",
     "clock": "k l oh k",
     "clown": "k l aw n",
     "spade": "s p ey d",
