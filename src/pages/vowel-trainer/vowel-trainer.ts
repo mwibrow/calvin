@@ -45,6 +45,7 @@ export class VowelTrainerPage {
     this.talker = appData.talker;
     this.keywordExamples = appData.exampleWords;
     this.player = this.audio.player;
+    console.log(appData)
     this.events.subscribe('svg:loaded', () => {
       console.log('Loaded')
       this.setUpAnimation();
@@ -85,7 +86,6 @@ export class VowelTrainerPage {
 
   formatWord(highlightVowel: boolean = false) {
     let word = this.getWord();
-    console.log(word)
     if (this.viewState === ViewState.Animation || highlightVowel) {
       return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
        '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')

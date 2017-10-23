@@ -84,13 +84,14 @@ export class AppDataProvider {
 
   setUpKeywords(config) {
     this.keywordList = config.keywords;
-    console.log(config)
-    this.keywords = this.keywordList.map((keyword) => this.setUpWord(keyword))
+    this.keywords = this.keywordList.reduce(
+      (obj, keyword) => Object.assign(obj, {[keyword]: this.setUpWord(keyword)}), {})
   }
 
   setUpExampleWords(config) {
     this.exampleWordList = config.exampleWords;
-    this.exampleWords = this.exampleWordList.map((word) => this.setUpWord(word))
+    this.exampleWords = this.exampleWordList.reduce(
+      (obj, word) => Object.assign(obj, {[word]: this.setUpWord(word)}), {})
   }
 
   setUpWord(word) {

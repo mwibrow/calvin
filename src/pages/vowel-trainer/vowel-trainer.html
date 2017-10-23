@@ -40,13 +40,13 @@
         </ion-grid>
 
         <ion-grid [hidden]="!isViewState(ViewState.Examples)">
-          <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center class="row-no-padding">
+          <!-- <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center class="row-no-padding">
             <ion-col col-1></ion-col>
             <ion-col>
               <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
             </ion-col>
             <ion-col col-1></ion-col>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
 
       </ion-col>
