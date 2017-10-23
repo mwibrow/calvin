@@ -2,43 +2,120 @@ import { Injectable } from '@angular/core';
 import { WordLists } from './word-lists';
 import { Talkers } from './talkers';
 
+import { beep } from './beep-cvs';
+import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phonetics';
+
+import * as CONFIG from './config.json';
+
+export class Config {
+  public talkers: Array<String>;
+  public keywords: Array<String>;
+  public exampleWords: Array<String>;
+
+  constructor() {
+    this.talkers = CONFIG['talkers'];
+    this.keywords = CONFIG['keywords'];
+    this.exampleWords = CONFIG['exampleWords']
+  }
+
+}
 
 @Injectable()
 export class AppDataProvider {
 
-  talkers: any;
+  config: Config;
 
-  words: any;
-  keywords: any;
-  exampleList: Array<string>;
+  talkers: any;
   talkerList: Array<string>;
+  keywords: any;
   keywordList: Array<string>;
-  keywordExamples: any;
+  exampleWords: Array<string>;
+  exampleWordList: Array<string>;
+
   talker: string;
 
   constructor() {
+    this.config = new Config();
 
-    this.words = WordLists.WORDS;
-    this.keywordList = WordLists.KEYWORD_LIST;
-    this.keywords = WordLists.KEYWORDS;
-    this.keywordExamples = WordLists.KEYWORD_EXAMPLES_LIST;
-    this.exampleList = WordLists.EXAMPLE_LIST;
-    this.talkers = Talkers.TALKERS;
-    this.talkerList = Talkers.TALKER_LIST;
+    this.setUpTalkers(this.config);
+    this.setUpKeywords(this.config);
+    this.setUpExampleWords(this.config);
 
     this.talker = 'dan';
   }
 
+
   getAudio(talker: string, word: string, type: string='words', extension: string='wav'): string {
-    return `assets/audio/${talker}/${type}/${word}.${extension}`;
+    switch (type) {
+      case 'example':
+      case 'examples':
+      case 'example_word':
+      case 'example_words':
+        return `assets/audio/example_words/${talker}/${word}.${extension}`;
+      case 'keyword':
+      case 'keywords':
+        return `assets/audio/keyword/${talker || 'speaker1'}/${word}.${extension}`;
+      case 'vowel':
+      case 'vowels':
+        return `assets/audio/vowel/${talker || 'mark'}/${word}.${extension}`;
+    }
   }
 
-  getVideo(talker: string, word: string, extension: string='mp4'): string {
-    return `assets/video/${talker}/${word}.${extension}`;
+  getVideo(talker: string, type: string='example_words', word: string, extension: string='mp4'): string {
+    return `assets/video/${type}/${talker}/${word}.${extension}`;
   }
 
-  getImage(word: string, type: string='words', extension: string='png'): string {
+  getImage(word: string, type: string='example_words', extension: string='png'): string {
     return `assets/images/${type}/${word}.${extension}`;
   }
 
+  setUpTalkers(config) {
+    this.talkerList = config.talkers;
+    this.talkers = config.talkers.map((talker) => {
+      let name = talker[0].toUpperCase() + talker.slice(1);
+      return {
+        id: talker,
+        realName: name,
+        displayName: name,
+        avatar: talker
+      }
+    });
+  }
+
+  setUpKeywords(config) {
+    this.keywordList = config.keywords;
+    this.keywords = this.keywordList.map((keyword) => this.setUpWord(keyword))
+  }
+
+  setUpExampleWords(config) {
+    this.exampleWordList = config.exampleWords;
+    this.exampleWords = this.exampleWordList.map((word) => this.setUpWord(word))
+  }
+
+  setUpWord(word) {
+    let arpa: string, arpa_vowels: Array<string>, arpa_vowel: string, hvd: string;
+    arpa = beep[word];
+    if (!arpa) console.error(`No ARPAbet transliteration for '${word}'`)
+    arpa_vowels = arpa.split(' ').filter(v => arpa_vowels.indexOf(v) !== -1)
+    if (!arpa_vowels.length) console.error(`No ARPAbet vowel in '${word}'`)
+    arpa_vowel = arpa_vowels[0]
+    hvd = arpa_to_hvd_map[arpa_vowel]
+    if (!hvd) console.error(`No HVD for ARPAbet syllable '${arpa_vowel}'`)
+    return {
+        display: word,
+        highlight: highlightVowel(word),
+        vowel: hvd,
+        description: arpa_to_description_map[arpa_vowel]
+    }
+  }
+
+}
+
+export const highlightVowel = (word:string) => {
+  let exceptions = {'squares': 'squ<are>s'};
+  if (exceptions[word]) {
+    return exceptions[word]
+  } else {
+    return word.replace(/(igh|[aeiou]+(?:[yrw]{1,2})?[aeiou]*)/, '<$1>')
+  }
 }

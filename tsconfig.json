@@ -13,6 +13,9 @@
     "sourceMap": true,
     "target": "es5"
   },
+  "files": [
+    "typings/index.d.ts"
+  ],
   "include": [
     "src/**/*.ts"
   ],
