@@ -8,9 +8,9 @@ import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phoneti
 import * as CONFIG from './config.json';
 
 export class Config {
-  public talkers: Array<String>;
-  public keywords: Array<String>;
-  public exampleWords: Array<String>;
+  public talkers: Array<string>;
+  public keywords: Array<string>;
+  public exampleWords: Array<string>;
 
   constructor() {
     this.talkers = CONFIG['talkers'];
@@ -18,6 +18,21 @@ export class Config {
     this.exampleWords = CONFIG['exampleWords']
   }
 
+}
+
+export class Word {
+  constructor(public id: string,
+    public display: string,
+    public highlight: string,
+    public hvd: string,
+    public description: string) {};
+}
+
+export class Talker {
+  constructor(public id: string,
+    public realName: string,
+    public displayName: string,
+    public avatar: string) {};
 }
 
 @Injectable()
@@ -28,9 +43,10 @@ export class AppDataProvider {
   talkers: any;
   talkerList: Array<string>;
   keywords: any;
-  keywordList: Array<string>;
+  keywordList: Array<Word>;
   exampleWords: any;
-  exampleWordList: Array<string>;
+  exampleWordList: Array<Word>;
+  keywordExampleMap: any;
 
   talker: string;
 
@@ -40,58 +56,64 @@ export class AppDataProvider {
     this.setUpTalkers(this.config);
     this.setUpKeywords(this.config);
     this.setUpExampleWords(this.config);
-
+    this.setUpKeywordExampleMap();
     this.talker = 'dan';
   }
 
 
-  getAudio(talker: string, word: string, type: string='words', extension: string='wav'): string {
+  getAudio(talkerId: string, wordId: string, type: string='words', extension: string='wav'): string {
     switch (type) {
       case 'example':
       case 'examples':
       case 'example_word':
       case 'example_words':
-        return `assets/audio/example_words/${talker}/${word}.${extension}`;
+        return `assets/audio/example_words/${talkerId}/${wordId}.${extension}`;
       case 'keyword':
       case 'keywords':
-        return `assets/audio/keyword/${talker || 'speaker1'}/${word}.${extension}`;
+        return `assets/audio/keyword/${talkerId || 'speaker1'}/${wordId}.${extension}`;
       case 'vowel':
       case 'vowels':
-        return `assets/audio/vowel/${talker || 'mark'}/${word}.${extension}`;
+        return `assets/audio/vowel/${talkerId || 'mark'}/${wordId}.${extension}`;
     }
   }
 
-  getVideo(talker: string, type: string='example_words', word: string, extension: string='mp4'): string {
-    return `assets/video/${type}/${talker}/${word}.${extension}`;
+  getVideo(talkerId: string, type: string='example_words', wordId: string, extension: string='mp4'): string {
+    return `assets/video/${type}/${talkerId}/${wordId}.${extension}`;
   }
 
-  getImage(word: string, type: string='example_words', extension: string='png'): string {
-    return `assets/images/${type}/${word}.${extension}`;
+  getImage(wordId: string, type: string='example_words', extension: string='png'): string {
+    return `assets/images/${type}/${wordId}.${extension}`;
   }
 
   setUpTalkers(config) {
     this.talkerList = config.talkers;
     this.talkers = config.talkers.map((talker) => {
       let name = talker[0].toUpperCase() + talker.slice(1);
-      return {
-        id: talker,
-        realName: name,
-        displayName: name,
-        avatar: talker
-      }
+      return new Talker(talker, name, name, talker);
     });
   }
 
   setUpKeywords(config) {
     this.keywordList = config.keywords;
     this.keywords = this.keywordList.reduce(
-      (obj, keyword) => Object.assign(obj, {[keyword]: this.setUpWord(keyword)}), {})
+      (obj, keyword) => Object.assign(obj, {[keyword.toString()]: this.setUpWord(keyword)}), {})
   }
 
   setUpExampleWords(config) {
     this.exampleWordList = config.exampleWords;
     this.exampleWords = this.exampleWordList.reduce(
-      (obj, word) => Object.assign(obj, {[word]: this.setUpWord(word)}), {})
+      (obj, word) => Object.assign(obj, {[word.toString()]: this.setUpWord(word)}), {})
+  }
+
+  setUpKeywordExampleMap() {
+    let hvdMap = {};
+    this.keywordExampleMap = {};
+    this.exampleWordList.map((word) => {
+      hvdMap[word.hvd] = Array.isArray(hvdMap[word.hvd]) ? hvdMap[word.hvd].concat(word) : [word]
+    });
+    this.keywordList.map((word) => {
+      this.keywordExampleMap[word.hvd] = hvdMap[word.hvd];
+    });
   }
 
   setUpWord(word) {
@@ -103,12 +125,7 @@ export class AppDataProvider {
     vowel = arpa_vowels[0]
     hvd = arpa_to_hvd_map[vowel]
     if (!hvd) console.error(`No HVD for ARPAbet syllable '${vowel}'`)
-    return {
-        display: word,
-        highlight: highlightVowel(word),
-        vowel: hvd,
-        description: arpa_to_description_map[vowel]
-    }
+    return new Word(word.toLowerCase(), word, highlightVowel(word), hvd, arpa_to_description_map[vowel])
   }
 
 }
