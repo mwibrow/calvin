@@ -428,13 +428,14 @@ ion-content {
         font-size: 3.25vh;
     }
     .keyword-button {
-        height: 8.75vh;
+        height: 10vh;
         width: 100%;
         span {
-            font-size: 5vh !important;
+            font-size: 7.5vh !important;
+            letter-spacing: .25vh;
         }
         margin: 0 !important;
-        padding: 0 !important;
+        padding: 1vh 0 2.5vh;
     }
    .image-container, .video-player-container {
         width: 50vh;
