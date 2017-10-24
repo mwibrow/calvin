@@ -42,7 +42,14 @@ html, body,
 }
 
 ion-footer, .footer, .footer-md {
-    background-color: transparent !important;
+// background-color: transparent !important;
+}
+
+ion-content {
+    background: color($md-palette, md-yellow) !important;
+}
+ion-footer {
+    background-color: color($md-palette, md-light-green) !important;
 }
 
 .toolbar-background {
@@ -393,7 +400,7 @@ $media-height-medium: 768;
 vocal-tract-animation {
     .wrapper {
         padding: 0 10px;
-        border: 5px solid color($md-palette, md-white);
+        border: 10px solid color($md-palette, md-white);
         border-radius: 20px;
         background: color($md-palette, md-black);
         svg {
@@ -424,14 +431,14 @@ ion-content {
 @media screen and (min-height: 768px) {
     ion-content {
         margin-top: 5vh;
-        max-width: 80vh;
-        left: calc(50% - 40vh);
+        // max-width: 80vh;
+        // left: calc(50% - 40vh);
     }
     ion-grid {
 
     }
     ion-footer {
-        height: 20vh;
+        height: 17.5vh;
     }
     .navigate-button, .keyword-control-button, .view-button {
         width: 12.5vh;
