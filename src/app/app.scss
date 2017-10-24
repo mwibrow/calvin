@@ -412,9 +412,9 @@ ion-content {
 
 @media screen and (min-height: 768px) {
     ion-content {
-        margin-top: 10vh;
-        max-width: 75vh;
-        left: calc(50% - 37.5vh);
+        margin-top: 5vh;
+        max-width: 80vh;
+        left: calc(50% - 40vh);
     }
     ion-grid {
 
@@ -423,19 +423,19 @@ ion-content {
         height: 20vh;
     }
     .navigate-button, .keyword-control-button, .view-button {
-        width: 8.75vh;
-        height: 8.75vh;
+        width: 12.5vh;
+        height: 12.5vh;
         font-size: 3.25vh;
     }
     .keyword-button {
-        height: 10vh;
+        height: 12.5vh;
         width: 100%;
         span {
             font-size: 7.5vh !important;
             letter-spacing: .25vh;
         }
         margin: 0 !important;
-        padding: 1vh 0 2.5vh;
+        padding: 0 !important;
     }
    .image-container, .video-player-container {
         width: 50vh;

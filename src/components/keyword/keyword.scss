@@ -9,7 +9,7 @@ keyword {
     }
 
     .keyword-control-button {
-        border-radius: 50% !important;
+        // border-radius: 50% !important;
         @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
         @include hover-box-shadow($keyword-control-button-bg);
     }
