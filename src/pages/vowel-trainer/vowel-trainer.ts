@@ -136,7 +136,7 @@ export class VowelTrainerPage {
 
   setWords() {
     let word = this.getWord();
-    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
+    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
     console.log(word)
     this.setUpAnimation();

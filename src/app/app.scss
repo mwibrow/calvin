@@ -390,9 +390,20 @@ $media-height-medium: 768;
     }
 }
 
+vocal-tract-animation {
+    .wrapper {
+        padding: 0 10px;
+        border: 5px solid color($md-palette, md-white);
+        border-radius: 20px;
+        background: color($md-palette, md-black);
+        svg {
+            background-color: transparent !important;
+        }
+    }
+}
 
 ion-content {
-    max-width: 60vw;
+    // max-width: 60vw;
     // margin-left: calc(50% - 20rem);
     // .navigate-button, .keyword-control-button, .view-button {
     //     width: 4rem;
@@ -439,6 +450,9 @@ ion-content {
     }
    .image-container, .video-player-container {
         width: 50vh;
+        height: 50vh;
+    }
+    .vocal-tract-animation {
         height: 50vh;
     }
 }
