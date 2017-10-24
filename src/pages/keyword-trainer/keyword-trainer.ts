@@ -35,12 +35,12 @@ export class KeywordTrainerPage {
     public audio: AudioProvider,
     public appData: AppDataProvider,
     public ngZone: NgZone)  {
-      this.viewState = ViewState.Image;
-      this.wordIndex = 0;
-      this.talker = 'emma';
-      this.exampleList = appData.exampleWordList;
-      this.player = this.audio.player;
-      console.log(this.appData)
+      // this.viewState = ViewState.Image;
+      // this.wordIndex = 0;
+      // this.talker = 'emma';
+      // this.exampleList = appData.exampleWordList;
+      // this.player = this.audio.player;
+      // console.log(this.appData)
 
   }
 

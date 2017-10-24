@@ -43,9 +43,9 @@ export class AppDataProvider {
   talkers: any;
   talkerList: Array<string>;
   keywords: any;
-  keywordList: Array<Word>;
+  keywordList: Array<string>;
   exampleWords: any;
-  exampleWordList: Array<Word>;
+  exampleWordList: Array<string>;
   keywordExampleMap: any;
 
   talker: string;
@@ -106,12 +106,14 @@ export class AppDataProvider {
   }
 
   setUpKeywordExampleMap() {
-    let hvdMap = {};
+    let hvdMap = {}, word: Word;
     this.keywordExampleMap = {};
-    this.exampleWordList.map((word) => {
-      hvdMap[word.hvd] = Array.isArray(hvdMap[word.hvd]) ? hvdMap[word.hvd].concat(word) : [word]
+    this.exampleWordList.map((exampleWord) => {
+      word = this.exampleWords[exampleWord];
+      hvdMap[word.hvd] = Array.isArray(hvdMap[word.hvd]) ? hvdMap[word.hvd].concat(exampleWord) : [exampleWord]
     });
-    this.keywordList.map((word) => {
+    this.keywordList.map((keyword) => {
+      word = this.keywords[keyword];
       this.keywordExampleMap[word.hvd] = hvdMap[word.hvd];
     });
   }
@@ -122,7 +124,7 @@ export class AppDataProvider {
     if (!arpa) console.error(`No ARPAbet transliteration for '${word}'`)
     vowels = arpa.split(' ').filter(v => arpa_vowels.indexOf(v) !== -1)
     if (!vowels.length) console.error(`No ARPAbet vowel in '${word}'`)
-    vowel = arpa_vowels[0]
+    vowel = vowels[0]
     hvd = arpa_to_hvd_map[vowel]
     if (!hvd) console.error(`No HVD for ARPAbet syllable '${vowel}'`)
     return new Word(word.toLowerCase(), word, highlightVowel(word), hvd, arpa_to_description_map[vowel])

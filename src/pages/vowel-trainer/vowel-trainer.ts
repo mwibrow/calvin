@@ -1,6 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider } from '../../providers/app-data/app-data';
+import { AppDataProvider, Word } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
  import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
@@ -30,7 +30,7 @@ export class VowelTrainerPage {
   private viewState: ViewState;
   public wordIndex: number;
   public talker: string;
-  public keywordExamples: any;
+  public keywordExampleMap: any;
   public player: AudioPlayer;
 
   constructor(public navCtrl: NavController,
@@ -43,7 +43,7 @@ export class VowelTrainerPage {
     this.viewState = ViewState.Animation;
     this.wordIndex = 0;
     this.talker = appData.talker;
-    this.keywordExamples = appData.exampleWords;
+    this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
     console.log(appData)
     this.events.subscribe('svg:loaded', () => {
@@ -99,13 +99,18 @@ export class VowelTrainerPage {
   }
 
   getWord() {
-    let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+    let word: Word = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
     if (word === undefined) {
       console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
     }
     return word;
   }
 
+  getExampleWords() {
+    let word = this.getWord();
+    let examples = this.appData.keywordExampleMap[word.hvd];
+    return examples;
+  }
   ionViewDidLoad() {}
 
   backButtonDisabled() {
