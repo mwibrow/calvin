@@ -25,8 +25,8 @@ html, body,
 .app-root,
 .ion-page,
 .content {
-    background-color: color($md-palette, md-black);
-    color: color($md-palette, md-white);
+    background-color: color($md-palette, md-yellow);
+    color: color($md-palette, md-yellow);
 }
 
 .no-scroll .scroll-content{
@@ -397,16 +397,16 @@ $media-height-medium: 768;
     }
 }
 
-vocal-tract-animation {
-    .wrapper {
-        padding: 0 10px;
-        border: 10px solid color($md-palette, md-white);
-        border-radius: 20px;
-        background: color($md-palette, md-black);
-        svg {
-            background-color: transparent !important;
-        }
+.vocal-tract-animation {
+
+    padding: 0 10px;
+    border: 10px solid color($md-palette, md-white);
+    border-radius: 20px;
+    background: color($md-palette, md-black);
+    svg {
+        background-color: transparent !important;
     }
+
 }
 
 ion-content {
@@ -428,11 +428,52 @@ ion-content {
     // }
 }
 
+@media screen and (min-height: 512px) {
+    ion-content {
+        margin-top: 5vh;
+        max-width: 80vh;
+        left: calc(50% - 40vh);
+    }
+    ion-grid {
+
+    }
+    ion-footer {
+        height: 15vh;
+    }
+    .navigate-button, .keyword-control-button, .view-button {
+        width: 10vh;
+        height: 10vh;
+        font-size: 2.5vh;
+    }
+    .keyword-button {
+        height: 10vh;
+        width: 100%;
+        span {
+            font-size: 6.25vh !important;
+            letter-spacing: .125vh;
+        }
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+   .image-container, .video-player-container {
+        width: 40vh;
+        height: 40vh;
+    }
+    .vocal-tract-animation {
+        width: 50vh;
+        height: 50vh;
+        svg {
+            width: 45vh;
+        }
+    }
+}
+
+
 @media screen and (min-height: 768px) {
     ion-content {
         margin-top: 5vh;
-        // max-width: 80vh;
-        // left: calc(50% - 40vh);
+        max-width: 80vh;
+        left: calc(50% - 40vh);
     }
     ion-grid {
 

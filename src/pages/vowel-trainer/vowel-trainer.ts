@@ -94,11 +94,16 @@ export class VowelTrainerPage {
     }
   }
 
-  getKeyword(): string {
+  getKeyword(highlightVowel: boolean = false): string {
+    let word: Word = this.getWord();
+    if (highlightVowel) {
+      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
+      '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
+    }
     return `<span class="keyword-display">${this.appData.keywordList[this.wordIndex]}</span>`;
   }
 
-  getWord() {
+  getWord(): Word {
     let word: Word = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
     if (word === undefined) {
       console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);

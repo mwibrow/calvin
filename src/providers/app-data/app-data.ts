@@ -73,7 +73,7 @@ export class AppDataProvider {
         return `assets/audio/keyword/${talkerId || 'speaker1'}/${wordId}.${extension}`;
       case 'vowel':
       case 'vowels':
-        return `assets/audio/vowel/${talkerId || 'mark'}/${wordId}.${extension}`;
+        return `assets/audio/vowels/${talkerId || 'mark'}/${wordId}.${extension}`;
     }
   }
 

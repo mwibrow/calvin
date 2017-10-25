@@ -1,11 +1,11 @@
 <div class="vocal-tract-animation">
-  <div class="wrapper">
+  <!-- <div class="wrapper"> -->
     <div (click)="playAnimation()" #svgContainer class="svg-container" [inlineSVG]="'assets/images/vocal-tract.svg'" (onSVGInserted)="svgInserted($event)">
 
     </div>
     <div class="range-container">
       <ion-range #animationRange min="{{range.min}}" max="{{range.max}}" value="0" (ionChange)="rangeChange($event)"></ion-range>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 

@@ -7,7 +7,12 @@ page-vowel-trainer {
 		}
 	}
 	.highlight {
-		color: $keyword-label-highlight-fg !important;
+		// color: $keyword-label-highlight-fg !important;
+		padding: 0 0.05em;
+	}
+	.lowlight {
+		// color: $keyword-label-highlight-fg !important;
+		opacity: 0.5;
 	}
 
 	.keyword-display {
