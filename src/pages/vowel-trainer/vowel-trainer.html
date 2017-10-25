@@ -36,7 +36,18 @@
           </ion-row>
           <ion-row justify-content-center>
             <ion-col text-center>
-              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+                <div style="width: 70vh; height: 60vh; position: relative; display: flex;
+                align-items: center; justify-content: center; margin-left: auto; margin-right: auto;">
+                <div style="position: absolute; top: 0px; left: 0px; width:100%; height: 100%;">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path fill="red" d="M 0 0 L 5 95 L 90 100 L 100 5 Z"/>
+                  </svg>
+                </div>
+                <div style="z-index: 50;">
+                    <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+                </div>
+              </div>
+              <!-- <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation> -->
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -68,10 +79,21 @@
 
 <ion-footer padding>
   <ion-buttons text-center>
-    <button ion-button icon-only class="view-button"
+    <!-- <button ion-button icon-only class="view-button"
         (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
       <ion-icon name="headset"></ion-icon>
-    </button>
+    </button> -->
+    <div style="width: 100px; height: 100px; position: relative; display: flex;
+      align-items: center; justify-content: center;">
+      <div style="position: absolute; top: 0px; left: 0px; width:100%; height: 100%;">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path fill="blue" d="M 0 0 L 5 95 L 90 100 L 100 5 Z"/>
+        </svg>
+      </div>
+      <div style="z-index: 5; font-size: 5vh; color: white;">
+          <ion-icon name="person"></ion-icon>
+      </div>
+    </div>
     <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
       <ion-icon name="person"></ion-icon>
     </button>
