@@ -23,12 +23,18 @@
 
 html, body,
 .app-root,
-.ion-page,
-.content {
+.ion-page {
     background-color: color($md-palette, md-yellow);
-    color: color($md-palette, md-yellow);
+    // color: color($md-palette, md-yellow);
 }
 
+.content {
+    background-color: transparent !important;
+}
+.ion-page {
+    // background-image: url('/assets/images/drawing.svg');
+    // background-repeat: repeat;
+}
 .no-scroll .scroll-content{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
@@ -41,13 +47,13 @@ html, body,
     overflow-y: auto !important;
 }
 
-ion-footer, .footer, .footer-md {
-// background-color: transparent !important;
-}
+// ion-footer, .footer, .footer-md {
+//   background-color: transparent !important;
+// }
 
-ion-content {
-    background: color($md-palette, md-yellow) !important;
-}
+// ion-content {
+//     background: color($md-palette, md-yellow) !important;
+// }
 ion-footer {
     background-color: color($md-palette, md-light-green) !important;
 }
@@ -400,7 +406,7 @@ $media-height-medium: 768;
 .vocal-tract-animation {
 
     padding: 0 10px;
-    border: 10px solid color($md-palette, md-white);
+    border: 7.5px solid color($md-palette, md-white);
     border-radius: 20px;
     background: color($md-palette, md-black);
     svg {
@@ -460,10 +466,19 @@ ion-content {
         height: 40vh;
     }
     .vocal-tract-animation {
-        width: 50vh;
-        height: 50vh;
+        width: 45vh;
+        height: 45vh;
         svg {
-            width: 45vh;
+            width: 40vh;
+        }
+    }
+    .vocal-tract-animaton-trapezium {
+        width: 100%;
+        height: 100%;
+        .trapezium-container {
+            svg {
+                height: 55vh !important;
+            }
         }
     }
 }

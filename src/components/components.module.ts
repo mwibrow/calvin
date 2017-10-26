@@ -4,13 +4,15 @@ import { LogoComponent } from './logo/logo';
 import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
 import { HelpComponent } from './help/help';
+import { TrapeziumComponent } from './trapezium/trapezium';
 
 @NgModule({
 	declarations: [KeywordComponent,
 		LogoComponent,
 		VideoPlayerComponent,
 		VocalTractAnimationComponent,
-    HelpComponent],
+    HelpComponent,
+    TrapeziumComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
@@ -18,6 +20,7 @@ import { HelpComponent } from './help/help';
 		LogoComponent,
 		VideoPlayerComponent,
     	VocalTractAnimationComponent,
-    HelpComponent]
+    HelpComponent,
+    TrapeziumComponent]
 })
 export class ComponentsModule {}

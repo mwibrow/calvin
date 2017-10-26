@@ -15,6 +15,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
+import { TrapeziumComponent } from '../components/trapezium/trapezium';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 import { VocalTractAnimationComponent, AnimationDirective } from '../components/vocal-tract-animation/vocal-tract-animation';
@@ -33,7 +34,8 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     VideoPlayerComponent,
     VideoSrcDirective,
     VocalTractAnimationComponent,
-    AnimationDirective
+    AnimationDirective,
+    TrapeziumComponent
   ],
   imports: [
     BrowserModule,
