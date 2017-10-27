@@ -6,6 +6,7 @@ import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-trac
 import { HelpComponent } from './help/help';
 import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
 import { SvgArrowComponent } from './svg-arrow/svg-arrow';
+import { BackgroundComponent } from './background/background';
 
 @NgModule({
 	declarations: [KeywordComponent,
@@ -14,7 +15,8 @@ import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 		VocalTractAnimationComponent,
     HelpComponent,
     SvgTrapeziumComponent,
-    SvgArrowComponent],
+    SvgArrowComponent,
+    BackgroundComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
@@ -24,6 +26,7 @@ import { SvgArrowComponent } from './svg-arrow/svg-arrow';
     	VocalTractAnimationComponent,
     HelpComponent,
     SvgTrapeziumComponent,
-    SvgArrowComponent]
+    SvgArrowComponent,
+    BackgroundComponent]
 })
 export class ComponentsModule {}

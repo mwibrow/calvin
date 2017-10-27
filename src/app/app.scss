@@ -25,7 +25,7 @@
 html, body,
 .app-root,
 .ion-page {
-    background-color: color($md-palette, md-yellow);
+    background-color: transparent !important;
     // color: color($md-palette, md-yellow);
 }
 
@@ -48,16 +48,16 @@ html, body,
     overflow-y: auto !important;
 }
 
-// ion-footer, .footer, .footer-md {
-//   background-color: transparent !important;
-// }
+ion-footer, .footer, .footer-md {
+  background-color: transparent !important;
+}
 
 // ion-content {
 //     background: color($md-palette, md-yellow) !important;
+// // }
+// ion-footer {
+//     background-color: color($md-palette, md-light-green) !important;
 // }
-ion-footer {
-    background-color: color($md-palette, md-light-green) !important;
-}
 
 .toolbar-background {
     background-color: transparent !important;

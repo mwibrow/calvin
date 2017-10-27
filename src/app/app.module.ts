@@ -18,6 +18,7 @@ import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from 
 import { LogoComponent } from '../components/logo/logo';
 import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
 import { SvgArrowComponent } from '../components/svg-arrow/svg-arrow';
+import { BackgroundComponent } from '../components/background/background';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 import { VocalTractAnimationComponent, AnimationDirective } from '../components/vocal-tract-animation/vocal-tract-animation';
@@ -39,7 +40,8 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     VocalTractAnimationComponent,
     AnimationDirective,
     SvgTrapeziumComponent,
-    SvgArrowComponent
+    SvgArrowComponent,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,

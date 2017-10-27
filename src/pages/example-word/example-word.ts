@@ -26,7 +26,9 @@ export class ExampleWordPage {
 
   public readonly ViewState = ViewState;
   viewState: ViewState;
-  imageColor: string = mdColors.lightGreen['900'];
+  imageColor: string = mdColors.lightGreen['500'];
+  backgroundColor: string = mdColors.yellow['500'];
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public appData: AppDataProvider) {
