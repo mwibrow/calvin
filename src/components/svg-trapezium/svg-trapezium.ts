@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the SvgTrapeziumComponent component.
@@ -12,11 +12,18 @@ import { Component } from '@angular/core';
 })
 export class SvgTrapeziumComponent {
 
-  text: string;
-
+  @Input('color') color: string;
   constructor() {
-    console.log('Hello SvgTrapeziumComponent Component');
-    this.text = 'Hello World';
+    this.color = 'none';
+  }
+
+  getColor() {
+    return this.color;
+  }
+
+  setColor(color: string) {
+    this.color = color;
   }
 
 }
+

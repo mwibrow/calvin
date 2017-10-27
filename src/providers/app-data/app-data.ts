@@ -190,3 +190,4 @@ export const highlightVowel = (word:string) => {
     return word.replace(/(igh|[aeiou]+(?:[yrw]{1,2})?[aeiou]*)/, '<$1>')
   }
 }
+
