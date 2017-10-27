@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
+import { ExampleWordPage } from '../pages/example-word/example-word';
 @Component({
   templateUrl: 'app.html'
 })

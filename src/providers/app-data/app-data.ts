@@ -40,15 +40,22 @@ export class AppDataProvider {
 
   config: Config;
 
+  talker: Talker;
   talkers: any;
   talkerList: Array<string>;
+  talkerIndex: number = 0;
+
+  keyword: Word;
   keywords: any;
   keywordList: Array<string>;
+  keywordIndex: number = 0;
+
+  exampleWord: Word;
   exampleWords: any;
   exampleWordList: Array<string>;
-  keywordExampleMap: any;
+  exampleWordIndex: number = 0;
 
-  talker: string;
+  keywordExampleMap: any;
 
   constructor() {
     this.config = new Config();
@@ -57,8 +64,46 @@ export class AppDataProvider {
     this.setUpKeywords(this.config);
     this.setUpExampleWords(this.config);
     this.setUpKeywordExampleMap();
-    this.talker = 'dan';
+    this.talker = this.getTalker();
+    this.keyword = this.getKeyword();
   }
+
+  getTalker(): Talker {
+    return this.talkers[this.talkerList[this.talkerIndex]];
+  }
+
+  getKeyword(): Word {
+    return this.keywords[this.keywordList[this.keywordIndex]];
+  }
+
+  nextKeyword() {
+    if (this.keywordIndex >= this.keywordList.length - 1) {
+      this.keywordIndex = this.keywordList.length - 1;
+    } else {
+      this.keywordIndex ++;
+    }
+  }
+
+  previousKeyword() {
+    if (this.keywordIndex <= 0) {
+      this.keywordIndex = 0;
+    } else {
+      this.keywordIndex --;
+    }
+  }
+
+  prevKeyword() {
+    this.keywordIndex = (this.keywordIndex % this.keywordList.length) + 1;
+  }
+
+  getExampleWord(): Word {
+    return this.keywordExampleMap[this.getKeyword().id][this.exampleWordIndex];
+  }
+
+  setExampleWordIndex(index: number) {
+    this.exampleWordIndex = index;
+  }
+
 
 
   getAudio(talkerId: string, wordId: string, type: string='words', extension: string='wav'): string {

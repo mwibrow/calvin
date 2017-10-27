@@ -1,6 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider, Word } from '../../providers/app-data/app-data';
+import { AppDataProvider, Word, Talker } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
  import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
@@ -29,7 +29,7 @@ export class VowelTrainerPage {
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
-  public talker: string;
+  public talker: Talker;
   public keywordExampleMap: any;
   public player: AudioPlayer;
 
@@ -42,7 +42,7 @@ export class VowelTrainerPage {
 
     this.viewState = ViewState.Animation;
     this.wordIndex = 0;
-    this.talker = appData.talker;
+    this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
     console.log(appData)
@@ -104,7 +104,7 @@ export class VowelTrainerPage {
   }
 
   getWord(): Word {
-    let word: Word = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+    let word: Word = this.appData.getKeyword();
     if (word === undefined) {
       console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
     }
@@ -130,17 +130,22 @@ export class VowelTrainerPage {
     }
   }
 
-  backWord() {
-    if (this.wordIndex > 0) {
-      this.ngZone.run(() => {
-        this.wordIndex--;
-        this.setWords();
-      });
-    }
+  previousKeyword() {
+    this.ngZone.run(() => {
+      this.appData.previousKeyword();
+      this.setWords();
+    });
+  }
+
+  nextKeyword() {
+    this.ngZone.run(() => {
+      this.appData.nextKeyword();
+      this.setWords();
+    });
   }
 
   setWords() {
-    let word = this.getWord();
+    let word = this.appData.getKeyword();
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
     console.log(word)
@@ -148,14 +153,7 @@ export class VowelTrainerPage {
 
   }
 
-  forwardWord() {
-    if (this.wordIndex < this.appData.keywordList.length - 1) {
-      this.ngZone.run(() => {
-        this.wordIndex++;
-        this.setWords();
-      });
-    }
-  }
+
 
   playExampleWord(word: string) {
     let talker = this.talker;
@@ -165,7 +163,7 @@ export class VowelTrainerPage {
   }
 
   playWord(word: string, talker?: string) {
-    talker = talker || this.talker;
+    talker = talker || this.talker.id;
     let url: string = `assets/audio/${talker}/words/${word}.wav`;
     this.player.playUrl(url);
   }

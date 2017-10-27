@@ -33,7 +33,7 @@ html, body,
 }
 .ion-page {
     // background-image: url('/assets/images/drawing.svg');
-    // background-repeat: repeat;
+    background-repeat: repeat;
 }
 .no-scroll .scroll-content{
     margin-top: 0px !important;
@@ -406,8 +406,8 @@ $media-height-medium: 768;
 .vocal-tract-animation {
 
     padding: 0 10px;
-    border: 7.5px solid color($md-palette, md-white);
-    border-radius: 20px;
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
     background: color($md-palette, md-black);
     svg {
         background-color: transparent !important;

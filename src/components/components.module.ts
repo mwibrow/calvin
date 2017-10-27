@@ -5,6 +5,7 @@ import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
 import { HelpComponent } from './help/help';
 import { TrapeziumComponent } from './trapezium/trapezium';
+import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 
 @NgModule({
 	declarations: [KeywordComponent,
@@ -12,7 +13,8 @@ import { TrapeziumComponent } from './trapezium/trapezium';
 		VideoPlayerComponent,
 		VocalTractAnimationComponent,
     HelpComponent,
-    TrapeziumComponent],
+    TrapeziumComponent,
+    SvgArrowComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
@@ -21,6 +23,9 @@ import { TrapeziumComponent } from './trapezium/trapezium';
 		VideoPlayerComponent,
     	VocalTractAnimationComponent,
     HelpComponent,
-    TrapeziumComponent]
+    TrapeziumComponent,
+    SvgArrowwComponent,
+    SvgArrowComponent,
+    ExampleWordComponent]
 })
 export class ComponentsModule {}
