@@ -134,17 +134,9 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
   font-style: normal;
 }
 
-<<<<<<< HEAD
-@import '../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf';
-
-@font-face {
-  font-family: 'BubblegumSans';
-  src: url('../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf') format('truetype');
-=======
 @font-face {
   font-family: 'BubblegumSans';
   src: url('../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf') format('truetype');
->>>>>>> afba3baf9ff6fe271df91acaf6b1ce5858c6bfcf
   font-weight: normal;
   font-style: normal;
 }
