@@ -8,6 +8,7 @@ svg-trapezium {
     height: 100%;
   }
 
+
   .svg-trapezium-container {
     position: absolute;
     top: 0;
@@ -18,12 +19,14 @@ svg-trapezium {
     display: flex;
     align-items: center;
     justify-content: center;
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .svg-trapezium-background {
     fill: color($md-palette, md-yellow-900);
-    width: 100%;
-    height: 100%;
   }
 
   .svg-trapezium-content {

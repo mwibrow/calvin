@@ -392,17 +392,6 @@ $spinner-border: 10px;
 }
 
 
-
-$media-width-medium: 1024px;
-$media-height-medium: 768;
-
-@media screen and (width: $media-width-medium) {
-
-    ion-list {
-        width: 768px;
-    }
-}
-
 .vocal-tract-animation {
 
     padding: 0 10px;
@@ -419,23 +408,20 @@ $media-height-medium: 768;
     border-radius: 5px;
 }
 
-ion-content {
-    // max-width: 60vw;
-    // margin-left: calc(50% - 20rem);
-    // .navigate-button, .keyword-control-button, .view-button {
-    //     width: 4rem;
-    //     height: 4rem;
-    //     font-size: 1.25rem;
-    // }
-    // .keyword-button {
-    //     height: 4rem;
-    //     width: 100%;
-    //     font-size: 2rem;
-    // }
-    // .image-container, .video-player-container {
-    //     width: 25rem;
-    //     height: 25rem;
-    // }
+.media-wrapper {
+    margin: auto;
+}
+.media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
+}
+
+.media-image {
+    background-color: color($md-palette, md-black);
 }
 
 @media screen and (min-height: 512px) {
@@ -465,7 +451,7 @@ ion-content {
         margin: 0 !important;
         padding: 0 !important;
     }
-   .image-container, .video-player-container {
+   .image-container {
         width: 45vh !important;
         height: 45vh !important;
     }
@@ -476,7 +462,7 @@ ion-content {
             width: 40vh;
         }
     }
-    .vocal-tract-animaton-trapezium, .image-container {
+    .vocal-tract-animaton-trapezium {
         width: 100%;
         height: 100%;
         .svg-trapezium-container {
@@ -494,6 +480,15 @@ ion-content {
             height: 40vh !important;
         }
     }
+    .media-wrapper {
+        width: 55vh;
+        height: 55vh;
+    }
+    .media {
+        width: 45vh;
+        height: 45vh;
+    }
+
 
 }
 

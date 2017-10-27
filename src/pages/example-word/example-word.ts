@@ -27,7 +27,7 @@ export class ExampleWordPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public appData: AppDataProvider) {
-      this.viewState = ViewState.Video;
+      this.viewState = ViewState.Image;
   }
 
   ionViewDidLoad() {

@@ -31,11 +31,13 @@
           <ion-grid>
             <ion-row text-center>
               <ion-col>
-                <svg-trapezium class="vocal-tract-animaton-trapezium">
-                  <div class="image-container">
-                    <img [src]="getImageUri()"/>
-                  </div>
-                </svg-trapezium>
+                <div class="media-wrapper">
+                  <svg-trapezium class="media-trapezium">
+                    <div class="media media-image">
+                      <img [src]="getImageUri()"/>
+                    </div>
+                  </svg-trapezium>
+                </div>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -46,12 +48,14 @@
             <ion-grid>
               <ion-row text-center>
                 <ion-col>
-                  <svg-trapezium class="vocal-tract-animaton-trapezium">
-                    <div class="video-container">
-                        <video-player class="video-container" justify-content-center [video-src]="getVideoUri()" #videoPlayer>
-                        </video-player>
-                    </div>
-                  </svg-trapezium>
+                  <div class="media-wrapper">
+                    <svg-trapezium class="media-trapezium">
+                      <div class="media">
+                          <video-player justify-content-center [video-src]="getVideoUri()" #videoPlayer>
+                          </video-player>
+                      </div>
+                    </svg-trapezium>
+                  </div>
                 </ion-col>
               </ion-row>
             </ion-grid>
