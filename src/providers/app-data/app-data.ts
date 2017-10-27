@@ -64,14 +64,18 @@ export class AppDataProvider {
     this.setUpKeywords(this.config);
     this.setUpExampleWords(this.config);
     this.setUpKeywordExampleMap();
-    this.talker = this.getTalker();
+    this.getTalker();
     this.keyword = this.getKeyword();
   }
 
-  getTalker(): Talker {
-    let talker = this.talkers[this.talkerList[this.talkerIndex]];
-    this.talker = talker;
+  getTalker(index?: number): Talker {
+    let talker = this.talkers[this.talkerList[index || this.talkerIndex]];
     return talker;
+  }
+
+  setTalker(talker: Talker) {
+    this.talker = talker;
+    this.talkerIndex = this.talkerList.indexOf(talker.id);
   }
 
   getKeyword(): Word {

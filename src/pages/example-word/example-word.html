@@ -15,23 +15,48 @@
     <ion-grid>
       <ion-row justify-content-center>
         <ion-col>
-
           <ion-grid>
             <ion-row text-center>
-              <ion-col col-1></ion-col>
               <ion-col>
                 <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
                   <span [innerHtml]="getExampleWord()"></span>
                 </keyword>
               </ion-col>
-              <ion-col col-1></ion-col>
             </ion-row>
-            <ion-col></ion-col>
           </ion-grid>
-
-
         </ion-col>
       </ion-row>
+      <ion-row  *ngIf="isViewState(ViewState.Image)" justify-content-center>
+        <ion-col>
+          <ion-grid>
+            <ion-row text-center>
+              <ion-col>
+                <svg-trapezium class="vocal-tract-animaton-trapezium">
+                  <div class="image-container">
+                    <img [src]="getImageUri()"/>
+                  </div>
+                </svg-trapezium>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row  *ngIf="isViewState(ViewState.Video)" justify-content-center>
+          <ion-col>
+            <ion-grid>
+              <ion-row text-center>
+                <ion-col>
+                  <svg-trapezium class="vocal-tract-animaton-trapezium">
+                    <div class="video-container">
+                        <video-player class="video-container" justify-content-center [video-src]="getVideoUri()" #videoPlayer>
+                        </video-player>
+                    </div>
+                  </svg-trapezium>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
     </ion-grid>
 
   </ion-content>

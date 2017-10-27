@@ -412,7 +412,11 @@ $media-height-medium: 768;
     svg {
         background-color: transparent !important;
     }
+}
 
+.image-container {
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
 }
 
 ion-content {
@@ -462,8 +466,8 @@ ion-content {
         padding: 0 !important;
     }
    .image-container, .video-player-container {
-        width: 40vh;
-        height: 40vh;
+        width: 45vh !important;
+        height: 45vh !important;
     }
     .vocal-tract-animation {
         width: 45vh;
@@ -472,7 +476,7 @@ ion-content {
             width: 40vh;
         }
     }
-    .vocal-tract-animaton-trapezium {
+    .vocal-tract-animaton-trapezium, .image-container {
         width: 100%;
         height: 100%;
         .svg-trapezium-container {
@@ -481,6 +485,16 @@ ion-content {
             }
         }
     }
+    .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 40vh !important;
+            height: 40vh !important;
+        }
+    }
+
 }
 
 

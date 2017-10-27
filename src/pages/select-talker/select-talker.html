@@ -11,11 +11,11 @@
 
 <ion-content padding>
 <ion-list>
-  <ion-item *ngFor="let talker of appData.talkerList" (click)="setTalker(talker)">
+  <ion-item *ngFor="let talker of appData.talkers" (click)="setTalker(talker)">
     <ion-avatar item-start>
-      <div class="avatar {{appData.talker === talker ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + appData.talkers[talker].id + '.svg'"></div>
+      <div class="avatar {{appData.talker.id === talker.id ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.id + '.svg'"></div>
     </ion-avatar>
-    <ion-label class="{{appData.talker === talker ? 'is-selected' : ''}}">{{appData.talkers[talker].displayName}}</ion-label>
+    <ion-label class="{{appData.talker.id === talker.id ? 'is-selected' : ''}}">{{talker.displayName}}</ion-label>
   </ion-item>
 </ion-list>
 </ion-content>
