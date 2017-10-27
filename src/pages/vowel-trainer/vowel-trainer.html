@@ -45,20 +45,19 @@
 
         <ion-grid [hidden]="!isViewState(ViewState.Examples)">
           <ion-row text-center>
-            <ion-col col-1></ion-col>
-              <ion-col>
-                <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
-                  <span [innerHtml]="getKeyword()"></span>
-                </keyword>
-              </ion-col>
-              <ion-col col-1></ion-col>
-          </ion-row>
-          <ion-row *ngFor="let item of getExampleWords()" justify-content-center class="row-no-padding">
-            <ion-col col-1></ion-col>
             <ion-col>
-              <keyword [keyword-uri]="getUri(item)">{{item}}</keyword>
+              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
+                <span [innerHtml]="getKeyword()"></span>
+              </keyword>
             </ion-col>
-            <ion-col col-1></ion-col>
+          </ion-row>
+          <ion-row *ngFor="let item of getExampleWords(); let i = index" justify-content-center class="row-no-padding">
+            <ion-col>
+              <!-- <keyword [keyword-uri]="getUri(item)">{{item}}</keyword> -->
+              <button ion-button block round class="example-word-button" (click)="showExampleWord(i)">
+                {{item}}
+              </button>
+            </ion-col>
           </ion-row>
         </ion-grid>
 

@@ -40,7 +40,7 @@ export class VowelTrainerPage {
       public ngZone: NgZone,
       public events: Events) {
 
-    this.viewState = ViewState.Animation;
+    this.viewState = ViewState.Examples;
     this.wordIndex = 0;
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
@@ -146,16 +146,19 @@ export class VowelTrainerPage {
 
   nextKeywordButtonDisabled() {
     if (this.appData.keywordIndex === this.appData.keywordList.length - 1) {
-      return "true"
+      return "true";
     }
   }
 
   previousKeywordButtonDisabled() {
     if (this.appData.keywordIndex === 0) {
-      return "true"
+      return "true";
     }
   }
 
+  showExampleWord(index: number) {
+    this.appData.setExampleWordIndex(index);
+  }
   setWords() {
     let word = this.appData.getKeyword();
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);

@@ -446,12 +446,12 @@ ion-content {
     ion-footer {
         height: 20vh;
     }
-    .navigate-button, .keyword-control-button, .view-button {
+    .navigate-button, .keyword-control-button, .view-button,  {
         width: 10vh;
         height: 10vh;
         font-size: 2.5vh;
     }
-    .keyword-button {
+    .keyword-button, .example-word-button {
         height: 10vh;
         width: 100%;
         span {
