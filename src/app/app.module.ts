@@ -8,14 +8,16 @@ import { InlineSVGModule } from 'ng-inline-svg';
 
 import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { KeywordTrainerPage } from '../pages/keyword-trainer/keyword-trainer';
 import { SelectTalkerPage } from '../pages/select-talker/select-talker';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
+import { ExampleWordPage } from '../pages/example-word/example-word';
 import { AudioProvider } from '../providers/audio/audio';
 import { AppDataProvider } from '../providers/app-data/app-data';
 
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
+import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
+import { SvgArrowComponent } from '../components/svg-arrow/svg-arrow';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 import { VocalTractAnimationComponent, AnimationDirective } from '../components/vocal-tract-animation/vocal-tract-animation';
@@ -26,7 +28,7 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     CalvinApp,
     HomePage,
     VowelTrainerPage,
-    KeywordTrainerPage,
+    ExampleWordPage,
     SelectTalkerPage,
     LogoComponent,
     KeywordComponent,
@@ -35,7 +37,9 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     VideoPlayerComponent,
     VideoSrcDirective,
     VocalTractAnimationComponent,
-    AnimationDirective
+    AnimationDirective,
+    SvgTrapeziumComponent,
+    SvgArrowComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,7 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     HomePage,
     SelectTalkerPage,
     VowelTrainerPage,
-    KeywordTrainerPage
+    ExampleWordPage
   ],
   providers: [
     StatusBar,

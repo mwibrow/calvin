@@ -1,0 +1,70 @@
+<!--
+  Generated template for the ExampleWordPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header transparent>
+    <ion-navbar transparent> <!--hideBackButton>-->
+      <ion-title><logo (click)="goHome()"></logo></ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content class="no-scroll">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col>
+          <ion-grid>
+            <ion-row text-center>
+              <ion-col>
+                <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
+                  <span [innerHtml]="getExampleWord()"></span>
+                </keyword>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row  *ngIf="isViewState(ViewState.Image)" justify-content-center>
+        <ion-col>
+          <ion-grid>
+            <ion-row text-center>
+              <ion-col>
+                <div class="media-wrapper">
+                  <svg-trapezium [color]="imageColor" class="media-trapezium">
+                    <div class="media media-image">
+                      <img [src]="getImageUri()"/>
+                    </div>
+                  </svg-trapezium>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+      <ion-row  *ngIf="isViewState(ViewState.Video)" justify-content-center>
+          <ion-col>
+            <ion-grid>
+              <ion-row text-center>
+                <ion-col>
+                  <div class="media-wrapper">
+                    <svg-trapezium class="media-trapezium">
+                      <div class="media">
+                          <video-player justify-content-center [video-src]="getVideoUri()" #videoPlayer>
+                          </video-player>
+                      </div>
+                    </svg-trapezium>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+  </ion-content>
+
+  <ion-footer padding>
+
+  </ion-footer>

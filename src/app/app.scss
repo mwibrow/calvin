@@ -24,12 +24,18 @@
 
 html, body,
 .app-root,
-.ion-page,
-.content {
-    background-color: color($md-palette, md-black);
-    color: color($md-palette, md-white);
+.ion-page {
+    background-color: color($md-palette, md-yellow);
+    // color: color($md-palette, md-yellow);
 }
 
+.content {
+    background-color: transparent !important;
+}
+.ion-page {
+    // background-image: url('/assets/images/drawing.svg');
+    background-repeat: repeat;
+}
 .no-scroll .scroll-content{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
@@ -42,8 +48,15 @@ html, body,
     overflow-y: auto !important;
 }
 
-ion-footer, .footer, .footer-md {
-    background-color: transparent !important;
+// ion-footer, .footer, .footer-md {
+//   background-color: transparent !important;
+// }
+
+// ion-content {
+//     background: color($md-palette, md-yellow) !important;
+// }
+ion-footer {
+    background-color: color($md-palette, md-light-green) !important;
 }
 
 .toolbar-background {
@@ -380,42 +393,43 @@ $spinner-border: 10px;
 }
 
 
+.vocal-tract-animation {
 
-$media-width-medium: 1024px;
-$media-height-medium: 768;
-
-@media screen and (width: $media-width-medium) {
-
-    ion-list {
-        width: 768px;
+    padding: 0 10px;
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
+    background: color($md-palette, md-black);
+    svg {
+        background-color: transparent !important;
     }
 }
 
-
-ion-content {
-    max-width: 60vw;
-    // margin-left: calc(50% - 20rem);
-    // .navigate-button, .keyword-control-button, .view-button {
-    //     width: 4rem;
-    //     height: 4rem;
-    //     font-size: 1.25rem;
-    // }
-    // .keyword-button {
-    //     height: 4rem;
-    //     width: 100%;
-    //     font-size: 2rem;
-    // }
-    // .image-container, .video-player-container {
-    //     width: 25rem;
-    //     height: 25rem;
-    // }
+.image-container {
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
 }
 
-@media screen and (min-height: 768px) {
+.media-wrapper {
+    margin: auto;
+}
+.media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid color($md-palette, md-white);
+    border-radius: 5px;
+}
+
+.media-image {
+    background-color: color($md-palette, md-black);
+}
+
+@media screen and (min-height: 512px) {
     ion-content {
-        margin-top: 10vh;
-        max-width: 75vh;
-        left: calc(50% - 37.5vh);
+        margin-top: 5vh;
+        max-width: 80vh;
+        left: calc(50% - 40vh);
     }
     ion-grid {
 
@@ -423,22 +437,95 @@ ion-content {
     ion-footer {
         height: 20vh;
     }
+    .navigate-button, .keyword-control-button, .view-button,  {
+        width: 10vh;
+        height: 10vh;
+        font-size: 2.5vh;
+    }
+    .keyword-button, .example-word-button {
+        height: 10vh;
+        width: 100%;
+        span {
+            font-size: 6.25vh !important;
+            letter-spacing: .125vh;
+        }
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+   .image-container {
+        width: 45vh !important;
+        height: 45vh !important;
+    }
+    .vocal-tract-animation {
+        width: 45vh;
+        height: 45vh;
+        svg {
+            width: 40vh;
+        }
+    }
+    .vocal-tract-animaton-trapezium {
+        width: 100%;
+        height: 100%;
+        .svg-trapezium-container {
+            svg {
+                height: 55vh !important;
+            }
+        }
+    }
+    .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 40vh !important;
+            height: 40vh !important;
+        }
+    }
+    .media-wrapper {
+        width: 55vh;
+        height: 55vh;
+    }
+    .media {
+        width: 45vh;
+        height: 45vh;
+    }
+
+
+}
+
+
+@media screen and (min-height: 768px) {
+    ion-content {
+        margin-top: 5vh;
+        max-width: 80vh;
+        left: calc(50% - 40vh);
+    }
+    ion-grid {
+
+    }
+    ion-footer {
+        height: 17.5vh;
+    }
     .navigate-button, .keyword-control-button, .view-button {
-        width: 8.75vh;
-        height: 8.75vh;
+        width: 12.5vh;
+        height: 12.5vh;
         font-size: 3.25vh;
     }
     .keyword-button {
-        height: 8.75vh;
+        height: 12.5vh;
         width: 100%;
         span {
-            font-size: 5vh !important;
+            font-size: 7.5vh !important;
+            letter-spacing: .25vh;
         }
         margin: 0 !important;
         padding: 0 !important;
     }
    .image-container, .video-player-container {
         width: 50vh;
+        height: 50vh;
+    }
+    .vocal-tract-animation {
         height: 50vh;
     }
 }

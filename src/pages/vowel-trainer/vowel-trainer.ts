@@ -1,8 +1,9 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider } from '../../providers/app-data/app-data';
+import { AppDataProvider, Word, Talker } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
- import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
+import { ExampleWordPage } from '../../pages/example-word/example-word';
+import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
 
@@ -29,8 +30,8 @@ export class VowelTrainerPage {
   public readonly ViewState = ViewState;
   private viewState: ViewState;
   public wordIndex: number;
-  public talker: string;
-  public keywordExamples: any;
+  public talker: Talker;
+  public keywordExampleMap: any;
   public player: AudioPlayer;
 
   constructor(public navCtrl: NavController,
@@ -40,10 +41,10 @@ export class VowelTrainerPage {
       public ngZone: NgZone,
       public events: Events) {
 
-    this.viewState = ViewState.Animation;
+    this.viewState = ViewState.Examples;
     this.wordIndex = 0;
-    this.talker = appData.talker;
-    this.keywordExamples = appData.exampleWords;
+    this.talker = appData.getTalker();
+    this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
     console.log(appData)
     this.events.subscribe('svg:loaded', () => {
@@ -94,18 +95,28 @@ export class VowelTrainerPage {
     }
   }
 
-  getKeyword(): string {
+  getKeyword(highlightVowel: boolean = false): string {
+    let word: Word = this.getWord();
+    if (highlightVowel) {
+      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
+      '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
+    }
     return `<span class="keyword-display">${this.appData.keywordList[this.wordIndex]}</span>`;
   }
 
-  getWord() {
-    let word: any = this.appData.keywords[this.appData.keywordList[this.wordIndex]];
+  getWord(): Word {
+    let word: Word = this.appData.getKeyword();
     if (word === undefined) {
       console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
     }
     return word;
   }
 
+  getExampleWords() {
+    let word = this.getWord();
+    let examples = this.appData.keywordExampleMap[word.hvd];
+    return examples;
+  }
   ionViewDidLoad() {}
 
   backButtonDisabled() {
@@ -120,32 +131,46 @@ export class VowelTrainerPage {
     }
   }
 
-  backWord() {
-    if (this.wordIndex > 0) {
-      this.ngZone.run(() => {
-        this.wordIndex--;
-        this.setWords();
-      });
+  previousKeyword() {
+    this.ngZone.run(() => {
+      this.appData.previousKeyword();
+      this.setWords();
+    });
+  }
+
+  nextKeyword() {
+    this.ngZone.run(() => {
+      this.appData.nextKeyword();
+      this.setWords();
+    });
+  }
+
+  nextKeywordButtonDisabled() {
+    if (this.appData.keywordIndex === this.appData.keywordList.length - 1) {
+      return "true";
     }
   }
 
+  previousKeywordButtonDisabled() {
+    if (this.appData.keywordIndex === 0) {
+      return "true";
+    }
+  }
+
+  showExampleWord(index: number) {
+    this.appData.setExampleWordIndex(index);
+    this.navCtrl.push(ExampleWordPage);
+  }
   setWords() {
-    let word = this.getWord();
-    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.vowel}.wav`);
+    let word = this.appData.getKeyword();
+    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);
     this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
     console.log(word)
     this.setUpAnimation();
 
   }
 
-  forwardWord() {
-    if (this.wordIndex < this.appData.keywordList.length - 1) {
-      this.ngZone.run(() => {
-        this.wordIndex++;
-        this.setWords();
-      });
-    }
-  }
+
 
   playExampleWord(word: string) {
     let talker = this.talker;
@@ -155,7 +180,7 @@ export class VowelTrainerPage {
   }
 
   playWord(word: string, talker?: string) {
-    talker = talker || this.talker;
+    talker = talker || this.talker.id;
     let url: string = `assets/audio/${talker}/words/${word}.wav`;
     this.player.playUrl(url);
   }

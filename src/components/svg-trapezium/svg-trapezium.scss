@@ -1,0 +1,42 @@
+svg-trapezium {
+  .svg-trapezium {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .svg-trapezium-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .svg-trapezium-background {
+    // fill: color($md-palette, md-yellow-900);
+  }
+
+  .svg-trapezium-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    padding: 5%;
+    width: 100%;
+    height: 100%;
+  }
+
+}

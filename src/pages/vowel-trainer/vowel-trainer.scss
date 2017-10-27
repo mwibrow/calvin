@@ -7,7 +7,12 @@ page-vowel-trainer {
 		}
 	}
 	.highlight {
-		color: $keyword-label-highlight-fg !important;
+		// color: $keyword-label-highlight-fg !important;
+		padding: 0 0.05em;
+	}
+	.lowlight {
+		// color: $keyword-label-highlight-fg !important;
+		opacity: 0.5;
 	}
 
 	.keyword-display {
@@ -59,8 +64,6 @@ page-vowel-trainer {
 		};
 	}
 
-
-
 	.content-container {
 		display: flex !important;
 		justify-content: center !important;
@@ -69,4 +72,8 @@ page-vowel-trainer {
 		width: 50% !important;
 	}
 
+	.example-word-button {
+		@include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
+		@include hover-box-shadow($example-word-button-bg);
+	}
 }

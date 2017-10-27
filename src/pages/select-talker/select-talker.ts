@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams } from 'ionic-angular';
-import { AppDataProvider } from '../../providers/app-data/app-data';
+import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
 /**
  * Generated class for the SelectTalkerPage page.
  *
@@ -17,7 +17,7 @@ export class SelectTalkerPage {
 
   constructor(
     public appData: AppDataProvider,
-    public viewCtrl: ViewController, 
+    public viewCtrl: ViewController,
     public navParams: NavParams) {
   }
 
@@ -25,8 +25,8 @@ export class SelectTalkerPage {
     console.log('ionViewDidLoad SelectTalkerPage');
   }
 
-  setTalker(talker: string) {
-    this.appData.talker = talker;
+  setTalker(talker: Talker) {
+    this.appData.setTalker(talker);
   }
 
   cancel() {

@@ -51,6 +51,10 @@ $view-button-fg: color($md-palette, md-white);
 
 $navigate-button-bg: color($md-palette, md-light-green);
 $navigate-button-fg: color($md-palette, md-white);
+
+$example-word-button-bg: color($md-palette, md-light-blue);
+$example-word-button-fg: color($md-palette, md-white);
+
 $keyword-button-bg: color($md-palette, md-orange);
 $keyword-button-fg: color($md-palette, md-white);
 $keyword-control-button-bg: color($md-palette, md-purple);
@@ -121,6 +125,7 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
 @import "noto-sans";
 
 @import '../assets/fonts/crafty_girls/CraftyGirls.ttf';
+@import '../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf';
 
 @font-face {
   font-family: 'Crafty Girls';
@@ -129,11 +134,17 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
   font-style: normal;
 }
 
+<<<<<<< HEAD
 @import '../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf';
 
 @font-face {
   font-family: 'BubblegumSans';
   src: url('../assets/fonts/BubblegumSans/BubblegumSans-Regular.ttf') format('truetype');
+=======
+@font-face {
+  font-family: 'BubblegumSans';
+  src: url('../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf') format('truetype');
+>>>>>>> afba3baf9ff6fe271df91acaf6b1ce5858c6bfcf
   font-weight: normal;
   font-style: normal;
 }

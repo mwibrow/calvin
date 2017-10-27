@@ -15,7 +15,9 @@
           <ion-row text-center>
             <ion-col col-1></ion-col>
             <ion-col>
-              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword><span [innerHtml]="getKeyword()"></span></keyword>
+              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
+                <span [innerHtml]="getKeyword()"></span>
+              </keyword>
             </ion-col>
             <ion-col col-1></ion-col>
           </ion-row>
@@ -27,38 +29,48 @@
             <ion-col col-1></ion-col>
             <ion-col text-center>
               <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
-                <span [innerHtml]="formatWord(true)"></span>
+                <span [innerHtml]="getKeyword(true)"></span>
               </keyword>
             </ion-col>
             <ion-col col-1></ion-col>
           </ion-row>
           <ion-row justify-content-center>
             <ion-col text-center>
-              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+              <svg-trapezium class="vocal-tract-animaton-trapezium">
+                <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+              </svg-trapezium>
             </ion-col>
           </ion-row>
         </ion-grid>
 
         <ion-grid [hidden]="!isViewState(ViewState.Examples)">
-          <!-- <ion-row *ngFor="let item of keywordExamples[appData.keywordList[wordIndex]]" justify-content-center class="row-no-padding">
-            <ion-col col-1></ion-col>
+          <ion-row text-center>
             <ion-col>
-              <keyword keyword-controls [keyword-uri]="getUri(item)">{{item}}</keyword>
+              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
+                <span [innerHtml]="getKeyword()"></span>
+              </keyword>
             </ion-col>
-            <ion-col col-1></ion-col>
-          </ion-row> -->
+          </ion-row>
+          <ion-row *ngFor="let item of getExampleWords(); let i = index" justify-content-center class="row-no-padding">
+            <ion-col>
+              <!-- <keyword [keyword-uri]="getUri(item)">{{item}}</keyword> -->
+              <button ion-button block round class="example-word-button" (click)="showExampleWord(i)">
+                {{item}}
+              </button>
+            </ion-col>
+          </ion-row>
         </ion-grid>
 
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-fab bottom left>
-    <button ion-fab [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="backWord()">
+    <button ion-fab [class]="previousKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="previousKeywordButtonDisabled()" (click)="previousKeyword()">
       <ion-icon name="arrow-round-back"></ion-icon>
     </button>
   </ion-fab>
   <ion-fab  bottom right>
-    <button  ion-fab [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="forwardWord()">
+    <button  ion-fab [class]="nextKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="nextKeywordButtonDisabled()" (click)="nextKeyword()">
       <ion-icon name="arrow-round-forward"></ion-icon>
     </button>
   </ion-fab>

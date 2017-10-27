@@ -3,24 +3,30 @@ vocal-tract-animation {
 .vocal-tract-animation {
    //margin: 1em auto;
    //width: 60vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 
 .wrapper {
     display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .svg-container {
-    background-color: color($md-palette, md-black);
+    // background-color: color($md-palette, md-black);
     border-radius: 5%;
+    // width: 100%;
+    // height: 100%;
 }
 
 
 svg {
-    height: 4rem;
-    @media only screen and (min-height: 41rem) {
-        height: 20rem;
-    }
 }
 
 
@@ -28,6 +34,9 @@ circle {
     fill: red;
 }
 
+.range-container {
+    width: 100%;
+}
 ion-range {
     margin: 0% !important;
     padding-top: 0% !important;
