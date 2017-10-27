@@ -4,15 +4,38 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>ExampleWord</ion-title>
-  </ion-navbar>
-
-</ion-header>
+<ion-header transparent>
+    <ion-navbar transparent> <!--hideBackButton>-->
+      <ion-title><logo (click)="goHome()"></logo></ion-title>
+    </ion-navbar>
+  </ion-header>
 
 
-<ion-content padding>
+  <ion-content class="no-scroll">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col>
 
-</ion-content>
+          <ion-grid>
+            <ion-row text-center>
+              <ion-col col-1></ion-col>
+              <ion-col>
+                <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
+                  <span [innerHtml]="getExampleWord()"></span>
+                </keyword>
+              </ion-col>
+              <ion-col col-1></ion-col>
+            </ion-row>
+            <ion-col></ion-col>
+          </ion-grid>
+
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-content>
+
+  <ion-footer padding>
+
+  </ion-footer>

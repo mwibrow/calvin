@@ -2,7 +2,8 @@ import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider, Word, Talker } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
- import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
+import { ExampleWordPage } from '../../pages/example-word/example-word';
+import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
 
@@ -158,6 +159,7 @@ export class VowelTrainerPage {
 
   showExampleWord(index: number) {
     this.appData.setExampleWordIndex(index);
+    this.navCtrl.push(ExampleWordPage);
   }
   setWords() {
     let word = this.appData.getKeyword();

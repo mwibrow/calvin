@@ -69,7 +69,9 @@ export class AppDataProvider {
   }
 
   getTalker(): Talker {
-    return this.talkers[this.talkerList[this.talkerIndex]];
+    let talker = this.talkers[this.talkerList[this.talkerIndex]];
+    this.talker = talker;
+    return talker;
   }
 
   getKeyword(): Word {
@@ -97,7 +99,7 @@ export class AppDataProvider {
   }
 
   getExampleWord(): Word {
-    return this.keywordExampleMap[this.getKeyword().id][this.exampleWordIndex];
+    return this.exampleWords[this.keywordExampleMap[this.getKeyword().hvd][this.exampleWordIndex]];
   }
 
   setExampleWordIndex(index: number) {
@@ -132,10 +134,9 @@ export class AppDataProvider {
 
   setUpTalkers(config) {
     this.talkerList = config.talkers;
-    this.talkers = config.talkers.map((talker) => {
+    this.talkers = config.talkers.reduce((obj, talker) => {
       let name = talker[0].toUpperCase() + talker.slice(1);
-      return new Talker(talker, name, name, talker);
-    });
+      return Object.assign(obj, {[talker]: new Talker(talker, name, name, talker)})}, {});
   }
 
   setUpKeywords(config) {
