@@ -144,6 +144,18 @@ export class VowelTrainerPage {
     });
   }
 
+  nextKeywordButtonDisabled() {
+    if (this.appData.keywordIndex === this.appData.keywordList.length - 1) {
+      return "true"
+    }
+  }
+
+  previousKeywordButtonDisabled() {
+    if (this.appData.keywordIndex === 0) {
+      return "true"
+    }
+  }
+
   setWords() {
     let word = this.appData.getKeyword();
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);

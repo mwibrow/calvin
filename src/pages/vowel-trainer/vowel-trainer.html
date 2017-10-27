@@ -66,12 +66,12 @@
     </ion-row>
   </ion-grid>
   <ion-fab bottom left>
-    <button ion-fab [class]="backButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="backButtonDisabled()" (click)="previousKeyword()">
+    <button ion-fab [class]="previousKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="previousKeywordButtonDisabled()" (click)="previousKeyword()">
       <ion-icon name="arrow-round-back"></ion-icon>
     </button>
   </ion-fab>
   <ion-fab  bottom right>
-    <button  ion-fab [class]="forwardButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="forwardButtonDisabled()" (click)="nextKeyword()">
+    <button  ion-fab [class]="nextKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="nextKeywordButtonDisabled()" (click)="nextKeyword()">
       <ion-icon name="arrow-round-forward"></ion-icon>
     </button>
   </ion-fab>

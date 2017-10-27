@@ -23,9 +23,7 @@ import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 		VideoPlayerComponent,
     	VocalTractAnimationComponent,
     HelpComponent,
-    TrapeziumComponent,
-    SvgArrowwComponent,
-    SvgArrowComponent,
-    ExampleWordComponent]
+    SvgTrapeziumComponent,
+    SvgArrowComponent]
 })
 export class ComponentsModule {}
