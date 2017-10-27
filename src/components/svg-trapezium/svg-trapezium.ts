@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
 
 /**
- * Generated class for the TrapeziumComponent component.
+ * Generated class for the SvgTrapeziumComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'trapezium',
-  templateUrl: 'trapezium.html'
+  selector: 'svg-trapezium',
+  templateUrl: 'svg-trapezium.html'
 })
-export class TrapeziumComponent {
+export class SvgTrapeziumComponent {
 
   text: string;
 
   constructor() {
-    console.log('Hello TrapeziumComponent Component');
+    console.log('Hello SvgTrapeziumComponent Component');
     this.text = 'Hello World';
   }
 

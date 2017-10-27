@@ -4,7 +4,7 @@ import { LogoComponent } from './logo/logo';
 import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
 import { HelpComponent } from './help/help';
-import { TrapeziumComponent } from './trapezium/trapezium';
+import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
 import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 		VideoPlayerComponent,
 		VocalTractAnimationComponent,
     HelpComponent,
-    TrapeziumComponent,
+    SvgTrapeziumComponent,
     SvgArrowComponent],
 	imports: [],
 	exports: [KeywordComponent,

@@ -16,7 +16,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
-import { TrapeziumComponent } from '../components/trapezium/trapezium';
+import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
 import { SvgArrowComponent } from '../components/svg-arrow/svg-arrow';
 import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
@@ -38,7 +38,7 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     VideoSrcDirective,
     VocalTractAnimationComponent,
     AnimationDirective,
-    TrapeziumComponent,
+    SvgTrapeziumComponent,
     SvgArrowComponent
   ],
   imports: [

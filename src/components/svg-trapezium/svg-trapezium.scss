@@ -1,5 +1,5 @@
-trapezium {
-  .trapezium {
+svg-trapezium {
+  .svg-trapezium {
     position: relative;
     display: flex;
     align-items: center;
@@ -8,7 +8,7 @@ trapezium {
     height: 100%;
   }
 
-  .trapezium-container {
+  .svg-trapezium-container {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,13 +17,13 @@ trapezium {
     z-index: 1;
   }
 
-  .trapezium-background {
+  .svg-trapezium-background {
     fill: color($md-palette, md-yellow-900);
     width: 100%;
     height: 100%;
   }
 
-  .trapezium-content {
+  .svg-trapezium-content {
     display: flex;
     align-items: center;
     justify-content: center;
