@@ -36,6 +36,9 @@ export class ExampleWordPage {
 
   }
 
+  clickShape() {
+    console.log('CLICK-SHAPE')
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExampleWordPage');
   }

@@ -5,8 +5,8 @@ import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
 import { HelpComponent } from './help/help';
 import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
-import { SvgArrowComponent } from './svg-arrow/svg-arrow';
 import { BackgroundComponent } from './background/background';
+import { SvgShapeComponent } from './svg-shape/svg-shape';
 
 @NgModule({
 	declarations: [KeywordComponent,
@@ -15,8 +15,8 @@ import { BackgroundComponent } from './background/background';
 		VocalTractAnimationComponent,
     HelpComponent,
     SvgTrapeziumComponent,
-    SvgArrowComponent,
-    BackgroundComponent],
+    BackgroundComponent,
+    SvgShapeComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
@@ -26,7 +26,7 @@ import { BackgroundComponent } from './background/background';
     	VocalTractAnimationComponent,
     HelpComponent,
     SvgTrapeziumComponent,
-    SvgArrowComponent,
-    BackgroundComponent]
+    BackgroundComponent,
+    SvgShapeComponent]
 })
 export class ComponentsModule {}
