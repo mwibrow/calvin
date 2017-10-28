@@ -48,7 +48,7 @@ export class ExampleWordPage {
     return viewState === this.viewState;
   }
 
-  changeViewState(viewState: ViewState) {
+  setViewState(viewState: ViewState) {
     this.viewState = viewState;
     console.log(this.viewState)
   }

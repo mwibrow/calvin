@@ -412,6 +412,7 @@ $spinner-border: 10px;
 
 .media-wrapper {
     margin: auto;
+    position: relative;
 }
 .media {
     position: relative;
@@ -419,7 +420,7 @@ $spinner-border: 10px;
     align-items: center;
     justify-content: center;
     border: 5px solid color($md-palette, md-white);
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .media-image {

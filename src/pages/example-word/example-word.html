@@ -38,6 +38,13 @@
                       <img [src]="getImageUri()"/>
                     </div>
                   </svg-trapezium>
+                  <div class="float">
+                    <div class="float-button" (click)="setViewState(ViewState.Video)">
+                      <div class="media media-video">
+                        <video-player [src]="getVideoUri()" disabled="true"></video-player>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </ion-col>
             </ion-row>
@@ -52,9 +59,16 @@
                   <div class="media-wrapper">
                     <svg-trapezium  [color]="imageColor" class="media-trapezium">
                       <div class="media media-video">
-                        <video-player [src]="getVideoUri()"  #videoPlayer></video-player>
+                        <video-player [src]="getVideoUri()" #videoPlayer></video-player>
                       </div>
                     </svg-trapezium>
+                    <div class="float">
+                      <div class="float-button" (click)="setViewState(ViewState.Image)">
+                        <div class="media media-image">
+                          <img [src]="getImageUri()"/>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </ion-col>
               </ion-row>
@@ -66,7 +80,7 @@
 
   <ion-footer padding>
     <ion-buttons left>
-      <button ion-button class="navigate-button" (click)="changeViewState(ViewState.Video)">
+      <button ion-button class="navigate-button" (click)="setViewState(ViewState.Video)">
           <svg-shape class="navigation-arrow" rotate="180" shape="arrow"></svg-shape>
       </button>
 

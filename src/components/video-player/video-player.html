@@ -2,7 +2,7 @@
   <video #videoPlayer>
     <source [src]="src" type="video/mp4">
   </video>
-  <div *ngIf="!isDisabled()" class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
+  <div class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
     <ion-icon name="play"></ion-icon>
   </div>
 </div>

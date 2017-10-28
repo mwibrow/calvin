@@ -28,8 +28,8 @@ video-player {
       transition: 1s;
     }
     ion-icon {
-      opacity: 0.5;
-      font-size: 500%;
+      color: rgba(color($md-palette, md-white), 0.25);
+      font-size: 200%;
     }
   }
 }

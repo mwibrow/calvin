@@ -23,8 +23,12 @@ export class VideoPlayerComponent {
     return this.disabled === 'true';
   }
 
+  setSrc(src: string) {
+    this.src = src;
+  }
+
   play() {
-    if (this.isDisabled) return;
+    if (this.isDisabled()) return;
     this.playing = true
     this.video.nativeElement.muted = false;
     setTimeout(() => this.video.nativeElement.play(), 1000);

@@ -20,8 +20,30 @@ page-example-word {
     height: 5rem;
   }
 
-  .floating-action {
+  .float {
     position: absolute;
     right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    transform: translate(25%,25%);
+  }
+
+  .float-button {
+    position: relative;
+    .media, .media-image, .media-video {
+      width: 7.5rem;
+      height: 7.5rem;
+    }
+
+    .media-video {
+      height: 7.125rem;
+    }
+  }
+  .float-button.image {
+      background-color: color($md-palette, md-black);
   }
 }
