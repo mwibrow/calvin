@@ -39,6 +39,7 @@ export class ExampleWordPage {
   clickShape() {
     console.log('CLICK-SHAPE')
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExampleWordPage');
   }
@@ -86,6 +87,10 @@ export class ExampleWordPage {
     let uri: string = this.appData.getVideo(talker.id, 'example_words', word.id);
     console.log('Video URI', uri)
     return uri;
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
 }

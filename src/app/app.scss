@@ -394,6 +394,22 @@ $spinner-border: 10px;
 }
 
 
+.navigation-arrow {
+    .svg-shape-component {
+      width: 5rem;
+    }
+    .svg-shape {
+      fill: color($md-palette, md-white);
+    }
+}
+
+
+.navigate-button-back {
+    .svg-shape {
+        transform: rotate(180deg);
+    }
+}
+
 .vocal-tract-animation {
 
     padding: 0 10px;

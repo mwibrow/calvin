@@ -7,6 +7,7 @@ import { VocalTractAnimationComponent } from '../../components/vocal-tract-anima
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { KeywordComponent } from '../../components/keyword/keyword';
 
+import * as mdColors from 'material-colors';
 enum ViewState {
   Audio,
   Video,
@@ -33,6 +34,8 @@ export class VowelTrainerPage {
   public talker: Talker;
   public keywordExampleMap: any;
   public player: AudioPlayer;
+
+  public backgroundColor: string = mdColors.yellow[500];
 
   constructor(public navCtrl: NavController,
       public navParams: NavParams,

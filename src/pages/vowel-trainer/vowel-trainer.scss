@@ -22,9 +22,6 @@ page-vowel-trainer {
 
 
 	.navigate-button {
-    	width: 3.5rem;
-    	height: 3.5rem;
-		border-radius: 50%;
 		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
 		@include hover-box-shadow($navigate-button-bg);
 	}

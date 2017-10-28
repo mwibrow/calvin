@@ -1,4 +1,6 @@
 
+<background [color]="backgroundColor"></background>
+
 <ion-header transparent>
   <ion-navbar transparent hideBackButton>
     <ion-title><logo (click)="goHome()"></logo></ion-title>
@@ -88,6 +90,9 @@
     <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
       <ion-icon name="list">
       </ion-icon>
+    </button>
+    <button ion-button class="navigate-button" (click)="goBack()">
+        <svg-shape class="navigation-arrow" rotate="180" shape="arrow"></svg-shape>
     </button>
   </ion-buttons>
 </ion-footer>
