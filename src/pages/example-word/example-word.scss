@@ -1,6 +1,27 @@
 page-example-word {
 
-  .image-container {
-    background-color: color($md-palette, md-black);
+  .navigation-arrow {
+    .svg-shape-component {
+      width: 5rem;
+    }
+    .svg-shape {
+      transform: rotate(180deg);
+      fill: color($md-palette, md-white);
+    }
+  }
+
+  .navigate-button {
+    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+		@include hover-box-shadow($navigate-button-bg);
+  }
+
+  .media-button {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .floating-action {
+    position: absolute;
+    right: 0px;
   }
 }

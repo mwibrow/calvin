@@ -1,9 +1,8 @@
-<!-- Generated template for the VideoPlayerComponent component -->
-<div class="video-player-container">
+<div class="video-player-component">
   <video #videoPlayer>
-    <source type="video/mp4" #source>
+    <source [src]="src" type="video/mp4">
   </video>
-  <div class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
+  <div *ngIf="!isDisabled()" class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
     <ion-icon name="play"></ion-icon>
   </div>
 </div>

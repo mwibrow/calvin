@@ -19,7 +19,7 @@ import { LogoComponent } from '../components/logo/logo';
 import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
 import { SvgShapeComponent } from '../components/svg-shape/svg-shape';
 import { BackgroundComponent } from '../components/background/background';
-import { VideoPlayerComponent, VideoSrcDirective } from '../components/video-player/video-player';
+import { VideoPlayerComponent } from '../components/video-player/video-player';
 import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
 import { VocalTractAnimationComponent, AnimationDirective } from '../components/vocal-tract-animation/vocal-tract-animation';
 
@@ -36,7 +36,6 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     KeywordControlsDirective,
     KeywordUriDirective,
     VideoPlayerComponent,
-    VideoSrcDirective,
     VocalTractAnimationComponent,
     AnimationDirective,
     SvgTrapeziumComponent,

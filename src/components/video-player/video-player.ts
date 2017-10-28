@@ -1,39 +1,30 @@
 import { Component, ViewChild, Directive, Input, NgZone, ElementRef } from '@angular/core';
-/**
- * Generated class for the VideoPlayerComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'video-player',
   templateUrl: 'video-player.html'
 })
 export class VideoPlayerComponent {
 
-  src: string;
   playing: boolean;
   @ViewChild('videoPlayer') video: ElementRef;
-  @ViewChild('source') source: ElementRef;
+  @Input('src') src: string;
+  @Input('disabled') disabled: string;
   constructor(public zone: NgZone) {
     this.playing = false;
-    console.log('Hello VideoPlayerComponent Component');
-
   }
 
   ngOnInit() {
     this.video.nativeElement.addEventListener('ended', () => this.stop());
     this.video.nativeElement.controls = false;
   }
-  setSrc(src) {
-    this.video.nativeElement.setAttribute('src', src);
-  }
 
-  getSrc() {
-    return this.src;
+  isDisabled() {
+    return this.disabled === 'true';
   }
 
   play() {
+    if (this.isDisabled) return;
     this.playing = true
     this.video.nativeElement.muted = false;
     setTimeout(() => this.video.nativeElement.play(), 1000);
@@ -46,15 +37,4 @@ export class VideoPlayerComponent {
   }
 
 
-}
-
-@Directive({
-  selector: '[video-src]' // Attribute selector
-})
-export class VideoSrcDirective {
-  @Input('video-src') videoSrc: string;
-  constructor(public videoPlayer: VideoPlayerComponent) {}
-  ngOnInit() {
-    this.videoPlayer.setSrc(this.videoSrc);
-  }
 }

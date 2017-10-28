@@ -44,8 +44,15 @@ export class ExampleWordPage {
   }
 
   isViewState(viewState: ViewState) {
+    console.log(viewState === this.viewState)
     return viewState === this.viewState;
   }
+
+  changeViewState(viewState: ViewState) {
+    this.viewState = viewState;
+    console.log(this.viewState)
+  }
+
   getExampleWord(): string {
     let word: Word = this.getWord();
     console.log(word)

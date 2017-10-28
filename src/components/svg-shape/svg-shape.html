@@ -1,10 +1,12 @@
 <!-- Generated template for the SvgShapeComponent component -->
-<div class="svg-shape">
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" [attr.width]="width" [attr.height]="height" [attr.preserveAspectRatio]="preserveAspectRatio">
-    <path *ngIf="shape === 'rectangle'" [attr.fill]="color" (click)="click" class="svg-shape-square" d="M -50 -50 L 50 -50 L 50 50 L -50 50 Z"/>
-    <path *ngIf="shape === 'arrow'" [attr.fill]="color" (click)="click" class="svg-shape-arrow" d="M 50 0 L 0 40 L 0 20 L -45 25 L -50 -25 L 0 -20 L 0 -40 Z"/>
-    <path *ngIf="shape === 'trapezium'" [attr.fill]="color" (click)="click" class="svg-shape-trapezium" d="M 0 0 L 46 4 L 50 -46 L -50 -50 Z"/>
-    <path *ngIf="shape === 'check'" [attr.fill]="color" (click)="click" class="svg-shape-check" d="M 20 -40 L 50 -20 L 10 50 L -40 20 L -20 -10 L 0 10 Z"/>
-    <circle *ngIf="shape === 'circle'" [attr.fill]="color" (click)="click" class="svg-shape-circle" cx="0" cy="0" r="50"/>
+<div class="svg-shape-component">
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" width="100%" height="100%" [attr.preserveAspectRatio]="preserveAspectRatio">
+    <g>
+      <path *ngIf="shape === 'rectangle'" [attr.fill]="color" (click)="click" class="svg-shape svg-shape-square" d="M -50 -50 L 50 -50 L 50 50 L -50 50 Z"/>
+      <path *ngIf="shape === 'arrow'" [attr.fill]="color" (click)="click" class="svg-shape svg-shape-arrow" d="M 50 0 L 0 40 L 0 20 L -45 25 L -50 -25 L 0 -20 L 0 -40 Z"/>
+      <path *ngIf="shape === 'trapezium'" [attr.fill]="color" (click)="click" class="svg-shape svg-shape-trapezium" d="M 0 0 L 46 4 L 50 -46 L -50 -50 Z"/>
+      <path *ngIf="shape === 'check'" [attr.fill]="color" (click)="click" class="svg-shape svg-shape-check" d="M 20 -40 L 50 -20 L 10 50 L -40 20 L -20 -10 L 0 10 Z"/>
+      <circle *ngIf="shape === 'circle'" [attr.fill]="color" (click)="click" class="svg-shape svg-shape-circle" cx="0" cy="0" r="50"/>
+    </g>
   </svg>
 </div>
