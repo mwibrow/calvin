@@ -1,12 +1,8 @@
-<!--
-  Generated template for the SelectKeywordGroupPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<background [color]="backgroundColor"></background>
+<ion-header transparent>
 
-  <ion-navbar>
+  <ion-navbar transparent hideBackButton>
     <ion-title>SelectKeywordGroup</ion-title>
   </ion-navbar>
 
@@ -15,12 +11,19 @@
 
 <ion-content  class="no-scroll">
   <ion-grid>
-    <ion-row *ngFor="let keyword of getKeywordGroups(); let i = index;" class="row-{{i + 1}}">
+    <ion-row  *ngFor="let keyword of getKeywordGroupList(); let i = index;" text-center>
       <ion-col>
-        <button ion-button round>
+        <button  ion-button round (click)="setKeywordGroupIndex(i)" class="keyword-group-button">
           Group {{i + 1}}
         </button>
+        <div class="complete">
+            <svg-shape shape="check"></svg-shape>
+          </div>
       </ion-col>
+
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+</ion-footer>

@@ -30,7 +30,6 @@ export class VowelTrainerPage {
 
   public readonly ViewState = ViewState;
   private viewState: ViewState;
-  public wordIndex: number;
   public talker: Talker;
   public keywordExampleMap: any;
   public player: AudioPlayer;
@@ -45,7 +44,7 @@ export class VowelTrainerPage {
       public events: Events) {
 
     this.viewState = ViewState.Examples;
-    this.wordIndex = 0;
+
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
@@ -104,13 +103,14 @@ export class VowelTrainerPage {
       return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
       '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
     }
-    return `<span class="keyword-display">${this.appData.keywordList[this.wordIndex]}</span>`;
+    return `<span class="keyword-display">${word.display}</span>`;
   }
 
   getWord(): Word {
     let word: Word = this.appData.getKeyword();
+    console.log('>>>>>', word)
     if (word === undefined) {
-      console.error(`No entry for keyword ${this.appData.keywordList[this.wordIndex]}`);
+      console.error(`No entry for keyword ${word.id}`);
     }
     return word;
   }
@@ -122,31 +122,18 @@ export class VowelTrainerPage {
   }
   ionViewDidLoad() {}
 
+  goBack() {
+    this.navCtrl.pop();
+  }
+
   backButtonDisabled() {
-    if (this.wordIndex === 0) {
-      return "true";
-    }
+
   }
 
   forwardButtonDisabled() {
-    if (this.wordIndex === this.appData.keywordList.length - 1) {
-      return "true";
-    }
+
   }
 
-  previousKeyword() {
-    this.ngZone.run(() => {
-      this.appData.previousKeyword();
-      this.setWords();
-    });
-  }
-
-  nextKeyword() {
-    this.ngZone.run(() => {
-      this.appData.nextKeyword();
-      this.setWords();
-    });
-  }
 
   nextKeywordButtonDisabled() {
     if (this.appData.keywordIndex === this.appData.keywordList.length - 1) {
@@ -167,8 +154,7 @@ export class VowelTrainerPage {
   setWords() {
     let word = this.appData.getKeyword();
     this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);
-    this.keyword.setUri(this.getUri(this.appData.keywordList[this.wordIndex]));
-    console.log(word)
+    this.keyword.setUri(this.getUri(this.getWord().id));
     this.setUpAnimation();
 
   }

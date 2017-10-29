@@ -137,6 +137,13 @@ export class AppDataProvider {
     this.exampleWordIndex = index;
   }
 
+  getKeywordGroup(): WordGroup {
+    return this.keywordGroups[this.keywordGroupList[this.keywordGroupIndex]];
+  }
+
+  setKeywordGroupIndex(index: number) {
+    this.keywordGroupIndex = index;
+  }
 
 
   getAudio(talkerId: string, wordId: string, type: string='words', extension: string='wav'): string {

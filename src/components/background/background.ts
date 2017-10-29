@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
 })
 export class BackgroundComponent {
 
-  @Input('color') color: string;
+  @Input('color') color: string = 'black';
   @Input('image') image: string;
   constructor() {
     console.log('Hello BackgroundComponent Component');

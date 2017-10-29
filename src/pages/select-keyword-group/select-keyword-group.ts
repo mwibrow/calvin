@@ -2,12 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AppDataProvider, WordGroup, Word } from '../../providers/app-data/app-data';
-/**
- * Generated class for the SelectKeywordGroupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { SelectKeywordPage } from '../../pages/select-keyword/select-keyword';
+
+import * as mdColors from 'material-colors';
 
 @IonicPage()
 @Component({
@@ -16,6 +13,8 @@ import { AppDataProvider, WordGroup, Word } from '../../providers/app-data/app-d
 })
 export class SelectKeywordGroupPage {
 
+  backgroundColor: string = mdColors.yellow[500];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
   }
 
@@ -23,13 +22,20 @@ export class SelectKeywordGroupPage {
     console.log('ionViewDidLoad SelectKeywordGroupPage');
   }
 
-  getKeywordGroups() {
+  getKeywordGroupList() {
     return this.appData.keywordGroupList;
   }
 
   getKeywordGroup(keyword: string) {
     return this.appData.keywordGroups[keyword];
   }
+
+  setKeywordGroupIndex(index: number) {
+    this.appData.setKeywordGroupIndex(index);
+    this.navCtrl.push(SelectKeywordPage);
+  }
+
+
 
 
 

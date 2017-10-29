@@ -2,10 +2,6 @@ page-example-word {
 
 
 
-  .navigate-button {
-    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
-		@include hover-box-shadow($navigate-button-bg);
-  }
 
   .media-button {
     width: 5rem;

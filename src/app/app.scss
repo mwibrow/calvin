@@ -394,9 +394,39 @@ $spinner-border: 10px;
 }
 
 
+.complete {
+    position: absolute;
+    right: 0;
+    bottom: 50%;
+    transform: translate(-100%, 50%);
+    border-radius: 50%;
+    background-color: color($md-palette, md-purple);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .svg-shape-component {
+        width: 2rem;
+        height: 2rem;
+    }
+    .svg-shape {
+        fill: color($md-palette, md-white);
+    }
+}
+.example-word-button, .keyword-button, .keyword-group-button {
+    @include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
+    @include hover-box-shadow($example-word-button-bg);
+}
+
+.navigate-button {
+    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+		@include hover-box-shadow($navigate-button-bg);
+  }
+
 .navigation-arrow {
     .svg-shape-component {
-      width: 5rem;
+      width: 6vh;
     }
     .svg-shape {
       fill: color($md-palette, md-white);
@@ -449,30 +479,38 @@ $spinner-border: 10px;
 
 @media screen and (min-height: 512px) {
     ion-content {
-        margin-top: 5vh;
+        margin-top: 10vh;
         max-width: 80vh;
         left: calc(50% - 40vh);
+        height: calc(100% - 20vh);
     }
     ion-grid {
 
     }
+    ion-header {
+        height: 10vh;
+    }
     ion-footer {
-        height: 20vh;
+        height: 15vh;
     }
     .navigate-button, .keyword-control-button, .view-button,  {
         width: 10vh;
         height: 10vh;
         font-size: 2.5vh;
     }
-    .keyword-button, .example-word-button {
+
+    .keyword-button, .example-word-button, .keyword-group-button {
         height: 10vh;
-        width: 100%;
+        width: 75%;
         span {
             font-size: 6.25vh !important;
             letter-spacing: .125vh;
         }
         margin: 0 !important;
         padding: 0 !important;
+    }
+    .keyword-button, .example-word-button {
+        width: 100%;
     }
     .vocal-tract-animation {
         width: 45vh;

@@ -2,9 +2,14 @@
 <background [color]="backgroundColor"></background>
 
 <ion-header transparent>
-  <ion-navbar transparent hideBackButton>
-    <ion-title><logo (click)="goHome()"></logo></ion-title>
-  </ion-navbar>
+  <!-- <ion-navbar transparent hideBackButton> -->
+    <!-- <ion-title><logo (click)="goHome()"></logo></ion-title> -->
+    <ion-buttons left>
+        <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
+            <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+        </button>
+      </ion-buttons>
+  <!-- </ion-navbar> -->
 </ion-header>
 
 
@@ -12,7 +17,6 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col>
-
         <ion-grid [hidden]="!isViewState(ViewState.Audio)">
           <ion-row text-center>
             <ion-col col-1></ion-col>
@@ -53,10 +57,10 @@
               </keyword>
             </ion-col>
           </ion-row>
-          <ion-row *ngFor="let item of getExampleWords(); let i = index" justify-content-center class="row-no-padding">
+          <ion-row *ngFor="let item of getExampleWords(); let i = index" text-center class="row-no-padding">
             <ion-col>
               <!-- <keyword [keyword-uri]="getUri(item)">{{item}}</keyword> -->
-              <button ion-button block round class="example-word-button" (click)="showExampleWord(i)">
+              <button ion-button round class="example-word-button" (click)="showExampleWord(i)">
                 {{item}}
               </button>
             </ion-col>
@@ -66,16 +70,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab bottom left>
-    <button ion-fab [class]="previousKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'" round icon-only [disabled]="previousKeywordButtonDisabled()" (click)="previousKeyword()">
-      <ion-icon name="arrow-round-back"></ion-icon>
-    </button>
-  </ion-fab>
-  <ion-fab  bottom right>
-    <button  ion-fab [class]="nextKeywordButtonDisabled() ? 'navigate-button fade-out' : 'navigate-button fade-in'"round icon-only [disabled]="nextKeywordButtonDisabled()" (click)="nextKeyword()">
-      <ion-icon name="arrow-round-forward"></ion-icon>
-    </button>
-  </ion-fab>
+
 </ion-content>
 
 <ion-footer padding>
@@ -90,9 +85,6 @@
     <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
       <ion-icon name="list">
       </ion-icon>
-    </button>
-    <button ion-button class="navigate-button" (click)="goBack()">
-        <svg-shape class="navigation-arrow" rotate="180" shape="arrow"></svg-shape>
     </button>
   </ion-buttons>
 </ion-footer>

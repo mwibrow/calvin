@@ -69,8 +69,5 @@ page-vowel-trainer {
 		width: 50% !important;
 	}
 
-	.example-word-button {
-		@include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
-		@include hover-box-shadow($example-word-button-bg);
-	}
+
 }
