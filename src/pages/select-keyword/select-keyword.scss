@@ -9,12 +9,11 @@ page-select-keyword {
         position: absolute;
         display: inline-block;
         right: 0;
-        bottom: 0;
-        transform: translateY(-50%);
-
+        bottom: 10%;
     }
 
     .mark {
+        transform-origin: 50%, 50%;
         animation: Beat 2s infinite;
     }
 }

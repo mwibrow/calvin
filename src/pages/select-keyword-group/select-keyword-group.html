@@ -7,13 +7,13 @@
 </ion-header>
 
 <ion-content  class="no-scroll">
-  <ion-grid>
+  <ion-grid fixed>
     <ion-row  *ngFor="let keyword of getKeywordGroupList(); let i = index;" text-center class="row row-{{i+1}}">
       <ion-col>
           <button  ion-button round (click)="setKeywordGroupIndex(i)" class="keyword-group-button">
             Group {{i + 1}}
           </button>
-          <mark  class="mark-{{i + 1}}">
+          <mark *ngIf="getKeywordGroup(keyword).isComplete()" class="mark-{{i + 1}}">
              <svg-shape shape="check"></svg-shape>
           </mark>
       </ion-col>
