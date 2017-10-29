@@ -398,32 +398,6 @@ $spinner-border: 10px;
     80% { transform: scale(1) }
 }
 
-
-.complete {
-    position: absolute;
-    right: 0;
-    bottom: 50%;
-    // transform: translate(-100%, 50%);
-    border-radius: 50%;
-    background-color: color($md-palette, md-purple);
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
-    animation: Rotate 1s infinite;
-    .svg-shape-component {
-        width: 2rem;
-        height: 2rem;
-
-    }
-    .svg-shape {
-        fill: color($md-palette, md-white);
-    }
-
-}
-
 .example-word-button, .keyword-button, .keyword-group-button {
     @include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
     @include hover-box-shadow($example-word-button-bg);

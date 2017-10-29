@@ -1,0 +1,31 @@
+mark {
+    background: none !important;
+    .mark {
+       display: inline-block;
+       background-color: transparent !important;
+       background: none !important;
+    }
+
+    .mark-inner {
+        border-radius: 50%;
+        background-color: color($md-palette, md-purple);
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25);
+
+        g {
+            fill: color($md-palette, md-white);
+        }
+
+        div {
+            width: 75%;
+            height: 75%;
+        }
+
+        color: color($md-palette, md-white);
+    }
+
+}

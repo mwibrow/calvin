@@ -6,10 +6,12 @@
 -->
 <background [color]="backgroundColor"></background>
 <ion-header transparent>
-    <ion-navbar transparent> <!--hideBackButton>-->
-      <ion-title><logo (click)="goHome()"></logo></ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-buttons left>
+    <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
+      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+    </button>
+  </ion-buttons>
+</ion-header>
 
 
   <ion-content class="no-scroll">
@@ -78,11 +80,7 @@
     </ion-grid>
   </ion-content>
 
-  <ion-footer padding>
-    <ion-buttons left>
-      <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
-          <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-      </button>
-    </ion-buttons>
+  <ion-footer>
+
   </ion-footer>
 )

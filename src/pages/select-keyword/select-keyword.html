@@ -1,26 +1,27 @@
 
-<background color="yellow"></background>
+<background [color]="getBackgroundColor()"></background>
 <ion-header transparent>
-
-  <!-- <ion-navbar transparent hideBackButton> -->
-    <!-- <ion-title>SelectKeyword</ion-title> -->
     <ion-buttons left>
       <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
           <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
       </button>
     </ion-buttons>
-  <!-- </ion-navbar> -->
-
 </ion-header>
-
 
 <ion-content class="no-scroll">
   <ion-grid>
     <ion-row *ngFor="let keyword of getKeywordList(); let i = index" text-center class="row row-{{i+1}}">
-      <ion-col>
+
+      <ion-col col-auto>
         <button ion-button round (click)="setKeyword(keyword)" class="keyword-group-button">
           {{ getKeyword(keyword).display }}
         </button>
+
+      </ion-col>
+      <ion-col col-auto>
+          <mark class="mark-{{i + 1}}">
+              <svg-shape shape="check"></svg-shape>
+            </mark>
       </ion-col>
     </ion-row>
   </ion-grid>

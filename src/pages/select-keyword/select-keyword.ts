@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AppDataProvider, WordGroup, Word } from '../../providers/app-data/app-data';
 import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
+
+import * as mdColors from 'material-colors';
 /**
  * Generated class for the SelectKeywordPage page.
  *
@@ -17,6 +19,7 @@ import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
 })
 export class SelectKeywordPage {
 
+  backgroundColor: string = mdColors.yellow[500];
   constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
 
   }
@@ -25,6 +28,9 @@ export class SelectKeywordPage {
 
   }
 
+  getBackgroundColor() {
+    return this.backgroundColor;
+  }
   getKeywordList() {
     return this.appData.getKeywordGroup().words;
   }

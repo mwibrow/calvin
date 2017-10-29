@@ -1,3 +1,20 @@
 page-select-keyword {
+    @keyframes Beat {
+        0% { transform: scale(1) }
+        40% { transform: scale(1.25) }
+        80% { transform: scale(1) }
+    }
 
+    mark {
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        bottom: 0;
+        transform: translateY(-50%);
+
+    }
+
+    .mark {
+        animation: Beat 2s infinite;
+    }
 }
