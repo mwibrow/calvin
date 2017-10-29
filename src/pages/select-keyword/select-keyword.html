@@ -16,9 +16,9 @@
 
 <ion-content class="no-scroll">
   <ion-grid>
-    <ion-row *ngFor="let keyword of getKeywordList();" text-center  class="row-no-padding">
+    <ion-row *ngFor="let keyword of getKeywordList(); let i = index" text-center class="row row-{{i+1}}">
       <ion-col>
-        <button ion-button round (click)="setKeyword(keyword)" class="keyword-button">
+        <button ion-button round (click)="setKeyword(keyword)" class="keyword-group-button">
           {{ getKeyword(keyword).display }}
         </button>
       </ion-col>

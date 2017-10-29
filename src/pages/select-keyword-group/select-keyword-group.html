@@ -11,7 +11,7 @@
 
 <ion-content  class="no-scroll">
   <ion-grid>
-    <ion-row  *ngFor="let keyword of getKeywordGroupList(); let i = index;" text-center>
+    <ion-row  *ngFor="let keyword of getKeywordGroupList(); let i = index;" text-center class="row row-{{i+1}}">
       <ion-col>
         <button  ion-button round (click)="setKeywordGroupIndex(i)" class="keyword-group-button">
           Group {{i + 1}}

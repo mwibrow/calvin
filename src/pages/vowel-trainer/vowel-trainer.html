@@ -14,10 +14,7 @@
 
 
 <ion-content class="no-scroll">
-  <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col>
-        <ion-grid [hidden]="!isViewState(ViewState.Audio)">
+  <ion-grid [hidden]="!isViewState(ViewState.Audio)">
           <ion-row text-center>
             <ion-col col-1></ion-col>
             <ion-col>
@@ -66,10 +63,6 @@
             </ion-col>
           </ion-row>
         </ion-grid>
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 
 </ion-content>
 
