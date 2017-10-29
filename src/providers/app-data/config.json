@@ -25,6 +25,46 @@
     "soup",
     "stairs"
   ],
+  "wordGroups": [
+    {
+      "highFront": [
+        "heed / peas",
+        "hid / fish",
+        "head / nest"
+      ]
+    },
+    {
+      "open": [
+        "had / man",
+        "hud / duck",
+        "hod / dog"
+      ]
+    },
+    {
+      "centralLowBack": [
+        "heard / girl",
+        "hard / cars",
+        "hoard / horse",
+        "haired / stairs"
+      ]
+    },
+    {
+      "back": [
+        "hood / hook",
+        "whod / soup",
+        "howd / crown",
+        "hoed / nose"
+      ]
+    },
+    {
+      "diphthongs": [
+        "hayed / game",
+        "hide / line",
+        "hear / near",
+        "hoyed / noise"
+      ]
+    }
+  ],
   "exampleWords": [
     "ball",
     "bears",

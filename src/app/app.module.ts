@@ -9,6 +9,8 @@ import { InlineSVGModule } from 'ng-inline-svg';
 import { CalvinApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SelectTalkerPage } from '../pages/select-talker/select-talker';
+import { SelectKeywordGroupPage } from '../pages/select-keyword-group/select-keyword-group';
+import { SelectKeywordPage } from '../pages/select-keyword/select-keyword';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { ExampleWordPage } from '../pages/example-word/example-word';
 import { AudioProvider } from '../providers/audio/audio';
@@ -31,6 +33,8 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     VowelTrainerPage,
     ExampleWordPage,
     SelectTalkerPage,
+    SelectKeywordGroupPage,
+    SelectKeywordPage,
     LogoComponent,
     KeywordComponent,
     KeywordControlsDirective,
@@ -52,6 +56,8 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     CalvinApp,
     HomePage,
     SelectTalkerPage,
+    SelectKeywordGroupPage,
+    SelectKeywordPage,
     VowelTrainerPage,
     ExampleWordPage
   ],

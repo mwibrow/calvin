@@ -11,21 +11,27 @@ export class Config {
   public talkers: Array<string>;
   public keywords: Array<string>;
   public exampleWords: Array<string>;
-
+  public wordGroups: any;
   constructor() {
     this.talkers = CONFIG['talkers'];
     this.keywords = CONFIG['keywords'];
     this.exampleWords = CONFIG['exampleWords']
+    this.wordGroups = CONFIG['wordGroups']
   }
 
 }
 
 export class Word {
+  complete: number = 0;
   constructor(public id: string,
     public display: string,
     public highlight: string,
     public hvd: string,
     public description: string) {};
+
+  isComplete(): boolean {
+    return this.complete === 1;
+  }
 }
 
 export class Talker {
@@ -33,6 +39,22 @@ export class Talker {
     public realName: string,
     public displayName: string,
     public avatar: string) {};
+}
+
+export class WordGroup {
+  complete: number = 0;
+  constructor(public id: string,
+    public display: string,
+    public words: Array<Word>) {};
+
+  isComplete():boolean {
+    return this.complete === this.words.length;
+
+  }
+
+  completed(): number {
+    return this.complete / this.words.length;
+  }
 }
 
 @Injectable()
@@ -55,6 +77,10 @@ export class AppDataProvider {
   exampleWordList: Array<string>;
   exampleWordIndex: number = 0;
 
+  keywordGroup: WordGroup;
+  keywordGroups: any;
+  keywordGroupList: Array<string>;
+  keywordGroupIndex: number = 0;
   keywordExampleMap: any;
 
   constructor() {
@@ -64,6 +90,7 @@ export class AppDataProvider {
     this.setUpKeywords(this.config);
     this.setUpExampleWords(this.config);
     this.setUpKeywordExampleMap();
+    this.setUpKeywordGroups(this.config);
     this.getTalker();
     this.keyword = this.getKeyword();
   }
@@ -149,7 +176,7 @@ export class AppDataProvider {
       (obj, keyword) => Object.assign(obj, {[keyword.toString()]: this.setUpWord(keyword)}), {})
   }
 
-  setUpExampleWords(config) {
+  setUpExampleWords(config: any) {
     this.exampleWordList = config.exampleWords;
     this.exampleWords = this.exampleWordList.reduce(
       (obj, word) => Object.assign(obj, {[word.toString()]: this.setUpWord(word)}), {})
@@ -180,6 +207,20 @@ export class AppDataProvider {
     return new Word(word.toLowerCase(), word, highlightVowel(word), hvd, arpa_to_description_map[vowel])
   }
 
+  setUpKeywordGroups(config: any) {
+    let group: any, name: string;
+    let word: string, words: Array<Word>, wordGroup: WordGroup;
+    this.keywordGroups = {};
+    this.keywordGroupList = [];
+    if (Array.isArray(config.wordGroups)) {
+      config.wordGroups.map((group) => {
+        name = Object.keys(group)[0];
+        this.keywordGroupList.push(name);
+        words = group[name].map((word) => word.split('/')[1].trim());
+        this.keywordGroups[name] = new WordGroup(name, name, words);
+      });
+    }
+  }
 }
 
 export const highlightVowel = (word:string) => {

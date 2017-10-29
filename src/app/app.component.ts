@@ -4,13 +4,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { SelectKeywordGroupPage } from '../pages/select-keyword-group/select-keyword-group';
 import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
 import { ExampleWordPage } from '../pages/example-word/example-word';
 @Component({
   templateUrl: 'app.html'
 })
 export class CalvinApp {
-  rootPage:any = VowelTrainerPage;
+  rootPage:any = SelectKeywordGroupPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -21,4 +22,3 @@ export class CalvinApp {
     });
   }
 }
-
