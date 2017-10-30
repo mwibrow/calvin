@@ -27,8 +27,10 @@ export class SelectKeywordPage {
 
   ionViewDidLoad() {
     this.keywordComponentList.toArray().map((keywordComponent) =>
-      keywordComponent.siblings = this.keywordComponentList.toArray())
-
+      keywordComponent.siblings = this.keywordComponentList.toArray());
+  }
+  ionViewWillEnter() {
+    this.keywordComponentList.toArray().map((keywordComponent) => keywordComponent.selected = false);
   }
 
   getBackgroundColor() {
