@@ -146,7 +146,7 @@ export class AppDataProvider {
   }
 
 
-  getAudio(talkerId: string, wordId: string, type: string='words', extension: string='wav'): string {
+  getAudio(talkerId: string, wordId: string, type: string='keywords', extension: string='wav'): string {
     switch (type) {
       case 'example':
       case 'examples':
@@ -155,7 +155,7 @@ export class AppDataProvider {
         return `assets/audio/example_words/${talkerId}/${wordId}.${extension}`;
       case 'keyword':
       case 'keywords':
-        return `assets/audio/keyword/${talkerId || 'speaker1'}/${wordId}.${extension}`;
+        return `assets/audio/keywords/${talkerId || 'speaker1'}/${wordId}.${extension}`;
       case 'vowel':
       case 'vowels':
         return `assets/audio/vowels/${talkerId || 'mark'}/${wordId}.${extension}`;

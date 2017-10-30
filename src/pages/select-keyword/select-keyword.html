@@ -12,14 +12,26 @@
   <ion-grid fixed>
     <ion-row *ngFor="let keyword of getKeywordList(); let i = index" text-center class="row row-{{i+1}}">
       <ion-col>
-        <button ion-button round (click)="setKeyword(keyword)" class="keyword-group-button">
+        <!-- <button ion-button round (click)="setKeyword(keyword)" class="keyword-group-button">
          {{ getKeyword(keyword).display }}
-        </button>
-        <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
+        </button> -->
+          <keyword [keyword-uri]="getKeywordAudioUri(keyword)" #keywordComponentList
+           [siblings]="keywordComponentList" (click)="setKeyword(keyword)">
+            <span [innerHtml]="getKeyword(keyword).display"></span>
+          </keyword>
+        <!-- <mark  class="mark-{{i + 1}}">
           <svg-shape shape="check"></svg-shape>
-        </mark>
+        </mark> -->
+
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
+
+<ion-footer>
+  <ion-buttons end>
+    <button *ngIf="canGoForward()" ion-button class="navigate-button" (click)="goForward()">
+      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+    </button>
+</ion-buttons>
+</ion-footer>

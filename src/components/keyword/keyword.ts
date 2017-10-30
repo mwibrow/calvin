@@ -19,6 +19,9 @@ export class KeywordComponent {
   canRecord: boolean;
   zone: NgZone;
   onEndedId: string;
+
+  @Input('selected') selected: boolean = false;
+  @Input('siblings') siblings: Array<KeywordComponent>;
   constructor(public audio: AudioProvider) {
     this.player = audio.player;
 
@@ -60,7 +63,12 @@ export class KeywordComponent {
   }
 
   playKeyword() {
+
     if (this.uri) {
+      if (this.siblings) {
+        this.siblings.map(sibling => sibling.selected = false)
+      }
+      this.selected =! this.selected;
       this.player.playUrl(this.uri)
         .catch((err) => {
           console.error('AN ERROR OCCURED')

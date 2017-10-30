@@ -38,4 +38,24 @@ keyword {
         color: darken($keyword-control-button-bg, 10);
     }
 
+    .invisible {
+        visibility: hidden;
+    }
+
+    @keyframes Spin {
+        0% { transform: sclae(1) }
+        20% { transform: scale(1.125)}
+        40% { transform: scale(1)}
+        60% { transform: scale(1.125) }
+        80% { transform: scale(1) }
+        100% { transform: sclae(1) }
+    }
+    .selected {
+        span {
+            transform-origin: 50%, 50%;
+            animation: Spin 2s linear infinite;
+        }
+    }
+
+
 }

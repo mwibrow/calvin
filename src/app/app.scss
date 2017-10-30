@@ -110,6 +110,9 @@ button {
             border-bottom: 0.5rem solid darken($bg, $bd) !important;
         }
     }
+    &.selected {
+        border-bottom: 0.25rem solid darken($bg, $bd) !important;
+    }
 }
 
 @mixin hover-box-shadow ($cl) {
