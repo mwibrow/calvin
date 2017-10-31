@@ -108,7 +108,6 @@ export class VowelTrainerPage {
 
   getWord(): Word {
     let word: Word = this.appData.getKeyword();
-    console.log('>>>>>', word)
     if (word === undefined) {
       console.error(`No entry for keyword ${word.id}`);
     }

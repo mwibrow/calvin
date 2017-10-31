@@ -13,9 +13,10 @@ export class AudioProvider {
   public readonly player: AudioPlayer;
   public readonly recorder: AudioRecorder;
 
+  private static _context: AudioContext = new AudioContext();
 
   constructor() {
-    this.context = new AudioContext();
+    this.context = this.getContext();
     this.player = new AudioPlayer(this.context);
     this.recorder = new AudioRecorder(this.context);
   }
@@ -26,7 +27,7 @@ export class AudioProvider {
   }
 
   getContext() {
-    return this.context;
+    return AudioProvider._context;
   }
 
   stop() {
