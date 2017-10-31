@@ -150,12 +150,11 @@ export class VowelTrainerPage {
     this.appData.setExampleWordIndex(index);
     this.navCtrl.push(ExampleWordPage);
   }
-  setWords() {
-    let word = this.appData.getKeyword();
-    this.keywordVowel.setUri(`assets/audio/mark/vowels/${word.hvd}.wav`);
-    this.keyword.setUri(this.getUri(this.getWord().id));
-    this.setUpAnimation();
 
+  setWords() {
+    this.keywordVowel.setUri(this.getVowelUri());
+    this.keyword.setUri(this.getKeywordUri());
+    this.setUpAnimation();
   }
 
 
@@ -177,8 +176,13 @@ export class VowelTrainerPage {
     this.playWord(`vowels/${word}`, 'mark');
   }
 
-  getUri(word: string) {
-    let uri: string = `assets/audio/${this.talker}/words/${word}.wav`;
+  getKeywordUri() {
+    let uri = this.appData.getAudio(null, this.appData.getKeyword().id, 'keyword');
+    return uri;
+  }
+
+  getVowelUri() {
+    let uri = this.appData.getAudio(null, this.appData.getKeyword().hvd, 'vowel');
     return uri;
   }
 

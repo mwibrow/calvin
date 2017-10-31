@@ -18,7 +18,7 @@
           <ion-row text-center>
             <ion-col col-1></ion-col>
             <ion-col>
-              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
+              <keyword keyword-controls selectable=false [keyword-uri]="getKeywordUri()" #keyword>
                 <span [innerHtml]="getKeyword()"></span>
               </keyword>
             </ion-col>
@@ -31,7 +31,7 @@
           <ion-row justify-content-center>
             <ion-col col-1></ion-col>
             <ion-col text-center>
-              <keyword keyword-controls [keyword-uri]="this.vowelUri" #keywordVowel>
+              <keyword keyword-controls [keyword-uri]="getVowelUri()" #keywordVowel>
                 <span [innerHtml]="getKeyword(true)"></span>
               </keyword>
             </ion-col>
@@ -49,7 +49,7 @@
         <ion-grid [hidden]="!isViewState(ViewState.Examples)">
           <ion-row text-center>
             <ion-col>
-              <keyword keyword-controls [keyword-uri]="getUri(getKeyword())" #keyword>
+              <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
                 <span [innerHtml]="getKeyword()"></span>
               </keyword>
             </ion-col>
