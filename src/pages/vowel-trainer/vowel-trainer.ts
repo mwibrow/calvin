@@ -68,10 +68,12 @@ export class VowelTrainerPage {
   }
 
   changeViewState(viewState: ViewState) {
-    this.viewState = viewState;
-    //this.narrator.play();
-    if (this.viewState === ViewState.Animation) {
-      this.setUpAnimation();
+    if (this.viewState !== viewState) {
+      this.viewState = viewState;
+      //this.narrator.play();
+      if (this.viewState === ViewState.Animation) {
+        this.setUpAnimation();
+      }
     }
   }
 

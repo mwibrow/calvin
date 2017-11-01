@@ -110,7 +110,7 @@ button {
             border-bottom: 0.5rem solid darken($bg, $bd) !important;
         }
     }
-    &.selected {
+    &.selected, &:disabled {
         border-bottom: 0.25rem solid darken($bg, $bd) !important;
     }
 }
@@ -473,9 +473,9 @@ ion-content, ion-header, ion-footer {
     background-color: transparent !important;
 }
 ion-content {
-    height: 75vh;
+    height: 80vh;
     margin-top: 10vh;
-    margin-bottom: 15vh;
+    margin-bottom: 10vh;
 }
 
 ion-header {
@@ -517,6 +517,9 @@ ion-header, ion-footer {
     height: calc(75vh * 3 / 4);
 
     .vocal-tract-animation {
+        width: calc(65vh * 3 / 4);
+    }
+    .media-video {
         width: calc(65vh * 3 / 4);
     }
 }
