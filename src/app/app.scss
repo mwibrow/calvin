@@ -512,6 +512,14 @@ ion-header, ion-footer {
     font-size: 6.25vh;
 }
 
+.media-wrapper {
+    width: calc(75vh * 3 / 4);
+    height: calc(75vh * 3 / 4);
+
+    .vocal-tract-animation {
+        width: calc(65vh * 3 / 4);
+    }
+}
 
 // @media screen and (min-height: 512px) {
 //     ion-content {

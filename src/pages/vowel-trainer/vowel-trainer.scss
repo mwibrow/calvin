@@ -37,31 +37,14 @@ page-vowel-trainer {
 	.view-button {
 		@include button-hover($view-button-bg, $view-button-fg, 15, 5);
     @include hover-box-shadow($view-button-bg);
-		// background-color: darken($view-button-bg, 10);
-		// span {
-		// 	color: darken($view-button-bg, 20);
-		// };
-		// border-bottom: 0.5rem solid darken($view-button-bg, 20);
-		// &:hover {
-		// 	background-color: lighten($view-button-bg, 10);
-		// 	span {
-		// 		color: $view-button-fg;
-		// 	}
-		// 	border-bottom: 0.25rem solid darken($view-button-bg, 10);
-		// }
-		// @include hover-box-shadow($view-button-bg);
+
 		transform-origin: 50%, 50%;
 		transform: scale(0.875);
 		&:disabled {
 			opacity: 1;
 			transform-origin: 50%, 50%;
 			transform: scale(1.125);
-		// 	background-color: $view-button-bg;
-		// 	span {
-		// 		color: $view-button-fg;
-		// 	}
-		// 	border-bottom: 0.5rem solid darken($view-button-bg, 10);
-		};
+		}
 	}
 
 	.content-container {
