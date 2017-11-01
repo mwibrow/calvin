@@ -16,7 +16,7 @@
          {{ getKeyword(keyword).display }}
         </button> -->
           <keyword [keyword-uri]="getKeywordAudioUri(keyword)" #keywordComponentList
-           [siblings]="keywordComponentList" (click)="setKeyword(keyword)">
+           [siblings]="keywordComponentList" selectable="true" (click)="setKeyword(keyword)">
             <span [innerHtml]="getKeyword(keyword).display"></span>
           </keyword>
         <!-- <mark  class="mark-{{i + 1}}">

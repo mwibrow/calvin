@@ -18,7 +18,7 @@
           <ion-row text-center>
             <ion-col col-1></ion-col>
             <ion-col>
-              <keyword keyword-controls selectable=false [keyword-uri]="getKeywordUri()" #keyword>
+              <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
                 <span [innerHtml]="getKeyword()"></span>
               </keyword>
             </ion-col>
@@ -68,14 +68,16 @@
 
 <ion-footer padding>
   <ion-buttons text-center>
-    <button ion-button icon-only class="view-button"
+    <button ion-button icon-only class="toolbar-button view-button"
         (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
       <ion-icon name="headset"></ion-icon>
     </button>
-    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
+    <button ion-button icon-only class="toolbar-button view-button"
+        (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
       <ion-icon name="person"></ion-icon>
     </button>
-    <button ion-button icon-only class="view-button" (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
+    <button ion-button icon-only class="toolbar-button view-button"
+        (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
       <ion-icon name="list">
       </ion-icon>
     </button>

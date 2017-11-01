@@ -21,7 +21,7 @@ export class KeywordComponent {
   onEndedId: string;
 
   @Input('selected') selected: boolean = false;
-  @Input('selectable') selectable: boolean = true;
+  @Input('selectable') selectable: boolean;
   @Input('siblings') siblings: Array<KeywordComponent>;
   constructor(public audio: AudioProvider) {
     this.player = audio.player;
