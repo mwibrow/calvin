@@ -1,13 +1,6 @@
 page-example-word {
 
 
-
-
-  .media-button {
-    width: 5rem;
-    height: 5rem;
-  }
-
   .float {
     position: absolute;
     right: 0px;
@@ -20,18 +13,18 @@ page-example-word {
     transform: translate(25%,25%);
   }
 
-  .float-button {
-    position: relative;
-    .media, .media-image, .media-video {
-      width: 7.5rem;
-      height: 7.5rem;
-    }
+  // .float-button {
+  //   position: relative;
 
-    .media-video {
-      height: 7.125rem;
-    }
-  }
-  .float-button.image {
-      background-color: color($md-palette, md-black);
+  // }
+
+  // .float-button.image {
+  //     background-color: color($md-palette, md-black);
+  // }
+
+  .float-button {
+    width: 15vh;
+    height: 15vh;
+    display: flex;
   }
 }

@@ -448,11 +448,9 @@ $spinner-border: 10px;
     margin: auto;
     position: relative;
 }
-.media {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+
+.media-frame {
     border: 5px solid color($md-palette, md-white);
     border-radius: 2px;
 }
@@ -519,10 +517,11 @@ ion-header, ion-footer {
     .vocal-tract-animation {
         width: calc(65vh * 3 / 4);
     }
-    .media-video {
+    .media-video, .media-image {
         width: calc(65vh * 3 / 4);
     }
 }
+
 
 // @media screen and (min-height: 512px) {
 //     ion-content {
