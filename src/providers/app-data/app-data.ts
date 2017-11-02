@@ -215,7 +215,6 @@ export class AppDataProvider {
   }
 
   setUpKeywordGroups(config: any) {
-    console.log(config)
     let group: any, name: string;
     let word: string, words: Array<Word>, wordGroup: WordGroup;
     this.keywordGroups = {};
