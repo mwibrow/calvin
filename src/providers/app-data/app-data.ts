@@ -11,12 +11,12 @@ export class Config {
   public talkers: Array<string>;
   public keywords: Array<string>;
   public exampleWords: Array<string>;
-  public wordGroups: any;
+  public keywordGroups: any;
   constructor() {
     this.talkers = CONFIG['talkers'];
     this.keywords = CONFIG['keywords'];
     this.exampleWords = CONFIG['exampleWords']
-    this.wordGroups = CONFIG['wordGroups']
+    this.keywordGroups = CONFIG['keywordGroups']
   }
 
 }
@@ -215,15 +215,22 @@ export class AppDataProvider {
   }
 
   setUpKeywordGroups(config: any) {
+    console.log(config)
     let group: any, name: string;
     let word: string, words: Array<Word>, wordGroup: WordGroup;
     this.keywordGroups = {};
     this.keywordGroupList = [];
-    if (Array.isArray(config.wordGroups)) {
-      config.wordGroups.map((group) => {
+    if (Array.isArray(config.keywordGroups)) {
+      config.keywordGroups.map((group) => {
         name = Object.keys(group)[0];
         this.keywordGroupList.push(name);
         words = group[name].map((word) => word.split('/')[1].trim());
+        this.keywordGroups[name] = new WordGroup(name, name, words);
+      });
+    } else {
+      Object.keys(config.keywordGroups).map((name) => {
+        this.keywordGroupList.push(name);
+        words = config.keywordGroups[name].map((word) => word.split('/')[1].trim());
         this.keywordGroups[name] = new WordGroup(name, name, words);
       });
     }
