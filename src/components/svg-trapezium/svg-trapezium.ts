@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 /**
  * Generated class for the SvgTrapeziumComponent component.
@@ -13,9 +13,11 @@ import { Component, Input } from '@angular/core';
 export class SvgTrapeziumComponent {
 
   @Input('color') color: string;
+  @ViewChild('path') path: ElementRef;
   constructor() {
     this.color = 'none';
   }
+
 
   getColor() {
     return this.color;
