@@ -27,7 +27,7 @@
         <div class="media-wrapper">
           <svg-trapezium>
             <div class="media media-image media-frame">
-              <img [src]="getKeywordImageUri(keyword)"/>
+              <img *ngIf="getKeywordImageUri(keyword)" [src]="getKeywordImageUri(keyword)"/>
             </div>
           </svg-trapezium>
         </div>

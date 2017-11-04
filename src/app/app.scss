@@ -508,6 +508,10 @@ ion-header, ion-footer {
     font-size: 6.25vh;
 }
 
+.media-button {
+    width: calc(100vh * 3 / 4 * .3);
+    height: calc(100vh * 3 / 4 * .3);
+}
 .media-wrapper {
     width: calc(75vh * 3 / 4);
     height: calc(75vh * 3 / 4);

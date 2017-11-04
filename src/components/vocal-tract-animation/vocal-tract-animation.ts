@@ -44,7 +44,7 @@ export class VocalTractAnimationComponent {
     this.vocalTract = {};
 
     this.rangeMin = 0;
-    this.rangeMax = 299;
+    this.rangeMax = 175;
     this.range = {
       min: `${this.rangeMin}`,
       max: `${this.rangeMax + 1}`
@@ -128,11 +128,10 @@ export class VocalTractAnimationComponent {
 
   setupMonophthong(vowel) {
     this.gestures = new VocalTractGestures(this.vocalTract);
-    console.log(this.gestures)
     let tongueTarget = this.gestures.getTongueTarget(vowel.front, vowel.open);
-
     let n: number = Math.floor(this.rangeMax * 0.2);
-    let howWide = (vowel.open + 1) / 3;
+    let howWide = (vowel.open + 1) / 3 + 0.25;
+
     this.gestures.addJawOpen(0, n, howWide);
     this.gestures.addJawOpened(n + 1, this.rangeMax - n - 1, howWide);
     this.gestures.addJawClose(this.rangeMax - n, this.rangeMax, howWide);
@@ -153,7 +152,6 @@ export class VocalTractAnimationComponent {
     this.gestures.addTongueMovement(0, n, this.gestures.getTongueTarget(0, 0), tongueTarget)
     this.gestures.addTongueMovement(n + 1, this.rangeMax - n - 1, tongueTarget, tongueTarget)
     this.gestures.addTongueMovement(this.rangeMax - n, this.rangeMax, tongueTarget, this.gestures.getTongueTarget(0, 0))
-
   }
 
   setupDiphthong(vowels) {
@@ -191,20 +189,19 @@ export class VocalTractAnimationComponent {
 
     this.gestures.addVocalFoldVibration(n, this.rangeMax - n);
 
-      this.gestures.addVelumRaise(0, n);
-      this.gestures.addVelumRaised(n + 1, this.rangeMax - n - 1);
-      this.gestures.addVelumLower(this.rangeMax - n, this.rangeMax);
-
+    this.gestures.addVelumRaise(0, n);
+    this.gestures.addVelumRaised(n + 1, this.rangeMax - n - 1);
+    this.gestures.addVelumLower(this.rangeMax - n, this.rangeMax);
 
     this.gestures.addTongueMovement(0, p, this.gestures.getTongueTarget(0, 0), tongueTarget1)
     this.gestures.addTongueMovement(p + 1, q, tongueTarget1, tongueTarget2)
     this.gestures.addTongueMovement(q + 1, this.rangeMax, tongueTarget2, this.gestures.getTongueTarget(0, 0))
-
   }
 
   clickOverlay(event) {
     event.preventDefault();
   }
+
   rangeChange(event) {
     //this.timeline.animate(event.value)
     this.gestures.setT(event.value);

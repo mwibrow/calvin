@@ -15,9 +15,9 @@
         <svg-trapezium  [color]="imageColor">
           <div class="media-button" (click)="setKeyword(keyword)">
             <div class="media media-image media-frame">
-              <img [src]="getKeywordImageUri(keyword)"/>
+              <img *ngIf="getKeywordImageUri(keyword)" [src]="getKeywordImageUri(keyword)"/>
             </div>
-            <mark  *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
+            <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
               <svg-shape shape="check"></svg-shape>
             </mark>
           </div>
