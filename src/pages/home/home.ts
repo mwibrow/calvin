@@ -1,9 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
 import { SelectTalkerPage } from '../select-talker/select-talker';
-import { VowelTrainerPage } from '../vowel-trainer/vowel-trainer';
+import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
+
+import * as mdColors from 'material-colors';
 
 let _remote = null
 try {
@@ -72,8 +74,8 @@ export class HomePage {
     alert.present();
   }
 
-  onVowelTrainer() {
-    this.showSelectTalkerModal(VowelTrainerPage)
+  onStart() {
+    this.showSelectTalkerModal(SelectKeywordGroupPage)
   }
 
   showSelectTalkerModal(nextPage: any) {
@@ -84,10 +86,6 @@ export class HomePage {
       }
     });
     selectTalkerModal.present();
-  }
-
-  onKeywordTrainer() {
-
   }
 
   handleKeyboardEvents(event) {

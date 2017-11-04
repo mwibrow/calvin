@@ -19,7 +19,7 @@
 
 * {
     font-weight: bold;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.1ex;
 }
 
 html, body,
@@ -411,6 +411,11 @@ $spinner-border: 10px;
 		@include hover-box-shadow($navigate-button-bg);
   }
 
+.exit-button {
+    @include button-hover(color($md-palette, md-red), color($md-palette, md-white), 15, 5);
+	@include hover-box-shadow(color($md-palette, md-red));
+}
+
 .navigation-arrow {
     .svg-shape-component {
       width: 150%;
@@ -494,7 +499,7 @@ ion-header, ion-footer {
     }
 }
 
-.navigate-button, .keyword-control-button {
+.exit-buttonm .navigate-button, .keyword-control-button {
     width: 10vh;
     height: 10vh;
     ion-icon {

@@ -37,4 +37,12 @@ export class SelectTalkerPage {
     this.viewCtrl.dismiss(true);
   }
 
+  isTalker(talker: Talker) {
+    return this.appData.talker && this.appData.talker.id === talker.id;
+  }
+  getTalkers() {
+    let talkers = this.appData.config.exampleWords.talkerIds.map(id => this.appData.talkers[id]);
+    return talkers;
+  }
+
 }

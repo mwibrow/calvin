@@ -1,3 +1,6 @@
+
+<background color="black"></background>
+
 <ion-header>
   <ion-navbar>
     <ion-title>
@@ -5,6 +8,8 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
+
+
 
 <ion-content padding class="no-scroll">
   <ion-grid>
@@ -38,24 +43,18 @@
     </ion-row>
     <ion-row *ngIf="audioAvailable"  justify-content-center>
       <ion-col col-auto>
-        <button ion-button color="secondary" (click)="onVowelTrainer()">
-          <span>Vowel trainer</span>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="audioAvailable"  justify-content-center>
-      <ion-col col-auto>
-        <button ion-button color="primary" (click)="onKeywordTrainer()">
-          <span>Word trainer</span>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="remote" justify-content-center>
-      <ion-col col-auto>
-        <button ion-button color="danger" (click)="exitApplication()">
-          <span>Exit</span>
+        <button ion-button (click)="onStart()" class="example-word-button">
+          <span>Start</span>
         </button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-buttons end>
+    <button *ngIf="remote" ion-button ionc-only class="exit-button" (click)="exitApplication()">
+      <ion-icon name="exit"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-footer>

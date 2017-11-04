@@ -35,46 +35,43 @@
     </ion-row>
   </ion-grid>
 
-        <ion-grid [hidden]="!isViewState(ViewState.Animation)">
-          <ion-row justify-content-center>
-            <ion-col col-1></ion-col>
-            <ion-col text-center>
-              <keyword keyword-controls [keyword-uri]="getVowelUri()" #keywordVowel>
-                <span [innerHtml]="getKeyword(true)"></span>
-              </keyword>
-            </ion-col>
-            <ion-col col-1></ion-col>
-          </ion-row>
-          <ion-row justify-content-center>
-            <ion-col text-center>
-              <div class="media-wrapper">
-                <svg-trapezium>
-                  <div class="media-frame">
-                    <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
-                  </div>
-                </svg-trapezium>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+  <ion-grid [hidden]="!isViewState(ViewState.Animation)">
+    <ion-row justify-content-center>
+      <ion-col text-center>
+        <keyword keyword-controls [keyword-uri]="getVowelUri()" #keywordVowel>
+          <span [innerHtml]="getKeyword(true)"></span>
+        </keyword>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col text-center>
+        <div class="media-wrapper">
+          <svg-trapezium>
+            <div class="media-frame">
+              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+            </div>
+          </svg-trapezium>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-        <ion-grid [hidden]="!isViewState(ViewState.Examples)">
-          <ion-row text-center>
-            <ion-col>
-              <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
-                <span [innerHtml]="getKeyword()"></span>
-              </keyword>
-            </ion-col>
-          </ion-row>
-          <ion-row *ngFor="let item of getExampleWords(); let i = index" text-center class="row-no-padding">
-            <ion-col>
-              <!-- <keyword [keyword-uri]="getUri(item)">{{item}}</keyword> -->
-              <button ion-button round class="example-word-button" (click)="showExampleWord(i)">
-                {{item}}
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+  <ion-grid [hidden]="!isViewState(ViewState.Examples)">
+    <ion-row text-center>
+      <ion-col>
+        <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
+          <span [innerHtml]="getKeyword()"></span>
+        </keyword>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let item of getExampleWords(); let i = index" text-center class="row-no-padding">
+      <ion-col>
+        <button ion-button round class="example-word-button" (click)="showExampleWord(i)">
+          {{item}}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
 

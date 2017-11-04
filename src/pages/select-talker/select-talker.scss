@@ -1,8 +1,15 @@
 page-select-talker {
   @include border();
-  border-radius: 1rem;
+  border-radius: 20px;
   background: color($md-palette, md-white) !important;
+
+  ion-content, ion-header {
+    width: 100% !important;
+    left: 0 !important;
+    margin: 0 !important;
+  }
   ion-content, .content {
+
     background: transparent !important;
     .scroll-content {
       margin-bottom: 0.0rem !important;

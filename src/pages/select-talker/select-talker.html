@@ -1,3 +1,4 @@
+<background color="white"></background>
 <ion-header>
   <ion-navbar>
     <ion-title>Select talker</ion-title>
@@ -11,11 +12,11 @@
 
 <ion-content padding>
 <ion-list>
-  <ion-item *ngFor="let talker of appData.talkers" (click)="setTalker(talker)">
+  <ion-item *ngFor="let talker of getTalkers()" (click)="setTalker(talker)">
     <ion-avatar item-start>
-      <div class="avatar {{appData.talker.id === talker.id ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.id + '.svg'"></div>
+      <div class="avatar {{isTalker(talker) ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"></div>
     </ion-avatar>
-    <ion-label class="{{appData.talker.id === talker.id ? 'is-selected' : ''}}">{{talker.displayName}}</ion-label>
+    <ion-label class="{{isTalker(talker) ? 'is-selected' : ''}}">{{talker.displayName}}</ion-label>
   </ion-item>
 </ion-list>
 </ion-content>
