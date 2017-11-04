@@ -37,13 +37,13 @@
                 <div class="media-wrapper">
                   <svg-trapezium [color]="imageColor" class="media-trapezium">
                     <div class="media media-image media-frame">
-                      <img [src]="getImageUri()"/>
+                      <img *ngIf="getImageUri()" [src]="getImageUri()"/>
                     </div>
                   </svg-trapezium>
                   <div class="float">
                     <div class="float-button media-frame" (click)="setViewState(ViewState.Video)">
                       <div class="media media-video">
-                        <video-player [src]="getVideoUri()" disabled="true"></video-player>
+                        <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" disabled="true"></video-player>
                       </div>
                     </div>
                   </div>
@@ -61,13 +61,13 @@
                   <div class="media-wrapper">
                     <svg-trapezium  [color]="imageColor" class="media-trapezium">
                       <div class="media media-video media-frame">
-                        <video-player [src]="getVideoUri()" #videoPlayer></video-player>
+                        <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" #videoPlayer></video-player>
                       </div>
                     </svg-trapezium>
                     <div class="float">
                       <div class="float-button media-frame" (click)="setViewState(ViewState.Image)">
                         <div class="media media-image">
-                          <img [src]="getImageUri()"/>
+                          <img *ngIf="getImageUri()" [src]="getImageUri()"/>
                         </div>
                       </div>
                     </div>

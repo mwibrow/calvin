@@ -43,14 +43,12 @@ export class VowelTrainerPage {
       public ngZone: NgZone,
       public events: Events) {
 
-    this.viewState = ViewState.Animation;
+    this.viewState = ViewState.Audio;
 
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
-    console.log(appData)
     this.events.subscribe('svg:loaded', () => {
-      console.log('Loaded')
       this.setUpAnimation();
     })
 

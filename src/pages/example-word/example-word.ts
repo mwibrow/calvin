@@ -36,27 +36,20 @@ export class ExampleWordPage {
 
   }
 
-  clickShape() {
-    console.log('CLICK-SHAPE')
-  }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExampleWordPage');
   }
 
   isViewState(viewState: ViewState) {
-    console.log(viewState === this.viewState)
     return viewState === this.viewState;
   }
 
   setViewState(viewState: ViewState) {
     this.viewState = viewState;
-    console.log(this.viewState)
   }
 
   getExampleWord(): string {
     let word: Word = this.getWord();
-    console.log(word)
     return `<span class="keyword-display">${word.display}</span>`;
   }
 
@@ -71,13 +64,11 @@ export class ExampleWordPage {
   getAudioUri(): string {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
-    console.log(talker, word)
     return this.appData.getAudioUri(talker.id, word.id, WordTypes.ExampleWords);
   }
 
   getImageUri() {
     let uri: string = this.appData.getImageUri(this.appData.getExampleWord().id, WordTypes.ExampleWords);
-    console.log('Image URI', uri)
     return uri;
   }
 
@@ -85,7 +76,6 @@ export class ExampleWordPage {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
     let uri: string = this.appData.getVideoUri(talker.id, WordTypes.ExampleWords, word.id);
-    console.log('Video URI', uri)
     return uri;
   }
 
