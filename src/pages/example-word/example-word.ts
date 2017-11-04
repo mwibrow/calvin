@@ -9,7 +9,7 @@ enum ViewState {
   Recording
 }
 
-import { AppDataProvider, Word } from '../../providers/app-data/app-data';
+import { AppDataProvider, Word, WordTypes } from '../../providers/app-data/app-data';
 /**
  * Generated class for the ExampleWordPage page.
  *

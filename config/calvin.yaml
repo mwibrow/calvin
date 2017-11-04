@@ -3,97 +3,134 @@ talkers:
   - emma
   - kerry
   - mark
+  - speaker1
+  - calvin
 keywords:
-  - cars
-  - crown
-  - dog
-  - duck
-  - fish
-  - game
-  - girl
-  - hook
-  - horse
-  - line
-  - man
-  - near
-  - nest
-  - noise
-  - nose
-  - peas
-  - soup
-  - stairs
-wordGroups:
-  highFront:
-    - heed / peas
-    - hid / fish
-    - head / nest
-  open:
-    - had / man
-    - hud / duck
-    - hod / dog
-  centralLowBack:
-    - heard / girl
-    - hard / cars
-    - hoard / horse
-    - haired / stairs
-  back:
-    - hood / hook
-    - whod / soup
-    - howd / crown
-    - hoed / nose
-  diphthongs:
-    - hayed / game
-    - hide / line
-    - hear / near
-    - hoyed / noise
+  talkerIds:
+    - speaker1
+  defaultTalkerId: speaker1
+  words:
+    - cars
+    - crown
+    - dog
+    - duck
+    - fish
+    - game
+    - girl
+    - hook
+    - horse
+    - line
+    - man
+    - near
+    - nest
+    - noise
+    - nose
+    - peas
+    - soup
+    - stairs
+vowels:
+  talkerIds:
+    - mark
+  defaultTalkerId: mark
+  words:
+    - heed
+    - hid
+    - head
+    - had
+    - hud
+    - hod
+    - heard
+    - hard
+    - hoard
+    - haired
+    - hood
+    - whod
+    - howd
+    - hoed
+    - hayed
+    - hide
+    - hear
+    - hoyed
+keywordGroups:
+  groups:
+    highFront:
+      - heed / peas
+      - hid / fish
+      - head / nest
+    open:
+      - had / man
+      - hud / duck
+      - hod / dog
+    centralLowBack:
+      - heard / girl
+      - hard / cars
+      - hoard / horse
+      - haired / stairs
+    back:
+      - hood / hook
+      - whod / soup
+      - howd / crown
+      - hoed / nose
+    diphthongs:
+      - hayed / game
+      - hide / line
+      - hear / near
+      - hoyed / noise
 exampleWords:
-  - ball
-  - bears
-  - bees
-  - bike
-  - bin
-  - book
-  - boys
-  - cake
-  - card
-  - cat
-  - clock
-  - coat
-  - coin
-  - cot
-  - cup
-  - food
-  - foot
-  - gate
-  - gears
-  - hat
-  - house
-  - kite
-  - knife
-  - leg
-  - loaf
-  - mat
-  - men
-  - mouse
-  - nurse
-  - nuts
-  - park
-  - paws
-  - pears
-  - pin
-  - pot
-  - ring
-  - road
-  - room
-  - seed
-  - shark
-  - shirt
-  - skirt
-  - spade
-  - squares
-  - suit
-  - tears
-  - teeth
-  - ten
-  - toys
-  - wood
+  talkerIds:
+    - dan
+    - emma
+    - kerry
+    - mark
+  defaultTalkerId: dan
+  words:
+    - ball
+    - bears
+    - bees
+    - bike
+    - bin
+    - book
+    - boys
+    - cake
+    - card
+    - cat
+    - clock
+    - coat
+    - coin
+    - cot
+    - cup
+    - food
+    - foot
+    - gate
+    - gears
+    - hat
+    - house
+    - kite
+    - knife
+    - leg
+    - loaf
+    - mat
+    - men
+    - mouse
+    - nurse
+    - nuts
+    - park
+    - paws
+    - pears
+    - pin
+    - pot
+    - ring
+    - road
+    - room
+    - seed
+    - shark
+    - shirt
+    - skirt
+    - spade
+    - squares
+    - suit
+    - tears
+    - teeth
+    - ten
+    - toys
+    - wood
