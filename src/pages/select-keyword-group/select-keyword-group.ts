@@ -36,9 +36,8 @@ export class SelectKeywordGroupPage {
     this.navCtrl.push(SelectKeywordPage);
   }
 
-
-
-
-
+  goHome() {
+    this.navCtrl.pop();
+  }
 
 }
