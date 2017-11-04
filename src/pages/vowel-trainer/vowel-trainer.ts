@@ -43,7 +43,7 @@ export class VowelTrainerPage {
       public ngZone: NgZone,
       public events: Events) {
 
-    this.viewState = ViewState.Audio;
+    this.viewState = ViewState.Animation;
 
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
