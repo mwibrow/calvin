@@ -56,5 +56,24 @@ page-vowel-trainer {
 		width: 50% !important;
 	}
 
+	.media-button {
+        position: relative;
+        display: block;
+        margin: 5%;
 
+        img {
+            vertical-align:bottom
+        }
+	}
+
+    .media-button:hover {
+        box-shadow: 0px 0px 30px  color($md-palette, md-white);
+    }
+
+	mark {
+        position: absolute;
+        display: inline-block;
+        right: 0;
+        bottom: 0;
+    }
 }

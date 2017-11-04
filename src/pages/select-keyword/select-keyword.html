@@ -11,7 +11,7 @@
 <ion-content class="no-scroll">
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
-      <ion-col  *ngFor="let keyword of getKeywordList(); let i = index" col-5>
+      <ion-col *ngFor="let keyword of getKeywordList(); let i = index" col-5>
         <svg-trapezium  [color]="imageColor">
           <div class="media-button" (click)="setKeyword(keyword)">
             <div class="media media-image media-frame">

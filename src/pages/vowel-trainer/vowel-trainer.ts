@@ -108,6 +108,17 @@ export class VowelTrainerPage {
     let examples = this.appData.keywordExampleMap[word.hvd];
     return examples;
   }
+
+  getExampleWordImageUri(word: string) {
+    console.log('WORD', word)
+    let uri: string = this.appData.getImageUri(word, WordTypes.ExampleWords);
+    return uri;
+  }
+
+  getExampleWord(wordId: string) {
+    return this.appData.exampleWords[wordId];
+  }
+
   ionViewDidLoad() {}
 
   goBack() {
