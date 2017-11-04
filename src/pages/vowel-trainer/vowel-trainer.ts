@@ -43,7 +43,7 @@ export class VowelTrainerPage {
       public ngZone: NgZone,
       public events: Events) {
 
-    this.viewState = ViewState.Examples;
+    this.viewState = ViewState.Audio;
 
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
@@ -179,12 +179,18 @@ export class VowelTrainerPage {
   }
 
   getKeywordUri() {
-    let uri = this.appData.getAudioUri(null, this.appData.getKeyword().id, WordTypes.Keywords);
+    let uri = this.appData.getAudioUri(this.appData.config.keywords.defaultTalkerId, this.appData.getKeyword().id, WordTypes.Keywords);
     return uri;
   }
 
   getVowelUri() {
-    let uri = this.appData.getAudioUri(null, this.appData.getKeyword().hvd, WordTypes.Vowels);
+    let uri = this.appData.getAudioUri(this.appData.config.vowels.defaultTalkerId, this.appData.getKeyword().hvd, WordTypes.Vowels);
+    return uri;
+  }
+
+
+  getKeywordImageUri() {
+    let uri: string = this.appData.getImageUri(this.appData.getKeyword().id, WordTypes.Keywords);
     return uri;
   }
 

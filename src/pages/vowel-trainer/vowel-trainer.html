@@ -15,17 +15,25 @@
 
 <ion-content class="no-scroll">
   <ion-grid [hidden]="!isViewState(ViewState.Audio)">
-          <ion-row text-center>
-            <ion-col col-1></ion-col>
-            <ion-col>
-              <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
-                <span [innerHtml]="getKeyword()"></span>
-              </keyword>
-            </ion-col>
-            <ion-col col-1></ion-col>
-          </ion-row>
-          <ion-col></ion-col>
-        </ion-grid>
+    <ion-row text-center>
+      <ion-col>
+        <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
+          <span [innerHtml]="getKeyword()"></span>
+        </keyword>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col text-center>
+        <div class="media-wrapper">
+          <svg-trapezium>
+            <div class="media media-image media-frame">
+              <img [src]="getKeywordImageUri(keyword)"/>
+            </div>
+          </svg-trapezium>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
         <ion-grid [hidden]="!isViewState(ViewState.Animation)">
           <ion-row justify-content-center>

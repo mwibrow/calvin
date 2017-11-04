@@ -39,6 +39,7 @@ export class Config {
     this.keywords = CONFIG['keywords'];
     this.exampleWords = CONFIG['exampleWords']
     this.keywordGroups = CONFIG['keywordGroups']
+    this.vowels = CONFIG['vowels']
   }
 
 }
