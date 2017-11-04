@@ -1,7 +1,7 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AppDataProvider, WordGroup, Word } from '../../providers/app-data/app-data';
+import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
 import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
 import { KeywordComponent } from '../../components/keyword/keyword'
 import * as mdColors from 'material-colors';
@@ -46,7 +46,7 @@ export class SelectKeywordPage {
 
   setKeyword(keyword: string) {
     this.appData.keywordIndex = this.appData.keywordList.indexOf(keyword);
-    //this.navCtrl.push(VowelTrainerPage);
+    this.navCtrl.push(VowelTrainerPage);
   }
 
   goBack() {
@@ -62,7 +62,12 @@ export class SelectKeywordPage {
   }
 
   getKeywordAudioUri(keyword: string) {
-    let uri: string = this.appData.getAudio(null, keyword);
+    let uri: string = this.appData.getAudioUri(null, keyword, WordTypes.Keywords);
+    return uri;
+  }
+
+  getKeywordImageUri(keyword: string) {
+    let uri: string = this.appData.getImageUri(keyword, WordTypes.Keywords);
     return uri;
   }
 

@@ -72,11 +72,11 @@ export class ExampleWordPage {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
     console.log(talker, word)
-    return this.appData.getAudio(talker.id, word.id, 'example');
+    return this.appData.getAudioUri(talker.id, word.id, WordTypes.ExampleWords);
   }
 
   getImageUri() {
-    let uri: string = this.appData.getImage(this.appData.getExampleWord().id);
+    let uri: string = this.appData.getImageUri(this.appData.getExampleWord().id, WordTypes.ExampleWords);
     console.log('Image URI', uri)
     return uri;
   }
@@ -84,7 +84,7 @@ export class ExampleWordPage {
   getVideoUri() {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
-    let uri: string = this.appData.getVideo(talker.id, 'example_words', word.id);
+    let uri: string = this.appData.getVideoUri(talker.id, WordTypes.ExampleWords, word.id);
     console.log('Video URI', uri)
     return uri;
   }

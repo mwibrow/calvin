@@ -9,20 +9,19 @@
 </ion-header>
 
 <ion-content class="no-scroll">
-  <ion-grid fixed>
-    <ion-row *ngFor="let keyword of getKeywordList(); let i = index" text-center class="row row-{{i+1}}">
-      <ion-col>
-        <!-- <button ion-button round (click)="setKeyword(keyword)" class="keyword-group-button">
-         {{ getKeyword(keyword).display }}
-        </button> -->
-          <keyword [keyword-uri]="getKeywordAudioUri(keyword)" #keywordComponentList
-           [siblings]="keywordComponentList" selectable="true" (click)="setKeyword(keyword)">
-            <span [innerHtml]="getKeyword(keyword).display"></span>
-          </keyword>
-        <!-- <mark  class="mark-{{i + 1}}">
-          <svg-shape shape="check"></svg-shape>
-        </mark> -->
-
+  <ion-grid class="centered">
+    <ion-row justify-content-center align-items-center>
+      <ion-col  *ngFor="let keyword of getKeywordList(); let i = index" col-5>
+        <svg-trapezium  [color]="imageColor">
+          <div class="media-button" (click)="setKeyword(keyword)">
+            <div class="media media-image media-frame">
+              <img [src]="getKeywordImageUri(keyword)"/>
+            </div>
+            <mark  *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
+              <svg-shape shape="check"></svg-shape>
+            </mark>
+          </div>
+        </svg-trapezium>
       </ion-col>
     </ion-row>
   </ion-grid>

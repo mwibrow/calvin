@@ -1,6 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider, Word, Talker } from '../../providers/app-data/app-data';
+import { AppDataProvider, Word, Talker, WordTypes } from '../../providers/app-data/app-data';
 // import { NarratorComponent } from '../../components/narrator/narrator';
 import { ExampleWordPage } from '../../pages/example-word/example-word';
 import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
@@ -179,12 +179,12 @@ export class VowelTrainerPage {
   }
 
   getKeywordUri() {
-    let uri = this.appData.getAudio(null, this.appData.getKeyword().id, 'keyword');
+    let uri = this.appData.getAudioUri(null, this.appData.getKeyword().id, WordTypes.Keywords);
     return uri;
   }
 
   getVowelUri() {
-    let uri = this.appData.getAudio(null, this.appData.getKeyword().hvd, 'vowel');
+    let uri = this.appData.getAudioUri(null, this.appData.getKeyword().hvd, WordTypes.Vowels);
     return uri;
   }
 

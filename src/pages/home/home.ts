@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, ModalController, AlertController } from 'ionic-angular';
-import { KeywordTrainerPage } from '../keyword-trainer/keyword-trainer';
 import { SelectTalkerPage } from '../select-talker/select-talker';
 import { VowelTrainerPage } from '../vowel-trainer/vowel-trainer';
 import { AudioProvider } from '../../providers/audio/audio';
@@ -88,7 +87,7 @@ export class HomePage {
   }
 
   onKeywordTrainer() {
-    this.navCtrl.push(KeywordTrainerPage);
+
   }
 
   handleKeyboardEvents(event) {

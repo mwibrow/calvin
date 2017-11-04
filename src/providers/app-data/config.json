@@ -33,11 +33,33 @@
       "stairs"
     ]
   },
-  "keywordGroups": {
+  "vowels": {
     "talkerIds": [
       "mark"
     ],
     "defaultTalkerId": "mark",
+    "words": [
+      "heed",
+      "hid",
+      "head",
+      "had",
+      "hud",
+      "hod",
+      "heard",
+      "hard",
+      "hoard",
+      "haired",
+      "hood",
+      "whod",
+      "howd",
+      "hoed",
+      "hayed",
+      "hide",
+      "hear",
+      "hoyed"
+    ]
+  },
+  "keywordGroups": {
     "groups": {
       "highFront": [
         "heed / peas",

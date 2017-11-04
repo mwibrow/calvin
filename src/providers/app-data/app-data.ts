@@ -7,10 +7,11 @@ import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phoneti
 
 import * as CONFIG from './config.json';
 
-export enum WordTypes {
-  Keywords = 'keywords',
-  ExampleWords = 'example_words',
-  Vowels ='vowels'
+
+export class WordTypes {
+  static Keywords = 'keywords';
+  static ExampleWords = 'example_words';
+  static Vowels ='vowels';
 }
 
 export class Config {
@@ -66,15 +67,15 @@ export class WordGroup {
   complete: number = 0;
   constructor(public id: string,
     public display: string,
-    public WordTypes: Array<Word>) {};
+    public words: Array<Word>) {};
 
   isComplete():boolean {
-    return this.complete === this.WordTypes.length;
+    return this.complete === this.words.length;
 
   }
 
   completed(): number {
-    return this.complete / this.WordTypes.length;
+    return this.complete / this.words.length;
   }
 }
 
@@ -115,6 +116,7 @@ export class AppDataProvider {
     this.setUpKeywordGroups(this.config);
     this.getTalker();
     this.keyword = this.getKeyword();
+    console.log(this)
   }
 
   getTalker(index?: number): Talker {
@@ -228,20 +230,17 @@ export class AppDataProvider {
     let word: string, WordTypes: Array<Word>, wordGroup: WordGroup;
     this.keywordGroups = {};
     this.keywordGroupList = [];
-    if (Array.isArray(config.keywordGroups)) {
-      config.keywordGroups.map((group) => {
-        name = Object.keys(group)[0];
-        this.keywordGroupList.push(name);
-        WordTypes = group[name].map((word) => word.split('/')[1].trim());
-        this.keywordGroups[name] = new WordGroup(name, name, WordTypes);
+    Object.keys(config.keywordGroups.groups).map((name) => {
+      this.keywordGroupList.push(name);
+      WordTypes = config.keywordGroups.groups[name].map((word) => {
+        if (word.includes('/')) {
+          return word.split('/')[1].trim()
+        } else {
+          return word;
+        }
       });
-    } else {
-      Object.keys(config.keywordGroups).map((name) => {
-        this.keywordGroupList.push(name);
-        WordTypes = config.keywordGroups[name].map((word) => word.split('/')[1].trim());
-        this.keywordGroups[name] = new WordGroup(name, name, WordTypes);
-      });
-    }
+      this.keywordGroups[name] = new WordGroup(name, name, WordTypes);
+    });
   }
 }
 
