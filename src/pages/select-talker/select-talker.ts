@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
-/**
- * Generated class for the SelectTalkerPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -40,6 +34,7 @@ export class SelectTalkerPage {
   isTalker(talker: Talker) {
     return this.appData.talker && this.appData.talker.id === talker.id;
   }
+
   getTalkers() {
     let talkers = this.appData.config.exampleWords.talkerIds.map(id => this.appData.talkers[id]);
     return talkers;

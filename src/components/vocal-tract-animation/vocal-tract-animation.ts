@@ -17,7 +17,7 @@ export class VocalTractAnimationComponent {
 
   text: string;
   vocalTract: any;
-  uri: string;
+  audioUri: string;
 
   svg: any;
   range: any;
@@ -57,7 +57,7 @@ export class VocalTractAnimationComponent {
 
   setAnimation(animation: string, uri?: string) {
     this.animation = animation;
-    this.uri = uri;
+    this.audioUri = uri;
   }
 
   ngAfterViewInit() {
@@ -109,11 +109,11 @@ export class VocalTractAnimationComponent {
     if (this.svg) this.setupVocalTract();
   }
 
-  setupVowelAnimation(description: string) {
+  setUpVowelAnimation(description: string, audioUri?: string) {
 
     this.resetVocalTract();
     let vowels = parseVowelDescriptions(description);
-
+    this.audioUri = audioUri;
     switch (vowels.length) {
       case 1:
         this.setupMonophthong(vowels[0]);
@@ -214,8 +214,8 @@ export class VocalTractAnimationComponent {
     this.animationRange.setValue(0);
     this.rangeChange({ value: this.animationRange.value });
     this.animationFrameRequest.requestAnimationFrame((ev) => this._playAnimation(ev));
-    if (this.uri) {
-      this.player.playUrl(this.uri);
+    if (this.audioUri) {
+      this.player.playUrl(this.audioUri);
     }
   }
 

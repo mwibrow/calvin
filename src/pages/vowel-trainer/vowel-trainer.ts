@@ -76,23 +76,13 @@ export class VowelTrainerPage {
 
   setUpAnimation() {
     if (this.vocalTractAnimation.ready()) {
-      this.vocalTractAnimation.setupVowelAnimation(this.getWord().description);
+      this.vocalTractAnimation.setUpVowelAnimation(this.getWord().description, this.getVowelUri());
     }
   }
 
   isViewState(viewState: ViewState) {
     if (this.viewState === viewState) {
       return "true"
-    }
-  }
-
-  formatWord(highlightVowel: boolean = false) {
-    let word = this.getWord();
-    if (this.viewState === ViewState.Animation || highlightVowel) {
-      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
-       '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
-    } else {
-      return `<span class="keyword-display">${word.display}</span>`;
     }
   }
 
@@ -124,27 +114,6 @@ export class VowelTrainerPage {
     this.navCtrl.pop();
   }
 
-  backButtonDisabled() {
-
-  }
-
-  forwardButtonDisabled() {
-
-  }
-
-
-  nextKeywordButtonDisabled() {
-    if (this.appData.keywordIndex === this.appData.keywordList.length - 1) {
-      return "true";
-    }
-  }
-
-  previousKeywordButtonDisabled() {
-    if (this.appData.keywordIndex === 0) {
-      return "true";
-    }
-  }
-
   showExampleWord(index: number) {
     this.appData.setExampleWordIndex(index);
     this.navCtrl.push(ExampleWordPage);
@@ -155,8 +124,6 @@ export class VowelTrainerPage {
     this.keyword.setUri(this.getKeywordUri());
     this.setUpAnimation();
   }
-
-
 
   playExampleWord(word: string) {
     let talker = this.talker;
@@ -184,7 +151,6 @@ export class VowelTrainerPage {
     let uri = this.appData.getAudioUri(this.appData.config.vowels.defaultTalkerId, this.appData.getKeyword().hvd, WordTypes.Vowels);
     return uri;
   }
-
 
   getKeywordImageUri() {
     let uri: string = this.appData.getImageUri(this.appData.getKeyword().id, WordTypes.Keywords);

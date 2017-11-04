@@ -75,7 +75,7 @@ export class HomePage {
   }
 
   onStart() {
-    this.showSelectTalkerModal(SelectKeywordGroupPage)
+    this.showSelectTalkerModal(SelectKeywordGroupPage);
   }
 
   showSelectTalkerModal(nextPage: any) {
