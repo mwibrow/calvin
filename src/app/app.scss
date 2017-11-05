@@ -395,11 +395,27 @@ $spinner-border: 10px;
         animation-delay: 2s;
     }
 }
+
 @keyframes Rotate {
     0% { transform: scale(1) }
     40%  { transform: scale(1.25) }
     80% { transform: scale(1) }
 }
+
+@keyframes Pulse {
+    0% { transform: sclae(1) }
+    20% { transform: scale(1.125)}
+    40% { transform: scale(1)}
+    60% { transform: scale(1.125) }
+    80% { transform: scale(1) }
+    100% { transform: sclae(1) }
+}
+
+.pulse {
+    transform-origin: 50%, 50%;
+    animation: Pulse 2s linear infinite;
+}
+
 
 .example-word-button, .keyword-button, .keyword-group-button {
     @include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
@@ -467,6 +483,7 @@ $spinner-border: 10px;
 }
 
 
+
 ion-content, ion-header, ion-footer {
     box-sizing: border-box;
     width: calc(100vh * 3 / 4);
@@ -530,6 +547,16 @@ ion-header, ion-footer {
     }
 }
 
+.title {
+    font-size: 15vh;
+    logo {
+        padding: 2.5vh;
+    }
+}
+
+.subtitle {
+    font-size: 3vh;
+}
 
 // @media screen and (min-height: 512px) {
 //     ion-content {

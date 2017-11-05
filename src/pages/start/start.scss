@@ -1,0 +1,29 @@
+page-start {
+
+.calvin-frame-circle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: color($md-palette, md-light-blue-100);
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 50%;
+    @include border();
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateY(15%) scale(1.25);
+    }
+}
+
+.subtitle {
+    span {
+    color: color($md-palette, md-blue-grey-900);
+
+    }
+}
+
+}

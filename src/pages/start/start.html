@@ -1,0 +1,44 @@
+
+<background [color]="getBackgroundColor()"></background>
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="no-scroll">
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col col-auto>
+        <div class="title">
+          <svg-trapezium>
+            <div class="media media-image media-frame">
+              <logo></logo>
+            </div>
+          </svg-trapezium>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col col-auto no-padding>
+        <div class="calvin-frame-circle" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row justify-content-center>
+      <ion-col col-auto class="subtitle">
+          <span>Computer Assisted Learning for Vowels interface</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-buttons text-center>
+    <button ion-button icon-only class="navigate-button pulse" (click)="onStart()">
+      <ion-icon name="play"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-footer>
