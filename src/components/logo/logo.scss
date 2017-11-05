@@ -6,10 +6,6 @@ font-weight: bold;
 .calvin-logo {
     position: relative;
     display: inline-block;
-    // div {
-    //     display: inline-block;
-    //     position: relative;
-    // }
 
     .calvin-logo-letter-wrapper {
         display: inline-block;
@@ -19,7 +15,7 @@ font-weight: bold;
         position: absolute;
     }
     .calvin-logo-c {
-        color: color($md-palette, md-red) !important;
+        color: color($md-palette, md-red);
     }
     .calvin-logo-a {
         color: color($md-palette, md-light-green);
