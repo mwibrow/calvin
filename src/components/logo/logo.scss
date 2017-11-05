@@ -4,24 +4,42 @@ font-family: Crafty Girls;
 font-weight: bold;
 
 .calvin-logo {
+    position: relative;
     display: inline-block;
-    span:nth-child(1) {
-        color: color($md-palette, md-red);
+    // div {
+    //     display: inline-block;
+    //     position: relative;
+    // }
+
+    .calvin-logo-letter-wrapper {
+        display: inline-block;
+        position: relative;
     }
-    span:nth-child(2) {
+    .calvin-logo-letter {
+        position: absolute;
+    }
+    .calvin-logo-c {
+        color: color($md-palette, md-red) !important;
+    }
+    .calvin-logo-a {
         color: color($md-palette, md-light-green);
     }
-    span:nth-child(3) {
+    .calvin-logo-l {
         color: color($md-palette, md-light-blue);
     }
-    span:nth-child(4) {
-        margin-left: -0.125ex;
+    .calvin-logo-v {
         color: color($md-palette, md-amber);
-        margin-right: 0.125ex;
+        // Correction for crappy font metrics.
+        margin-left: -15%;
+        padding-left: 10%;
+        padding-right: 10%;
     }
-    span:nth-child(5), span:nth-child(6) {
+    .calvin-logo-i {
         color: color($md-palette, md-purple);
     }
-}
+    .calvin-logo-n {
+        color: color($md-palette, md-purple);
+    }
 
+}
 }
