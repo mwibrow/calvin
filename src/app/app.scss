@@ -530,9 +530,17 @@ ion-header, ion-footer {
     font-size: 6.25vh;
 }
 
+.media-small {
+    width: calc(100vh * 3 / 4 * .375);
+    height: calc(100vh * 3 / 4 * .375);
+    margin: 0 auto;
+    img {
+        // width: calc(100vh * 3 / 4 * .275);
+        // height: calc(100vh * 3 / 4 * .275);
+    }
+}
 .media-button {
-    width: calc(100vh * 3 / 4 * .3);
-    height: calc(100vh * 3 / 4 * .3);
+   margin: 1vh;
 }
 .media-wrapper {
     width: calc(75vh * 3 / 4);

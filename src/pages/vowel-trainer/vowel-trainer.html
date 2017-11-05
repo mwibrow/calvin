@@ -73,17 +73,19 @@
 
     </ion-row> -->
     <ion-row justify-content-center align-items-center>
-      <ion-col *ngFor="let wordId of getExampleWords(); let i = index" col-5>
-        <svg-trapezium  [color]="imageColor">
-          <div class="media-button" (click)="showExampleWord(i)">
-            <div class="media media-image media-frame">
-              <img *ngIf="getExampleWordImageUri(wordId)" [src]="getExampleWordImageUri(wordId)"/>
+      <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
+        <div class="media-small">
+          <svg-trapezium  [color]="imageColor">
+            <div class="media-button" (click)="showExampleWord(i)">
+              <div class="media media-image media-frame">
+                <img *ngIf="getExampleWordImageUri(wordId)" [src]="getExampleWordImageUri(wordId)"/>
+              </div>
+              <mark *ngIf="getExampleWord(wordId).isComplete()" class="mark-{{i + 1}}">
+                <svg-shape shape="check"></svg-shape>
+              </mark>
             </div>
-            <mark *ngIf="getExampleWord(wordId).isComplete()" class="mark-{{i + 1}}">
-              <svg-shape shape="check"></svg-shape>
-            </mark>
-          </div>
-        </svg-trapezium>
+          </svg-trapezium>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

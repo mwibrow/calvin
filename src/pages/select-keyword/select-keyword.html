@@ -11,17 +11,19 @@
 <ion-content class="no-scroll">
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
-      <ion-col *ngFor="let keyword of getKeywordList(); let i = index" col-5>
-        <svg-trapezium  [color]="imageColor">
-          <div class="media-button" (click)="setKeyword(keyword)">
-            <div class="media media-image media-frame">
-              <img *ngIf="getKeywordImageUri(keyword)" [src]="getKeywordImageUri(keyword)"/>
+      <ion-col *ngFor="let keyword of getKeywordList(); let i = index">
+        <div class="media-small">
+          <svg-trapezium  [color]="imageColor">
+            <div class="media-button" (click)="setKeyword(keyword)">
+              <div class="media media-image media-frame">
+                <img *ngIf="getKeywordImageUri(keyword)" [src]="getKeywordImageUri(keyword)"/>
+              </div>
+              <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
+                <svg-shape shape="check"></svg-shape>
+              </mark>
             </div>
-            <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
-              <svg-shape shape="check"></svg-shape>
-            </mark>
-          </div>
-        </svg-trapezium>
+          </svg-trapezium>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

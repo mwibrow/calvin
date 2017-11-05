@@ -57,12 +57,12 @@ page-vowel-trainer {
 	}
 
 	.media-button {
-        position: relative;
+		position: relative;
         display: block;
-        margin: 5%;
-
         img {
-            vertical-align:bottom
+            vertical-align:bottom;
+            width: 100%;
+            height: 100%;
         }
 	}
 
