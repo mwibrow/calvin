@@ -2,6 +2,7 @@ import { Component, ViewChildren, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
+import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
 import { KeywordComponent } from '../../components/keyword/keyword'
 import * as mdColors from 'material-colors';
@@ -20,9 +21,14 @@ import * as mdColors from 'material-colors';
 export class SelectKeywordPage {
 
   backgroundColor: string = mdColors.yellow[500];
+  player: AudioPlayer;
   @ViewChildren('keywordComponentList') keywordComponentList: QueryList<KeywordComponent>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider, public audio: AudioProvider) {
+    this.player = this.audio.player;
+  }
 
+  ngAfterViewInit() {
+    this.player.initialise();
   }
 
   ionViewDidLoad() {
@@ -47,6 +53,11 @@ export class SelectKeywordPage {
   setKeyword(keyword: string) {
     this.appData.keywordIndex = this.appData.keywordList.indexOf(keyword);
     this.navCtrl.push(VowelTrainerPage);
+  }
+
+  playKeyword(keywordId: string) {
+    let uri = this.appData.getAudioUri(this.appData.config.keywords.defaultTalkerId, keywordId, WordTypes.Keywords);
+    this.player.playUrl(uri);
   }
 
   goBack() {

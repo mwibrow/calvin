@@ -12,7 +12,7 @@
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
       <ion-col *ngFor="let keyword of getKeywordList(); let i = index">
-        <div class="media-small">
+        <div class="media-small" style="position: relative;">
           <svg-trapezium  [color]="imageColor">
             <div class="media-button" (click)="setKeyword(keyword)">
               <div class="media media-image media-frame">
@@ -21,8 +21,13 @@
               <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
                 <svg-shape shape="check"></svg-shape>
               </mark>
+
             </div>
+
           </svg-trapezium>
+          <div class="preview-audio-button"  (click)="playKeyword(keyword)">
+            <ion-icon name="play"></ion-icon>
+          </div>
         </div>
       </ion-col>
     </ion-row>
@@ -34,5 +39,5 @@
     <button *ngIf="canGoForward()" ion-button class="navigate-button pulse" (click)="goForward()">
       <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
     </button>
-</ion-buttons>
+  </ion-buttons>
 </ion-footer>

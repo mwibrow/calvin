@@ -10,6 +10,9 @@ font-weight: bold;
     .calvin-logo-letter-wrapper {
         display: inline-block;
         position: relative;
+        span {
+            visibility: hidden;
+        }
     }
     .calvin-logo-letter {
         position: absolute;

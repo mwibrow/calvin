@@ -74,7 +74,7 @@
     </ion-row> -->
     <ion-row justify-content-center align-items-center>
       <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
-        <div class="media-small">
+        <div class="media-small" style="position: relative;">
           <svg-trapezium  [color]="imageColor">
             <div class="media-button" (click)="showExampleWord(i)">
               <div class="media media-image media-frame">
@@ -85,6 +85,9 @@
               </mark>
             </div>
           </svg-trapezium>
+          <button class="preview-audio-button"  (click)="playExampleWord(wordId)">
+              <ion-icon name="play"></ion-icon>
+          </button>
         </div>
       </ion-col>
     </ion-row>

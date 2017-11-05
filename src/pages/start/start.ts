@@ -26,4 +26,8 @@ export class StartPage {
     this.navCtrl.push(SelectKeywordGroupPage);
   }
 
+  goHome() {
+    this.navCtrl.popToRoot();
+  }
+
 }

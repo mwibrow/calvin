@@ -1,28 +1,48 @@
 page-select-talker {
-  @include border();
-  border-radius: 20px;
-  background: color($md-palette, md-white) !important;
 
-  ion-content, ion-header {
+
+
+
+  ion-content {
     width: 100% !important;
+    height: 100% !important;
     left: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  ion-header, ion-footer {
+    left: 0 !important;
+    width: 100% !important;
     margin: 0 !important;
+  }
+  ion-footer {
+    padding-right: 5vh;
+    .navigate-button {
+      animation: Pulse 2s infinite;
+    }
+  }
+  ion-content {
+    @include border();
   }
   ion-content, .content {
 
-    background: transparent !important;
+    background: color($md-palette, md-white) !important;
+    border-radius: 30px;
     .scroll-content {
       margin-bottom: 0.0rem !important;
       overflow-x: hidden;
     }
+    padding: 5vh 0 0 !important;
   }
 
   .toolbar-title {
+    padding-left: 5vh;
     font-weight: bold;
     color: color($md-palette, md-light-blue);
   }
 
   ion-list {
+    padding: 10vh 0 0 !important;
     width: 100% !important;
   }
 
@@ -37,8 +57,8 @@ page-select-talker {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
     background-color: color($md-palette, md-blue-grey-100);
     svg {

@@ -110,7 +110,6 @@ export class VowelTrainerPage {
   }
 
   getExampleWordImageUri(word: string) {
-    console.log('WORD', word)
     let uri: string = this.appData.getImageUri(word, WordTypes.ExampleWords);
     return uri;
   }
@@ -136,12 +135,7 @@ export class VowelTrainerPage {
     this.setUpAnimation();
   }
 
-  playExampleWord(word: string) {
-    let talker = this.talker;
-    let url: string = `assets/audio/${this.talker}/words/${word}.wav`;
-    console.log(url);
-    this.player.playUrl(url);
-  }
+
 
   playWord(word: string, talker?: string) {
     talker = talker || this.talker.id;
@@ -151,6 +145,11 @@ export class VowelTrainerPage {
 
   playVowel(word) {
     this.playWord(`vowels/${word}`, 'mark');
+  }
+
+  playExampleWord(wordId: string) {
+    let uri = this.appData.getAudioUri(this.appData.talker.id, wordId, WordTypes.ExampleWords);
+    this.player.playUrl(uri);
   }
 
   getKeywordUri() {

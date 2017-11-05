@@ -1,23 +1,23 @@
 
 <background [color]="getBackgroundColor()"></background>
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-
-    </ion-title>
-  </ion-navbar>
+<ion-header transparent>
+  <ion-buttons left>
+    <button ion-button class="navigate-button navigate-button-back" (click)="goHome()">
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content class="no-scroll">
   <ion-grid>
     <ion-row justify-content-center>
-      <ion-col col-auto>
+      <ion-col>
         <div class="title">
-          <svg-trapezium>
-            <div class="media media-image media-frame">
-              <logo></logo>
-            </div>
+            <svg-trapezium style="width: 100%;">
+          <div class="media media-image media-frame">
+            <logo></logo>
+          </div>
           </svg-trapezium>
         </div>
       </ion-col>

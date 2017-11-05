@@ -68,7 +68,7 @@ export class WordGroup {
   complete: number = 0;
   constructor(public id: string,
     public display: string,
-    public words: Array<Word>) {};
+    public words: Array<string>) {};
 
   isComplete():boolean {
     return this.complete === this.words.length;
@@ -109,7 +109,6 @@ export class AppDataProvider {
 
   constructor() {
     this.config = new Config();
-    console.log('CONFIG', this.config)
     this.setUpTalkers(this.config);
     this.setUpKeywords(this.config);
     this.setUpExampleWords(this.config);
@@ -117,7 +116,6 @@ export class AppDataProvider {
     this.setUpKeywordGroups(this.config);
     this.getTalker();
     this.keyword = this.getKeyword();
-    console.log(this)
   }
 
   getTalker(index?: number): Talker {
@@ -227,20 +225,19 @@ export class AppDataProvider {
   }
 
   setUpKeywordGroups(config: any) {
-    let group: any, name: string;
-    let word: string, WordTypes: Array<Word>, wordGroup: WordGroup;
+    let words: Array<string>;
     this.keywordGroups = {};
     this.keywordGroupList = [];
     Object.keys(config.keywordGroups.groups).map((name) => {
       this.keywordGroupList.push(name);
-      WordTypes = config.keywordGroups.groups[name].map((word) => {
+      words = config.keywordGroups.groups[name].map((word) => {
         if (word.includes('/')) {
           return word.split('/')[1].trim()
         } else {
           return word;
         }
       });
-      this.keywordGroups[name] = new WordGroup(name, name, WordTypes);
+      this.keywordGroups[name] = new WordGroup(name, name, words);
     });
   }
 }

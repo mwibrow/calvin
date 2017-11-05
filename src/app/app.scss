@@ -516,7 +516,7 @@ ion-header, ion-footer {
     }
 }
 
-.exit-buttonm .navigate-button, .keyword-control-button {
+.exit-buttonm .navigate-button, .keyword-control-button, .preview-audio-button {
     width: 10vh;
     height: 10vh;
     ion-icon {
@@ -556,7 +556,7 @@ ion-header, ion-footer {
 }
 
 .title {
-    font-size: 15vh;
+    font-size: 12.5vh;
     logo {
         padding: 2.5vh;
     }

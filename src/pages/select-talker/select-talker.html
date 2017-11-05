@@ -1,4 +1,4 @@
-<background color="white"></background>
+<!-- <background color="white"></background> -->
 <ion-header>
   <ion-navbar>
     <ion-title>Select talker</ion-title>
@@ -10,7 +10,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="no-scroll">
 <ion-list>
   <ion-item *ngFor="let talker of getTalkers()" (click)="setTalker(talker)">
     <ion-avatar item-start>
@@ -19,8 +19,16 @@
     <ion-label class="{{isTalker(talker) ? 'is-selected' : ''}}">{{talker.displayName}}</ion-label>
   </ion-item>
 </ion-list>
+<!-- <ion-fab *ngIf="!!appData.talker" bottom right edge>
+  <button ion-fab large color="primary" (click)="continue()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab> -->
 </ion-content>
 
-<ion-fab *ngIf="!!appData.talker" bottom right>
-<button ion-fab large color="primary" (click)="continue()"><ion-icon name="checkmark"></ion-icon></button>
-</ion-fab>
+
+<ion-footer>
+  <ion-buttons end>
+    <button *ngIf="!!appData.talker" ion-button class="navigate-button" (click)="continue()">
+      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+    </button>
+  </ion-buttons>
+</ion-footer>

@@ -75,5 +75,19 @@ page-vowel-trainer {
         display: inline-block;
         right: 0;
         bottom: 0;
-    }
+	}
+
+	.preview-audio-button {
+		display: flex;
+		align-items:center;
+		justify-content: center;
+		border-radius: 2px !important;
+		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+		@include hover-box-shadow($preview-audio-button-bg);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: 500;
+		transform: scale(0.5) translate(-25%, 25%);
+	}
 }
