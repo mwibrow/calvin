@@ -41,7 +41,6 @@ export class HomePage {
   ngOnInit() {
     this.audioAvailable = true;
     this.checkAudio();
-    console.log(this.appData);
   }
 
   ionViewDidEnter() {
@@ -80,11 +79,6 @@ export class HomePage {
 
   showSelectTalkerModal(nextPage: any) {
     const selectTalkerModal = this.modalCtrl.create(SelectTalkerPage);
-    selectTalkerModal.onDidDismiss(data => {
-      if (data) {
-        this.navCtrl.push(nextPage);
-      }
-    });
     selectTalkerModal.present();
   }
 

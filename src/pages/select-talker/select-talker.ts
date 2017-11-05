@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { App, IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
+import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 
 @IonicPage()
 @Component({
@@ -12,6 +13,7 @@ export class SelectTalkerPage {
   constructor(
     public appData: AppDataProvider,
     public viewCtrl: ViewController,
+    public appCtrl: App,
     public navParams: NavParams) {
   }
 
@@ -29,6 +31,7 @@ export class SelectTalkerPage {
 
   continue() {
     this.viewCtrl.dismiss(true);
+    this.appCtrl.getRootNav().push(SelectKeywordGroupPage);
   }
 
   isTalker(talker: Talker) {
