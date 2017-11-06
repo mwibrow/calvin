@@ -393,6 +393,8 @@ export class AudioRecorder extends AudioEventHandler {
     this.running = false;
     this.timeout && clearTimeout(this.timeout);
     this.emit('stop');
+    this.scriptNode.disconnect();
+    this.streamSource.disconnect();
     if (!this.monitor) {
       return new Promise((resolve, reject) => {
         this.getAudioBuffers().then(() => resolve());
@@ -410,6 +412,7 @@ export class AudioRecorder extends AudioEventHandler {
     this.onMessage = null;
     this.worker.postMessage({ command: 'clear' });
   }
+
 
   private getAudioBuffers() {
     let self: any = this;
