@@ -545,6 +545,14 @@ ion-header, ion-footer {
         // height: calc(100vh * 3 / 4 * .275);
     // }
 }
+
+page-vowel-trainer {
+    .media-small {
+    width: calc(100vh * 3 / 4 * .375);
+    height: calc(100vh * 3 / 4 * .375);
+    margin:  1vh auto 0.5vh;
+    }
+}
 .media-button {
    margin: 1vh;
 }
