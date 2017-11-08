@@ -516,12 +516,18 @@ ion-header, ion-footer {
     }
 }
 
-.exit-buttonm .navigate-button, .keyword-control-button, .preview-audio-button {
+.exit-buttonm .navigate-button, .keyword-control-button {
     width: 10vh;
     height: 10vh;
     ion-icon {
         font-size: 6.25vh;
     }
+}
+
+.preview-audio-button {
+    font-size: 3.75vh;
+    width: 15vh;
+    height: 6.25vh;
 }
 
 .keyword-button, .keyword-group-button, .example-word-button {

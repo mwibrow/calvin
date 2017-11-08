@@ -28,9 +28,9 @@
           <!-- <div class="preview-audio-button"  (click)="playKeyword(keyword)">
             <ion-icon name="play"></ion-icon>
           </div> -->
-          <div class="keyword-title" (click)="playKeyword(keyword)">
-              <span>{{getKeyword(keyword).display}}</span>
-            </div>
+          <button class="preview-audio-button" (click)="playKeyword(keyword)">
+            <span>{{getKeyword(keyword).display}}</span>
+          </button>
         </div>
       </ion-col>
     </ion-row>

@@ -86,8 +86,23 @@ page-vowel-trainer {
 		@include hover-box-shadow($preview-audio-button-bg);
 		position: absolute;
 		bottom: 0;
-		left: 0;
+		left: 50%;
 		z-index: 500;
-		transform: scale(0.5) translate(-25%, 25%);
+		transform: translate(-50%, 33.3%);
 	}
+
+	.example-word-title {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+		@include hover-box-shadow($preview-audio-button-bg);
+		transform: translate(-50%, -25%);
+
+		padding: 0.5ex 1em;
+		border-radius: 3px;
+		z-index: 500;
+
+}
+
 }

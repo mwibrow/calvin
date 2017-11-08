@@ -85,9 +85,12 @@
               </mark>
             </div>
           </svg-trapezium>
-          <button class="preview-audio-button"  (click)="playExampleWord(wordId)">
+          <button class="preview-audio-button" (click)="playExampleWord(wordId)">
+              <span>{{getExampleWord(wordId).display}}</span>
+            </button>
+          <!-- <button class="preview-audio-button"  (click)="playExampleWord(wordId)">
               <ion-icon name="play"></ion-icon>
-          </button>
+          </button> -->
         </div>
       </ion-col>
     </ion-row>

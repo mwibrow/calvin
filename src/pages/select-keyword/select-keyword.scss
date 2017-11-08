@@ -39,9 +39,9 @@ page-select-keyword {
 		@include hover-box-shadow($preview-audio-button-bg);
 		position: absolute;
 		bottom: 0;
-		left: 0;
+        left: 50%;
 		z-index: 500;
-		transform: scale(0.5) translate(-25%, 25%);
+		transform: translate(-50%, 33.3%);
     }
 
     .keyword-title {
