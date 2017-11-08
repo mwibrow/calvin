@@ -62,6 +62,7 @@ keywordGroups:
       - hud / duck
       - hod / dog
     centralLowBack:
+      - hear / near
       - heard / girl
       - hard / cars
       - hoard / horse
@@ -74,7 +75,6 @@ keywordGroups:
     diphthongs:
       - hayed / game
       - hide / line
-      - hear / near
       - hoyed / noise
 exampleWords:
   talkerIds:

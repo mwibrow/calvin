@@ -21,7 +21,9 @@
               <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
                 <svg-shape shape="check"></svg-shape>
               </mark>
-
+              <div class="keyword-title">
+                <span>{{getKeyword(keyword).display}}</span>
+              </div>
             </div>
 
           </svg-trapezium>
