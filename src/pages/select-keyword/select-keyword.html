@@ -8,7 +8,7 @@
   </ion-buttons>
 </ion-header>
 
-<ion-content class="no-scroll">
+<ion-content class="no-scroll keyword-group-size-{{getKeywordList().length}}">
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
       <ion-col *ngFor="let keyword of getKeywordList(); let i = index">
@@ -21,15 +21,16 @@
               <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
                 <svg-shape shape="check"></svg-shape>
               </mark>
-              <div class="keyword-title">
-                <span>{{getKeyword(keyword).display}}</span>
-              </div>
+
             </div>
 
           </svg-trapezium>
-          <div class="preview-audio-button"  (click)="playKeyword(keyword)">
+          <!-- <div class="preview-audio-button"  (click)="playKeyword(keyword)">
             <ion-icon name="play"></ion-icon>
-          </div>
+          </div> -->
+          <div class="keyword-title" (click)="playKeyword(keyword)">
+              <span>{{getKeyword(keyword).display}}</span>
+            </div>
         </div>
       </ion-col>
     </ion-row>
