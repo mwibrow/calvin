@@ -84,12 +84,10 @@ export class HomePage {
 
   handleKeyboardEvents(event) {
     let key = event.key || event.keyCode;
-    console.log(event)
     switch (event.type) {
       case 'keydown':
         switch (key) {
           case 'F11':
-          console.log(remote.getCurrentWindow())
             let currentWindow = remote.getCurrentWindow();
             if (currentWindow.isMaximized()) {
               currentWindow.unmaximize();
