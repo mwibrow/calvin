@@ -37,6 +37,9 @@ export class BackgroundComponent {
       case 'squares':
         this.svgPath = this.squares();
         break;
+      case 'stars':
+        this.svgPath = this.stars();
+        break;
       case 'triangles':
         this.svgPath = this.triangles();
         break;
@@ -127,6 +130,32 @@ export class BackgroundComponent {
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
         d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w / 2} ${y - h} Z`);
+      }
+    }
+    return d.join(' ');
+  }
+
+  stars(points: number = 5) {
+    const aspectRatio = this.getApsectRatio();
+    let centerX: number, centerY: number,
+      radiusX: number, radiusY: number,
+      rotation: number, i: number, j: number, k: number,
+      x: number, y: number, angle: number;
+    let d: Array<string> = [];
+    for (i = 0; i < 10; i ++) {
+      for (j = 0; j < 10; j ++) {
+        centerX = (i + .5 + Math.random() * 2 - 1) * 10;
+        centerY = (j + .5 + Math.random() * 2 - 1) * 10;
+        radiusX = 1 + Math.random() * 2;
+        radiusY = radiusX * aspectRatio;
+        rotation = Math.random() * Math.PI * 2;
+        for (k = 0; k < points * 2; k ++) {
+          angle = Math.PI / points * k + rotation;
+          x = centerX + Math.cos(angle) * radiusX * (k % 2 ? 1 : .5);
+          y = centerY + Math.sin(angle) * radiusY * (k % 2 ? 1 : .5);
+          d.push(`${k === 0 ? 'M' : 'L'} ${x} ${y}`);
+        }
+        d.push('Z')
       }
     }
     return d.join(' ');
