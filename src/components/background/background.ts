@@ -14,14 +14,18 @@ export class BackgroundComponent {
 
   @Input('color') color: string = 'black';
   @Input('image') image: string = '';
-  @Input('pattern') pattern = '';
+  @Input('pattern') pattern = 'circles';
   svgPath: string = '';
   constructor() {}
 
   ngOnInit() {
     this.makePattern(this.pattern);
+    console.log(this.getApsectRatio());
   }
 
+  getApsectRatio() {
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / Math.max(document.documentElement.clientHeight, window.innerHeight || 0) || 1;
+  }
   makePattern(pattern: string) {
     switch (pattern) {
       case 'horizontal-lines':
@@ -29,6 +33,12 @@ export class BackgroundComponent {
         break;
       case 'circles':
         this.svgPath = this.circles();
+        break;
+      case 'squares':
+        this.svgPath = this.squares();
+        break;
+      case 'triangles':
+        this.svgPath = this.triangles();
         break;
       default:
         this.svgPath = '';
@@ -60,7 +70,8 @@ export class BackgroundComponent {
   }
 
   circles() {
-    let i: number, j: number, x: number, y: number, r: number;
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, rx: number, ry: number;
     const z: number = .55191496;
     const intervals: number = 10, width: number = 100, height: number = 100;
     const hFactor: number = width / intervals;
@@ -68,14 +79,54 @@ export class BackgroundComponent {
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
-        r = Math.random() * 0.375 * (hFactor + vFactor) / 2;
+        ry = Math.random() * 5;
+        rx = ry / aspectRatio;
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
-        d.push(`M ${x + r} ${y}` +
-          `C ${x + r * 1} ${y + r * z} ${x + r * z} ${y + r * 1} ${x + r * 0} ${y + r * 1}` +
-          `C ${x - r * z} ${y + r * 1} ${x - r * 1} ${y + r * z} ${x - r * 1} ${y + r * 0}` +
-          `C ${x - r * 1} ${y - r * z} ${x - r * z} ${y - r * 1} ${x - r * 0} ${y - r * 1}` +
-          `C ${x + r * z} ${y - r * 1} ${x + r * 1} ${y - r * z} ${x + r * 1} ${y + r * 0} Z`);
+        d.push(`M ${x + rx} ${y}` +
+          `C ${x + rx * 1} ${y + ry * z} ${x + rx * z} ${y + ry * 1} ${x + rx * 0} ${y + ry * 1} ` +
+          `C ${x - rx * z} ${y + ry * 1} ${x - rx * 1} ${y + ry * z} ${x - rx * 1} ${y + ry * 0} ` +
+          `C ${x - rx * 1} ${y - ry * z} ${x - rx * z} ${y - ry * 1} ${x - rx * 0} ${y - ry * 1} ` +
+          `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${x + rx * 1} ${y + ry * 0} Z`);
+      }
+    }
+    return d.join(' ');
+  }
+
+  squares() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor / 2;
+        h = w *  aspectRatio;
+
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w} ${y + h} L ${x} ${y + h} Z`);
+      }
+    }
+    return d.join(' ');
+  }
+
+  triangles() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals * aspectRatio;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor / 2;
+        h = w * aspectRatio;
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w / 2} ${y - h} Z`);
       }
     }
     return d.join(' ');
