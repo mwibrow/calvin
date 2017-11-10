@@ -24,42 +24,48 @@ page-select-keyword-group {
         width: 100%;
         height: 100%;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
     .keyword-group-button-container {
-        display: inline-block;
-        position: absolute;
+        display: block;
+        // position: absolute;
+        button {
+            border-radius: 50%;
+        }
     }
 
-    .keyword-group-button-container-1 {
+    // .keyword-group-button-container-1 {
 
-        transform: rotate(0deg) translateY(15vh);
-    }
-    .keyword-group-button-container-2 {
-        transform: rotate(72deg) translateY(15vh);
-        button {
-            transform: rotate(-72deg);
-        }
-    }
-    .keyword-group-button-container-3 {
-        transform: rotate(144deg) translateY(15vh);
-        button {
-            transform: rotate(-144deg);
-        }
-    }
-    .keyword-group-button-container-4 {
-        transform: rotate(216deg) translateY(15vh);
-        button {
-            transform: rotate(-216deg);
-        }
-    }
-    .keyword-group-button-container-5 {
-        transform: rotate(288deg) translateY(15vh);
-        button {
-            transform: rotate(-288deg);
-        }
-    }
+    //     transform: rotate(0deg) translateY(15vh);
+    // }
+    // .keyword-group-button-container-2 {
+    //     transform: rotate(72deg) translateY(15vh);
+    //     button {
+    //         transform: rotate(-72deg);
+    //     }
+    // }
+    // .keyword-group-button-container-3 {
+    //     transform: rotate(144deg) translateY(15vh);
+    //     button {
+    //         transform: rotate(-144deg);
+    //     }
+    // }
+    // .keyword-group-button-container-4 {
+    //     transform: rotate(216deg) translateY(15vh);
+    //     button {
+    //         transform: rotate(-216deg);
+    //     }
+    // }
+    // .keyword-group-button-container-5 {
+    //     transform: rotate(288deg) translateY(15vh);
+    //     button {
+    //         transform: rotate(-288deg);
+    //     }
+    // }
+
+
 
 }
