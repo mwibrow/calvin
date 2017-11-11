@@ -6,6 +6,16 @@ page-select-keyword-group {
         80% { transform: scale(1) }
     }
 
+    ion-content {
+        overflow: visible !important;
+        height: 90% !important;
+    }
+
+
+    ion-header {
+        contain: layout;
+    }
+
     mark {
         position: absolute;
         display: inline-block;
@@ -32,9 +42,11 @@ page-select-keyword-group {
     .keyword-group-button-container {
         display: block;
         // position: absolute;
-        button {
-            border-radius: 50%;
-        }
+
+    }
+
+    .keyword-group-button {
+        border-radius: 3px;
     }
 
     // .keyword-group-button-container-1 {

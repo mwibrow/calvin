@@ -434,7 +434,6 @@ $spinner-border: 10px;
 
 .navigation-arrow {
     .svg-shape-component {
-      width: 150%;
       margin-left: -25%;
     }
     .svg-shape {
@@ -516,11 +515,16 @@ ion-header, ion-footer {
     }
 }
 
-.exit-buttonm .navigate-button, .keyword-control-button {
+.exit-buttonm .navigate-button, .keyword-control-button, .keyword-group-button {
     width: 10vh;
     height: 10vh;
-    ion-icon {
-        font-size: 6.25vh;
+
+    font-size: 6.25vh;
+
+}
+.navigate-button {
+    .svg-shape-component {
+        width: 6.25vh !important;
     }
 }
 
@@ -530,7 +534,7 @@ ion-header, ion-footer {
     height: 6.25vh;
 }
 
-.keyword-button, .keyword-group-button, .example-word-button {
+.keyword-button, .example-word-button {
     height: 10vh;
     width: 30vh;
     font-size: 6.25vh;
