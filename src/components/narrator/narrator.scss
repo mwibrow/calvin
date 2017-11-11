@@ -1,3 +1,23 @@
 narrator {
 
+    .narrator {
+        width: 20vh;
+        height: 20vh;
+    }
+    .narrator-container {
+        @include border(1vh);
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+        width: 20vh;
+        height: 20vh;
+        background-color: color($md-palette, md-light-blue-100);
+        box-shadow: 0px 3px 3px rgba(color($md-palette, md-black), 0.25);
+
+    }
+    svg {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 10%) scale(1.125);
+    }
 }

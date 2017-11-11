@@ -126,11 +126,11 @@ button {
     }
 }
 
-@mixin border() {
-    border-top: $spinner-border solid color($md-palette, md-red);
-    border-left: $spinner-border solid color($md-palette, md-orange);
-    border-right: $spinner-border solid color($md-palette, md-light-green);
-    border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+@mixin border($width: $spinner-border) {
+    border-top: $width  solid color($md-palette, md-red);
+    border-left: $width solid color($md-palette, md-orange);
+    border-right: $width solid color($md-palette, md-light-green);
+    border-bottom: $width solid color($md-palette, md-light-blue);
 }
 
 // .md-button {

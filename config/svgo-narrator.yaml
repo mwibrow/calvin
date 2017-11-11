@@ -1,0 +1,6 @@
+plugins:
+  - removeAttrs:
+      attrs: '(display|inkscape|sodipodi|fill|stroke|id).*'
+  - removeHiddenElems: false
+  - cleanupIDs: false
+  - convertPathData: false
