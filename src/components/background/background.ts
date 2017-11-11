@@ -20,12 +20,12 @@ export class BackgroundComponent {
 
   ngOnInit() {
     this.makePattern(this.pattern);
-    console.log(this.getApsectRatio());
   }
 
   getApsectRatio() {
     return Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / Math.max(document.documentElement.clientHeight, window.innerHeight || 0) || 1;
   }
+
   makePattern(pattern: string) {
     switch (pattern) {
       case 'horizontal-lines':
