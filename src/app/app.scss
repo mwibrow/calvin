@@ -486,6 +486,20 @@ ion-navbar, .toolbar, .toolbar-md {
     overflow: visible;
 }
 
+.content-title {
+    .svg-trapezium-background {
+        fill: color($md-palette, md-light-blue);
+    }
+    .toolbar-title {
+        color: color($md-palette, md-white);
+        font-weight: bold;
+        font-size: 5vh;
+        padding: 0 5%;
+    }
+
+}
+
+
 
 
 ion-content, ion-header, ion-footer {
@@ -551,6 +565,12 @@ ion-header, ion-footer {
     width: calc(100vh * 3 / 4 * .325);
     height: calc(100vh * 3 / 4 * .325);
     margin:  1vh auto 0.5vh;
+}
+
+.media-tiny {
+    width: calc(100vh * 3 / 4 * .2);
+    height: calc(100vh * 3 / 4 * .2);
+    margin:  0vh !important;
 }
 
 page-vowel-trainer {

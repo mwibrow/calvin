@@ -14,7 +14,7 @@ import * as mdColors from 'material-colors';
 export class SelectKeywordGroupPage {
 
   backgroundColor: string = mdColors.yellow[500];
-
+  trapeziumColor: string = mdColors.amber[900];
   constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
     console.log(appData)
   }

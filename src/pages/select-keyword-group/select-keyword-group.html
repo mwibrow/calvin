@@ -1,7 +1,7 @@
 
 <background [color]="backgroundColor" pattern="horizontal-lines"></background>
 <ion-header transparent>
-  <ion-navbar>
+  <ion-navbar hideBackButton>
     <ion-buttons left>
       <button ion-button class="navigate-button navigate-button-back" (click)="goHome()">
         <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
@@ -12,25 +12,25 @@
 
 <ion-content  class="no-scroll">
   <ion-grid class="centered">
-      <ion-row justify-content-center align-items-center>
-        <ion-col col-4 *ngFor="let keywordGroup of getKeywordGroupList(); let i = index">
-            <svg-trapezium  [color]="imageColor">
-              <div class="media-button" (click)="setKeywordGroupIndex(i)">
-                <div class="media media-image media-frame">
-                  <div class="media-tiny flex flex-centered">
-                    <div class="keyword-group-label keyword-group-label-{{i + 1}}">
-                      <span>{{i + 1}}</span>
-                    </div>
+    <ion-row justify-content-center align-items-center>
+      <ion-col col-4 *ngFor="let keywordGroup of getKeywordGroupList(); let i = index">
+          <svg-trapezium  [color]="trapeziumColor">
+            <div class="media-button" (click)="setKeywordGroupIndex(i)">
+              <div class="media media-image media-frame">
+                <div class="media-tiny flex flex-centered">
+                  <div class="keyword-group-label keyword-group-label-{{i + 1}}">
+                    <span>{{i + 1}}</span>
                   </div>
                 </div>
-                <mark *ngIf="getKeywordGroup(keywordGroup).isComplete()" class="mark-{{i + 1}}">
-                  <svg-shape shape="check"></svg-shape>
-                </mark>
               </div>
-            </svg-trapezium>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+              <mark *ngIf="getKeywordGroup(keywordGroup).isComplete()" class="mark-{{i + 1}}">
+                <svg-shape shape="check"></svg-shape>
+              </mark>
+            </div>
+          </svg-trapezium>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer>

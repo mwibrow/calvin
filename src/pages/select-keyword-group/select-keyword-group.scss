@@ -67,12 +67,6 @@ page-select-keyword-group {
         position: relative;
     }
 
-    .media-tiny {
-        width: calc(100vh * 3 / 4 * .2);
-        height: calc(100vh * 3 / 4 * .2);
-        margin:  0vh !important;
-    }
-
     .keyword-group-label {
         position: relative;
         width: 75%;
@@ -120,11 +114,8 @@ page-select-keyword-group {
         }
     }
 
-
     .media-button:hover {
         box-shadow: 0px 0px 30px  color($md-palette, md-white);
 
     }
-
-
 }
