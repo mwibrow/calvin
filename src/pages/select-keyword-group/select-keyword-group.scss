@@ -5,15 +5,22 @@ page-select-keyword-group {
         40% { transform: scale(1.25) }
         80% { transform: scale(1) }
     }
-
-    ion-content {
-        overflow: visible !important;
-        height: 90% !important;
+    @keyframes Squish {
+        0% { transform: scale(1) }
+        40% { transform: scale(1.25, 0.75) }
+        80% { transform: scale(1) }
     }
 
+    // ion-content {
+    //     overflow: visible !important;
+    //     height: 90% !important;
+    // }
 
-    ion-header {
-        contain: layout;
+    .centered {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        height: 100%;
     }
 
     mark {
@@ -49,35 +56,75 @@ page-select-keyword-group {
         border-radius: 3px;
     }
 
-    // .keyword-group-button-container-1 {
+    .flex {
+        display: flex;
+    }
+    .flex-centered {
+        justify-content: center;
+        align-items: center;
+    }
+    .relative {
+        position: relative;
+    }
 
-    //     transform: rotate(0deg) translateY(15vh);
-    // }
-    // .keyword-group-button-container-2 {
-    //     transform: rotate(72deg) translateY(15vh);
-    //     button {
-    //         transform: rotate(-72deg);
-    //     }
-    // }
-    // .keyword-group-button-container-3 {
-    //     transform: rotate(144deg) translateY(15vh);
-    //     button {
-    //         transform: rotate(-144deg);
-    //     }
-    // }
-    // .keyword-group-button-container-4 {
-    //     transform: rotate(216deg) translateY(15vh);
-    //     button {
-    //         transform: rotate(-216deg);
-    //     }
-    // }
-    // .keyword-group-button-container-5 {
-    //     transform: rotate(288deg) translateY(15vh);
-    //     button {
-    //         transform: rotate(-288deg);
-    //     }
-    // }
+    .media-tiny {
+        width: calc(100vh * 3 / 4 * .2);
+        height: calc(100vh * 3 / 4 * .2);
+        margin:  0vh !important;
+    }
 
+    .keyword-group-label {
+        position: relative;
+        width: 75%;
+        height: 75%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            z-index: 500;
+            color: color($md-palette, md-white);
+            font-size: 6.25vh;
+        }
+
+    }
+    .keyword-group-label::before {
+        position: absolute;
+        left: 20%;
+        top: 0%;
+        content: '';
+        width: 60%;
+        height: 100%;
+        border-radius: 50%;
+
+    }
+    .keyword-group-label::after {
+        position: absolute;
+        left: 40%;
+        top: 0%;
+        content: '';
+        width: 20%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    $keywordGroupColors: red, light-green, light-blue, amber, pink;
+
+    @for $i from 1 through length($keywordGroupColors)  {
+        $c: nth($keywordGroupColors, $i);
+        .keyword-group-label-#{$i}, .keyword-group-label-#{$i}::after {
+            background-color: color($md-palette, md-#{$c}-900);
+        }
+        .keyword-group-label-#{$i}::before {
+            background-color: color($md-palette, md-#{$c}-700);
+        }
+    }
+
+
+    .media-button:hover {
+        box-shadow: 0px 0px 30px  color($md-palette, md-white);
+
+    }
 
 
 }

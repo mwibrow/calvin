@@ -1,47 +1,33 @@
 
 <background [color]="backgroundColor" pattern="horizontal-lines"></background>
 <ion-header transparent>
-  <ion-buttons left>
-    <button ion-button class="navigate-button navigate-button-back" (click)="goHome()">
-      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-    </button>
-  </ion-buttons>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button class="navigate-button navigate-button-back" (click)="goHome()">
+        <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content  class="no-scroll">
-  <!-- <ion-grid fixed>
-    <ion-row  *ngFor="let keyword of getKeywordGroupList(); let i = index;" text-center class="row row-{{i+1}}">
-      <ion-col> -->
-      <!-- <div class="keyword-buttons">
-        <div *ngFor="let keyword of getKeywordGroupList(); let i = index;"
-            class="keyword-group-button-container keyword-group-button-container-{{i+1}}">
-          <button  ion-button round (click)="setKeywordGroupIndex(i)" class="keyword-group-button keyword-group-button={{i+1}}">
-            <span>{{i + 1}}</span>
-          </button>
-          <mark *ngIf="getKeywordGroup(keyword).isComplete()" class="mark-{{i + 1}}">
-             <svg-shape shape="check"></svg-shape>
-          </mark>
-        </div>
-      </div> -->
-      <!-- </ion-col>
-    </ion-row>
-  </ion-grid> -->
   <ion-grid class="centered">
       <ion-row justify-content-center align-items-center>
-        <ion-col *ngFor="let keywordGroup of getKeywordGroupList(); let i = index">
-          <div class="media-small" style="position: relative;">
+        <ion-col col-4 *ngFor="let keywordGroup of getKeywordGroupList(); let i = index">
             <svg-trapezium  [color]="imageColor">
               <div class="media-button" (click)="setKeywordGroupIndex(i)">
-A
+                <div class="media media-image media-frame">
+                  <div class="media-tiny flex flex-centered">
+                    <div class="keyword-group-label keyword-group-label-{{i + 1}}">
+                      <span>{{i + 1}}</span>
+                    </div>
+                  </div>
+                </div>
                 <mark *ngIf="getKeywordGroup(keywordGroup).isComplete()" class="mark-{{i + 1}}">
                   <svg-shape shape="check"></svg-shape>
                 </mark>
-
               </div>
-
             </svg-trapezium>
-
-          </div>
         </ion-col>
       </ion-row>
     </ion-grid>

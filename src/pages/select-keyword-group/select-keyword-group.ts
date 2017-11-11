@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AppDataProvider, WordGroup, Word } from '../../providers/app-data/app-data';
+import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
 import { SelectKeywordPage } from '../../pages/select-keyword/select-keyword';
 
 import * as mdColors from 'material-colors';
@@ -34,6 +34,11 @@ export class SelectKeywordGroupPage {
   setKeywordGroupIndex(index: number) {
     this.appData.setKeywordGroupIndex(index);
     this.navCtrl.push(SelectKeywordPage);
+  }
+
+  getKeywordImageUri(keyword: string) {
+    let uri: string = this.appData.getImageUri(keyword, WordTypes.Keywords);
+    return uri;
   }
 
   goHome() {

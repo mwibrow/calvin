@@ -135,20 +135,8 @@ export class VowelTrainerPage {
     this.setUpAnimation();
   }
 
-
-
-  playWord(word: string, talker?: string) {
-    talker = talker || this.talker.id;
-    let url: string = `assets/audio/${talker}/words/${word}.wav`;
-    this.player.playUrl(url);
-  }
-
-  playVowel(word) {
-    this.playWord(`vowels/${word}`, 'mark');
-  }
-
   playExampleWord(wordId: string) {
-    let uri = this.appData.getAudioUri(this.appData.talker.id, wordId, WordTypes.ExampleWords);
+    let uri = this.appData.getAudioUri(this.appData.getTalker().id, wordId, WordTypes.ExampleWords);
     this.player.playUrl(uri);
   }
 

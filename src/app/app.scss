@@ -481,6 +481,11 @@ $spinner-border: 10px;
     background-color:  color($md-palette, md-white);
 }
 
+ion-navbar, .toolbar, .toolbar-md {
+    contain: layout !important;
+    overflow: visible;
+}
+
 
 
 ion-content, ion-header, ion-footer {
@@ -519,7 +524,9 @@ ion-header, ion-footer {
     width: 10vh;
     height: 10vh;
 
-    font-size: 6.25vh;
+    ion-icon {
+        font-size: 5vh;
+    }
 
 }
 .navigate-button {
@@ -553,6 +560,7 @@ page-vowel-trainer {
         margin:  5vh auto 5vh;
     }
 }
+
 .media-button {
    margin: 1vh;
 }
