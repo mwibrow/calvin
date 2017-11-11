@@ -20,6 +20,7 @@ import { AppDataProvider } from '../providers/app-data/app-data';
 import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
 import { LogoComponent } from '../components/logo/logo';
 import { MarkComponent } from '../components/mark/mark';
+import { NarratorComponent } from '../components/narrator/narrator';
 import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
 import { SvgShapeComponent } from '../components/svg-shape/svg-shape';
 import { BackgroundComponent } from '../components/background/background';
@@ -48,7 +49,8 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     SvgTrapeziumComponent,
     SvgShapeComponent,
     BackgroundComponent,
-    MarkComponent
+    MarkComponent,
+    NarratorComponent
   ],
   imports: [
     BrowserModule,

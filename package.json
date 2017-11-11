@@ -36,11 +36,12 @@
     "electron dist": "electron .",
     "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
     "electron:build": "npm run build && node_modules/.bin/build",
-    "config": "npm run build:config && npm run build:svg",
-    "build:config": "node scripts/calvin-config.js",
-    "build:svg": "npm run build:svg-avatars && npm run build:svg-vocal-tract",
-    "build:svg-avatars": "svgo --config=config/svgo-avatars.yaml --pretty -f src/assets/images/avatars",
-    "build:svg-vocal-tract": "svgo --config=config/svgo-vocal-tract.yaml --pretty src/assets/images/vocal-tract.svg"
+    "config": "npm run config:copy-media && npm run config:svg",
+    "config:copy-media": "node scripts/calvin-config.js",
+    "config:svg": "npm run config:svg-avatars && npm run config:svg-vocal-tract && npm run config:svg-narrator",
+    "config:svg-avatars": "svgo --config=config/svgo-avatars.yaml --pretty -f src/assets/images/avatars",
+    "config:svg-narrator": "svgo --config=config/svgo-narrator.yaml --pretty src/assets/images/calvin-mouths.svg",
+    "config:svg-vocal-tract": "svgo --config=config/svgo-vocal-tract.yaml --pretty src/assets/images/vocal-tract.svg"
   },
   "dependencies": {
     "@angular/common": "4.4.3",

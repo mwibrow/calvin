@@ -6,7 +6,6 @@
         <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
     </button>
   </ion-buttons>
-
 </ion-header>
 
 <ion-content class="no-scroll keyword-group-size-{{getKeywordList().length}}">
@@ -22,13 +21,8 @@
               <mark *ngIf="getKeyword(keyword).isComplete()" class="mark-{{i + 1}}">
                 <svg-shape shape="check"></svg-shape>
               </mark>
-
             </div>
-
           </svg-trapezium>
-          <!-- <div class="preview-audio-button"  (click)="playKeyword(keyword)">
-            <ion-icon name="play"></ion-icon>
-          </div> -->
           <button class="preview-audio-button" (click)="playKeyword(keyword)">
             <span>{{getKeyword(keyword).display}}</span>
           </button>

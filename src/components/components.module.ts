@@ -8,6 +8,7 @@ import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
 import { BackgroundComponent } from './background/background';
 import { SvgShapeComponent } from './svg-shape/svg-shape';
 import { MarkComponent } from './mark/mark';
+import { NarratorComponent } from './narrator/narrator';
 
 @NgModule({
 	declarations: [KeywordComponent,
@@ -18,7 +19,8 @@ import { MarkComponent } from './mark/mark';
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,
-    MarkComponent],
+    MarkComponent,
+    NarratorComponent],
 	imports: [],
 	exports: [KeywordComponent,
 		KeywordControlsDirective,
@@ -30,6 +32,7 @@ import { MarkComponent } from './mark/mark';
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,
-    MarkComponent]
+    MarkComponent,
+    NarratorComponent]
 })
 export class ComponentsModule {}
