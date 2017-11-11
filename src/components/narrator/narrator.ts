@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-
+import { Component, ElementRef } from '@angular/core';
+import { Events } from 'ionic-angular';
+import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
+import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
 /**
  * Generated class for the NarratorComponent component.
  *
@@ -12,11 +14,23 @@ import { Component } from '@angular/core';
 })
 export class NarratorComponent {
 
-  text: string;
 
-  constructor() {
+  player: AudioPlayer;
+  svg: HTMLElement;
+  constructor(public elementRef: ElementRef, public audio: AudioProvider,
+    public animationFrameRequest: AnimationFrameRequestProvider,
+    public events: Events) {
     console.log('Hello NarratorComponent Component');
-    this.text = 'Hello World';
+
   }
 
+  svgInserted(e) {
+    this.events.publish('svg:narrator-loaded');
+    this.setUpMouths();
+  }
+
+  setUpMouths() {
+    this.svg = this.elementRef.nativeElement.querySelector('svg');
+
+  }
 }

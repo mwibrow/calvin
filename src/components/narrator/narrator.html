@@ -1,4 +1,7 @@
-<!-- Generated template for the NarratorComponent component -->
-<div>
-  {{text}}
+<div class="narrator">
+  <div class="narrator-container">
+    <div #narratorContainer class="svg-narrator avatar-calvin" [inlineSVG]="'assets/images/calvin-mouths.svg'" (onSVGInserted)="svgInserted($event)">
+
+    </div>
+  </div>
 </div>

@@ -12,6 +12,11 @@
 
 <ion-content  class="no-scroll">
   <ion-grid class="centered">
+    <ion-row>
+      <ion-col>
+        <narrator></narrator>
+      </ion-col>
+    </ion-row>
     <ion-row justify-content-center align-items-center>
       <ion-col col-4 *ngFor="let keywordGroup of getKeywordGroupList(); let i = index">
           <svg-trapezium  [color]="trapeziumColor">

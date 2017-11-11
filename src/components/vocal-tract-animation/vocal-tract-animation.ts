@@ -11,7 +11,6 @@ const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
 @Component({
   selector: 'vocal-tract-animation',
   templateUrl: 'vocal-tract-animation.html',
-  providers: [AudioProvider]
 })
 export class VocalTractAnimationComponent {
 
