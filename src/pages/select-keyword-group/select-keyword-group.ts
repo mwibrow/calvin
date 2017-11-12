@@ -41,7 +41,7 @@ export class SelectKeywordGroupPage {
     return uri;
   }
 
-  goHome() {
+  goBack() {
     this.navCtrl.pop();
   }
 
