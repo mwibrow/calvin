@@ -3,14 +3,11 @@
 
 <ion-header transparent>
   <ion-navbar hideBackButton>
-    <ion-title *ngIf="isViewState(ViewState.Examples)">
+    <ion-title>
       <svg-trapezium>
-        Examples
+        {{ isViewState(ViewState.Audio) ? 'Listen' : isViewState(ViewState.Animation) ? 'Watch' : 'Choose an example' }}
       </svg-trapezium>
     </ion-title>
-    <ion-title *ngIf="!isViewState(ViewState.Examples)" hidden>
-        Vowel trainer
-      </ion-title>
   </ion-navbar>
 </ion-header>
 
