@@ -5,11 +5,11 @@ page-example-word {
     position: absolute;
     right: 0px;
     bottom: 0px;
-    overflow: hidden;
+    overflow: visible !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 500;
+    z-index: 800;
     transform: translate(25%,25%);
   }
 
@@ -26,6 +26,10 @@ page-example-word {
     width: 15vh;
     height: 15vh;
     display: flex;
+  }
+
+  .float:hover {
+    box-shadow: 0px 0px 30px  color($md-palette, md-white) !important;
   }
 
 

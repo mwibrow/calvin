@@ -2,14 +2,16 @@
 <background [color]="backgroundColor" pattern="circles"></background>
 
 <ion-header transparent>
-  <!-- <ion-navbar transparent hideBackButton> -->
-    <!-- <ion-title><logo (click)="goHome()"></logo></ion-title> -->
-    <ion-buttons left>
-        <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
-            <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-        </button>
-      </ion-buttons>
-  <!-- </ion-navbar> -->
+  <ion-navbar hideBackButton>
+    <ion-title *ngIf="isViewState(ViewState.Examples)">
+      <svg-trapezium>
+        Examples
+      </svg-trapezium>
+    </ion-title>
+    <ion-title *ngIf="!isViewState(ViewState.Examples)" hidden>
+        Vowel trainer
+      </ion-title>
+  </ion-navbar>
 </ion-header>
 
 
@@ -57,6 +59,7 @@
   </ion-grid>
 
   <ion-grid [hidden]="!isViewState(ViewState.Examples)" class="centered">
+
     <ion-row text-center>
       <ion-col>
         <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
@@ -64,14 +67,6 @@
         </keyword>
       </ion-col>
     </ion-row>
-    <!-- <ion-row *ngFor="let item of getExampleWords(); let i = index" text-center class="row-no-padding">
-      <ion-col>
-        <button ion-button round class="example-word-button" (click)="showExampleWord(i)">
-          {{item}}
-        </button>
-      </ion-col>
-
-    </ion-row> -->
     <ion-row justify-content-center align-items-center>
       <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
         <div class="media-small" style="position: relative;">
@@ -88,9 +83,6 @@
           <button class="preview-audio-button" (click)="playExampleWord(wordId)">
               <span>{{getExampleWord(wordId).display}}</span>
             </button>
-          <!-- <button class="preview-audio-button"  (click)="playExampleWord(wordId)">
-              <ion-icon name="play"></ion-icon>
-          </button> -->
         </div>
       </ion-col>
     </ion-row>
@@ -99,6 +91,11 @@
 </ion-content>
 
 <ion-footer padding>
+
+  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
+      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+  </button>
+
   <ion-buttons text-center>
     <button ion-button icon-only class="toolbar-button view-button"
         (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
@@ -114,4 +111,5 @@
       </ion-icon>
     </button>
   </ion-buttons>
+
 </ion-footer>

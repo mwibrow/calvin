@@ -482,23 +482,26 @@ $spinner-border: 10px;
 }
 
 ion-navbar, .toolbar, .toolbar-md {
-    contain: layout !important;
+    contain: none !important;
     overflow: visible;
 }
 
-.content-title {
-    .svg-trapezium-background {
-        fill: color($md-palette, md-light-blue);
-    }
-    .toolbar-title {
-        color: color($md-palette, md-white);
-        font-weight: bold;
-        font-size: 5vh;
-        padding: 0 5%;
-    }
-
+.float-left {
+    float: left;
 }
 
+ion-title {
+    width: auto;
+    .svg-trapezium-background {
+        fill: color($md-palette, md-light-blue) !important;
+    }
+    .svg-trapezium {
+       height: 8.75vh !important;
+    }
+    .toolbar-title {
+       color:  color($md-palette, md-white);
+    }
+}
 
 
 
@@ -534,6 +537,13 @@ ion-header, ion-footer {
     }
 }
 
+
+ion-header {
+    font-size: 6.25vh;
+    div {
+        font-size: 6.25vh;
+    }
+}
 .exit-buttonm .navigate-button, .keyword-control-button, .keyword-group-button {
     width: 10vh;
     height: 10vh;

@@ -1,11 +1,13 @@
 
 <background [color]="getBackgroundColor()" pattern="squares"></background>
 <ion-header transparent>
-  <ion-buttons left>
-    <button ion-button class="navigate-button navigate-button-back" (click)="goBack()">
-        <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-    </button>
-  </ion-buttons>
+  <ion-navbar hideBackButton>
+    <ion-title>
+      <svg-trapezium>
+        Select a word
+      </svg-trapezium>
+    </ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content class="no-scroll keyword-group-size-{{getKeywordList().length}}">
@@ -33,9 +35,7 @@
 </ion-content>
 
 <ion-footer>
-  <ion-buttons end>
-    <button *ngIf="canGoForward()" ion-button class="navigate-button pulse" (click)="goForward()">
+  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
       <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-    </button>
-  </ion-buttons>
+  </button>
 </ion-footer>
