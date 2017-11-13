@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import * as InlineWorker from 'inline-worker';
-import * as fs from 'fs';
 import * as WavDecoder from 'wav-decoder';
 import * as WavEncoder from 'wav-encoder';
 
@@ -78,17 +77,6 @@ const raise = (err, msg='') => {
     console.log(err);
 }
 
-const readWav = (filepath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filepath, (err, buffer) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(buffer);
-    });
-  });
-};
-
 export class AudioPlayer extends AudioEventHandler {
 
   private context: AudioContext;
@@ -134,24 +122,6 @@ export class AudioPlayer extends AudioEventHandler {
   initialiseSuccess(stream) {
     this.initialised = true;
     this.emit('init');
-  }
-
-  loadWav(wavFile: string) {
-    return new Promise((resolve, reject) => {
-      readWav(wavFile).then((fileBuffer) => {
-        return WavDecoder.decode(fileBuffer);
-      }).then((audioData) => {
-          this.buffer = this.context.createBuffer(
-            audioData.numberOfChannels,
-            audioData.length,
-            audioData.sampleRate);
-          for (let i: number = 0; i < audioData.numberOfChannels; i ++) {
-            this.buffer.copyToChannel(audioData.channelData[i], 0);
-          }
-          this.emit('load');
-          resolve();
-      });
-    });
   }
 
   addNode(node: AudioNode) {
@@ -460,25 +430,6 @@ export class AudioRecorder extends AudioEventHandler {
       buffer: [
         event.inputBuffer.getChannelData(0)
       ]
-    });
-  }
-
-  saveWav(wavFile: string) {
-    return new Promise((resolve, reject) => {
-      let channelData: Array<Float32Array> = new Array<Float32Array>();
-      for (let i: number = 0; i < this.recordBuffer.numberOfChannels; i ++) {
-        channelData.push(new Float32Array(this.recordBuffer.length));
-        this.recordBuffer.copyFromChannel(channelData[i], i, 0);
-      }
-      let audioData: any = {
-        sampleRate: this.context.sampleRate,
-        channelData: channelData
-      }
-
-      WavEncoder.encode(audioData).then((fileBuffer) => {
-        fs.writeFileSync(wavFile, new Buffer(fileBuffer));
-        resolve();
-      });
     });
   }
 }
