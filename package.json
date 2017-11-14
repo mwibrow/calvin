@@ -21,8 +21,14 @@
       "www/**/*",
       "electron/*"
     ],
+    "mac": {
+      "icon": "build/icon.icns"
+    },
     "linux": {
       "category": "Education"
+    },
+    "win": {
+      "icon": "build/icon.ico"
     }
   },
   "scripts": {
