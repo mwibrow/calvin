@@ -69,7 +69,7 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.0.0",
     "@types/electron": "1.6.10",
-    "@types/node": "^8.0.51",
+    "@types/node": "8.0.51",
     "electron": "1.7.8",
     "electron-builder": "19.33.0",
     "fs-extra": "4.0.2",
