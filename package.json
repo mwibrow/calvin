@@ -23,6 +23,9 @@
       "www/**/*",
       "electron/*"
     ],
+    "dmg": {
+      "icon": "build/icon.icns"
+    },
     "mac": {
       "icon": "build/icon.icns"
     },
