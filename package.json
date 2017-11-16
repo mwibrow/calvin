@@ -27,7 +27,8 @@
       "icon": "build/icon.icns"
     },
     "mac": {
-      "icon": "build/icon.icns"
+      "icon": "build/icon.icns",
+      "category": "public.app-category.education"
     },
     "linux": {
       "category": "Education"
@@ -46,7 +47,7 @@
     "electron": "electron .",
     "electron dist": "electron .",
     "electron:dev": "IONIC_ELECTRON_DEBUG=1 electron .",
-    "electron:build": "npm run build && node_modules/.bin/build",
+    "electron:build": "npm run build-all && node scripts/electron-build",
     "build-all": "npm run clean && npm run config && npm run build",
     "config": "npm run config:copy-media && npm run config:svg",
     "config:copy-media": "node scripts/calvin-config.js",
