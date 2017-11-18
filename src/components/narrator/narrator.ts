@@ -34,3 +34,56 @@ export class NarratorComponent {
 
   }
 }
+
+
+class Narration {
+
+  narratives: Narrative[];
+  index: number;
+  continue: Boolean;
+
+  constructor() {
+    this.narratives = new Array<Narrative>();
+    this.index = 0;
+    this.continue = false;
+  }
+
+  narrate() {
+    this.index = 0;
+    this.continue = true;
+    this._narrate();
+  }
+
+  private async _narrate() {
+    if (this.index >= this.narratives.length) return;
+    await this.narratives[this.index].narrate();
+    if (this.continue) {
+      this.index ++;
+      this._narrate();
+    }
+  }
+
+}
+
+class Narrative {
+
+  player: AudioPlayer;
+  audioUrl: string;
+  onStart: Function;
+  onStop: Function;
+
+  async narrate() {
+    this.onStart && this.onStart();
+    try {
+      await this.player.playUrl(this.audioUrl);
+    } catch (err) {
+
+    } finally {
+      this.onStop && this.onStop();
+    }
+  }
+
+  stop() {
+    this.player.stop();
+  }
+}
