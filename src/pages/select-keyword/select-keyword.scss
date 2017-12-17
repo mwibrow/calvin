@@ -11,6 +11,7 @@ page-select-keyword {
     }
     .media-button:hover {
         box-shadow: 0px 0px 30px  color($md-palette, md-white);
+        z-index: 500;
     }
     mark {
         position: absolute;
