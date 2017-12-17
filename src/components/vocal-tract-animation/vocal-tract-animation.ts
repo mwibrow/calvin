@@ -43,7 +43,7 @@ export class VocalTractAnimationComponent {
     this.vocalTract = {};
 
     this.rangeMin = 0;
-    this.rangeMax = 175;
+    this.rangeMax = 150;
     this.range = {
       min: `${this.rangeMin}`,
       max: `${this.rangeMax + 1}`

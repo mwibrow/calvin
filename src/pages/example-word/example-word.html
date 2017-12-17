@@ -30,7 +30,7 @@
         <ion-grid>
           <ion-row text-center>
             <ion-col>
-              <div class="media-wrapper">
+              <div class="media-wrapper media-example">
                 <svg-trapezium [color]="imageColor" class="media-trapezium">
                   <div class="media media-image media-frame">
                     <img *ngIf="getImageUri()" [src]="getImageUri()"/>
@@ -54,7 +54,7 @@
           <ion-grid>
             <ion-row text-center>
               <ion-col>
-                <div class="media-wrapper">
+                <div class="media-wrapper media-example">
                   <svg-trapezium  [color]="imageColor" class="media-trapezium">
                     <div class="media media-video media-frame">
                       <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" #videoPlayer></video-player>
