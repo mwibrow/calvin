@@ -79,6 +79,7 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
+    "7zip-bin": "^2.3.4",
     "@ionic/app-scripts": "3.0.0",
     "@types/electron": "1.6.10",
     "@types/electron-builder": "^2.8.0",
