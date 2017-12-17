@@ -14,9 +14,9 @@ var config = yaml.readSync(path.join('..', 'config', 'calvin.yaml'))
 fs.writeFileSync(path.join(appDataDir, 'config.json'), JSON.stringify(config, null, 2))
 
 
-fs.removeSync(path.join(assetsDir, 'audio'))
-fs.removeSync(path.join(assetsDir, 'video'))
-fs.removeSync(path.join(assetsDir, 'images'))
+// fs.removeSync(path.join(assetsDir, 'audio'))
+// fs.removeSync(path.join(assetsDir, 'video'))
+// fs.removeSync(path.join(assetsDir, 'images'))
 
 
 console.log('Copying example words...')
