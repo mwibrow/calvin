@@ -8,6 +8,8 @@ export const beep = {
     "joy": "jh oy",
     "clock": "k l oh k",
     "clown": "k l aw n",
+    "cow": "k aw",
+    "owl": "aw l",
     "spade": "s p ey d",
     "skirt": "s k er t",
     "squares": "s k w ea z",

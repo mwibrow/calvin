@@ -16,29 +16,26 @@ export class WordTypes {
 
 export class Config {
 
+  public talkers: {[id: string]: {display: String, avatar: string}}
   public WordTypes = WordTypes;
-  public talkers: Array<string>;
   public keywords: {
-    WordTypes: Array<string>,
-    talkerIds: Array<string>,
-    defaultTalkerId: string
+    talkers: string[],
+    items: string[]
   };
-  public exampleWords: {
-    WordTypes: Array<string>,
-    talkerIds: Array<string>,
-    defaultTalkerId: string
-  };
+  public words: {
+    talkers: string[],
+    items: string[]
+  }
   public vowels: {
-    hvd: Array<string>,
-    talkerIds: Array<string>,
-    defaultTalkerId: string
-  };
+    talkers: string[],
+    items: string[]
+  }
   public keywordGroups: any;
   constructor() {
     this.talkers = CONFIG['talkers'];
     this.keywords = CONFIG['keywords'];
-    this.exampleWords = CONFIG['exampleWords']
-    this.keywordGroups = CONFIG['keywordGroups']
+    this.words = CONFIG['words']
+    this.keywordGroups = CONFIG['groups']
     this.vowels = CONFIG['vowels']
   }
 
@@ -87,22 +84,22 @@ export class AppDataProvider {
   config: Config;
 
   talker: Talker;
-  talkers: any;
+  talkers: {[key: string]: Talker};
   talkerList: Array<string>;
   talkerIndex: number = 0;
 
   keyword: Word;
-  keywords: any;
+  keywords: {[key: string]: Word};;
   keywordList: Array<string>;
   keywordIndex: number = 0;
 
   exampleWord: Word;
-  exampleWords: any;
+  exampleWords: {[key: string]: Word};
   exampleWordList: Array<string>;
   exampleWordIndex: number = 0;
 
   keywordGroup: WordGroup;
-  keywordGroups: any;
+  keywordGroups: {[key: string]: WordGroup};
   keywordGroupList: Array<string>;
   keywordGroupIndex: number = 0;
   keywordExampleMap: any;
@@ -132,26 +129,6 @@ export class AppDataProvider {
     return this.keywords[this.keywordList[this.keywordIndex]];
   }
 
-  nextKeyword() {
-    if (this.keywordIndex >= this.keywordList.length - 1) {
-      this.keywordIndex = this.keywordList.length - 1;
-    } else {
-      this.keywordIndex ++;
-    }
-  }
-
-  previousKeyword() {
-    if (this.keywordIndex <= 0) {
-      this.keywordIndex = 0;
-    } else {
-      this.keywordIndex --;
-    }
-  }
-
-  prevKeyword() {
-    this.keywordIndex = (this.keywordIndex % this.keywordList.length) + 1;
-  }
-
   getExampleWord(): Word {
     return this.exampleWords[this.keywordExampleMap[this.getKeyword().hvd][this.exampleWordIndex]];
   }
@@ -169,32 +146,50 @@ export class AppDataProvider {
   }
 
   getAudioUri(talkerId: string, wordId: string, type: WordTypes, extension: string='wav'): string {
-    return `assets/audio/${type}/${talkerId}/${wordId}.${extension}`;
+    let realType = 'words';
+    if (type === WordTypes.Vowels) {
+      realType = 'vowels'
+      if (this.config.vowels.talkers.indexOf(talkerId) === -1) {
+        talkerId = this.config.vowels.talkers[0]
+      }
+    }
+    const uri = `assets/audio/${realType}/${talkerId}/${wordId}.${extension}`;
+    return uri
   }
 
   getVideoUri(talkerId: string, type: WordTypes, wordId: string, extension: string='mp4'): string {
-    return `assets/video/${type}/${talkerId}/${wordId}.${extension}`;
+    let realType = 'words';
+    if (type === WordTypes.Vowels) {
+      realType = 'vowels'
+    }
+    return `assets/video/${realType}/${talkerId}/${wordId}.${extension}`;
   }
 
   getImageUri(wordId: string, type: WordTypes, extension: string='png'): string {
-    return `assets/images/${type}/${wordId}.${extension}`;
+    let realType = 'words';
+    if (type === WordTypes.Vowels) {
+      realType = 'vowels'
+    }
+    return `assets/images/${realType}/${wordId}.${extension}`;
   }
 
   setUpTalkers(config) {
-    this.talkerList = config.talkers;
-    this.talkers = config.talkers.reduce((obj, talker) => {
-      let name = talker[0].toUpperCase() + talker.slice(1);
-      return Object.assign(obj, {[talker]: new Talker(talker, name, name, talker)})}, {});
+    this.talkerList = Object.keys(config.talkers);
+    this.talkers = this.talkerList.reduce((obj, talker) => {
+      let name = config.talkers[talker].display
+      let avatar = config.talkers[talker].avatar
+      return Object.assign(obj, {[talker]: new Talker(talker, name, name, avatar)})}, {});
   }
 
   setUpKeywords(config) {
-    this.keywordList = config.keywords.words;
+    this.keywordList = config.keywords.items;
     this.keywords = this.keywordList.reduce(
       (obj, keyword) => Object.assign(obj, {[keyword]: this.setUpWord(keyword)}), {})
   }
 
   setUpExampleWords(config: any) {
-    this.exampleWordList = config.exampleWords.words;
+
+    this.exampleWordList = config.words.items.filter(item => config.keywords.items.indexOf(item) === -1)
     this.exampleWords = this.exampleWordList.reduce(
       (obj, word) => Object.assign(obj, {[word]: this.setUpWord(word)}), {})
   }
@@ -224,18 +219,15 @@ export class AppDataProvider {
     return new Word(word.toLowerCase(), word, highlightVowel(word), hvd, arpa_to_description_map[vowel])
   }
 
-  setUpKeywordGroups(config: any) {
+  setUpKeywordGroups(config: Config) {
     let words: Array<string>;
     this.keywordGroups = {};
     this.keywordGroupList = [];
-    Object.keys(config.keywordGroups.groups).map((name) => {
+
+    Object.keys(config.keywordGroups).map((name) => {
       this.keywordGroupList.push(name);
-      words = config.keywordGroups.groups[name].map((word) => {
-        if (word.includes('/')) {
-          return word.split('/')[1].trim()
-        } else {
-          return word;
-        }
+      words = config.keywordGroups[name].map((hvd) => {
+        return this.keywordList.filter(keyword => this.keywords[keyword].hvd === hvd)[0]
       });
       this.keywordGroups[name] = new WordGroup(name, name, words);
     });

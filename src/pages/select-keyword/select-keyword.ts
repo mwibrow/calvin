@@ -56,7 +56,7 @@ export class SelectKeywordPage {
   }
 
   playKeyword(keywordId: string) {
-    let uri = this.appData.getAudioUri(this.appData.config.keywords.defaultTalkerId, keywordId, WordTypes.Keywords);
+    let uri = this.appData.getAudioUri(this.appData.talker.id, keywordId, WordTypes.Keywords);
     this.player.playUrl(uri);
   }
 

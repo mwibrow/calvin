@@ -141,12 +141,12 @@ export class VowelTrainerPage {
   }
 
   getKeywordUri() {
-    let uri = this.appData.getAudioUri(this.appData.config.keywords.defaultTalkerId, this.appData.getKeyword().id, WordTypes.Keywords);
+    let uri = this.appData.getAudioUri(this.appData.talker.id, this.appData.getKeyword().id, WordTypes.Keywords);
     return uri;
   }
 
   getVowelUri() {
-    let uri = this.appData.getAudioUri(this.appData.config.vowels.defaultTalkerId, this.appData.getKeyword().hvd, WordTypes.Vowels);
+    let uri = this.appData.getAudioUri(this.appData.talker.id, this.appData.getKeyword().hvd, WordTypes.Vowels);
     return uri;
   }
 

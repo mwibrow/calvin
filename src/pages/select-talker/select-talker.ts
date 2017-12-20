@@ -39,7 +39,7 @@ export class SelectTalkerPage {
   }
 
   getTalkers() {
-    let talkers = this.appData.config.exampleWords.talkerIds.map(id => this.appData.talkers[id]);
+    let talkers = this.appData.config.words.talkers.map(id => this.appData.talkers[id]);
     return talkers;
   }
 
