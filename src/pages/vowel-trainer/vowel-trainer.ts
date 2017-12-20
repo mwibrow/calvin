@@ -1,7 +1,6 @@
 import { Component, ViewChild, NgZone } from '@angular/core';
 import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider, Word, Talker, WordTypes } from '../../providers/app-data/app-data';
-// import { NarratorComponent } from '../../components/narrator/narrator';
 import { ExampleWordPage } from '../../pages/example-word/example-word';
 import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
@@ -23,7 +22,6 @@ enum ViewState {
 })
 export class VowelTrainerPage {
 
-  // @ViewChild('narrator') narrator: NarratorComponent;
   @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
   @ViewChild('keyword') keyword: KeywordComponent;
   @ViewChild('keywordVowel') keywordVowel: KeywordComponent;
@@ -67,7 +65,6 @@ export class VowelTrainerPage {
   changeViewState(viewState: ViewState) {
     if (this.viewState !== viewState) {
       this.viewState = viewState;
-      //this.narrator.play();
       if (this.viewState === ViewState.Animation) {
         this.setUpAnimation();
       }
@@ -135,9 +132,11 @@ export class VowelTrainerPage {
     this.setUpAnimation();
   }
 
-  playExampleWord(wordId: string) {
-    let uri = this.appData.getAudioUri(this.appData.getTalker().id, wordId, WordTypes.ExampleWords);
-    this.player.playUrl(uri);
+  playExampleWord(word: string, index: number) {
+    let uri = this.appData.getAudioUri(this.appData.getTalker().id, word, WordTypes.ExampleWords);
+    this.player.playUrl(uri).then(() => {
+      this.showExampleWord(index)
+    }).catch(() => {});
   }
 
   getKeywordUri() {

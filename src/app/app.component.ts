@@ -4,11 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { StartPage } from '../pages/start/start';
-import { SelectKeywordGroupPage } from '../pages/select-keyword-group/select-keyword-group';
-import { SelectKeywordPage } from '../pages/select-keyword/select-keyword';
-import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
-import { ExampleWordPage } from '../pages/example-word/example-word';
 @Component({
   templateUrl: 'app.html'
 })

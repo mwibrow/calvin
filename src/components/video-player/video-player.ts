@@ -1,4 +1,4 @@
-import { Component, ViewChild, Directive, Input, NgZone, ElementRef } from '@angular/core';
+import { Component, ViewChild, Input, NgZone, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'video-player',

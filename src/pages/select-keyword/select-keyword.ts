@@ -55,9 +55,11 @@ export class SelectKeywordPage {
     this.navCtrl.push(VowelTrainerPage);
   }
 
-  playKeyword(keywordId: string) {
-    let uri = this.appData.getAudioUri(this.appData.talker.id, keywordId, WordTypes.Keywords);
-    this.player.playUrl(uri);
+  playKeyword(keyword: string) {
+    let uri = this.appData.getAudioUri(this.appData.talker.id, keyword, WordTypes.Keywords);
+    this.player.playUrl(uri).then(() => {
+      this.setKeyword(keyword);
+    }).catch(() => {});
   }
 
   goBack() {
