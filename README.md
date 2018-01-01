@@ -34,7 +34,7 @@ other populations with different language backgrounds.
 However, it should be noted that the interface to *CALVin*
 is somewhat "colourful" (possibly garish) in order
 to contrast with the somewhat "un-fun" and drab interfaces
-developed for research software.
+often developed for research software.
 
 ## Implementation
 
