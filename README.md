@@ -1,6 +1,6 @@
 # CALVin
 
-**CALVin** or "Computer Assisted Learning for Vowels interface"
+*CALVin* or "Computer Assisted Learning for Vowels interface"
 is a reimplementation of the software described in
 Alshangiti W. (2015)
 *Speech production and perception in adult Arabic learners of English:
@@ -10,7 +10,7 @@ UCL (University College London).
 
 ## Overview
 
-Alshangiti W. (2015) describes **CALVin** a piece of
+Alshangiti W. (2015) describes *CALVin*: a piece of
 software designed to investigate the role of multi-talker and single-talker training in
 the perception and production of standard Southern British English
 (SSBE)
@@ -28,21 +28,21 @@ themselves and comparing their recordings with those of
 native SSBE speakers.
 
 The original research focussed on adult Arabic speakers
-and the current version of **CALVin** was developed to be used
+and the current version of *CALVin* was developed to be used
 with Arabic children, but in principle can be used with
 other populations with different language backgrounds.
-Howver, it should be noted that the interface to **CALVin**
+Howver, it should be noted that the interface to *CALVin*
 is somewhat "colourful" (possibly garish) in order
 to contrast with the somewhat "un-fun" and drab interfaces
 developed for research software.
 
 ## Implementation
 
-The current version of **CALVin** is an [Ionic](https://ionicframework.com) app which has been optimised
+The current version of *CALVin* is an [Ionic](https://ionicframework.com) app which has been optimised
 for use with [electron](https://electronjs.org/) which
 enabling its use on Linux, Windows and MacOS.
 
-**CALVin** requires a substantial amount of audio, video
+*CALVin* requires a substantial amount of audio, video
 and image data which is _not_ currently available via this repository.
 
 
