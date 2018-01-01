@@ -48,6 +48,10 @@ html, body,
     overflow-y: auto !important;
 }
 
+[scrollbar-y-auto] .scroll-content {
+    overflow-y: auto !important;
+  }
+
 // ion-footer, .footer, .footer-md {
 //   background-color: transparent !important;
 // }
