@@ -1,28 +1,19 @@
 
-<background color="black" pattern="none"></background>
+<background [color]="getBackgroundColor()" pattern="none"></background>
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-
-
-<ion-content padding class="no-scroll">
+<ion-content padding class="no-scroll no-header">
   <ion-grid>
     <ion-row justify-content-center>
-      <ion-col col-auto>
+      <ion-col>
         <div class="title">
-          <logo></logo>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row justify-content-center>
-      <ion-col col-auto no-padding>
-        <div class="calvin-frame-circle" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+            <svg-trapezium style="width: 100%;">
+          <div class="media media-image media-frame">
+            <logo></logo>
+          </div>
+          </svg-trapezium>
+
+        <div class="calvin-frame" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+      </div>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>

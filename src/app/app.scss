@@ -544,7 +544,7 @@ ion-header {
         font-size: 6.25vh;
     }
 }
-.exit-buttonm .navigate-button, .keyword-control-button, .keyword-group-button {
+.exit-button .navigate-button, .keyword-control-button, .keyword-group-button {
     width: 10vh;
     height: 10vh;
 
@@ -565,7 +565,7 @@ ion-header {
     height: 6.25vh;
 }
 
-.keyword-button, .example-word-button {
+.keyword-button, .example-word-button, .select-talker-button {
     height: 10vh;
     width: 30vh;
     font-size: 6.25vh;
@@ -608,9 +608,17 @@ page-vowel-trainer {
 }
 
 .title {
-    font-size: 12.5vh;
+    font-size: 14vh;
+    margin-bottom: 25vh;
     logo {
         padding: 2.5vh;
+    }
+    .calvin-frame {
+        width: 30vh;
+        height: 30vh;
+        left: calc(50% - 15vh);
+        top: calc(100% - 5vh);
+        z-index: 1000;
     }
 }
 

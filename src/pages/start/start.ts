@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController, NavParams } from 'ionic-angular';
+
 
 import * as mdColors from 'material-colors';
 
@@ -11,11 +12,16 @@ import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-g
 })
 export class StartPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  title = 'CALVin'
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _app: App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StartPage');
+  }
+
+  ionViewDidEnter() {
+    this._app.setTitle(this.title);
   }
 
   getBackgroundColor() {

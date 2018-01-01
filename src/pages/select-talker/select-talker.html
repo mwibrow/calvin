@@ -1,24 +1,29 @@
-<!-- <background color="white"></background> -->
-<ion-header>
-  <ion-navbar>
-    <ion-title>Select talker</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="cancel()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
+<background [color]="getBackgroundColor()" pattern="none"></background>
+
+<ion-header transparent>
+  <ion-navbar hideBackButton>
+    <ion-title>
+      <svg-trapezium>
+       Choose a speaker
+      </svg-trapezium>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="no-scroll">
-<ion-list>
-  <ion-item *ngFor="let talker of getTalkers()" (click)="setTalker(talker)">
-    <ion-avatar item-start>
-      <div class="avatar {{isTalker(talker) ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"></div>
-    </ion-avatar>
-    <ion-label class="{{isTalker(talker) ? 'is-selected' : ''}}">{{talker.displayName}}</ion-label>
-  </ion-item>
-</ion-list>
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let talker of getTalkers()" (click)="setTalker(talker)">
+      <ion-avatar>
+        <div class="avatar media-small {{isTalker(talker) ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"></div>
+
+      <button class="select-talker-button" (click)="setTalker(talker)">
+          <span>{{talker.displayName}}</span>
+        </button>
+      </ion-avatar>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 <!-- <ion-fab *ngIf="!!appData.talker" bottom right edge>
   <button ion-fab large color="primary" (click)="continue()"><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab> -->

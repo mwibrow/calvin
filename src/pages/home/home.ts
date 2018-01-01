@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { NavController, App, ModalController, AlertController } from 'ionic-angular';
+import { NavController, App, AlertController } from 'ionic-angular';
 import { SelectTalkerPage } from '../select-talker/select-talker';
 import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 import { AudioProvider } from '../../providers/audio/audio';
@@ -28,14 +28,18 @@ export class HomePage {
 
   audioAvailable: boolean;
   remote: any;
+  title = 'CALVin'
   constructor(
     private audio: AudioProvider,
     public navCtrl: NavController,
-    public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public appData: AppDataProvider,
     private app: App) {
       this.remote = remote;
+  }
+
+  getBackgroundColor() {
+    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ngOnInit() {
@@ -78,8 +82,7 @@ export class HomePage {
   }
 
   showSelectTalkerModal(nextPage: any) {
-    const selectTalkerModal = this.modalCtrl.create(SelectTalkerPage);
-    selectTalkerModal.present();
+    const selectTalkerModal = this.navCtrl.push(SelectTalkerPage);
   }
 
   handleKeyboardEvents(event) {
