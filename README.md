@@ -31,7 +31,7 @@ The original research focussed on adult Arabic speakers
 and the current version of *CALVin* was developed to be used
 with Arabic children, but in principle can be used with
 other populations with different language backgrounds.
-Howver, it should be noted that the interface to *CALVin*
+However, it should be noted that the interface to *CALVin*
 is somewhat "colourful" (possibly garish) in order
 to contrast with the somewhat "un-fun" and drab interfaces
 developed for research software.
