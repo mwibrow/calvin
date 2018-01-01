@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { NavController, App, AlertController } from 'ionic-angular';
 import { SelectTalkerPage } from '../select-talker/select-talker';
-import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
@@ -78,11 +77,7 @@ export class HomePage {
   }
 
   onStart() {
-    this.showSelectTalkerModal(SelectKeywordGroupPage);
-  }
-
-  showSelectTalkerModal(nextPage: any) {
-    const selectTalkerModal = this.navCtrl.push(SelectTalkerPage);
+    this.navCtrl.push(SelectTalkerPage);
   }
 
   handleKeyboardEvents(event) {

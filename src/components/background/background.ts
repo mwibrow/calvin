@@ -31,6 +31,9 @@ export class BackgroundComponent {
       case 'horizontal-lines':
         this.svgPath = this.horizontalLines();
         break;
+      case 'vertical-lines':
+        this.svgPath = this.verticalLines();
+        break;
       case 'circles':
         this.svgPath = this.circles();
         break;
@@ -65,6 +68,30 @@ export class BackgroundComponent {
       for (j = intervals; j >= -1; j --) {
         x = (j + 0.5) * hFactor + Math.random() * 2 - 1;
         y = (i + 0.5) * vFactor - thickness * (1 - Math.random());
+        d.push(`L ${x} ${y}`);
+      }
+      d.push('Z');
+    }
+    return d.join(' ');
+  }
+
+  verticalLines() {
+    let i: number, j: number, x: number, y: number;
+    const intervals: number = 10, width: number = 100, height: number = 100, thickness: number = 1;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
+      d.push(`M ${x} 0`);
+      for (j = 0; j <= intervals; j ++) {
+        y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
+        x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
+        d.push(`L ${x} ${y}`);
+      }
+      for (j = intervals; j >= -1; j --) {
+        y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
+        x = (i + 0.5) * hFactor - thickness * (1 - Math.random());
         d.push(`L ${x} ${y}`);
       }
       d.push('Z');

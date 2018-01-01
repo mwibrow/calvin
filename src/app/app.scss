@@ -512,9 +512,8 @@ ion-content, ion-header, ion-footer {
     background-color: transparent !important;
 }
 ion-content {
-    height: 80vh;
+    height: 85vh;
     margin-top: 10vh;
-    margin-bottom: 10vh;
 }
 
 ion-header {
@@ -607,17 +606,17 @@ page-vowel-trainer {
     }
 }
 
-.title {
-    font-size: 14vh;
-    margin-bottom: 25vh;
+.home-page-title {
+    font-size: 12.5vh;
+    margin-bottom: 20vh;
     logo {
         padding: 2.5vh;
     }
     .calvin-frame {
-        width: 30vh;
-        height: 30vh;
-        left: calc(50% - 15vh);
-        top: calc(100% - 5vh);
+        width: 25vh;
+        height: 25vh;
+        left: calc(50% - 12.5vh);
+        top: calc(100% - 7.5vh);
         z-index: 1000;
     }
 }

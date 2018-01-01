@@ -1,4 +1,4 @@
-<background [color]="getBackgroundColor()" pattern="none"></background>
+<background [color]="getBackgroundColor()" pattern="vertical-lines"></background>
 
 <ion-header transparent>
   <ion-navbar hideBackButton>
@@ -13,7 +13,7 @@
 <ion-content padding class="no-scroll">
 <ion-grid>
   <ion-row>
-    <ion-col *ngFor="let talker of getTalkers()" (click)="setTalker(talker)">
+    <ion-col *ngFor="let talker of getTalkers()">
       <ion-avatar>
         <div class="avatar media-small {{isTalker(talker) ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"></div>
 
@@ -31,9 +31,7 @@
 
 
 <ion-footer>
-  <ion-buttons end>
-    <button *ngIf="!!appData.talker" ion-button class="navigate-button" (click)="continue()">
+  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
       <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-    </button>
-  </ion-buttons>
+  </button>
 </ion-footer>

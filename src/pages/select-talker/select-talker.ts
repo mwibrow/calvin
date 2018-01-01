@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { IonicPage, App, NavController } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
 import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 
@@ -14,9 +14,8 @@ export class SelectTalkerPage {
 
   constructor(
     public appData: AppDataProvider,
-    public viewCtrl: ViewController,
-    public appCtrl: App,
-    public navParams: NavParams) {
+    public navCtrl: NavController,
+    public app: App) {
   }
 
   getBackgroundColor() {
@@ -25,19 +24,12 @@ export class SelectTalkerPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectTalkerPage');
+    this.app.setTitle('CALVin');
   }
 
   setTalker(talker: Talker) {
     this.appData.setTalker(talker);
-  }
-
-  cancel() {
-    this.viewCtrl.dismiss(false);
-  }
-
-  continue() {
-    this.viewCtrl.dismiss(true);
-    this.appCtrl.getRootNav().push(SelectKeywordGroupPage);
+    this.navCtrl.push(SelectKeywordGroupPage);
   }
 
   isTalker(talker: Talker) {
@@ -47,6 +39,10 @@ export class SelectTalkerPage {
   getTalkers() {
     let talkers = this.appData.config.words.talkers.map(id => this.appData.talkers[id]);
     return talkers;
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
 }
