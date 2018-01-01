@@ -44,6 +44,7 @@ export class HomePage {
 
   ionViewDidEnter() {
     this.app.setTitle('CALVin');
+    document.getElementById('home-page-start-button').focus()
   }
 
   checkAudio() {

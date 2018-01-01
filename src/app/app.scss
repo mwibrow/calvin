@@ -36,21 +36,20 @@ html, body,
     // background-image: url('/assets/images/drawing.svg');
     background-repeat: repeat;
 }
-.no-scroll .scroll-content{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    height: 100% !important;
-    // overflow: visible !important;
-    overflow-y: auto !important;
+.no-scroll, .scroll-content{
+    padding-top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible !important;
+    //overflow-y: auto !important;
+
+    // ion-grid, ion-row, ion-col {
+    //     padding: 0 !important;
+    //     margin:  0 !important;
+    // }
 }
 
-[scrollbar-y-auto] .scroll-content {
-    overflow-y: auto !important;
-  }
 
 // ion-footer, .footer, .footer-md {
 //   background-color: transparent !important;
@@ -519,7 +518,7 @@ ion-content, ion-header, ion-footer {
     background-color: transparent !important;
 }
 ion-content {
-    height: 85vh;
+    height: 80vh;
     margin-top: 10vh;
 }
 
@@ -614,10 +613,13 @@ page-vowel-trainer {
 }
 
 .home-page-title {
-    font-size: 12.5vh;
+    font-size: 12.5vh !important;
     margin-bottom: 20vh;
     logo {
         padding: 2.5vh;
+    }
+    .svg-trapezium-content {
+        min-width: 90%;
     }
     .calvin-frame {
         width: 25vh;

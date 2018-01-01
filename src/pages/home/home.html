@@ -1,7 +1,7 @@
 
 <background [color]="getBackgroundColor()" pattern="diamonds"></background>
 
-<ion-content padding  overflow-scroll="false" class="no-scroll" scrollbar-y-auto>
+<ion-content class="no-scroll">
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col>
@@ -34,7 +34,7 @@
     </ion-row>
     <ion-row *ngIf="audioAvailable"  justify-content-center>
       <ion-col col-auto>
-        <button ion-button (click)="onStart()" class="example-word-button">
+        <button ion-button (click)="onStart()" class="example-word-button" id="home-page-start-button">
           <span>Start</span>
         </button>
       </ion-col>
