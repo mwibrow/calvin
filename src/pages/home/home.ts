@@ -17,11 +17,7 @@ const remote = _remote;
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  host: {
-    '(document:keydown)': 'handleKeyboardEvents($event)',
-    '(document:keyup)': 'handleKeyboardEvents($event)'
-  }
+  templateUrl: 'home.html'
 })
 export class HomePage {
 
@@ -78,6 +74,11 @@ export class HomePage {
 
   onStart() {
     this.navCtrl.push(SelectTalkerPage);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  onKeypress(event: KeyboardEvent) {
+    this.handleKeyboardEvents(event)
   }
 
   handleKeyboardEvents(event) {

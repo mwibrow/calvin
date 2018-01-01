@@ -236,6 +236,9 @@ $spinner-border: 10px;
 
 .calvin-logo {
     display: inline-block;
+    span {
+        font-family: Crafty Girls;
+    }
     span:nth-child(1) {
         color: color($md-palette, md-red);
     }
@@ -547,12 +550,12 @@ ion-header {
         font-size: 6.25vh;
     }
 }
-.exit-button .navigate-button, .keyword-control-button, .keyword-group-button {
+.view-button, .exit-button, .navigate-button, .keyword-control-button, .keyword-group-button {
     width: 10vh;
     height: 10vh;
 
     ion-icon {
-        font-size: 5vh;
+        font-size: 6.25vh;
     }
 
 }
