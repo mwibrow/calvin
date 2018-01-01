@@ -40,6 +40,9 @@ export class BackgroundComponent {
       case 'squares':
         this.svgPath = this.squares();
         break;
+      case 'diamonds':
+        this.svgPath = this.diamonds();
+        break;
       case 'stars':
         this.svgPath = this.stars();
         break;
@@ -138,6 +141,26 @@ export class BackgroundComponent {
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
         d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w} ${y + h} L ${x} ${y + h} Z`);
+      }
+    }
+    return d.join(' ');
+  }
+
+  diamonds() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor;
+        h = w * aspectRatio;
+
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x - w / 2} ${y} L ${x} ${y + h / 2} L ${x + w / 2} ${y} L ${x} ${y - h / 2} Z`);
       }
     }
     return d.join(' ');
