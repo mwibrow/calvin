@@ -1,7 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { NavController, App, ModalController, AlertController } from 'ionic-angular';
+import { NavController, App, AlertController } from 'ionic-angular';
 import { SelectTalkerPage } from '../select-talker/select-talker';
-import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
@@ -27,7 +26,6 @@ export class HomePage {
   constructor(
     private audio: AudioProvider,
     public navCtrl: NavController,
-    public modalCtrl: ModalController,
     public alertCtrl: AlertController,
     public appData: AppDataProvider,
     private app: App) {
@@ -47,6 +45,9 @@ export class HomePage {
     this.app.setTitle('CALVin');
   }
 
+  onStart() {
+    this.navCtrl.push(SelectTalkerPage)
+  }
   checkAudio() {
     this.audio.recorder.initialise()
       .then((stream) => {})
@@ -71,15 +72,6 @@ export class HomePage {
       cssClass: 'alert'
     });
     alert.present();
-  }
-
-  onStart() {
-    this.showSelectTalkerModal(SelectKeywordGroupPage);
-  }
-
-  showSelectTalkerModal(nextPage: any) {
-    const selectTalkerModal = this.modalCtrl.create(SelectTalkerPage);
-    selectTalkerModal.present();
   }
 
   @HostListener('document:keydown', ['$event'])

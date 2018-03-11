@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, ViewController, NavParams } from 'ionic-angular';
+import { App, IonicPage, NavController } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
-import { StartPage } from '../start/start';
+import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
+
+import * as mdColors from 'material-colors';
 
 @IonicPage()
 @Component({
@@ -12,9 +14,12 @@ export class SelectTalkerPage {
 
   constructor(
     public appData: AppDataProvider,
-    public viewCtrl: ViewController,
-    public appCtrl: App,
-    public navParams: NavParams) {
+    public navCtrl: NavController,
+    public appCtrl: App) {
+  }
+
+  getBackgroundColor() {
+    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ionViewDidLoad() {
@@ -25,13 +30,12 @@ export class SelectTalkerPage {
     this.appData.setTalker(talker);
   }
 
-  cancel() {
-    this.viewCtrl.dismiss(false);
+  goBack() {
+    this.navCtrl.pop()
   }
 
-  continue() {
-    this.viewCtrl.dismiss(true);
-    this.appCtrl.getRootNav().push(StartPage);
+  goForward() {
+    this.navCtrl.push(SelectKeywordGroupPage)
   }
 
   isTalker(talker: Talker) {
