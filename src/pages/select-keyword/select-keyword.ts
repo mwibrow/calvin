@@ -1,7 +1,7 @@
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
+import { AppDataProvider, WordTypes } from '../../providers/app-data/app-data';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
 import { KeywordComponent } from '../../components/keyword/keyword'

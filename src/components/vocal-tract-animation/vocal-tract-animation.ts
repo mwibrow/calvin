@@ -1,7 +1,6 @@
 import { Component, Directive, ElementRef, Input, ViewChild } from '@angular/core';
 import { Events, Range } from 'ionic-angular';
 import { Geometry } from './geometry';
-import { Easings, Actions, Gesture, Gestures } from './animation'
 import { VocalTractGestures, parseVowelDescriptions  } from './vocal-tract-gestures';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { AnimationFrameRequestProvider } from '../../providers/animation-frame-request/animation-frame-request';
@@ -73,7 +72,7 @@ export class VocalTractAnimationComponent {
   }
 
   setupVocalTract() {
-    let i: number, paths: any, path: any, name: string, group: any;
+    let i: number, paths: any, path: any, group: any;
     this.svg = this.elementRef.nativeElement.querySelector('svg')
 
     this.svg.querySelectorAll('g').forEach(

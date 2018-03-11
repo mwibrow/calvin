@@ -2,8 +2,6 @@ import * as svgParse from 'svg-path-parser';
 
 export module Geometry {
 
-
-
 export class Point {
 
   constructor(public x: number, public y: number) {}
@@ -100,7 +98,7 @@ export class Vector extends Point {
 }
 
 
-class SvgPoint extends Point {
+export class SvgPoint extends Point {
 
   svgNode: any;
 
@@ -220,7 +218,7 @@ class Path {
   }
 
   static fromSvg(svgString: string): Path {
-    let svgSegment: any, i: number, lastPoint: Point = null;
+    let svgSegment: any, i: number;
     let svgSegments: Array<any> = svgParse(svgString);
     let path: Path = new Path();
     let segment: PathSegment;

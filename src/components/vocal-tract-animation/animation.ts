@@ -185,7 +185,7 @@ export class BaseAction {
   }
 
   update() {
-    let i:  number, j: number;
+    let i:  number;
     for (i = 0; i < this.paths.length; i ++) {
       this.paths[i].update();
     }
@@ -231,7 +231,7 @@ export class MorphBetweenAction extends BaseAction {
 
   act() {
     let i: number, j: number;
-    let point: Geometry.Point, q: Geometry.Point;
+    let point: Geometry.Point;
     this.resetPoints();
     for (i = 0; i < this.points.length; i ++) {
       for (j = 0; j < this.points[i].length(); j ++) {

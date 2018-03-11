@@ -2,15 +2,13 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import * as InlineWorker from 'inline-worker';
-import * as WavDecoder from 'wav-decoder';
-import * as WavEncoder from 'wav-encoder';
 
 declare var window
 
 
 export function getContext() {
-  const AudioContextCls = window.AudioContext || window.webkitAudioContext;
-  return new AudioContextCls()
+  const cls = window.AudioContext || window.webkitAudioContext;
+  return new cls()
 }
 
 @Injectable()
@@ -322,7 +320,7 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   isWebAudio(): boolean {
-    return !!window.audioinput
+    return !!!window.audioinput
   }
 
   addNode(node: AudioNode) {
@@ -358,15 +356,15 @@ export class AudioRecorder extends AudioEventHandler {
     }
   }
 
-  onAudioInputCapture(evt) {
-    try {
-        if (evt && evt.data) {
-            this.audioInputQueue.push(evt.data);
-        }
+onAudioInputCapture(evt) {
+  try {
+    if (evt && evt.data) {
+      this.audioInputQueue.push(evt.data);
     }
-    catch (err) {
-        alert(`Error recording audio: ${err}`);
-    }
+  }
+  catch (err) {
+    alert(`Error recording audio: ${err}`);
+  }
 }
 
   private recordStart() {

@@ -5,8 +5,6 @@ import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-g
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
-import * as mdColors from 'material-colors';
-
 let _remote = null
 try {
   _remote = window['require']('electron').remote;
@@ -18,11 +16,7 @@ const remote = _remote;
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  host: {
-    '(document:keydown)': 'handleKeyboardEvents($event)',
-    '(document:keyup)': 'handleKeyboardEvents($event)'
-  }
+  templateUrl: 'home.html'
 })
 export class HomePage {
 
@@ -82,18 +76,30 @@ export class HomePage {
     selectTalkerModal.present();
   }
 
+  @HostListener('document:keydown', ['$event'])
+  keydown(event: KeyboardEvent) {
+    this.handleKeyboardEvents(event);
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  keyup(event: KeyboardEvent) {
+    this.handleKeyboardEvents(event);
+  }
+
   handleKeyboardEvents(event) {
     let key = event.key || event.keyCode;
     switch (event.type) {
       case 'keydown':
         switch (key) {
           case 'F11':
+          if (remote) {
             let currentWindow = remote.getCurrentWindow();
             if (currentWindow.isMaximized()) {
               currentWindow.unmaximize();
             } else {
               currentWindow.maximize();
             }
+          }
         }
     }
   }

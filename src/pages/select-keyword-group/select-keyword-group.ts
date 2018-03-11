@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
+import { AppDataProvider, WordTypes } from '../../providers/app-data/app-data';
 import { SelectKeywordPage } from '../../pages/select-keyword/select-keyword';
 
 import * as mdColors from 'material-colors';

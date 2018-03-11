@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { WordLists } from './word-lists';
-import { Talkers } from './talkers';
 
 import { beep } from './beep-cvs';
 import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phonetics';

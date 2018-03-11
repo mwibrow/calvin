@@ -319,7 +319,7 @@ export class VocalTractGestures {
   }
 
   setupMonophthong(vowel) {
-    let tongueTarget = this.getTongueTarget(vowel.front, vowel.open);
+    // let tongueTarget = this.getTongueTarget(vowel.front, vowel.open);
   }
 }
 
