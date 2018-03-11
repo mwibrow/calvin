@@ -1,22 +1,19 @@
+<background [color]="getBackgroundColor()" pattern="none"></background>
 
-<background color="black" pattern="none"></background>
+<ion-header transparent>
 
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-
-    </ion-title>
-  </ion-navbar>
 </ion-header>
 
-
-
-<ion-content padding class="no-scroll">
+<ion-content class="no-scroll">
   <ion-grid>
     <ion-row justify-content-center>
-      <ion-col col-auto>
+      <ion-col>
         <div class="title">
-          <logo></logo>
+            <svg-trapezium style="width: 100%;">
+          <div class="media media-image media-frame">
+            <logo></logo>
+          </div>
+          </svg-trapezium>
         </div>
       </ion-col>
     </ion-row>
@@ -27,34 +24,25 @@
     </ion-row>
     <ion-row justify-content-center>
       <ion-col col-auto class="subtitle">
-          <span>Computer Assisted Learning for Vowels interface</span>
-      </ion-col>
-    </ion-row>
-    <ion-row  *ngIf="!audioAvailable" justify-content-center>
-      <ion-col col-auto>
-        <div class="error">
-          Cannot access audio for recording
-          <br>
-          Please check computer audio settings and restart
-          <br>
-          &nbsp;
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="audioAvailable"  justify-content-center>
-      <ion-col col-auto>
-        <button ion-button (click)="onStart()" class="example-word-button">
-          <span>Start</span>
-        </button>
+        <span>Computer Assisted Learning for Vowels interface</span>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-  <ion-buttons end>
-    <button *ngIf="remote" ion-button ionc-only class="exit-button" (click)="exitApplication()">
-      <ion-icon name="exit"></ion-icon>
+  <ion-buttons *ngIf="audioAvailable" text-center>
+    <button ion-button icon-only class="navigate-button pulse" (click)="onStart()">
+      <ion-icon name="play"></ion-icon>
     </button>
   </ion-buttons>
+  <div *ngIf="!audioAvailable" justify-content-center>
+    <div class="error">
+      Cannot access audio for recording
+      <br>
+      Please check audio settings and restart
+      <br>
+      &nbsp;
+    </div>
+  </div>
 </ion-footer>

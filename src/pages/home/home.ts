@@ -5,6 +5,8 @@ import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-g
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
+import * as mdColors from 'material-colors';
+
 let _remote = null
 try {
   _remote = window['require']('electron').remote;
@@ -30,6 +32,10 @@ export class HomePage {
     public appData: AppDataProvider,
     private app: App) {
       this.remote = remote;
+  }
+
+  getBackgroundColor() {
+    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ngOnInit() {

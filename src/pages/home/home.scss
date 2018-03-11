@@ -1,7 +1,9 @@
 page-home {
-
+body {
+  background-color: color($md-palette, md-yellow);
+}
 .title {
-    font-size: 500%;
+    font-size: 15vh;
 }
 
 .center-content {
@@ -15,7 +17,7 @@ page-home {
 .subtitle {
     margin: 1rem 0;
     text-align: center;
-    color: color($md-palette, md-white);
+    color: color($md-palette, md-blue-grey-900);
 }
 
 .error {
@@ -29,8 +31,8 @@ page-home {
   justify-content: center;
   overflow: hidden;
   background-color: color($md-palette, md-light-blue-100);
-  width: 12.5rem;
-  height: 12.5rem;
+  width: 25vh;
+  height: 25vh;
   border-radius: 50%;
   @include border();
   svg {

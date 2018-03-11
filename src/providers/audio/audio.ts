@@ -309,7 +309,6 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   initialiseSuccess(stream) {
-
     this.initialised = true;
     this.scriptNode = this.context.createScriptProcessor(
       this.settings.bufferSize,
@@ -380,14 +379,14 @@ onAudioInputCapture(evt) {
       }
     } else {
       this.audioInputQueue = []
-      const captureCfg = {
-        sampleRate: 48000,
+      const config = {
+        sampleRate: this.context.sampleRate,
         bufferSize: 2048,
         channels: 1,
         format: 'PCM_16BIT',
         audioSourceType: 0
       };
-      window.audioinput.start(captureCfg);
+      window.audioinput.start(config);
     }
     this.emit('start');
   }
