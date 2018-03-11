@@ -6,17 +6,6 @@ font-weight: bold;
 .calvin-logo {
     position: relative;
     display: inline-block;
-
-    .calvin-logo-letter-wrapper {
-        display: inline-block;
-        position: relative;
-        span {
-            visibility: hidden;
-        }
-    }
-    .calvin-logo-letter {
-        position: absolute;
-    }
     .calvin-logo-c {
         color: color($md-palette, md-red);
     }
@@ -27,11 +16,7 @@ font-weight: bold;
         color: color($md-palette, md-light-blue);
     }
     .calvin-logo-v {
-        color: color($md-palette, md-amber);
-        // Correction for crappy font metrics.
-        margin-left: -15%;
-        padding-left: 10%;
-        padding-right: 10%;
+      color: color($md-palette, md-amber);
     }
     .calvin-logo-i {
         color: color($md-palette, md-purple);
@@ -39,6 +24,5 @@ font-weight: bold;
     .calvin-logo-n {
         color: color($md-palette, md-purple);
     }
-
-}
+  }
 }

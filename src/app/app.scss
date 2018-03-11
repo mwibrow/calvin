@@ -615,8 +615,14 @@ page-vowel-trainer {
     }
 }
 
-.title {
-    font-size: 12.5vh;
+.home-title {
+  width: 100%;
+  margin: 0;
+  .svg-trapezium {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+    font-size: 12.5vh !important;
     logo {
         padding: 2.5vh;
     }
@@ -624,4 +630,8 @@ page-vowel-trainer {
 
 .subtitle {
     font-size: 3vh;
+}
+
+ion-icon {
+  font-size: 5vh!important;
 }

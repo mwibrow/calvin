@@ -8,11 +8,13 @@
   <ion-grid>
     <ion-row justify-content-center>
       <ion-col>
-        <div class="title">
-            <svg-trapezium style="width: 100%;">
-          <div class="media media-image media-frame">
-            <logo></logo>
-          </div>
+        <div class="home-title">
+          <svg-trapezium>
+            <div class="media media-image media-frame">
+              <div class="title-logo">
+                <logo></logo>
+              </div>
+            </div>
           </svg-trapezium>
         </div>
       </ion-col>
@@ -30,7 +32,7 @@
   </ion-grid>
 </ion-content>
 
-<ion-footer>
+<ion-footer padding>
   <ion-buttons *ngIf="audioAvailable" text-center>
     <button ion-button icon-only class="navigate-button pulse" (click)="onStart()">
       <ion-icon name="play"></ion-icon>
