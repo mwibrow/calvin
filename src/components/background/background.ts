@@ -43,6 +43,9 @@ export class BackgroundComponent {
       case 'triangles':
         this.svgPath = this.triangles();
         break;
+      case 'diamonds':
+        this.svgPath = this.diamonds();
+        break;
       default:
         this.svgPath = '';
     }
@@ -68,6 +71,26 @@ export class BackgroundComponent {
         d.push(`L ${x} ${y}`);
       }
       d.push('Z');
+    }
+    return d.join(' ');
+  }
+
+  diamonds() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor / 2;
+        h = w *  aspectRatio;
+
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x} ${y} L ${x + w / 2} ${y + h / 2} L ${x} ${y + h} L ${x - w / 2} ${y + h / 2} Z`);
+      }
     }
     return d.join(' ');
   }
