@@ -29,6 +29,7 @@ html, body,
     // color: color($md-palette, md-yellow);
 }
 
+
 // .content {
 //     background-color: transparent !important;
 // }
@@ -172,6 +173,8 @@ $spinner-border: 10px;
     align-items: center;
     justify-content: center;
     display: flex;
+
+    background-color: color($md-palette, md-black);
 
     .spinner {
       border-radius: 50%;

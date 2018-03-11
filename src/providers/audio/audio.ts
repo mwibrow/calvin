@@ -5,6 +5,14 @@ import * as InlineWorker from 'inline-worker';
 import * as WavDecoder from 'wav-decoder';
 import * as WavEncoder from 'wav-encoder';
 
+declare var window
+
+
+export function getContext() {
+  const AudioContextCls = window.AudioContext || window.webkitAudioContext;
+  return new AudioContextCls()
+}
+
 @Injectable()
 export class AudioProvider {
 
@@ -12,7 +20,7 @@ export class AudioProvider {
   public readonly player: AudioPlayer;
   public readonly recorder: AudioRecorder;
 
-  private static _context: AudioContext = new AudioContext();
+  private static _context: AudioContext = getContext();
 
   constructor() {
     this.context = this.getContext();
@@ -233,7 +241,6 @@ export class AudioPlayer extends AudioEventHandler {
   }
 }
 
-
 export class AudioRecorder extends AudioEventHandler {
 
   private context: AudioContext;
@@ -252,6 +259,8 @@ export class AudioRecorder extends AudioEventHandler {
 
   private initialised: boolean;
 
+  private audioInputQueue = [];
+
   constructor(context: AudioContext) {
     super();
     this.settings = {
@@ -269,6 +278,9 @@ export class AudioRecorder extends AudioEventHandler {
     this.context = context;
     this.timeout = null;
     this.initialised = false;
+    this.audioInputQueue = []
+
+    window.addEventListener('audioinput', (evt) => this.onAudioInputCapture(evt), false);
   }
 
   initialise() {
@@ -309,6 +321,10 @@ export class AudioRecorder extends AudioEventHandler {
     this.emit('init');
   }
 
+  isWebAudio(): boolean {
+    return !!window.audioinput
+  }
+
   addNode(node: AudioNode) {
     this.nodes.push(node);
   }
@@ -327,26 +343,53 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   private recordInit() {
-    this.worker = getAudioWorker();
-    this.worker.onmessage = (message) => this.processMessage(message);
-    this.onMessage = () => this.recordStart();
-    this.worker.postMessage({
-      command: 'initialise',
-      settings: {
-        sampleRate: this.context.sampleRate
-      }
-    });
+    if (this.isWebAudio()) {
+      this.worker = getAudioWorker();
+      this.worker.onmessage = (message) => this.processMessage(message);
+      this.onMessage = () => this.recordStart();
+      this.worker.postMessage({
+        command: 'initialise',
+        settings: {
+          sampleRate: this.context.sampleRate
+        }
+      });
+    } else {
+      this.recordStart();
+    }
   }
+
+  onAudioInputCapture(evt) {
+    try {
+        if (evt && evt.data) {
+            this.audioInputQueue.push(evt.data);
+        }
+    }
+    catch (err) {
+        alert(`Error recording audio: ${err}`);
+    }
+}
 
   private recordStart() {
     let i: number;
     this.running = true;
-    this.scriptNode.onaudioprocess = (event) => this.processAudio(event);
-    this.streamSource.connect(this.scriptNode);
-    // This shouldn't be necessary.
-    this.scriptNode.connect(this.context.destination);
-    for (i = 0; i < this.nodes.length; i ++) {
-      this.streamSource.connect(this.nodes[i]);
+    if (this.isWebAudio()) {
+      this.scriptNode.onaudioprocess = (event) => this.processAudio(event);
+      this.streamSource.connect(this.scriptNode);
+      // This shouldn't be necessary.
+      this.scriptNode.connect(this.context.destination);
+      for (i = 0; i < this.nodes.length; i ++) {
+        this.streamSource.connect(this.nodes[i]);
+      }
+    } else {
+      this.audioInputQueue = []
+      const captureCfg = {
+        sampleRate: 48000,
+        bufferSize: 2048,
+        channels: 1,
+        format: 'PCM_16BIT',
+        audioSourceType: 0
+      };
+      window.audioinput.start(captureCfg);
     }
     this.emit('start');
   }
@@ -363,8 +406,12 @@ export class AudioRecorder extends AudioEventHandler {
     this.running = false;
     this.timeout && clearTimeout(this.timeout);
     this.emit('stop');
-    this.scriptNode.disconnect();
-    this.streamSource.disconnect();
+    if (this.isWebAudio()) {
+      this.scriptNode.disconnect();
+      this.streamSource.disconnect();
+    } else {
+      window.audioinput.stop()
+    }
     if (!this.monitor) {
       return new Promise((resolve, reject) => {
         this.getAudioBuffers().then(() => resolve());
@@ -375,6 +422,9 @@ export class AudioRecorder extends AudioEventHandler {
   quit() {
     if (this.worker) {
       this.worker.terminate();
+    }
+    if (window.audioinput) {
+      window.audioinput.stop()
     }
   }
 
@@ -387,21 +437,35 @@ export class AudioRecorder extends AudioEventHandler {
   private getAudioBuffers() {
     let self: any = this;
     return new Promise((resolve, reject) => {
-      const setRecordBuffer = (buffer) => {
-        self.recordBuffer = self.context.createBuffer(
-          buffer.length,
-          buffer[0].length,
-          self.context.sampleRate);
-        for (let i: number = 0; i < buffer.length; i ++) {
-          self.recordBuffer.copyToChannel(buffer[i], i, 0);
+      if (this.isWebAudio()) {
+        const setRecordBuffer = (buffer) => {
+          self.recordBuffer = self.context.createBuffer(
+            buffer.length,
+            buffer[0].length,
+            self.context.sampleRate);
+          for (let i: number = 0; i < buffer.length; i ++) {
+            self.recordBuffer.copyToChannel(buffer[i], i, 0);
+          }
+          self.worker.terminate();
+          resolve();
+        };
+        self.onMessage = (buffer) => setRecordBuffer(buffer);
+        self.worker.postMessage({
+          command: 'getBuffers'
+        });
+      } else {
+        let buffer = []
+        while(this.audioInputQueue.length) {
+          buffer = buffer.concat(this.audioInputQueue.shift());
         }
-        self.worker.terminate();
+        self.recordBuffer = self.context.createBuffer(
+          1,
+          buffer.length,
+          self.context.sampleRate
+        )
+        self.recordBuffer.getChannelData(0).set(buffer);
         resolve();
-      };
-      self.onMessage = (buffer) => setRecordBuffer(buffer);
-      self.worker.postMessage({
-        command: 'getBuffers'
-      });
+      }
     });
   }
 
@@ -524,7 +588,7 @@ function interleave(buffers){
 }
 
 function getBuffers() {
-    var i;
+    var i, j;
     var buffers = [];
     for (i = 0; i < self.channelCount; i ++) {
         buffers.push(flattenBuffer(self.buffers[i], self.frameCount));
