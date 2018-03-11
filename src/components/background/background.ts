@@ -46,6 +46,9 @@ export class BackgroundComponent {
       case 'diamonds':
         this.svgPath = this.diamonds();
         break;
+      case 'hearts':
+        this.svgPath = this.hearts();
+        break;
       default:
         this.svgPath = '';
     }
@@ -90,6 +93,26 @@ export class BackgroundComponent {
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
         d.push(`M ${x} ${y} L ${x + w / 2} ${y + h / 2} L ${x} ${y + h} L ${x - w / 2} ${y + h / 2} Z`);
+      }
+    }
+    return d.join(' ');
+  }
+
+  hearts() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor / 2;
+        h = w *  aspectRatio;
+
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x + w / 2} ${y} C ${x + w / 2} ${y + h / 3} ${x + w / 4} ${y + h / 4} ${x} ${y + h * 2 / 3} C ${x - w / 4} ${y + h / 4} ${x - w / 2} ${y + h / 3} ${x - w / 2} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x} ${y} Z`);
       }
     }
     return d.join(' ');
