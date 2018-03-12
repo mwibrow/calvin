@@ -497,6 +497,7 @@ ion-navbar, .toolbar, .toolbar-md {
   float: right;
 }
 
+
 ion-title {
     width: auto;
     .svg-trapezium-background {
@@ -634,4 +635,11 @@ page-vowel-trainer {
 
 ion-icon {
   font-size: 5vh!important;
+}
+
+@media only screen and (width:1800px) and (height: 2560px) {
+    ion-content, ion-header, ion-footer {
+        width: calc(100vh * 2 / 3);
+        left: calc(50vw - 50vh * 2 / 3);
+    }
 }
