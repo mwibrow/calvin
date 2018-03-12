@@ -87,9 +87,12 @@ button {
     text-align: center;
 }
 
+$button-border-bottom: 1vh;
+$button-border-bottom-down: 0.5vh;
+
 @mixin button-hover($bg, $fg, $bd:10, $fd:10) {
     background-color: $bg;
-    border-bottom: 0.5rem solid darken($bg, $bd) !important;
+    border-bottom: $button-border-bottom solid darken($bg, $bd) !important;
     color: $fg;
     & span {
        color: $fg;
@@ -99,7 +102,7 @@ button {
     }
     &:hover {
         background-color: lighten($bg, $fd) !important;
-        border-bottom: 0.25rem solid darken($bg, $bd) !important;
+        border-bottom: $button-border-bottom-down solid darken($bg, $bd) !important;
     }
     &.semi-disabled {
         opacity: 0.5;
@@ -108,11 +111,11 @@ button {
         };
         &:hover {
             background-color: $bg !important;
-            border-bottom: 0.5rem solid darken($bg, $bd) !important;
+            border-bottom: $button-border-bottom solid darken($bg, $bd) !important;
         }
     }
     &.selected, &:disabled {
-        border-bottom: 0.25rem solid darken($bg, $bd) !important;
+        border-bottom: $button-border-bottom-down solid darken($bg, $bd) !important;
     }
 }
 
@@ -152,9 +155,10 @@ button {
     color: color($md-palette, md-white);
 }
 
-$spinner-size: 50px;
+$spinner-size: 5vh;
 $spinner-time: 2s;
-$spinner-border: 10px;
+$spinner-border: 1vh;
+$media-border: 0.5vh;
 
 @keyframes spin {
     0% {
@@ -461,8 +465,8 @@ $spinner-border: 10px;
 }
 
 .image-container {
-    border: 5px solid color($md-palette, md-white);
-    border-radius: 5px;
+    border: $media-border solid color($md-palette, md-white);
+    border-radius: $media-border;
 }
 
 .media-wrapper {
@@ -472,8 +476,8 @@ $spinner-border: 10px;
 
 
 .media-frame {
-    border: 5px solid color($md-palette, md-white);
-    border-radius: 2px;
+    border: $media-border solid color($md-palette, md-white);
+    border-radius: $media-border;
 }
 
 .media-image {
