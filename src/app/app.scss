@@ -29,7 +29,9 @@ html, body,
     // color: color($md-palette, md-yellow);
 }
 
-
+button {
+    box-shadow: none !important;
+}
 // .content {
 //     background-color: transparent !important;
 // }
