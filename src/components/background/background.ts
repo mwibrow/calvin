@@ -84,7 +84,7 @@ export class BackgroundComponent {
     const intervals: number = 10, width: number = 100, height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    const scale = 2;
+    const scale = 1.75;
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
@@ -103,7 +103,7 @@ export class BackgroundComponent {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
     const intervals: number = 10, width: number = 100, height: number = 100;
-    const scale = 2;
+    const scale = 1.75;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
     let d: Array<string> = [];
@@ -131,7 +131,7 @@ export class BackgroundComponent {
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
-        ry = Math.random() * 2 * scale;
+        ry = Math.random() * 2.5 * scale;
         rx = ry / aspectRatio;
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
@@ -151,7 +151,7 @@ export class BackgroundComponent {
     const intervals: number = 10, width: number = 100, height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    const scale = 2;
+    const scale = 1.5;
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
@@ -172,12 +172,12 @@ export class BackgroundComponent {
     const intervals: number = 10, width: number = 100, height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    const scale = 2;
+    const scale = 1.75;
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
         w = Math.random() * hFactor / 2 * scale;
-        h = w * aspectRatio;
+        h = w * aspectRatio * Math.sin(Math.PI / 3);
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
         d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w / 2} ${y - h} Z`);
@@ -192,7 +192,7 @@ export class BackgroundComponent {
       radiusX: number, radiusY: number,
       rotation: number, i: number, j: number, k: number,
       x: number, y: number, angle: number;
-    const scale = 2;
+    const scale = 1.5;
     let d: Array<string> = [];
     for (i = 0; i < 10; i ++) {
       for (j = 0; j < 10; j ++) {
