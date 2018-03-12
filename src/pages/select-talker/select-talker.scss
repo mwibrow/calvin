@@ -6,19 +6,31 @@ page-select-talker {
     width: 100% !important;
   }
 
-  .avatar {
+  .avatar-container {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
     width: 25vh;
+  }
+  .avatar {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 25vh;
     height: 25vh;
+    padding: 1.5vh;
     border-radius: 50%;
     background-color: color($md-palette, md-blue-grey-100);
     border: 0.5vh solid color($md-palette, md-white);
+    &:hover {
+      padding: 1vh;
+      border: 1vh solid color($md-palette, md-white);
+    }
     svg {
       position: absolute;
       transform: translateY(12.5%) scale(1.333);
@@ -26,6 +38,9 @@ page-select-talker {
     &.is-selected {
       background-color: color($md-palette, md-light-blue-100);
       border: 1vh solid color($md-palette, md-white);
+      width: 25vh;
+      height: 25vh;
+      padding: 1vh;
       svg {
         .lips {
           transform-origin: 256px 256px;
@@ -36,6 +51,7 @@ page-select-talker {
   }
 
   .avatar-label {
+    width: 100%;
     height: 10vh;
     display: flex;
     align-items: center;

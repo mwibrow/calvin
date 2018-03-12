@@ -73,6 +73,12 @@ page-select-keyword-group {
             color: color($md-palette, md-white);
             font-size: 6.25vh;
         }
+        &:hover {
+            span {
+                font-size: 9vh;
+            }
+        }
+
         overflow: visible;
     }
 
@@ -120,7 +126,7 @@ page-select-keyword-group {
     }
 
     .media-button:hover {
-        box-shadow: 0px 0px 30px  color($md-palette, md-white);
+        background-color: magenta;
 
     }
 }
