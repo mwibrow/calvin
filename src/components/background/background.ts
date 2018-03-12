@@ -170,12 +170,13 @@ export class BackgroundComponent {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
     const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = width / intervals * aspectRatio;
+    const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
+    const scale = 2;
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
       for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2;
+        w = Math.random() * hFactor / 2 * scale;
         h = w * aspectRatio;
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;

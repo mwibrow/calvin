@@ -17,12 +17,6 @@ page-vowel-trainer {
 		color: $keyword-label-fg;
 	}
 
-
-	.navigate-button {
-		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
-		@include hover-box-shadow($navigate-button-bg);
-	}
-
 	.fade-out {
 		opacity: 0 !important;
 		transition: opacity 1s;

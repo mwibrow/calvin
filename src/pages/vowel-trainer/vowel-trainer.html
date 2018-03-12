@@ -89,11 +89,12 @@
 
 <ion-footer padding>
 
-  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
-      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-  </button>
+
 
   <ion-buttons text-center>
+      <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
+          <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+      </button>
     <button ion-button icon-only class="toolbar-button view-button"
         (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
       <ion-icon name="headset"></ion-icon>
