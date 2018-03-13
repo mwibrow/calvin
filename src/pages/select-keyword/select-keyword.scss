@@ -1,58 +1,67 @@
 page-select-keyword {
 
-    ion-content.keyword-group-size-5 {
-        overflow: visible !important;
-        // height: 90% !important;
-    }
-    .media-button {
-        position: relative;
-
-
-    }
-    .media-button:hover {
-        box-shadow: 0px 0px 30px  color($md-palette, md-white);
-        z-index: 500;
-    }
-    mark {
-        position: absolute;
-        display: inline-block;
-        right: 0;
-        bottom: 0;
+  ion-content.keyword-group-size-5 {
+    overflow: visible !important;
+  }
+  .media-button {
+    position: relative;
+    .media-frame {
+      img {
+        transform: scale(0.75);
+        transition: transform 0.5s;
+      }
     }
 
-    .centered {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: 100%;
+  }
+  .media-button:hover {
+    .media-frame {
+      img {
+        transform: scale(0.9);
+        transition: transform 0.5s;
+      }
     }
+    z-index: 500;
+  }
+  mark {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+  }
 
-    .preview-audio-button {
-		display: flex;
-		align-items:center;
-		justify-content: center;
-		border-radius: 2px;
-		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
-		position: absolute;
-		bottom: 0;
-        left: 50%;
-		z-index: 500;
-		transform: translate(-50%, 33.3%);
-    }
+  .centered {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+  }
 
-    .keyword-title {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
-        transform: translate(-50%, -25%);
+  .preview-audio-button {
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  border-radius: 2px;
+  @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+  @include hover-box-shadow($preview-audio-button-bg);
+  position: absolute;
+  bottom: 0;
+    left: 50%;
+  z-index: 500;
+  transform: translate(-50%, 33.3%);
+  }
 
-        padding: 0.5ex 1em;
-        border-radius: 3px;
-        z-index: 500;
+  .keyword-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+  @include hover-box-shadow($preview-audio-button-bg);
+    transform: translate(-50%, -25%);
 
-    }
+    padding: 0.5ex 1em;
+    border-radius: 3px;
+    z-index: 500;
+
+  }
 
 }
