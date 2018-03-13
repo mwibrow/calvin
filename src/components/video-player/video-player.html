@@ -1,5 +1,5 @@
 <div class="video-player-component">
-  <video #videoPlayer>
+  <video #videoPlayer preload="auto">
     <source [src]="src" type="video/mp4">
   </video>
   <div class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">
