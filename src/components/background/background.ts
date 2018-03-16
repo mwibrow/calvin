@@ -147,49 +147,26 @@ export class BackgroundComponent {
   }
 
   circles() {
-    const aspectRatio = this.getApsectRatio();
-    let i: number, j: number, x: number, y: number, rx: number, ry: number;
-    const z: number = .55191496;
-    const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = width / intervals;
-    const vFactor: number = height / intervals;
-    const scale = 2;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        ry = Math.random() * 2.5 * scale;
-        rx = ry / aspectRatio;
-        x = (j + Math.random()) * hFactor;
-        y = (i + Math.random()) * vFactor;
-        d.push(`M ${x + rx} ${y}` +
+    function circle(x, y, size) {
+      const rx = size / 2;
+      const ry = size / 2;
+      const z = .55191496;
+      return `M ${x + rx} ${y}` +
           `C ${x + rx * 1} ${y + ry * z} ${x + rx * z} ${y + ry * 1} ${x + rx * 0} ${y + ry * 1} ` +
           `C ${x - rx * z} ${y + ry * 1} ${x - rx * 1} ${y + ry * z} ${x - rx * 1} ${y + ry * 0} ` +
           `C ${x - rx * 1} ${y - ry * z} ${x - rx * z} ${y - ry * 1} ${x - rx * 0} ${y - ry * 1} ` +
-          `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${x + rx * 1} ${y + ry * 0} Z`);
-      }
+          `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${x + rx * 1} ${y + ry * 0} Z`;
     }
-    return d.join(' ');
+    return this.pathOnGrid(10, circle, { randomize: true })
   }
 
   squares() {
-    const aspectRatio = this.getApsectRatio();
-    let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = width / intervals;
-    const vFactor: number = height / intervals;
-    const scale = 1.5;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2 * scale;
-        h = w *  aspectRatio;
-
-        x = (j + Math.random()) * hFactor;
-        y = (i + Math.random()) * vFactor;
-        d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w} ${y + h} L ${x} ${y + h} Z`);
-      }
+    function square(x, y, size) {
+      const w = size / 2;
+      const h = size / 2;
+      return `M ${x - w} ${y - h} L ${x + w} ${y - h} L ${x + w} ${y + h} L ${x - w} ${y + h} Z`;
     }
-    return d.join(' ');
+    return this.pathOnGrid(10, square, { randomize: true })
   }
 
   triangles() {
