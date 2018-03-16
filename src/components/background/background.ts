@@ -23,7 +23,19 @@ export class BackgroundComponent {
   }
 
   getApsectRatio() {
-    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / Math.max(document.documentElement.clientHeight, window.innerHeight || 0) || 1;
+    return this.getWidth() / (this.getHeight() || 1);
+  }
+
+  getWidth() {
+    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  }
+
+  getHeight() {
+    return Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+  }
+
+  getViewBox() {
+    return `0 0 ${this.getWidth()} ${this.getHeight()}`
   }
 
   makePattern(pattern: string) {

@@ -3,7 +3,6 @@ import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from 
 import { LogoComponent } from './logo/logo';
 import { VideoPlayerComponent } from './video-player/video-player';
 import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
-import { HelpComponent } from './help/help';
 import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
 import { BackgroundComponent } from './background/background';
 import { SvgShapeComponent } from './svg-shape/svg-shape';
@@ -14,7 +13,6 @@ import { MarkComponent } from './mark/mark';
 		LogoComponent,
 		VideoPlayerComponent,
 		VocalTractAnimationComponent,
-    HelpComponent,
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,
@@ -25,8 +23,7 @@ import { MarkComponent } from './mark/mark';
 		KeywordUriDirective,
 		LogoComponent,
 		VideoPlayerComponent,
-    	VocalTractAnimationComponent,
-    HelpComponent,
+    VocalTractAnimationComponent,
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,

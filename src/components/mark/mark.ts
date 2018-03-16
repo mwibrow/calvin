@@ -12,11 +12,6 @@ import { Component } from '@angular/core';
 })
 export class MarkComponent {
 
-  text: string;
-
-  constructor() {
-    console.log('Hello MarkComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor() {}
 
 }

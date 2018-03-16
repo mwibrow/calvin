@@ -481,6 +481,8 @@ $media-border: 0.5vh;
 .media-frame {
     border: $media-border solid color($md-palette, md-white);
     border-radius: $media-border;
+    background-color: color($md-palette, md-black);
+    overflow: hidden;
 }
 
 .media-image {
@@ -587,9 +589,25 @@ ion-header {
     font-size: 6.25vh;
 }
 
+$dpu: 100vh * 3 / 4;
+
+.media-large {
+    width: calc(#{$dpu} * 0.65);
+    height: calc(#{$dpu} * 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    .vocal-tract-animation {
+        background: transparent;
+    }
+}
 .media-small {
-    width: calc(100vh * 3 / 4 * .375);
-    height: calc(100vh * 3 / 4 * .375);
+    width: calc(#{$dpu} * .375);
+    height: calc(#{$dpu} * .375);
     margin:  1vh auto 0.5vh;
 }
 
@@ -614,9 +632,6 @@ page-vowel-trainer {
     width: calc(75vh * 3 / 4);
     height: calc(75vh * 3 / 4);
 
-    .vocal-tract-animation {
-        width: calc(65vh * 3 / 4);
-    }
 
     .media-video, .media-image {
         width: calc(65vh * 3 / 4);

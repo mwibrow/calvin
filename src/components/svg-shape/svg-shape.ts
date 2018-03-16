@@ -17,7 +17,6 @@ export class SvgShapeComponent {
   @Input('click') click: any;
   @Input('rotate') rotate: string = '0';
   constructor() {
-    console.log('Hello SvgShapeComponent Component');
 
   }
 
