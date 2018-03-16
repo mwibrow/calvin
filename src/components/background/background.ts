@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, ViewChild, Input } from '@angular/core';
 
 /**
  * Generated class for the BackgroundComponent component.
@@ -15,6 +15,7 @@ export class BackgroundComponent {
   @Input('color') color: string = 'black';
   @Input('image') image: string = '';
   @Input('pattern') pattern = 'circles';
+  @ViewChild('backgroundSvg') svg: ElementRef;
   svgPath: string = '';
   constructor() {}
 
@@ -22,6 +23,13 @@ export class BackgroundComponent {
     this.makePattern(this.pattern);
   }
 
+  ngAfterViewInit() {
+    this.setViewBox(this.getWidth(), this.getHeight())
+  }
+
+  setViewBox(width: number, height: number) {
+    this.svg.nativeElement.setAttribute('viewBox', `0 0 ${width} ${height}`)
+  }
   getApsectRatio() {
     return this.getWidth() / (this.getHeight() || 1);
   }
@@ -94,8 +102,8 @@ export class BackgroundComponent {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
     const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = width / intervals;
-    const vFactor: number = height / intervals;
+    const hFactor: number = this.getWidth() / intervals;
+    const vFactor: number = this.getHeight() / intervals;
     const scale = 1.75;
     let d: Array<string> = [];
     for (i = 0; i < intervals; i ++) {
