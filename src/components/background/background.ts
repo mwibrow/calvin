@@ -85,7 +85,10 @@ export class BackgroundComponent {
 
   horizontalLines() {
     let i: number, j: number, x: number, y: number;
-    const intervals: number = 10, width: number = 100, height: number = 100, thickness: number = 1;
+    const intervals: number = 10;
+    const width = this.getWidth();
+    const height = this.getHeight();
+    const thickness: number = Math.sqrt(width * width + height * height) / 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
     let d: Array<string> = [];
@@ -162,8 +165,8 @@ export class BackgroundComponent {
 
   squares() {
     function square(x, y, size) {
-      const w = size / 2;
-      const h = size / 2;
+      const w = size / 3;
+      const h = size / 3;
       return `M ${x - w} ${y - h} L ${x + w} ${y - h} L ${x + w} ${y + h} L ${x - w} ${y + h} Z`;
     }
     return this.pathOnGrid(10, square, { randomize: true })
@@ -190,29 +193,18 @@ export class BackgroundComponent {
   }
 
   stars(points: number = 5) {
-    const aspectRatio = this.getApsectRatio();
-    let centerX: number, centerY: number,
-      radiusX: number, radiusY: number,
-      rotation: number, i: number, j: number, k: number,
-      x: number, y: number, angle: number;
-    const scale = 1.5;
-    let d: Array<string> = [];
-    for (i = 0; i < 10; i ++) {
-      for (j = 0; j < 10; j ++) {
-        centerX = (i + .5 + Math.random() * 2 - 1) * 10;
-        centerY = (j + .5 + Math.random() * 2 - 1) * 10;
-        radiusX = (1 + Math.random() * 2) * scale;
-        radiusY = radiusX * aspectRatio;
-        rotation = Math.random() * Math.PI * 2;
-        for (k = 0; k < points * 2; k ++) {
-          angle = Math.PI / points * k + rotation;
-          x = centerX + Math.cos(angle) * radiusX * (k % 2 ? 1 : .5);
-          y = centerY + Math.sin(angle) * radiusY * (k % 2 ? 1 : .5);
-          d.push(`${k === 0 ? 'M' : 'L'} ${x} ${y}`);
-        }
-        d.push('Z')
+    function star(x, y, size) {
+      const d: Array<string> = [];
+      const points = 5;
+      const rotation = Math.PI * rand();
+      for (let k: number = 0; k < points * 2; k++) {
+        let angle = Math.PI / points * k + rotation;
+        let radius = size / 2 * (k % 2 ? 1 : .5);
+        d.push(`${k === 0 ? 'M' : 'L'} ${x + Math.cos(angle) * radius} ${y + Math.sin(angle) * radius}`)
       }
+      d.push('Z');
+      return d.join(' ');
     }
-    return d.join(' ');
+    return this.pathOnGrid(10, star, { randomize: true })
   }
 }
