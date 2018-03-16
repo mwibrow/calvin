@@ -1,5 +1,14 @@
 import { Component, ElementRef, ViewChild, Input } from '@angular/core';
 
+function rand() {
+  return Math.random() * 2 - 1
+}
+
+function rnd(min: number = 0, max: number = 0) {
+  const mn = Math.min(min, max)
+  const mx = Math.max(min, max)
+  return Math.random() * (mx - mn) + mn
+}
 /**
  * Generated class for the BackgroundComponent component.
  *
@@ -24,7 +33,7 @@ export class BackgroundComponent {
   }
 
   ngAfterViewInit() {
-    this.setViewBox(this.getWidth(), this.getHeight())
+    this.setViewBox(this.getWidth(), this.getHeight());
   }
 
   setViewBox(width: number, height: number) {
@@ -98,46 +107,43 @@ export class BackgroundComponent {
     return d.join(' ');
   }
 
-  diamonds() {
-    const aspectRatio = this.getApsectRatio();
-    let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = this.getWidth() / intervals;
-    const vFactor: number = this.getHeight() / intervals;
-    const scale = 1.75;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2 * scale;
-        h = w *  aspectRatio;
-
-        x = (j + Math.random()) * hFactor;
-        y = (i + Math.random()) * vFactor;
-        d.push(`M ${x} ${y} L ${x + w / 2} ${y + h / 2} L ${x} ${y + h} L ${x - w / 2} ${y + h / 2} Z`);
+  pathOnGrid(steps: number, draw: Function, options: any = {}) {
+    let i: number, j: number, x: number, y: number, size: number;
+    const width = this.getWidth();
+    const height = this.getHeight();
+    const defaultSize = Math.sqrt(width * width + height * height) / 12.5;
+    const path: Array<string> = [];
+    for (i = 0; i <= steps; i ++) {
+      for (j = 0; j <= steps; j ++) {
+        size = defaultSize;
+        x = i * width / steps;
+        y = j * height / steps;
+        if (options.randomize) {
+          x = x + rand() * size;
+          y = y + rand() * size;
+          size = rnd(0.5, 1) * size;
+        }
+        path.push(draw(x, y, size))
       }
     }
-    return d.join(' ');
+    return path.join(' ')
+  }
+
+
+  diamonds() {
+    function diamond(x, y, size) {
+      return `M ${x} ${y - size / 2} L ${x + size / 2} ${y} L ${x} ${y + size / 2} L ${x - size / 2} ${y} Z`;
+    }
+    return this.pathOnGrid(10, diamond, { randomize: true })
   }
 
   hearts() {
-    const aspectRatio = this.getApsectRatio();
-    let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
-    const scale = 1.75;
-    const hFactor: number = width / intervals;
-    const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2 * scale;
-        h = w *  aspectRatio;
-
-        x = (j + Math.random()) * hFactor;
-        y = (i + Math.random()) * vFactor;
-        d.push(`M ${x} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x + w / 2} ${y} C ${x + w / 2} ${y + h / 3} ${x + w / 4} ${y + h / 4} ${x} ${y + h * 2 / 3} C ${x - w / 4} ${y + h / 4} ${x - w / 2} ${y + h / 3} ${x - w / 2} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x} ${y} Z`);
-      }
+    function heart(x, y, size) {
+      const w = size;
+      const h = size;
+      return `M ${x} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x + w / 2} ${y} C ${x + w / 2} ${y + h / 3} ${x + w / 4} ${y + h / 4} ${x} ${y + h * 2 / 3} C ${x - w / 4} ${y + h / 4} ${x - w / 2} ${y + h / 3} ${x - w / 2} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x} ${y} Z`
     }
-    return d.join(' ');
+    return this.pathOnGrid(10, heart, { randomize: true })
   }
 
   circles() {
