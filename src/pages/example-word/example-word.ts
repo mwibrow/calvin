@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import * as mdColors from 'material-colors';
@@ -10,6 +10,7 @@ enum ViewState {
 }
 
 import { AppDataProvider, Word, WordTypes } from '../../providers/app-data/app-data';
+import { VideoPlayerComponent } from '../../components/video-player/video-player';
 /**
  * Generated class for the ExampleWordPage page.
  *
@@ -28,7 +29,7 @@ export class ExampleWordPage {
   viewState: ViewState;
   imageColor: string = mdColors.lightGreen['500'];
   backgroundColor: string = mdColors.yellow['500'];
-
+  @ViewChild('videoPlayerMain') videoPlayerMain: VideoPlayerComponent;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public appData: AppDataProvider) {
@@ -38,6 +39,8 @@ export class ExampleWordPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ExampleWordPage');
+    console.log(this.videoPlayerMain)
+    this.videoPlayerMain.fakeload()
   }
 
   isViewState(viewState: ViewState) {

@@ -1,5 +1,5 @@
 <div class="video-player-component">
-  <video #videoPlayer preload="auto">
+  <video #videoPlayer preload="audo" playsinline webkit-playsinline="webkit-playsinline">
     <source [src]="src" type="video/mp4">
   </video>
   <div class="video-player-scrim {{playing ? 'hidden' : ''}}" (click)="play()">

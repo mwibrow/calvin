@@ -23,8 +23,18 @@ export class VideoPlayerComponent {
     return this.disabled === 'true';
   }
 
+  load() {
+    this.video.nativeElement.load();
+  }
+
+  fakeload() {
+    this.video.nativeElement.play().then(_ => {
+      setTimeout(() => this.video.nativeElement.pause(), 100);
+    })
+  }
   setSrc(src: string) {
     this.src = src;
+
   }
 
   play() {

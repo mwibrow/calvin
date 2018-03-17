@@ -84,46 +84,47 @@ export class BackgroundComponent {
   }
 
   horizontalLines() {
-    let i: number, j: number, x: number, y: number;
-    const intervals: number = 10;
-    const width = this.getWidth();
-    const height = this.getHeight();
-    const thickness: number = Math.sqrt(width * width + height * height) / 100;
-    const hFactor: number = width / intervals;
-    const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      y = (i + 0.5) * vFactor + thickness * (1 - Math.random());
+    const width = this.getWidth()
+    function line(x, y, size) {
+      let lx: number, ly: number
+      const d: Array<string> = [];
+      const thickness = size / 10
       d.push(`M 0 ${y}`);
-      for (j = 0; j <= intervals; j ++) {
-        x = (j + 0.5) * hFactor + Math.random() * 2 - 1;
-        y = (i + 0.5) * vFactor + thickness * (1 - Math.random());
-        d.push(`L ${x} ${y}`);
+      for (let j = 0; j <= 10; j++) {
+        lx = width / 10 * j;
+        ly = y + thickness * (1 - Math.random());
+        d.push(`L ${lx} ${ly}`);
       }
-      for (j = intervals; j >= -1; j --) {
-        x = (j + 0.5) * hFactor + Math.random() * 2 - 1;
-        y = (i + 0.5) * vFactor - thickness * (1 - Math.random());
-        d.push(`L ${x} ${y}`);
+      for (let j = 10; j >= 0; j--) {
+        lx = width / 10 * j;
+        ly = y - thickness * (1 - Math.random());
+        d.push(`L ${lx} ${ly}`);
       }
       d.push('Z');
+      return d.join(' ');
     }
-    return d.join(' ');
+    return this.drawOnGrid(line, { ySteps: 10 });
   }
 
-  pathOnGrid(steps: number, draw: Function, options: any = {}) {
-    let i: number, j: number, x: number, y: number, size: number;
+  drawOnGrid(draw: Function, options: any = {}) {
+    const steps = options.steps || 0
+    const xSteps = options.xSteps || steps
+    const ySteps = options.ySteps || steps
+
     const width = this.getWidth();
     const height = this.getHeight();
     const defaultSize = Math.sqrt(width * width + height * height) / 12.5;
     const path: Array<string> = [];
-    for (i = 0; i <= steps; i ++) {
-      for (j = 0; j <= steps; j ++) {
+
+    let i: number, j: number, x: number, y: number, size: number;
+    for (i = 0; i <= ySteps; i++) {
+      for (j = 0; j <= xSteps; j++) {
         size = defaultSize;
-        x = i * width / steps;
-        y = j * height / steps;
+        x = j / xSteps * width;
+        y = i / ySteps * height;
         if (options.randomize) {
-          x = x + rand() * size;
-          y = y + rand() * size;
+          x = x + rand() * size / 2;
+          y = y + rand() * size / 2;
           size = rnd(0.5, 1) * size;
         }
         path.push(draw(x, y, size))
@@ -132,12 +133,11 @@ export class BackgroundComponent {
     return path.join(' ')
   }
 
-
   diamonds() {
     function diamond(x, y, size) {
       return `M ${x} ${y - size / 2} L ${x + size / 2} ${y} L ${x} ${y + size / 2} L ${x - size / 2} ${y} Z`;
     }
-    return this.pathOnGrid(10, diamond, { randomize: true })
+    return this.drawOnGrid(diamond, { steps: 10, randomize: true })
   }
 
   hearts() {
@@ -146,7 +146,7 @@ export class BackgroundComponent {
       const h = size;
       return `M ${x} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x + w / 2} ${y} C ${x + w / 2} ${y + h / 3} ${x + w / 4} ${y + h / 4} ${x} ${y + h * 2 / 3} C ${x - w / 4} ${y + h / 4} ${x - w / 2} ${y + h / 3} ${x - w / 2} ${y} A ${w / 4} ${h / 4} 0 0 1 ${x} ${y} Z`
     }
-    return this.pathOnGrid(10, heart, { randomize: true })
+    return this.drawOnGrid(heart, { steps: 10, randomize: true })
   }
 
   circles() {
@@ -160,7 +160,7 @@ export class BackgroundComponent {
           `C ${x - rx * 1} ${y - ry * z} ${x - rx * z} ${y - ry * 1} ${x - rx * 0} ${y - ry * 1} ` +
           `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${x + rx * 1} ${y + ry * 0} Z`;
     }
-    return this.pathOnGrid(10, circle, { randomize: true })
+    return this.drawOnGrid(circle, { steps: 10, randomize: true })
   }
 
   squares() {
@@ -169,7 +169,7 @@ export class BackgroundComponent {
       const h = size / 3;
       return `M ${x - w} ${y - h} L ${x + w} ${y - h} L ${x + w} ${y + h} L ${x - w} ${y + h} Z`;
     }
-    return this.pathOnGrid(10, square, { randomize: true })
+    return this.drawOnGrid(square, { steps: 10, randomize: true })
   }
 
   triangles() {
@@ -205,6 +205,6 @@ export class BackgroundComponent {
       d.push('Z');
       return d.join(' ');
     }
-    return this.pathOnGrid(10, star, { randomize: true })
+    return this.drawOnGrid(star, { steps: 10, randomize: true })
   }
 }
