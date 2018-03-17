@@ -4,8 +4,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppDataProvider, WordTypes } from '../../providers/app-data/app-data';
 import { SelectKeywordPage } from '../../pages/select-keyword/select-keyword';
 
-import * as mdColors from 'material-colors';
-
 @IonicPage()
 @Component({
   selector: 'page-select-keyword-group',
@@ -13,9 +11,9 @@ import * as mdColors from 'material-colors';
 })
 export class SelectKeywordGroupPage {
 
-  backgroundColor: string = mdColors.yellow[500];
-  trapeziumColor: string = mdColors.amber[900];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public appData: AppDataProvider) {
 
   }
 

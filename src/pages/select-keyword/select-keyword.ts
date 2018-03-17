@@ -5,7 +5,7 @@ import { AppDataProvider, WordTypes } from '../../providers/app-data/app-data';
 import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
 import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
 import { KeywordComponent } from '../../components/keyword/keyword'
-import * as mdColors from 'material-colors';
+
 /**
  * Generated class for the SelectKeywordPage page.
  *
@@ -20,7 +20,6 @@ import * as mdColors from 'material-colors';
 })
 export class SelectKeywordPage {
 
-  backgroundColor: string = mdColors.yellow[500];
   player: AudioPlayer;
   @ViewChildren('keywordComponentList') keywordComponentList: QueryList<KeywordComponent>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider, public audio: AudioProvider) {
@@ -39,9 +38,6 @@ export class SelectKeywordPage {
     this.keywordComponentList.toArray().map((keywordComponent) => keywordComponent.selected = false);
   }
 
-  getBackgroundColor() {
-    return this.backgroundColor;
-  }
   getKeywordList() {
     return this.appData.getKeywordGroup().words;
   }

@@ -4,13 +4,14 @@ import { beep } from './beep-cvs';
 import { arpa_to_description_map, arpa_vowels, arpa_to_hvd_map } from './phonetics';
 
 import * as CONFIG from './config.json';
-
+import * as mdColors from 'material-colors';
 
 export class WordTypes {
   static Keywords = 'keywords';
   static ExampleWords = 'example_words';
   static Vowels ='vowels';
 }
+
 
 export class Config {
 
@@ -161,6 +162,14 @@ export class AppDataProvider {
       realType = 'vowels'
     }
     return `assets/video/${realType}/${talkerId}/${wordId}.${extension}`;
+  }
+
+  getVideoThumbnailUri(talkerId: string, type: WordTypes, wordId: string, extension: string='jpg'): string {
+    let realType = 'words';
+    if (type === WordTypes.Vowels) {
+      realType = 'vowels'
+    }
+    return `assets/video/${realType}/${talkerId}/_poster.jpg`;
   }
 
   getImageUri(wordId: string, type: WordTypes, extension: string='png'): string {

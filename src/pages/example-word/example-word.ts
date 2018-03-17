@@ -1,8 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import * as mdColors from 'material-colors';
-
 enum ViewState {
   Image,
   Video,
@@ -27,20 +25,17 @@ export class ExampleWordPage {
 
   public readonly ViewState = ViewState;
   viewState: ViewState;
-  imageColor: string = mdColors.lightGreen['500'];
-  backgroundColor: string = mdColors.yellow['500'];
   @ViewChild('videoPlayerMain') videoPlayerMain: VideoPlayerComponent;
+  @ViewChild('videoPlayerInset') videoPlayerInset: VideoPlayerComponent;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public appData: AppDataProvider) {
       this.viewState = ViewState.Video;
-
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ExampleWordPage');
-    console.log(this.videoPlayerMain)
     this.videoPlayerMain.fakeload()
+    this.videoPlayerInset.fakeload()
   }
 
   isViewState(viewState: ViewState) {
@@ -79,6 +74,14 @@ export class ExampleWordPage {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
     let uri: string = this.appData.getVideoUri(talker.id, WordTypes.ExampleWords, word.id);
+    return uri;
+  }
+
+  getVideoThumbnailUri() {
+    let talker = this.appData.getTalker();
+    let word = this.appData.getExampleWord();
+    let uri: string = this.appData.getVideoThumbnailUri(talker.id, WordTypes.ExampleWords, word.id);
+
     return uri;
   }
 

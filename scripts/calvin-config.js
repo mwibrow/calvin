@@ -46,6 +46,21 @@ function main() {
     })
   );
 
+  talkers.map(talker => {
+    const filePath = path.join(
+      mediaDir,
+      'video',
+      'words',
+      talker,
+      `_poster.jpg`
+    );
+    if (!fs.existsSync(filePath)) {
+      throw new Error(
+        `Missing file: no thumbnail file '_poster.jpg' for talker '${talker}`
+      );
+    }
+  });
+
   bar = new ProgressBar('Checking video files [:bar]', {
     width: 20,
     total: talkers.length * words.length
@@ -139,6 +154,20 @@ function main() {
       bar.tick();
     });
   });
+
+  bar = new ProgressBar('Copying thumbnails (video)  [:bar]', {
+    width: 20,
+    total: talkers.length
+  });
+  talkers.map(talker => {
+    fs.ensureDirSync(path.join(assetsDir, 'video', 'words', talker));
+    fs.copySync(
+      path.join(mediaDir, 'video', 'words', talker, '_poster.jpg'),
+      path.join(assetsDir, 'video', 'words', talker, '_poster.jpg')
+    );
+    bar.tick();
+  });
+
   bar = new ProgressBar('Copying words (images) [:bar]', {
     width: 20,
     total: items.length

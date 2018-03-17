@@ -4,7 +4,6 @@ import { SelectTalkerPage } from '../select-talker/select-talker';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
-import * as mdColors from 'material-colors';
 
 let _remote = null
 try {
@@ -30,10 +29,6 @@ export class HomePage {
     public appData: AppDataProvider,
     private app: App) {
       this.remote = remote;
-  }
-
-  getBackgroundColor() {
-    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ngOnInit() {

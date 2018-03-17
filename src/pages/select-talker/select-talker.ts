@@ -3,8 +3,6 @@ import { App, IonicPage, NavController } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
 import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
 
-import * as mdColors from 'material-colors';
-
 @IonicPage()
 @Component({
   selector: 'page-select-talker',
@@ -16,10 +14,6 @@ export class SelectTalkerPage {
     public appData: AppDataProvider,
     public navCtrl: NavController,
     public appCtrl: App) {
-  }
-
-  getBackgroundColor() {
-    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ionViewDidLoad() {

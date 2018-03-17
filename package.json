@@ -51,7 +51,7 @@
     "build-all": "npm run clean && npm run config && npm run build",
     "config": "npm run config:copy-media && npm run config:svg",
     "config:copy-media": "node scripts/calvin-config.js",
-    "config:svg": "npm run config:svg-avatars && npm run config:svg-vocal-tract && npm run config:svg-narrator",
+    "config:svg": "npm run config:svg-avatars && npm run config:svg-vocal-tract",
     "config:svg-avatars": "svgo --config=config/svgo-avatars.yaml --pretty -f src/assets/images/avatars",
     "config:svg-narrator": "svgo --config=config/svgo-narrator.yaml --pretty src/assets/images/calvin-mouths.svg",
     "config:svg-vocal-tract": "svgo --config=config/svgo-vocal-tract.yaml --pretty src/assets/images/vocal-tract.svg"

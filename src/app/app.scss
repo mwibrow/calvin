@@ -26,9 +26,11 @@ html, body,
 .app-root,
 .ion-page {
     background-color: transparent !important;
-    // color: color($md-palette, md-yellow);
 }
 
+.app-background {
+  background-color: color($md-palette, md-yellow-500)
+}
 button {
     box-shadow: none !important;
 }
@@ -50,17 +52,6 @@ button {
     // overflow: visible !important;
     overflow-y: auto !important;
 }
-
-// ion-footer, .footer, .footer-md {
-//   background-color: transparent !important;
-// }
-
-// ion-content {
-//     background: color($md-palette, md-yellow) !important;
-// // }
-// ion-footer {
-//     background-color: color($md-palette, md-light-green) !important;
-// }
 
 .toolbar-background {
     background-color: transparent !important;
@@ -140,25 +131,13 @@ $button-border-bottom-down: 0.5vh;
     border-bottom: $width solid color($md-palette, md-light-blue);
 }
 
-// .md-button {
-//     padding: 0 6px 0 6px;
-//     margin: 6px 8px 6px 8px;
-//     min-width: 88px;
-//     border-radius: 3px;
-//     font-size: 14px;
-//     text-align: center;
-//     text-transform: uppercase;
-//     text-decoration:none;
-//     border: none;
-//     outline: none;
-//   }
 
 .button-primary {
     background-color: color($colors, primary);
     color: color($md-palette, md-white);
 }
 
-$spinner-size: 5vh;
+$spinner-size: 7.5vh;
 $spinner-time: 2s;
 $spinner-border: 1vh;
 $media-border: 0.5vh;
@@ -180,8 +159,6 @@ $media-border: 0.5vh;
     align-items: center;
     justify-content: center;
     display: flex;
-
-    background-color: color($md-palette, md-yellow);
 
     .spinner {
       border-radius: 50%;

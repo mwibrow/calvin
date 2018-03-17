@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, NgZone, ElementRef } from '@angular/core';
+import { Component, Directive, ViewChild, Input, NgZone, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'video-player',
@@ -7,11 +7,15 @@ import { Component, ViewChild, Input, NgZone, ElementRef } from '@angular/core';
 export class VideoPlayerComponent {
 
   playing: boolean;
+  poster: string;
+  volume: number;
   @ViewChild('videoPlayer') video: ElementRef;
   @Input('src') src: string;
   @Input('disabled') disabled: string;
+  @Input('thumbnail') thumbnail: string;
   constructor(public zone: NgZone) {
     this.playing = false;
+    this.poster = '';
   }
 
   ngOnInit() {
@@ -28,13 +32,23 @@ export class VideoPlayerComponent {
   }
 
   fakeload() {
+    console.log('fakeload')
     this.video.nativeElement.play().then(_ => {
-      setTimeout(() => this.video.nativeElement.pause(), 100);
+      this.video.nativeElement.volume = 0;
+      setTimeout(() => {
+        this.video.nativeElement.pause();
+        this.video.nativeElement.volume = 1;
+      }, 100);
     })
   }
+
   setSrc(src: string) {
     this.src = src;
+    this.poster = `${src.split(/\.[a-z0-9]$/)[0]}.jpg`;
+  }
 
+  setThumbnail(src: string) {
+    this.poster = src;
   }
 
   play() {
@@ -52,3 +66,18 @@ export class VideoPlayerComponent {
 
 
 }
+
+
+// @Directive({
+//   selector: '[thumbnail]'
+// })
+// export class TumbnailDirective {
+
+//   @Input('thumnail') thumbnail: string;
+//   constructor(public videoPlayer: VideoPlayerComponent) {}
+
+//   ngOnInit(){
+//     this.videoPlayer.setThumbnail(this.thumbnail);
+//   }
+
+// }

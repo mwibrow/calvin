@@ -1,4 +1,4 @@
-<background [color]="backgroundColor" pattern="stars"></background>
+<background pattern="stars"></background>
 <ion-header transparent>
   <ion-navbar hideBackButton>
     <ion-title>
@@ -25,7 +25,7 @@
         </ion-grid>
       </ion-col>
     </ion-row>
-    <ion-row  *ngIf="isViewState(ViewState.Image)" justify-content-center>
+    <ion-row  [hidden]="!isViewState(ViewState.Image)" justify-content-center>
       <ion-col>
         <ion-grid>
           <ion-row text-center>
@@ -39,7 +39,7 @@
                 <div class="float">
                   <div class="float-button media-frame" (click)="setViewState(ViewState.Video)">
                     <div class="media media-video">
-                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" disabled="true"></video-player>
+                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" [thumbnail]="getVideoThumbnailUri()" disabled="true" #videoPlayerInset></video-player>
                     </div>
                   </div>
                 </div>
@@ -49,7 +49,7 @@
         </ion-grid>
       </ion-col>
     </ion-row>
-    <ion-row  *ngIf="isViewState(ViewState.Video)" justify-content-center>
+    <ion-row [hidden]="!isViewState(ViewState.Video)" justify-content-center>
         <ion-col>
           <ion-grid>
             <ion-row text-center>
@@ -57,7 +57,7 @@
                 <div class="media-wrapper media-example">
                   <svg-trapezium  [color]="imageColor" class="media-trapezium">
                     <div class="media media-video media-frame">
-                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" #videoPlayerMain></video-player>
+                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" [thumbnail]="getVideoThumbnailUri()" #videoPlayerMain></video-player>
                     </div>
                   </svg-trapezium>
                   <div class="float">
