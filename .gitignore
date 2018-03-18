@@ -45,4 +45,4 @@ media/audio/
 media/video/
 media/images/
 
-resources/
+resources/*/

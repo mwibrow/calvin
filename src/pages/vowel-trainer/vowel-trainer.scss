@@ -31,10 +31,8 @@ page-vowel-trainer {
 
 	.view-button {
 		@include button-hover($view-button-bg, $view-button-fg, 15, 5);
-    @include hover-box-shadow($view-button-bg);
-
 		transform-origin: 50%, 50%;
-		transform: scale(0.875);
+    transform: scale(0.875);
 		&:disabled {
 			opacity: 1;
 			transform-origin: 50%, 50%;
@@ -84,7 +82,7 @@ page-vowel-trainer {
 		justify-content: center;
 		border-radius: 2px !important;
 		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
+
 		position: absolute;
 		bottom: 0;
 		left: 50%;
@@ -97,7 +95,7 @@ page-vowel-trainer {
 		top: 0;
 		left: 50%;
 		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
+
 		transform: translate(-50%, -25%);
 
 		padding: 0.5ex 1em;

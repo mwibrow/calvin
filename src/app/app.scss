@@ -25,22 +25,15 @@
 html, body,
 .app-root,
 .ion-page {
-    background-color: transparent !important;
-}
-
-.app-background {
   background-color: color($md-palette, md-yellow-500)
 }
+
+
 button {
     box-shadow: none !important;
 }
-// .content {
-//     background-color: transparent !important;
-// }
-.ion-page {
-    // background-image: url('/assets/images/drawing.svg');
-    background-repeat: repeat;
-}
+
+
 .no-scroll .scroll-content{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
@@ -110,18 +103,6 @@ $button-border-bottom-down: 0.5vh;
     &.selected, &:disabled {
         border-bottom: $button-border-bottom-down solid darken($bg, $bd) !important;
     }
-}
-
-
-@mixin hover-box-shadow ($cl) {
-    // box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25) !important;
-    // &:hover {
-    //     box-shadow: 0px 0px $box-shadow-hover-spread $cl !important;
-    //     transition: none !important;
-    // }
-    // &.semi-disabled:hover {
-    //     box-shadow: none;
-    // }
 }
 
 @mixin border($width: $spinner-border) {
@@ -406,17 +387,17 @@ $media-border: 0.5vh;
 
 .example-word-button, .keyword-button, .keyword-group-button {
     @include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
-    @include hover-box-shadow($example-word-button-bg);
+
 }
 
 .navigate-button {
     @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
-		@include hover-box-shadow($navigate-button-bg);
+
   }
 
 .exit-button {
     @include button-hover(color($md-palette, md-red), color($md-palette, md-white), 15, 5);
-	@include hover-box-shadow(color($md-palette, md-red));
+
 }
 
 .navigation-arrow {

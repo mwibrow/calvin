@@ -46,21 +46,6 @@ function main() {
     })
   );
 
-  talkers.map(talker => {
-    const filePath = path.join(
-      mediaDir,
-      'video',
-      'words',
-      talker,
-      `_poster.jpg`
-    );
-    if (!fs.existsSync(filePath)) {
-      throw new Error(
-        `Missing file: no thumbnail file '_poster.jpg' for talker '${talker}`
-      );
-    }
-  });
-
   bar = new ProgressBar('Checking video files [:bar]', {
     width: 20,
     total: talkers.length * words.length

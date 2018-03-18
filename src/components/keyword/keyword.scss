@@ -6,13 +6,13 @@ keyword {
     .keyword-button {
         border-radius: 2px !important;
         @include button-hover($keyword-button-bg, $keyword-button-fg);
-        @include hover-box-shadow($keyword-button-bg);
+
     }
 
     .keyword-control-button {
         border-radius: 2px !important;
         @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);
-        @include hover-box-shadow($keyword-control-button-bg);
+
     }
 
     ion-icon[name='play'] {
