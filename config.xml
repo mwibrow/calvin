@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="Fullscreen" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -91,4 +92,5 @@
     </plugin>
     <plugin name="cordova-plugin-media-capture" spec="^3.0.1" />
     <plugin name="cordova-plugin-audioinput" spec="^0.3.0" />
+    <plugin name="cordova-plugin-fullscreen" spec="~1.1.0" />
 </widget>

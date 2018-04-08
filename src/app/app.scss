@@ -479,11 +479,13 @@ ion-title {
 }
 
 
+$dpu: 100vh * 0.7;
+
 
 ion-content, ion-header, ion-footer {
     box-sizing: border-box;
-    width: calc(100vh * 3 / 4);
-    left: calc(50vw - 50vh * 3 / 4);
+    width: calc(#{$dpu});
+    left: calc(50vw - #{$dpu} / 2);
     background-color: transparent !important;
 }
 ion-content {
@@ -547,7 +549,7 @@ ion-header {
     font-size: 6.25vh;
 }
 
-$dpu: 100vh * 3 / 4;
+
 
 .media-large {
     width: calc(#{$dpu} * 0.65);
@@ -570,15 +572,15 @@ $dpu: 100vh * 3 / 4;
 }
 
 .media-tiny {
-    width: calc(100vh * 3 / 4 * .2);
-    height: calc(100vh * 3 / 4 * .2);
+    width: calc(#{$dpu} * .2);
+    height: calc(#{$dpu} * .2);
     margin:  0vh !important;
 }
 
 page-vowel-trainer {
     .media-small {
-        width: calc(100vh * 3 / 4 * .4);
-        height: calc(100vh * 3 / 4 * .4);
+        width: calc(#{$dpu} * .4);
+        height: calc(#{$dpu} * .4);
         margin:  5vh auto 5vh;
     }
 }
@@ -587,12 +589,12 @@ page-vowel-trainer {
    margin: 1vh;
 }
 .media-wrapper {
-    width: calc(75vh * 3 / 4);
-    height: calc(75vh * 3 / 4);
+    width: calc(#{$dpu} * 0.75);
+    height: calc(#{$dpu} * 0.75);
 
 
     .media-video, .media-image {
-        width: calc(65vh * 3 / 4);
+        width: calc(#{$dpu} * 0.65);
     }
 }
 
@@ -617,9 +619,9 @@ ion-icon {
   font-size: 5vh!important;
 }
 
-@media only screen and (width:1800px) and (height: 2560px) {
-    ion-content, ion-header, ion-footer {
-        width: calc(100vh * 2 / 3);
-        left: calc(50vw - 50vh * 2 / 3);
-    }
-}
+// @media only screen and (width:1800px) and (height: 2560px) {
+//     ion-content, ion-header, ion-footer {
+//         width: calc(100vh * 2 / 3);
+//         left: calc(50vw - 50vh * 2 / 3);
+//     }
+// }

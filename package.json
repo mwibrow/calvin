@@ -65,6 +65,7 @@
     "@angular/http": "4.4.3",
     "@angular/platform-browser": "4.4.3",
     "@angular/platform-browser-dynamic": "4.4.3",
+    "@ionic-native/android-full-screen": "^4.6.0",
     "@ionic-native/core": "3.12.1",
     "@ionic-native/splash-screen": "3.12.1",
     "@ionic-native/status-bar": "3.12.1",
@@ -87,7 +88,8 @@
     "rxjs": "5.4.3",
     "svg-path-parser": "1.1.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.18"
+    "zone.js": "0.8.18",
+    "cordova-plugin-fullscreen": "~1.1.0"
   },
   "devDependencies": {
     "7zip-bin": "^2.3.4",
@@ -122,7 +124,8 @@
         "XWALK_MULTIPLEAPK": "true"
       },
       "cordova-plugin-audioinput": {},
-      "cordova-plugin-media-capture": {}
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-fullscreen": {}
     },
     "platforms": [
       "android"
