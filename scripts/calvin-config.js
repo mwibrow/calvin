@@ -128,6 +128,7 @@ function main() {
     width: 20,
     total: talkers.length * items.length
   });
+
   fs.ensureDirSync(path.join(assetsDir, 'video', 'words'));
   talkers.map(talker => {
     fs.ensureDirSync(path.join(assetsDir, 'video', 'words', talker));
@@ -140,18 +141,18 @@ function main() {
     });
   });
 
-  bar = new ProgressBar('Copying thumbnails (video)  [:bar]', {
-    width: 20,
-    total: talkers.length
-  });
-  talkers.map(talker => {
-    fs.ensureDirSync(path.join(assetsDir, 'video', 'words', talker));
-    fs.copySync(
-      path.join(mediaDir, 'video', 'words', talker, '_poster.jpg'),
-      path.join(assetsDir, 'video', 'words', talker, '_poster.jpg')
-    );
-    bar.tick();
-  });
+  // bar = new ProgressBar('Copying thumbnails (video)  [:bar]', {
+  //   width: 20,
+  //   total: talkers.length
+  // });
+  // talkers.map(talker => {
+  //   fs.ensureDirSync(path.join(assetsDir, 'video', 'words', talker));
+  //   fs.copySync(
+  //     path.join(mediaDir, 'video', 'words', talker, '_poster.jpg'),
+  //     path.join(assetsDir, 'video', 'words', talker, '_poster.jpg')
+  //   );
+  //   bar.tick();
+  // });
 
   bar = new ProgressBar('Copying words (images) [:bar]', {
     width: 20,

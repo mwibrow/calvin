@@ -4,6 +4,7 @@ import { SelectTalkerPage } from '../select-talker/select-talker';
 import { AudioProvider } from '../../providers/audio/audio';
 import { AppDataProvider } from '../../providers/app-data/app-data';
 
+import mdColors from 'material-colors'
 
 let _remote = null
 try {
@@ -73,10 +74,6 @@ export class HomePage {
       cssClass: 'alert'
     });
     alert.present();
-  }
-
-  onStart() {
-    this.navCtrl.push(SelectTalkerPage);
   }
 
   @HostListener('document:keydown', ['$event'])
