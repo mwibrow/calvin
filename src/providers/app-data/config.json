@@ -1,17 +1,5 @@
 {
   "talkers": {
-    "dan": {
-      "display": "Dan",
-      "avatar": "dan"
-    },
-    "emma": {
-      "display": "Emma",
-      "avatar": "emma"
-    },
-    "kerry": {
-      "display": "Kerry",
-      "avatar": "kerry"
-    },
     "mark": {
       "display": "Mark",
       "avatar": "mark"
@@ -19,9 +7,6 @@
   },
   "words": {
     "talkers": [
-      "dan",
-      "emma",
-      "kerry",
       "mark"
     ],
     "items": [
@@ -83,9 +68,6 @@
   },
   "keywords": {
     "talkers": [
-      "dan",
-      "emma",
-      "kerry",
       "mark"
     ],
     "items": [
