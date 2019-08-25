@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { App, IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, App, NavController } from 'ionic-angular';
 import { AppDataProvider, Talker } from '../../providers/app-data/app-data';
 import { SelectKeywordGroupPage } from '../select-keyword-group/select-keyword-group';
+
+import * as mdColors from 'material-colors';
 
 @IonicPage()
 @Component({
@@ -13,23 +15,21 @@ export class SelectTalkerPage {
   constructor(
     public appData: AppDataProvider,
     public navCtrl: NavController,
-    public appCtrl: App) {
+    public app: App) {
+  }
+
+  getBackgroundColor() {
+    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SelectTalkerPage');
+    this.app.setTitle('CALVin');
   }
 
   setTalker(talker: Talker) {
     this.appData.setTalker(talker);
-  }
-
-  goBack() {
-    this.navCtrl.pop()
-  }
-
-  goForward() {
-    this.navCtrl.push(SelectKeywordGroupPage)
+    this.navCtrl.push(SelectKeywordGroupPage);
   }
 
   isTalker(talker: Talker) {
@@ -39,6 +39,10 @@ export class SelectTalkerPage {
   getTalkers() {
     let talkers = this.appData.config.words.talkers.map(id => this.appData.talkers[id]);
     return talkers;
+  }
+
+  goBack() {
+    this.navCtrl.pop();
   }
 
 }

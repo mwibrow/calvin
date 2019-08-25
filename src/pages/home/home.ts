@@ -22,6 +22,7 @@ export class HomePage {
 
   audioAvailable: boolean;
   remote: any;
+  title = 'CALVin'
   constructor(
     private audio: AudioProvider,
     public navCtrl: NavController,
@@ -31,6 +32,10 @@ export class HomePage {
       this.remote = remote;
   }
 
+  getBackgroundColor() {
+    return mdColors && mdColors.yellow ? mdColors.yellow[500] : 'yellow';
+  }
+
   ngOnInit() {
     this.audioAvailable = true;
     this.checkAudio();
@@ -38,6 +43,7 @@ export class HomePage {
 
   ionViewDidEnter() {
     this.app.setTitle('CALVin');
+    document.getElementById('home-page-start-button').focus()
   }
 
   onStart() {
@@ -69,14 +75,13 @@ export class HomePage {
     alert.present();
   }
 
-  @HostListener('document:keydown', ['$event'])
-  keydown(event: KeyboardEvent) {
-    this.handleKeyboardEvents(event);
+  onStart() {
+    this.navCtrl.push(SelectTalkerPage);
   }
 
-  @HostListener('document:keyup', ['$event'])
-  keyup(event: KeyboardEvent) {
-    this.handleKeyboardEvents(event);
+  @HostListener('document:keydown', ['$event'])
+  onKeypress(event: KeyboardEvent) {
+    this.handleKeyboardEvents(event)
   }
 
   handleKeyboardEvents(event) {

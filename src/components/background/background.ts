@@ -60,11 +60,17 @@ export class BackgroundComponent {
       case 'horizontal-lines':
         this.svgPath = this.horizontalLines();
         break;
+      case 'vertical-lines':
+        this.svgPath = this.verticalLines();
+        break;
       case 'circles':
         this.svgPath = this.circles();
         break;
       case 'squares':
         this.svgPath = this.squares();
+        break;
+      case 'diamonds':
+        this.svgPath = this.diamonds();
         break;
       case 'stars':
         this.svgPath = this.stars();
@@ -149,6 +155,30 @@ export class BackgroundComponent {
     return this.drawOnGrid(heart, { steps: 10, randomize: true })
   }
 
+  verticalLines() {
+    let i: number, j: number, x: number, y: number;
+    const intervals: number = 10, width: number = 100, height: number = 100, thickness: number = 1;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
+      d.push(`M ${x} 0`);
+      for (j = 0; j <= intervals; j ++) {
+        y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
+        x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
+        d.push(`L ${x} ${y}`);
+      }
+      for (j = intervals; j >= -1; j --) {
+        y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
+        x = (i + 0.5) * hFactor - thickness * (1 - Math.random());
+        d.push(`L ${x} ${y}`);
+      }
+      d.push('Z');
+    }
+    return d.join(' ');
+  }
+
   circles() {
     function circle(x, y, size) {
       const rx = size / 2;
@@ -170,6 +200,26 @@ export class BackgroundComponent {
       return `M ${x - w} ${y - h} L ${x + w} ${y - h} L ${x + w} ${y + h} L ${x - w} ${y + h} Z`;
     }
     return this.drawOnGrid(square, { steps: 10, randomize: true })
+  }
+
+  diamonds() {
+    const aspectRatio = this.getApsectRatio();
+    let i: number, j: number, x: number, y: number, w: number, h: number;
+    const intervals: number = 10, width: number = 100, height: number = 100;
+    const hFactor: number = width / intervals;
+    const vFactor: number = height / intervals;
+    let d: Array<string> = [];
+    for (i = 0; i < intervals; i ++) {
+      for (j = 0; j < intervals; j ++) {
+        w = Math.random() * hFactor;
+        h = w * aspectRatio;
+
+        x = (j + Math.random()) * hFactor;
+        y = (i + Math.random()) * vFactor;
+        d.push(`M ${x - w / 2} ${y} L ${x} ${y + h / 2} L ${x + w / 2} ${y} L ${x} ${y - h / 2} Z`);
+      }
+    }
+    return d.join(' ');
   }
 
   triangles() {

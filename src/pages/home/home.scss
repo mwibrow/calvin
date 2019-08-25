@@ -1,32 +1,30 @@
 page-home {
+  .home-page-title {
+    position: relative;
+  }
 
-.subtitle {
+  .subtitle {
     margin: 1rem 0;
     text-align: center;
-    color: color($md-palette, md-blue-grey-900);
-}
-
-.error {
-    text-align: center;
-}
-
-.calvin-frame-circle {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: color($md-palette, md-light-blue-100);
-  width: 25vh;
-  height: 25vh;
-  border-radius: 50%;
-  @include border();
-  svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(15%) scale(1.25);
+    color: color($md-palette, md-black);
   }
-}
-
+  .error {
+    text-align: center;
+  }
+  .calvin-frame {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: color($md-palette, md-light-blue-100);
+    border-radius: 50%;
+    @include border();
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateY(15%) scale(1.25);
+    }
+  }
 }

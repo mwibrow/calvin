@@ -32,19 +32,31 @@ html, body,
 button {
     box-shadow: none !important;
 }
+.no-scroll, .scroll-content{
+    padding-top: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible !important;
+    //overflow-y: auto !important;
 
-
-.no-scroll .scroll-content{
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    height: 100% !important;
-    // overflow: visible !important;
-    overflow-y: auto !important;
+    // ion-grid, ion-row, ion-col {
+    //     padding: 0 !important;
+    //     margin:  0 !important;
+    // }
 }
+
+
+// ion-footer, .footer, .footer-md {
+//   background-color: transparent !important;
+// }
+
+// ion-content {
+//     background: color($md-palette, md-yellow) !important;
+// // }
+// ion-footer {
+//     background-color: color($md-palette, md-light-green) !important;
+// }
 
 .toolbar-background {
     background-color: transparent !important;
@@ -200,6 +212,9 @@ $media-border: 0.5vh;
 
 .calvin-logo {
     display: inline-block;
+    span {
+        font-family: Crafty Girls;
+    }
     span:nth-child(1) {
         color: color($md-palette, md-red);
     }
@@ -491,7 +506,6 @@ ion-content, ion-header, ion-footer {
 ion-content {
     height: 80vh;
     margin-top: 10vh;
-    margin-bottom: 10vh;
 }
 
 ion-header {
@@ -521,13 +535,12 @@ ion-header {
         font-size: 6.25vh;
     }
 }
-
-.exit-buttonm .navigate-button, .keyword-control-button, .keyword-group-button {
+.view-button, .exit-button, .navigate-button, .keyword-control-button, .keyword-group-button {
     width: 10vh;
     height: 10vh;
 
     ion-icon {
-        font-size: 5vh;
+        font-size: 6.25vh;
     }
 
 }
@@ -543,7 +556,7 @@ ion-header {
     height: 6.25vh;
 }
 
-.keyword-button, .example-word-button {
+.keyword-button, .example-word-button, .select-talker-button {
     height: 10vh;
     width: 30vh;
     font-size: 6.25vh;
@@ -598,16 +611,21 @@ page-vowel-trainer {
     }
 }
 
-.home-title {
-  width: 100%;
-  margin: 0;
-  .svg-trapezium {
-    padding: 0 !important;
-    margin: 0 !important;
-  }
+.home-page-title {
     font-size: 12.5vh !important;
+    margin-bottom: 20vh;
     logo {
         padding: 2.5vh;
+    }
+    .svg-trapezium-content {
+        min-width: 90%;
+    }
+    .calvin-frame {
+        width: 25vh;
+        height: 25vh;
+        left: calc(50% - 12.5vh);
+        top: calc(100% - 7.5vh);
+        z-index: 1000;
     }
 }
 
