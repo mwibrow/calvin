@@ -1,11 +1,16 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChildren, QueryList } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
-import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
-import { VowelTrainerPage } from '../../pages/vowel-trainer/vowel-trainer';
-import { KeywordComponent } from '../../components/keyword/keyword'
-import * as mdColors from 'material-colors';
+import {
+  AppDataProvider,
+  WordGroup,
+  Word,
+  WordTypes,
+} from "../../providers/app-data/app-data";
+import { AudioProvider, AudioPlayer } from "../../providers/audio/audio";
+import { VowelTrainerPage } from "../../pages/vowel-trainer/vowel-trainer";
+import { KeywordComponent } from "../../components/keyword/keyword";
+import * as mdColors from "material-colors";
 /**
  * Generated class for the SelectKeywordPage page.
  *
@@ -15,28 +20,45 @@ import * as mdColors from 'material-colors';
 
 @IonicPage()
 @Component({
-  selector: 'page-select-keyword',
-  templateUrl: 'select-keyword.html',
+  selector: "page-select-keyword",
+  templateUrl: "select-keyword.html",
 })
 export class SelectKeywordPage {
-
   backgroundColor: string = mdColors.yellow[500];
   player: AudioPlayer;
-  @ViewChildren('keywordComponentList') keywordComponentList: QueryList<KeywordComponent>;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider, public audio: AudioProvider) {
+  selectedKeyword: string;
+  @ViewChildren("keywordComponentList") keywordComponentList: QueryList<
+    KeywordComponent
+  >;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public appData: AppDataProvider,
+    public audio: AudioProvider
+  ) {
     this.player = this.audio.player;
+    this.selectedKeyword = null;
   }
 
   ngAfterViewInit() {
     this.player.initialise();
+    this.selectedKeyword = null;
   }
 
   ionViewDidLoad() {
-    this.keywordComponentList.toArray().map((keywordComponent) =>
-      keywordComponent.siblings = this.keywordComponentList.toArray());
+    this.keywordComponentList
+      .toArray()
+      .map(
+        (keywordComponent) =>
+          (keywordComponent.siblings = this.keywordComponentList.toArray())
+      );
+    this.selectedKeyword = null;
   }
   ionViewWillEnter() {
-    this.keywordComponentList.toArray().map((keywordComponent) => keywordComponent.selected = false);
+    this.keywordComponentList
+      .toArray()
+      .map((keywordComponent) => (keywordComponent.selected = false));
+    this.selectedKeyword = null;
   }
 
   getBackgroundColor() {
@@ -51,15 +73,29 @@ export class SelectKeywordPage {
   }
 
   setKeyword(keyword: string) {
+    this.selectedKeyword = keyword;
+    if (this.player.playing()) {
+      this.player.stop();
+    }
     this.appData.keywordIndex = this.appData.keywordList.indexOf(keyword);
     this.navCtrl.push(VowelTrainerPage);
   }
 
   playKeyword(keyword: string) {
-    let uri = this.appData.getAudioUri(this.appData.talker.id, keyword, WordTypes.Keywords);
-    this.player.playUrl(uri).then(() => {
-      this.setKeyword(keyword);
-    }).catch(() => {});
+    this.selectedKeyword = keyword;
+    let uri = this.appData.getAudioUri(
+      this.appData.talker.id,
+      keyword,
+      WordTypes.Keywords
+    );
+    this.player
+      .playUrl(uri)
+      .then(() => {
+        if (this.selectedKeyword === keyword) {
+          this.setKeyword(keyword);
+        }
+      })
+      .catch(() => {});
   }
 
   goBack() {
@@ -71,11 +107,20 @@ export class SelectKeywordPage {
   }
 
   canGoForward() {
-    return this.keywordComponentList && this.keywordComponentList.some(keywordComponent => keywordComponent.selected)
+    return (
+      this.keywordComponentList &&
+      this.keywordComponentList.some(
+        (keywordComponent) => keywordComponent.selected
+      )
+    );
   }
 
   getKeywordAudioUri(keyword: string) {
-    let uri: string = this.appData.getAudioUri(null, keyword, WordTypes.Keywords);
+    let uri: string = this.appData.getAudioUri(
+      null,
+      keyword,
+      WordTypes.Keywords
+    );
     return uri;
   }
 
@@ -83,5 +128,4 @@ export class SelectKeywordPage {
     let uri: string = this.appData.getImageUri(keyword, WordTypes.Keywords);
     return uri;
   }
-
 }
