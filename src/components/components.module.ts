@@ -1,35 +1,51 @@
-import { NgModule } from '@angular/core';
-import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from './keyword/keyword';
-import { LogoComponent } from './logo/logo';
-import { VideoPlayerComponent } from './video-player/video-player';
-import { VocalTractAnimationComponent } from './vocal-tract-animation/vocal-tract-animation';
-import { HelpComponent } from './help/help';
-import { SvgTrapeziumComponent } from './svg-trapezium/svg-trapezium';
-import { BackgroundComponent } from './background/background';
-import { SvgShapeComponent } from './svg-shape/svg-shape';
-import { MarkComponent } from './mark/mark';
+import { NgModule } from "@angular/core";
+import {
+  KeywordComponent,
+  KeywordControlsDirective,
+  KeywordUriDirective,
+} from "./keyword/keyword";
+
+import { BackgroundComponent } from "./background/background";
+import { MarkComponent } from "./mark/mark";
+import { HelpComponent } from "./help/help";
+import { SvgShapeComponent } from "./svg-shape/svg-shape";
+import { LogoComponent } from "./logo/logo";
+import { VideoPlayerComponent } from "./video-player/video-player";
+import { SvgTrapeziumComponent } from "./svg-trapezium/svg-trapezium";
+import {
+  VocalTractAnimationComponent,
+  AnimationDirective,
+} from "./vocal-tract-animation/vocal-tract-animation";
 
 @NgModule({
-	declarations: [KeywordComponent,
-		LogoComponent,
-		VideoPlayerComponent,
-		VocalTractAnimationComponent,
+  declarations: [
+    KeywordComponent,
+    KeywordControlsDirective,
+    KeywordUriDirective,
+    LogoComponent,
+    VideoPlayerComponent,
+    VocalTractAnimationComponent,
+    AnimationDirective,
     HelpComponent,
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,
-    MarkComponent],
-	imports: [],
-	exports: [KeywordComponent,
-		KeywordControlsDirective,
-		KeywordUriDirective,
-		LogoComponent,
-		VideoPlayerComponent,
-    	VocalTractAnimationComponent,
+    MarkComponent,
+  ],
+  imports: [],
+  exports: [
+    KeywordComponent,
+    KeywordControlsDirective,
+    KeywordUriDirective,
+    LogoComponent,
+    VideoPlayerComponent,
+    VocalTractAnimationComponent,
+    AnimationDirective,
     HelpComponent,
     SvgTrapeziumComponent,
     BackgroundComponent,
     SvgShapeComponent,
-    MarkComponent]
+    MarkComponent,
+  ],
 })
 export class ComponentsModule {}

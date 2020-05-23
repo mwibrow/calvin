@@ -1,58 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { ErrorHandler, NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { InlineSVGModule } from 'ng-inline-svg';
+import { SplashScreen } from "@ionic-native/splash-screen";
+import { StatusBar } from "@ionic-native/status-bar";
+import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 
-import { CalvinApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { SelectTalkerPage } from '../pages/select-talker/select-talker';
-import { SelectKeywordGroupPage } from '../pages/select-keyword-group/select-keyword-group';
-import { SelectKeywordPage } from '../pages/select-keyword/select-keyword';
-import { VowelTrainerPage } from '../pages/vowel-trainer/vowel-trainer';
-import { ExampleWordPage } from '../pages/example-word/example-word';
-import { AudioProvider } from '../providers/audio/audio';
-import { AppDataProvider } from '../providers/app-data/app-data';
+import { InlineSVGModule } from "ng-inline-svg";
 
-import { KeywordComponent, KeywordControlsDirective, KeywordUriDirective } from '../components/keyword/keyword';
-import { LogoComponent } from '../components/logo/logo';
-import { MarkComponent } from '../components/mark/mark';
-import { SvgTrapeziumComponent } from '../components/svg-trapezium/svg-trapezium';
-import { SvgShapeComponent } from '../components/svg-shape/svg-shape';
-import { BackgroundComponent } from '../components/background/background';
-import { VideoPlayerComponent } from '../components/video-player/video-player';
-import { AnimationFrameRequestProvider } from '../providers/animation-frame-request/animation-frame-request';
-import { VocalTractAnimationComponent, AnimationDirective } from '../components/vocal-tract-animation/vocal-tract-animation';
+import { CalvinApp } from "./app.component";
 
+import { ExampleWordPage } from "../pages/example-word/example-word";
+import { HomePage } from "../pages/home/home";
+import { SelectKeywordGroupPage } from "../pages/select-keyword-group/select-keyword-group";
+import { SelectKeywordPage } from "../pages/select-keyword/select-keyword";
+import { SelectTalkerPage } from "../pages/select-talker/select-talker";
+import { VowelTrainerPage } from "../pages/vowel-trainer/vowel-trainer";
+
+import { AnimationFrameRequestProvider } from "../providers/animation-frame-request/animation-frame-request";
+import { AppDataProvider } from "../providers/app-data/app-data";
+import { AudioProvider } from "../providers/audio/audio";
 
 @NgModule({
   declarations: [
     CalvinApp,
-    HomePage,
-    VowelTrainerPage,
-    ExampleWordPage,
-    SelectTalkerPage,
-    SelectKeywordGroupPage,
-    SelectKeywordPage,
-    LogoComponent,
-    KeywordComponent,
-    KeywordControlsDirective,
-    KeywordUriDirective,
-    VideoPlayerComponent,
-    VocalTractAnimationComponent,
-    AnimationDirective,
-    SvgTrapeziumComponent,
-    SvgShapeComponent,
-    BackgroundComponent,
-    MarkComponent
+    // HomePage,
+    // VowelTrainerPage,
+    // ExampleWordPage,
+    // SelectTalkerPage,
+    // SelectKeywordGroupPage,
+    // SelectKeywordPage,
   ],
-  imports: [
-    BrowserModule,
-    InlineSVGModule,
-    IonicModule.forRoot(CalvinApp)
-  ],
+  imports: [BrowserModule, InlineSVGModule, IonicModule.forRoot(CalvinApp)],
   bootstrap: [IonicApp],
   entryComponents: [
     CalvinApp,
@@ -61,15 +39,15 @@ import { VocalTractAnimationComponent, AnimationDirective } from '../components/
     SelectKeywordGroupPage,
     SelectKeywordPage,
     VowelTrainerPage,
-    ExampleWordPage
+    ExampleWordPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AudioProvider,
     AppDataProvider,
-    AnimationFrameRequestProvider
-  ]
+    AnimationFrameRequestProvider,
+  ],
 })
 export class AppModule {}
