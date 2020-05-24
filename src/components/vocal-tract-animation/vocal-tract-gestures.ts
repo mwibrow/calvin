@@ -1,16 +1,13 @@
-import { Geometry } from './geometry';
-import { Easings, Actions, Gesture, Gestures }  from './animation';
-
-
+/* tslint:disable */
+import { Geometry } from "./geometry";
+import { Easings, Actions, Gesture, Gestures } from "./animation";
 
 const lipUpperRotationCenter = new Geometry.Point(85, 170);
 const lipLowerRotationCenter = new Geometry.Point(90, 230);
 const jawRotationCenter = new Geometry.Point(280, 140);
 const velumRotationCenter = new Geometry.Point(260, 140);
 
-
 export class VocalTractGestures {
-
   frame: 0;
   velum: Gestures;
   lipUpper: Gestures;
@@ -21,7 +18,6 @@ export class VocalTractGestures {
   tongue: Gestures;
 
   vocalTractPaths: any;
-
 
   constructor(vocalTractPaths: any) {
     this.velum = new Gestures();
@@ -79,11 +75,19 @@ export class VocalTractGestures {
   addVocalFoldVibration(start: number, end: number) {
     let gesture: Gesture, action: Actions.TranslateAction;
     gesture = new Gesture(start, end);
-    action = new Actions.TranslateAction(new Geometry.Point(0,-3));
-    action.addPath(this.vocalTractPaths['larynx'], Geometry.seq(0,4), Geometry.seq(8, 12), Geometry.seq(16, 20));
-    action.setEasing(new Easings.Function(function(t){
-      if ((t >= 0.9) || (t <= 0.1)) return 0;
-      return Math.sin(t * 10 * Math.PI * Math.PI)}));
+    action = new Actions.TranslateAction(new Geometry.Point(0, -3));
+    action.addPath(
+      this.vocalTractPaths["larynx"],
+      Geometry.seq(0, 4),
+      Geometry.seq(8, 12),
+      Geometry.seq(16, 20)
+    );
+    action.setEasing(
+      new Easings.Function(function (t) {
+        if (t >= 0.9 || t <= 0.1) return 0;
+        return Math.sin(t * 10 * Math.PI * Math.PI);
+      })
+    );
     gesture.setAction(action);
     this.vocalFolds.appendGesture(gesture);
   }
@@ -92,8 +96,11 @@ export class VocalTractGestures {
     let gesture: Gesture, action: Actions.TranslateAndRotateAroundAction;
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(
-        new Geometry.Point(9,-5), -20, velumRotationCenter);
-    action.addPath(this.vocalTractPaths['velum'], Geometry.seq(8, 20));
+      new Geometry.Point(9, -5),
+      -20,
+      velumRotationCenter
+    );
+    action.addPath(this.vocalTractPaths["velum"], Geometry.seq(8, 20));
     gesture.setAction(action);
     this.velum.appendGesture(gesture);
   }
@@ -112,23 +119,30 @@ export class VocalTractGestures {
     action.setEasing(new Easings.Reverse(action.easing));
   }
 
-
   addLipRounding(start: number, end: number) {
     let gesture: Gesture, action: Actions.BaseAction;
 
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(
-        new Geometry.Vector(-5,-10), -35, lipLowerRotationCenter);
-    action.addPath(this.vocalTractPaths['lip-lower'],
-        Geometry.seq(0, 8), Geometry.seq(68, 78)
-      );
+      new Geometry.Vector(-5, -10),
+      -35,
+      lipLowerRotationCenter
+    );
+    action.addPath(
+      this.vocalTractPaths["lip-lower"],
+      Geometry.seq(0, 8),
+      Geometry.seq(68, 78)
+    );
     gesture.setAction(action);
     this.lipLower.appendGesture(gesture);
 
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(
-        new Geometry.Vector(-5,0), 35, lipUpperRotationCenter);
-    action.addPath(this.vocalTractPaths['lip-upper'], Geometry.seq(16, 32));
+      new Geometry.Vector(-5, 0),
+      35,
+      lipUpperRotationCenter
+    );
+    action.addPath(this.vocalTractPaths["lip-upper"], Geometry.seq(16, 32));
     gesture.setAction(action);
     this.lipUpper.appendGesture(gesture);
   }
@@ -160,67 +174,104 @@ export class VocalTractGestures {
     action.setEasing(new Easings.In());
   }
 
-  addJawMovement(start: number, end: number, fromWide: number=0, toWide:number=1, howWide: number=1) {
+  addJawMovement(
+    start: number,
+    end: number,
+    fromWide: number = 0,
+    toWide: number = 1,
+    howWide: number = 1
+  ) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(
-      new Geometry.Vector(-8 * howWide, 4 * howWide), -8 * howWide, jawRotationCenter);
-    action.addPath(this.vocalTractPaths['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
-    action.addPath(this.vocalTractPaths['teeth-lower']);
-    action.addPath(this.vocalTractPaths['gum-lower']);
+      new Geometry.Vector(-8 * howWide, 4 * howWide),
+      -8 * howWide,
+      jawRotationCenter
+    );
+    action.addPath(
+      this.vocalTractPaths["lip-lower"],
+      Geometry.seq(0, 24),
+      Geometry.seq(52, 78)
+    );
+    action.addPath(this.vocalTractPaths["teeth-lower"]);
+    action.addPath(this.vocalTractPaths["gum-lower"]);
     //action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(13,32));
+    action.addPath(this.vocalTractPaths["tongue"], Geometry.seq(13, 32));
     action.setEasing(new Easings.Range(fromWide, toWide));
     gesture.setAction(action);
     this.jaw.appendGesture(gesture);
   }
 
-  addJawOpen(start: number, end: number, howWide=1) {
+  addJawOpen(start: number, end: number, howWide = 1) {
     let gesture: Gesture, action: Actions.BaseAction;
     gesture = new Gesture(start, end);
     action = new Actions.TranslateAndRotateAroundAction(
-      new Geometry.Vector(-8 * howWide, 4 * howWide), -8 * howWide, jawRotationCenter);
-    action.addPath(this.vocalTractPaths['lip-lower'], Geometry.seq(0,24), Geometry.seq(52, 78))
-    action.addPath(this.vocalTractPaths['teeth-lower']);
-    action.addPath(this.vocalTractPaths['gum-lower']);
+      new Geometry.Vector(-8 * howWide, 4 * howWide),
+      -8 * howWide,
+      jawRotationCenter
+    );
+    action.addPath(
+      this.vocalTractPaths["lip-lower"],
+      Geometry.seq(0, 24),
+      Geometry.seq(52, 78)
+    );
+    action.addPath(this.vocalTractPaths["teeth-lower"]);
+    action.addPath(this.vocalTractPaths["gum-lower"]);
     //action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,32), Geometry.seq(40,50));//, Geometry.seq(10,32));
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(13,32));
+    action.addPath(this.vocalTractPaths["tongue"], Geometry.seq(13, 32));
     gesture.setAction(action);
     this.jaw.appendGesture(gesture);
   }
 
-  addJawClose(start: number, end: number, howWide=1) {
+  addJawClose(start: number, end: number, howWide = 1) {
     let action: Actions.BaseAction;
     this.addJawOpen(start, end, howWide);
     action = this.jaw.gestures[this.jaw.gestures.length - 1].action;
     action.setEasing(new Easings.Reverse(action.easing));
   }
 
-  addJawOpened(start: number, end: number, howWide=1) {
+  addJawOpened(start: number, end: number, howWide = 1) {
     let action: Actions.BaseAction;
     this.addJawOpen(start, end, howWide);
     action = this.jaw.gestures[this.jaw.gestures.length - 1].action;
     action.setEasing(new Easings.Out());
   }
 
-
   addVowelNeutral(start: number, end: number) {
-    let action = new Actions.MorphAction(this.vocalTractPaths['tongue-neutral'].getPoints(Geometry.seq(0,12), Geometry.seq(32,50)).copy());
+    let action = new Actions.MorphAction(
+      this.vocalTractPaths["tongue-neutral"]
+        .getPoints(Geometry.seq(0, 12), Geometry.seq(32, 50))
+        .copy()
+    );
     action.canHaveParent = false;
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
-    action.setEasing(new Easings.Function(function(t){ return 0; }));
+    action.addPath(
+      this.vocalTractPaths["tongue"],
+      Geometry.seq(0, 12),
+      Geometry.seq(32, 50)
+    );
+    action.setEasing(
+      new Easings.Function(function (t) {
+        return 0;
+      })
+    );
 
     let gesture: Gesture = new Gesture(start, end);
     gesture.setAction(action);
     this.tongue.appendGesture(gesture);
   }
 
-  addVowelHeed(start: number, end: number, reverse:boolean=false) {
+  addVowelHeed(start: number, end: number, reverse: boolean = false) {
     let heed: any;
-    heed = this.vocalTractPaths['tongue-whod'];//Geometry.SvgPath.fromSvg(HEED_SVG);
-    let action = new Actions.MorphAction(heed.getPoints(Geometry.seq(0,12), Geometry.seq(32,50)));
+    heed = this.vocalTractPaths["tongue-whod"]; //Geometry.SvgPath.fromSvg(HEED_SVG);
+    let action = new Actions.MorphAction(
+      heed.getPoints(Geometry.seq(0, 12), Geometry.seq(32, 50))
+    );
     action.canHaveParent = false;
-    action.addPath(this.vocalTractPaths['tongue'], Geometry.seq(0,12), Geometry.seq(32,50));
+    action.addPath(
+      this.vocalTractPaths["tongue"],
+      Geometry.seq(0, 12),
+      Geometry.seq(32, 50)
+    );
     if (reverse) {
       action.setEasing(new Easings.Reverse(action.easing));
     }
@@ -247,26 +298,31 @@ export class VocalTractGestures {
   //   this.tongue.appendGesture(gesture);
   // }
 
-  addTongueMovement(start: number, end: number, startTongue: Geometry.SvgPath, endTongue?: Geometry.SvgPath) {
+  addTongueMovement(
+    start: number,
+    end: number,
+    startTongue: Geometry.SvgPath,
+    endTongue?: Geometry.SvgPath
+  ) {
+    endTongue = endTongue || startTongue;
 
-        endTongue = endTongue || startTongue;
-
-        let action = new Actions.MorphBetweenAction(
-          this.getTongueMovementPoints(startTongue),
-          this.getTongueMovementPoints(endTongue)
-        );
-         action.canHaveParent = false;
-        action.addPoints(this.vocalTractPaths['tongue'],
-          this.getTongueMovementPoints(this.vocalTractPaths['tongue']));
-        let gesture: Gesture = new Gesture(start, end);
-        gesture.setAction(action);
-        this.tongue.appendGesture(gesture);
-      }
-
-  getTongueMovementPoints(path: Geometry.SvgPath) {
-    return path.getPoints(Geometry.seq(0,12), Geometry.seq(32,50));
+    let action = new Actions.MorphBetweenAction(
+      this.getTongueMovementPoints(startTongue),
+      this.getTongueMovementPoints(endTongue)
+    );
+    action.canHaveParent = false;
+    action.addPoints(
+      this.vocalTractPaths["tongue"],
+      this.getTongueMovementPoints(this.vocalTractPaths["tongue"])
+    );
+    let gesture: Gesture = new Gesture(start, end);
+    gesture.setAction(action);
+    this.tongue.appendGesture(gesture);
   }
 
+  getTongueMovementPoints(path: Geometry.SvgPath) {
+    return path.getPoints(Geometry.seq(0, 12), Geometry.seq(32, 50));
+  }
 
   getTongueTarget(front: number, open: number): Geometry.SvgPath {
     /**
@@ -277,26 +333,42 @@ export class VocalTractGestures {
 
     let tonguePositions: Array<Array<Geometry.SvgPath>> = [
       [
-        this.vocalTractPaths['tongue-whod'],
-        morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-whod'], 0.5),
-        this.vocalTractPaths['tongue-heed']
+        this.vocalTractPaths["tongue-whod"],
+        morph(
+          this.vocalTractPaths["tongue-heed"],
+          this.vocalTractPaths["tongue-whod"],
+          0.5
+        ),
+        this.vocalTractPaths["tongue-heed"],
       ],
       [
-        morph(this.vocalTractPaths['tongue-whod'], this.vocalTractPaths['tongue-hard'], 0.5),
-        this.vocalTractPaths['tongue-neutral'],
-        morph(this.vocalTractPaths['tongue-heed'], this.vocalTractPaths['tongue-had'], 0.5)
+        morph(
+          this.vocalTractPaths["tongue-whod"],
+          this.vocalTractPaths["tongue-hard"],
+          0.5
+        ),
+        this.vocalTractPaths["tongue-neutral"],
+        morph(
+          this.vocalTractPaths["tongue-heed"],
+          this.vocalTractPaths["tongue-had"],
+          0.5
+        ),
       ],
       [
-        this.vocalTractPaths['tongue-hard'],
-        morph(this.vocalTractPaths['tongue-had'], this.vocalTractPaths['tongue-hard'], 0.5),
-        this.vocalTractPaths['tongue-had']
-      ]
+        this.vocalTractPaths["tongue-hard"],
+        morph(
+          this.vocalTractPaths["tongue-had"],
+          this.vocalTractPaths["tongue-hard"],
+          0.5
+        ),
+        this.vocalTractPaths["tongue-had"],
+      ],
     ];
 
     if (open < -1) open = -1;
     if (open > 1) open = 1;
     if (front < -1) front = -1;
-    if (front > 1) front = 1
+    if (front > 1) front = 1;
 
     let i, j, ii, jj;
 
@@ -310,7 +382,8 @@ export class VocalTractGestures {
     return morph(
       morph(tonguePositions[i][j], tonguePositions[ii][j], open - i),
       morph(tonguePositions[i][jj], tonguePositions[ii][jj], open - i),
-      front - j);
+      front - j
+    );
   }
 
   tongueTargetFromVowel(spec: string) {
@@ -323,67 +396,63 @@ export class VocalTractGestures {
   }
 }
 
-
-
 export const parseVowelDescriptions = (description: string) => {
-  return description.split(';').map(v => parseVowelDescription(v))
-}
+  return description.split(";").map((v) => parseVowelDescription(v));
+};
 
 export const parseVowelDescription = (spec: string) => {
-
-  let tokens = spec.replace(/\s+/, ' ').toLowerCase().split(' ');
-  let front: number, open: number, rounded: boolean, nasal: boolean = false;
+  let tokens = spec.replace(/\s+/, " ").toLowerCase().split(" ");
+  let front: number,
+    open: number,
+    rounded: boolean,
+    nasal: boolean = false;
 
   front = open = 0;
-  for (let i: number = 0; i < tokens.length; i ++) {
+  for (let i: number = 0; i < tokens.length; i++) {
     switch (tokens[i]) {
-      case 'front':
+      case "front":
         front = 1;
         break;
-      case 'near-front':
+      case "near-front":
         front = 0.5;
         break;
-      case 'central':
+      case "central":
         front = 0;
         break;
-      case 'near-back':
+      case "near-back":
         front = -0.5;
         break;
-      case 'back':
+      case "back":
         front = -1;
         break;
-      case 'close':
+      case "close":
         open = -1;
         break;
-      case 'near-close':
+      case "near-close":
         open = -0.666;
         break;
-      case 'close-mid':
+      case "close-mid":
         open = -0.333;
         break;
-      case 'mid':
+      case "mid":
         open = 0;
         break;
-      case 'open-mid':
+      case "open-mid":
         open = 0.333;
         break;
-      case 'near-open':
+      case "near-open":
         open = 0.666;
         break;
-      case 'open':
+      case "open":
         open = 1;
         break;
-      case 'rounded':
+      case "rounded":
         rounded = true;
         break;
-      case 'unrounded':
+      case "unrounded":
         rounded = false;
         break;
     }
   }
-  return {front: front, open: open, rounded: rounded, nasal: nasal};
-}
-
-
-
-
+  return { front: front, open: open, rounded: rounded, nasal: nasal };
+};

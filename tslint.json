@@ -11,6 +11,11 @@
     "variable-name": false,
     "no-namespace": false,
     "no-shadowed-variable": false,
-    "member-ordering": false
+    "member-ordering": false,
+    "prefer-object-spread": false,
+    "prefer-conditional-expression": false,
+    "no-internal-module": false,
+    "only-arrow-functions": false,
+    "space-before-function-paren": false
   }
 }
