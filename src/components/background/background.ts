@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 /**
  * Generated class for the BackgroundComponent component.
@@ -7,207 +7,248 @@ import { Component, Input } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'background',
-  templateUrl: 'background.html'
+  selector: "background",
+  templateUrl: "background.html",
 })
 export class BackgroundComponent {
-
-  @Input('color') color: string = 'black';
-  @Input('image') image: string = '';
-  @Input('pattern') pattern = 'circles';
-  svgPath: string = '';
-  constructor() {}
+  @Input("color") color: string = "black";
+  @Input("image") image: string = "";
+  @Input("pattern") pattern = "circles";
+  svgPath: string = "";
 
   ngOnInit() {
     this.makePattern(this.pattern);
   }
 
   getApsectRatio() {
-    return Math.max(document.documentElement.clientWidth, window.innerWidth || 0) / Math.max(document.documentElement.clientHeight, window.innerHeight || 0) || 1;
+    return (
+      Math.max(document.documentElement.clientWidth, window.innerWidth || 0) /
+        Math.max(
+          document.documentElement.clientHeight,
+          window.innerHeight || 0
+        ) || 1
+    );
   }
 
   makePattern(pattern: string) {
     switch (pattern) {
-      case 'horizontal-lines':
+      case "horizontal-lines":
         this.svgPath = this.horizontalLines();
         break;
-      case 'vertical-lines':
+      case "vertical-lines":
         this.svgPath = this.verticalLines();
         break;
-      case 'circles':
+      case "circles":
         this.svgPath = this.circles();
         break;
-      case 'squares':
+      case "squares":
         this.svgPath = this.squares();
         break;
-      case 'diamonds':
+      case "diamonds":
         this.svgPath = this.diamonds();
         break;
-      case 'stars':
+      case "stars":
         this.svgPath = this.stars();
         break;
-      case 'triangles':
+      case "triangles":
         this.svgPath = this.triangles();
         break;
       default:
-        this.svgPath = '';
+        this.svgPath = "";
     }
   }
 
   horizontalLines() {
     let i: number, j: number, x: number, y: number;
-    const intervals: number = 10, width: number = 100, height: number = 100, thickness: number = 1;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100,
+      thickness: number = 1;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
       y = (i + 0.5) * vFactor + thickness * (1 - Math.random());
       d.push(`M 0 ${y}`);
-      for (j = 0; j <= intervals; j ++) {
+      for (j = 0; j <= intervals; j++) {
         x = (j + 0.5) * hFactor + Math.random() * 2 - 1;
         y = (i + 0.5) * vFactor + thickness * (1 - Math.random());
         d.push(`L ${x} ${y}`);
       }
-      for (j = intervals; j >= -1; j --) {
+      for (j = intervals; j >= -1; j--) {
         x = (j + 0.5) * hFactor + Math.random() * 2 - 1;
         y = (i + 0.5) * vFactor - thickness * (1 - Math.random());
         d.push(`L ${x} ${y}`);
       }
-      d.push('Z');
+      d.push("Z");
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   verticalLines() {
     let i: number, j: number, x: number, y: number;
-    const intervals: number = 10, width: number = 100, height: number = 100, thickness: number = 1;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100,
+      thickness: number = 1;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
       x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
       d.push(`M ${x} 0`);
-      for (j = 0; j <= intervals; j ++) {
+      for (j = 0; j <= intervals; j++) {
         y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
         x = (i + 0.5) * hFactor + thickness * (1 - Math.random());
         d.push(`L ${x} ${y}`);
       }
-      for (j = intervals; j >= -1; j --) {
+      for (j = intervals; j >= -1; j--) {
         y = (j + 0.5) * vFactor + Math.random() * 2 - 1;
         x = (i + 0.5) * hFactor - thickness * (1 - Math.random());
         d.push(`L ${x} ${y}`);
       }
-      d.push('Z');
+      d.push("Z");
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   circles() {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, rx: number, ry: number;
-    const z: number = .55191496;
-    const intervals: number = 10, width: number = 100, height: number = 100;
+    const z: number = 0.55191496;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
+      for (j = 0; j < intervals; j++) {
         ry = Math.random() * 5;
         rx = ry / aspectRatio;
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
-        d.push(`M ${x + rx} ${y}` +
-          `C ${x + rx * 1} ${y + ry * z} ${x + rx * z} ${y + ry * 1} ${x + rx * 0} ${y + ry * 1} ` +
-          `C ${x - rx * z} ${y + ry * 1} ${x - rx * 1} ${y + ry * z} ${x - rx * 1} ${y + ry * 0} ` +
-          `C ${x - rx * 1} ${y - ry * z} ${x - rx * z} ${y - ry * 1} ${x - rx * 0} ${y - ry * 1} ` +
-          `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${x + rx * 1} ${y + ry * 0} Z`);
+        d.push(
+          `M ${x + rx} ${y}` +
+            `C ${x + rx * 1} ${y + ry * z} ${x + rx * z} ${y + ry * 1} ${
+              x + rx * 0
+            } ${y + ry * 1} ` +
+            `C ${x - rx * z} ${y + ry * 1} ${x - rx * 1} ${y + ry * z} ${
+              x - rx * 1
+            } ${y + ry * 0} ` +
+            `C ${x - rx * 1} ${y - ry * z} ${x - rx * z} ${y - ry * 1} ${
+              x - rx * 0
+            } ${y - ry * 1} ` +
+            `C ${x + rx * z} ${y - ry * 1} ${x + rx * 1} ${y - ry * z} ${
+              x + rx * 1
+            } ${y + ry * 0} Z`
+        );
       }
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   squares() {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2;
-        h = w *  aspectRatio;
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
+      for (j = 0; j < intervals; j++) {
+        w = (Math.random() * hFactor) / 2;
+        h = w * aspectRatio;
 
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
-        d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w} ${y + h} L ${x} ${y + h} Z`);
+        d.push(
+          `M ${x} ${y} L ${x + w} ${y} L ${x + w} ${y + h} L ${x} ${y + h} Z`
+        );
       }
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   diamonds() {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100;
     const hFactor: number = width / intervals;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
+      for (j = 0; j < intervals; j++) {
         w = Math.random() * hFactor;
         h = w * aspectRatio;
 
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
-        d.push(`M ${x - w / 2} ${y} L ${x} ${y + h / 2} L ${x + w / 2} ${y} L ${x} ${y - h / 2} Z`);
+        d.push(
+          `M ${x - w / 2} ${y} L ${x} ${y + h / 2} L ${x + w / 2} ${y} L ${x} ${
+            y - h / 2
+          } Z`
+        );
       }
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   triangles() {
     const aspectRatio = this.getApsectRatio();
     let i: number, j: number, x: number, y: number, w: number, h: number;
-    const intervals: number = 10, width: number = 100, height: number = 100;
-    const hFactor: number = width / intervals * aspectRatio;
+    const intervals: number = 10,
+      width: number = 100,
+      height: number = 100;
+    const hFactor: number = (width / intervals) * aspectRatio;
     const vFactor: number = height / intervals;
-    let d: Array<string> = [];
-    for (i = 0; i < intervals; i ++) {
-      for (j = 0; j < intervals; j ++) {
-        w = Math.random() * hFactor / 2;
+    let d: string[] = [];
+    for (i = 0; i < intervals; i++) {
+      for (j = 0; j < intervals; j++) {
+        w = (Math.random() * hFactor) / 2;
         h = w * aspectRatio;
         x = (j + Math.random()) * hFactor;
         y = (i + Math.random()) * vFactor;
         d.push(`M ${x} ${y} L ${x + w} ${y} L ${x + w / 2} ${y - h} Z`);
       }
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 
   stars(points: number = 5) {
     const aspectRatio = this.getApsectRatio();
-    let centerX: number, centerY: number,
-      radiusX: number, radiusY: number,
-      rotation: number, i: number, j: number, k: number,
-      x: number, y: number, angle: number;
-    let d: Array<string> = [];
-    for (i = 0; i < 10; i ++) {
-      for (j = 0; j < 10; j ++) {
-        centerX = (i + .5 + Math.random() * 2 - 1) * 10;
-        centerY = (j + .5 + Math.random() * 2 - 1) * 10;
+    let centerX: number,
+      centerY: number,
+      radiusX: number,
+      radiusY: number,
+      rotation: number,
+      i: number,
+      j: number,
+      k: number,
+      x: number,
+      y: number,
+      angle: number;
+    let d: string[] = [];
+    for (i = 0; i < 10; i++) {
+      for (j = 0; j < 10; j++) {
+        centerX = (i + 0.5 + Math.random() * 2 - 1) * 10;
+        centerY = (j + 0.5 + Math.random() * 2 - 1) * 10;
         radiusX = 1 + Math.random() * 2;
         radiusY = radiusX * aspectRatio;
         rotation = Math.random() * Math.PI * 2;
-        for (k = 0; k < points * 2; k ++) {
-          angle = Math.PI / points * k + rotation;
-          x = centerX + Math.cos(angle) * radiusX * (k % 2 ? 1 : .5);
-          y = centerY + Math.sin(angle) * radiusY * (k % 2 ? 1 : .5);
-          d.push(`${k === 0 ? 'M' : 'L'} ${x} ${y}`);
+        for (k = 0; k < points * 2; k++) {
+          angle = (Math.PI / points) * k + rotation;
+          x = centerX + Math.cos(angle) * radiusX * (k % 2 ? 1 : 0.5);
+          y = centerY + Math.sin(angle) * radiusY * (k % 2 ? 1 : 0.5);
+          d.push(`${k === 0 ? "M" : "L"} ${x} ${y}`);
         }
-        d.push('Z')
+        d.push("Z");
       }
     }
-    return d.join(' ');
+    return d.join(" ");
   }
 }

@@ -1,30 +1,35 @@
-import { Component, ViewChild, NgZone } from '@angular/core';
-import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AppDataProvider, Word, Talker, WordTypes } from '../../providers/app-data/app-data';
-import { ExampleWordPage } from '../../pages/example-word/example-word';
-import { VocalTractAnimationComponent } from '../../components/vocal-tract-animation/vocal-tract-animation';
-import { AudioProvider, AudioPlayer } from '../../providers/audio/audio';
-import { KeywordComponent } from '../../components/keyword/keyword';
+import { Component, ViewChild, NgZone } from "@angular/core";
+import { Events, IonicPage, NavController, NavParams } from "ionic-angular";
+import {
+  AppDataProvider,
+  Word,
+  Talker,
+  WordTypes,
+} from "../../providers/app-data/app-data";
+import { ExampleWordPage } from "../../pages/example-word/example-word";
+import { VocalTractAnimationComponent } from "../../components/vocal-tract-animation/vocal-tract-animation";
+import { AudioProvider, AudioPlayer } from "../../providers/audio/audio";
+import { KeywordComponent } from "../../components/keyword/keyword";
 
-import * as mdColors from 'material-colors';
+import * as mdColors from "material-colors";
 enum ViewState {
   Audio,
   Video,
   Animation,
   Recording,
-  Examples
+  Examples,
 }
 
 @IonicPage()
 @Component({
-  selector: 'page-vowel-trainer',
-  templateUrl: 'vowel-trainer.html'
+  selector: "page-vowel-trainer",
+  templateUrl: "vowel-trainer.html",
 })
 export class VowelTrainerPage {
-
-  @ViewChild(VocalTractAnimationComponent) vocalTractAnimation: VocalTractAnimationComponent;
-  @ViewChild('keyword') keyword: KeywordComponent;
-  @ViewChild('keywordVowel') keywordVowel: KeywordComponent;
+  @ViewChild(VocalTractAnimationComponent)
+  vocalTractAnimation: VocalTractAnimationComponent;
+  @ViewChild("keyword") keyword: KeywordComponent;
+  @ViewChild("keywordVowel") keywordVowel: KeywordComponent;
 
   public readonly ViewState = ViewState;
   private viewState: ViewState;
@@ -34,22 +39,22 @@ export class VowelTrainerPage {
 
   public backgroundColor: string = mdColors.yellow[500];
 
-  constructor(public navCtrl: NavController,
-      public navParams: NavParams,
-      private appData: AppDataProvider,
-      private audio: AudioProvider,
-      public ngZone: NgZone,
-      public events: Events) {
-
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private appData: AppDataProvider,
+    private audio: AudioProvider,
+    public ngZone: NgZone,
+    public events: Events
+  ) {
     this.viewState = ViewState.Audio;
 
     this.talker = appData.getTalker();
     this.keywordExampleMap = appData.keywordExampleMap;
     this.player = this.audio.player;
-    this.events.subscribe('svg:loaded', () => {
+    this.events.subscribe("svg:loaded", () => {
       this.setUpAnimation();
-    })
-
+    });
   }
 
   ngAfterViewInit() {
@@ -73,21 +78,27 @@ export class VowelTrainerPage {
 
   setUpAnimation() {
     if (this.vocalTractAnimation.ready()) {
-      this.vocalTractAnimation.setUpVowelAnimation(this.getWord().description, this.getVowelUri());
+      this.vocalTractAnimation.setUpVowelAnimation(
+        this.getWord().description,
+        this.getVowelUri()
+      );
     }
   }
 
   isViewState(viewState: ViewState) {
     if (this.viewState === viewState) {
-      return "true"
+      return "true";
     }
   }
 
   getKeyword(highlightVowel: boolean = false): string {
     let word: Word = this.getWord();
     if (highlightVowel) {
-      return word.highlight.replace(/([^<]*)<([a-z]+)>(.*)/, //'<span class="keyword-display">$1$2$3</span>');
-      '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>')
+      return word.highlight.replace(
+        /([^<]*)<([a-z]+)>(.*)/, // '<span class="keyword-display">$1$2$3</span>');
+        // tslint:disable-next-line: max-line-length
+        '<span class="keyword-display lowlight">$1</span><span class="keyword-display highlight">$2</span><span class="keyword-display lowlight">$3</span>'
+      );
     }
     return `<span class="keyword-display">${word.display}</span>`;
   }
@@ -95,7 +106,7 @@ export class VowelTrainerPage {
   getWord(): Word {
     let word: Word = this.appData.getKeyword();
     if (word === undefined) {
-      console.error(`No entry for keyword ${word.id}`);
+      global.console.error(`No entry for keyword ${word.id}`);
     }
     return word;
   }
@@ -115,7 +126,7 @@ export class VowelTrainerPage {
     return this.appData.exampleWords[wordId];
   }
 
-  ionViewDidLoad() {}
+  // ionViewDidLoad() {}
 
   goBack() {
     this.navCtrl.pop();
@@ -133,25 +144,43 @@ export class VowelTrainerPage {
   }
 
   playExampleWord(word: string, index: number) {
-    let uri = this.appData.getAudioUri(this.appData.getTalker().id, word, WordTypes.ExampleWords);
-    this.player.playUrl(uri).then(() => {
-      this.showExampleWord(index)
-    }).catch(() => {});
+    let uri = this.appData.getAudioUri(
+      this.appData.getTalker().id,
+      word,
+      WordTypes.ExampleWords
+    );
+    this.player
+      .playUrl(uri)
+      .then(() => {
+        this.showExampleWord(index);
+      })
+      // tslint:disable-next-line: no-empty
+      .catch(() => {});
   }
 
   getKeywordUri() {
-    let uri = this.appData.getAudioUri(this.appData.talker.id, this.appData.getKeyword().id, WordTypes.Keywords);
+    let uri = this.appData.getAudioUri(
+      this.appData.talker.id,
+      this.appData.getKeyword().id,
+      WordTypes.Keywords
+    );
     return uri;
   }
 
   getVowelUri() {
-    let uri = this.appData.getAudioUri(this.appData.talker.id, this.appData.getKeyword().hvd, WordTypes.Vowels);
+    let uri = this.appData.getAudioUri(
+      this.appData.talker.id,
+      this.appData.getKeyword().hvd,
+      WordTypes.Vowels
+    );
     return uri;
   }
 
   getKeywordImageUri() {
-    let uri: string = this.appData.getImageUri(this.appData.getKeyword().id, WordTypes.Keywords);
+    let uri: string = this.appData.getImageUri(
+      this.appData.getKeyword().id,
+      WordTypes.Keywords
+    );
     return uri;
   }
-
 }

@@ -16,6 +16,8 @@
     "prefer-conditional-expression": false,
     "no-internal-module": false,
     "only-arrow-functions": false,
-    "space-before-function-paren": false
+    "space-before-function-paren": false,
+    "no-string-literal": false,
+    "prefer-for-of": false
   }
 }

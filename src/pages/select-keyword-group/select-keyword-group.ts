@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import { AppDataProvider, WordGroup, Word, WordTypes } from '../../providers/app-data/app-data';
-import { SelectKeywordPage } from '../../pages/select-keyword/select-keyword';
+import {
+  AppDataProvider,
+  WordGroup,
+  Word,
+  WordTypes,
+} from "../../providers/app-data/app-data";
+import { SelectKeywordPage } from "../../pages/select-keyword/select-keyword";
 
-import * as mdColors from 'material-colors';
+import * as mdColors from "material-colors";
 
 @IonicPage()
 @Component({
-  selector: 'page-select-keyword-group',
-  templateUrl: 'select-keyword-group.html',
+  selector: "page-select-keyword-group",
+  templateUrl: "select-keyword-group.html",
 })
 export class SelectKeywordGroupPage {
-
   backgroundColor: string = mdColors.yellow[500];
   trapeziumColor: string = mdColors.amber[900];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public appData: AppDataProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public appData: AppDataProvider
+  ) {}
 
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SelectKeywordGroupPage');
-  }
+  // ionViewDidLoad() {}
 
   getKeywordGroupList() {
     return this.appData.keywordGroupList;
@@ -44,5 +48,4 @@ export class SelectKeywordGroupPage {
   goBack() {
     this.navCtrl.pop();
   }
-
 }

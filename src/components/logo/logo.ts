@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 /**
  * Generated class for the LogoComponent component.
@@ -7,16 +7,13 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'logo',
-  templateUrl: 'logo.html'
+  selector: "logo",
+  templateUrl: "logo.html",
 })
 export class LogoComponent {
-
   text: string;
 
   constructor() {
-    console.log('Hello LogoComponent Component');
-    this.text = 'Hello World';
+    this.text = "Hello World";
   }
-
 }

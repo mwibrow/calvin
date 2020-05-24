@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 /**
  * Generated class for the MarkComponent component.
@@ -7,16 +7,14 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'mark',
-  templateUrl: 'mark.html'
+  selector: "mark",
+  templateUrl: "mark.html",
 })
 export class MarkComponent {
-
   text: string;
 
   constructor() {
-    console.log('Hello MarkComponent Component');
-    this.text = 'Hello World';
+    global.console.log("Hello MarkComponent Component");
+    this.text = "Hello World";
   }
-
 }

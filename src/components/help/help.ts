@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 /**
  * Generated class for the HelpComponent component.
@@ -7,16 +7,9 @@ import { Component } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'help',
-  templateUrl: 'help.html'
+  selector: "help",
+  templateUrl: "help.html",
 })
 export class HelpComponent {
-
   text: string;
-
-  constructor() {
-    console.log('Hello HelpComponent Component');
-    this.text = 'Hello World';
-  }
-
 }

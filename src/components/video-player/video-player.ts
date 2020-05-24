@@ -1,26 +1,25 @@
-import { Component, ViewChild, Input, NgZone, ElementRef } from '@angular/core';
+import { Component, ViewChild, Input, NgZone, ElementRef } from "@angular/core";
 
 @Component({
-  selector: 'video-player',
-  templateUrl: 'video-player.html'
+  selector: "video-player",
+  templateUrl: "video-player.html",
 })
 export class VideoPlayerComponent {
-
   playing: boolean;
-  @ViewChild('videoPlayer') video: ElementRef;
-  @Input('src') src: string;
-  @Input('disabled') disabled: string;
+  @ViewChild("videoPlayer") video: ElementRef;
+  @Input("src") src: string;
+  @Input("disabled") disabled: string;
   constructor(public zone: NgZone) {
     this.playing = false;
   }
 
   ngOnInit() {
-    this.video.nativeElement.addEventListener('ended', () => this.stop());
+    this.video.nativeElement.addEventListener("ended", () => this.stop());
     this.video.nativeElement.controls = false;
   }
 
   isDisabled() {
-    return this.disabled === 'true';
+    return this.disabled === "true";
   }
 
   setSrc(src: string) {
@@ -28,8 +27,10 @@ export class VideoPlayerComponent {
   }
 
   play() {
-    if (this.isDisabled()) return;
-    this.playing = true
+    if (this.isDisabled()) {
+      return;
+    }
+    this.playing = true;
     this.video.nativeElement.muted = false;
     setTimeout(() => this.video.nativeElement.play(), 1000);
   }
@@ -39,6 +40,4 @@ export class VideoPlayerComponent {
     this.video.nativeElement.currentTime = 0;
     this.playing = false;
   }
-
-
 }

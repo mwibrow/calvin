@@ -95,6 +95,7 @@ export class SelectKeywordPage {
           this.setKeyword(keyword);
         }
       })
+      // tslint:disable-next-line: no-empty
       .catch(() => {});
   }
 

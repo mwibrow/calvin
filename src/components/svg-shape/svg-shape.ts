@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 /**
  * Generated class for the SvgShapeComponent component.
@@ -7,24 +7,19 @@ import { Component, Input } from '@angular/core';
  * Components.
  */
 @Component({
-  selector: 'svg-shape',
-  templateUrl: 'svg-shape.html'
+  selector: "svg-shape",
+  templateUrl: "svg-shape.html",
 })
 export class SvgShapeComponent {
-
-  @Input('shape') shape: string = 'rectangle';
-  @Input('preserveAspectRatio') preserveAspectRatio: string = 'xMidYMid';
-  @Input('click') click: any;
-  @Input('rotate') rotate: string = '0';
-  constructor() {
-    console.log('Hello SvgShapeComponent Component');
-
-  }
+  @Input("shape") shape: string = "rectangle";
+  @Input("preserveAspectRatio") preserveAspectRatio: string = "xMidYMid";
+  @Input("click") click: any;
+  @Input("rotate") rotate: string = "0";
 
   getMatrix() {
     let cosAngle: number, sinAngle: number;
-    cosAngle = Math.cos(Number.parseFloat(this.rotate) / 180 * Math.PI);
-    sinAngle = Math.sin(Number.parseFloat(this.rotate) / 180 * Math.PI);
+    cosAngle = Math.cos((Number.parseFloat(this.rotate) / 180) * Math.PI);
+    sinAngle = Math.sin((Number.parseFloat(this.rotate) / 180) * Math.PI);
     let a, b, c, d, x, y;
     a = cosAngle;
     b = sinAngle;
@@ -34,5 +29,4 @@ export class SvgShapeComponent {
     y = 0;
     return `matrix(${a}, ${b}, ${c}, ${d}, ${x}, ${y})`;
   }
-
 }

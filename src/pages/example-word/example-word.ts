@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
-import * as mdColors from 'material-colors';
+import * as mdColors from "material-colors";
 
 enum ViewState {
   Image,
   Video,
-  Recording
+  Recording,
 }
 
-import { AppDataProvider, Word, WordTypes } from '../../providers/app-data/app-data';
+import {
+  AppDataProvider,
+  Word,
+  WordTypes,
+} from "../../providers/app-data/app-data";
 /**
  * Generated class for the ExampleWordPage page.
  *
@@ -19,26 +23,24 @@ import { AppDataProvider, Word, WordTypes } from '../../providers/app-data/app-d
 
 @IonicPage()
 @Component({
-  selector: 'page-example-word',
-  templateUrl: 'example-word.html',
+  selector: "page-example-word",
+  templateUrl: "example-word.html",
 })
 export class ExampleWordPage {
-
   public readonly ViewState = ViewState;
   viewState: ViewState;
-  imageColor: string = mdColors.lightGreen['500'];
-  backgroundColor: string = mdColors.yellow['500'];
+  imageColor: string = mdColors.lightGreen["500"];
+  backgroundColor: string = mdColors.yellow["500"];
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public appData: AppDataProvider) {
-      this.viewState = ViewState.Video;
-
+    public appData: AppDataProvider
+  ) {
+    this.viewState = ViewState.Video;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ExampleWordPage');
-  }
+  // ionViewDidLoad() {}
 
   isViewState(viewState: ViewState) {
     return viewState === this.viewState;
@@ -56,7 +58,7 @@ export class ExampleWordPage {
   getWord(): Word {
     let word: Word = this.appData.getExampleWord();
     if (word === undefined) {
-      console.error(`No entry for keyword ${word.id}`);
+      global.console.error(`No entry for keyword ${word.id}`);
     }
     return word;
   }
@@ -68,19 +70,25 @@ export class ExampleWordPage {
   }
 
   getImageUri() {
-    let uri: string = this.appData.getImageUri(this.appData.getExampleWord().id, WordTypes.ExampleWords);
+    let uri: string = this.appData.getImageUri(
+      this.appData.getExampleWord().id,
+      WordTypes.ExampleWords
+    );
     return uri;
   }
 
   getVideoUri() {
     let talker = this.appData.getTalker();
     let word = this.appData.getExampleWord();
-    let uri: string = this.appData.getVideoUri(talker.id, WordTypes.ExampleWords, word.id);
+    let uri: string = this.appData.getVideoUri(
+      talker.id,
+      WordTypes.ExampleWords,
+      word.id
+    );
     return uri;
   }
 
   goBack() {
     this.navCtrl.pop();
   }
-
 }
