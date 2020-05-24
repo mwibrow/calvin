@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
-
 import { InlineSVGModule } from "ng-inline-svg";
+import { IonicModule } from "ionic-angular";
 
 import {
   KeywordComponent,
@@ -34,7 +34,11 @@ import { AnimationDirective } from "./vocal-tract-animation/animation-directive"
     SvgShapeComponent,
     MarkComponent,
   ],
-  imports: [CommonModule, InlineSVGModule],
+  imports: [
+    CommonModule,
+    InlineSVGModule,
+    IonicModule.forRoot(KeywordComponent),
+  ],
   exports: [
     KeywordComponent,
     KeywordControlsDirective,

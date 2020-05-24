@@ -1,12 +1,15 @@
-import { Component, Directive, Input, NgZone } from '@angular/core';
-import { AudioProvider, AudioPlayer, AudioRecorder } from '../../providers/audio/audio'
+import { Component, Directive, Input, NgZone } from "@angular/core";
+import {
+  AudioProvider,
+  AudioPlayer,
+  AudioRecorder,
+} from "../../providers/audio/audio";
 
 @Component({
-  selector: 'keyword',
-  templateUrl: 'keyword.html'
+  selector: "keyword",
+  templateUrl: "keyword.html",
 })
 export class KeywordComponent {
-
   player: AudioPlayer;
   recorder: AudioRecorder;
   uri: string;
@@ -20,23 +23,23 @@ export class KeywordComponent {
   zone: NgZone;
   onEndedId: string;
 
-  @Input('selected') selected: boolean = false;
-  @Input('selectable') selectable: boolean;
-  @Input('siblings') siblings: Array<KeywordComponent>;
+  @Input("selected") selected: boolean = false;
+  @Input("selectable") selectable: boolean;
+  @Input("siblings") siblings: KeywordComponent[];
   constructor(public audio: AudioProvider) {
     this.player = audio.player;
 
     this.player.initialise();
     this.recorder = null;
     this.recording = false;
-    this.uri = '';
+    this.uri = "";
     this.audioBuffer = null;
     this.controls = false;
     this.canPlay = false;
     this.canPlayKeyword = true;
     this.canRecord = true;
     this.zone = new NgZone({ enableLongStackTrace: false });
-    this.onEndedId = '';
+    this.onEndedId = "";
   }
 
   setUri(uri: string) {
@@ -64,25 +67,25 @@ export class KeywordComponent {
   }
 
   playKeyword() {
-
     if (this.uri) {
       if (this.selectable) {
         if (this.siblings) {
-          this.siblings.map(sibling => sibling.selected = false)
+          this.siblings.map((sibling) => (sibling.selected = false));
         }
-        this.selected =! this.selected;
+        this.selected = !this.selected;
       }
-      this.player.playUrl(this.uri)
-        .catch((err) => {
-          console.error('AN ERROR OCCURED')
-        });
+      this.player.playUrl(this.uri).catch((err) => {
+        global.console.error("AN ERROR OCCURED");
+      });
     }
   }
 
   playRecording() {
     if (this.audioBuffer) {
       this.canRecord = false;
-      this.player.playBuffer(this.audioBuffer).then(() => this.canRecord = true);
+      this.player
+        .playBuffer(this.audioBuffer)
+        .then(() => (this.canRecord = true));
     }
   }
 
@@ -103,11 +106,10 @@ export class KeywordComponent {
       this.startRecording();
     }
   }
-
 }
 
 @Directive({
-  selector: '[keyword-controls]' // Attribute selector
+  selector: "[keyword-controls]", // Attribute selector
 })
 export class KeywordControlsDirective {
   constructor(public keywordComponent: KeywordComponent) {}
@@ -117,14 +119,13 @@ export class KeywordControlsDirective {
 }
 
 @Directive({
-  selector: '[keyword-uri]' // Attribute selector
+  selector: "[keyword-uri]", // Attribute selector
 })
 export class KeywordUriDirective {
-  @Input('keyword-uri') keywordUri: string;
-   constructor(public keywordComponent: KeywordComponent) {}
+  @Input("keyword-uri") keywordUri: string;
+  constructor(public keywordComponent: KeywordComponent) {}
 
   ngOnInit() {
     this.keywordComponent.setUri(this.keywordUri);
   }
-
 }

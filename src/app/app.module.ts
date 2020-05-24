@@ -19,18 +19,24 @@ import { VowelTrainerPage } from "../pages/vowel-trainer/vowel-trainer";
 import { AnimationFrameRequestProvider } from "../providers/animation-frame-request/animation-frame-request";
 import { AppDataProvider } from "../providers/app-data/app-data";
 import { AudioProvider } from "../providers/audio/audio";
+import { ComponentsModule } from "../components/components.module";
 
 @NgModule({
   declarations: [
     CalvinApp,
-    // HomePage,
-    // VowelTrainerPage,
-    // ExampleWordPage,
-    // SelectTalkerPage,
-    // SelectKeywordGroupPage,
-    // SelectKeywordPage,
+    HomePage,
+    VowelTrainerPage,
+    ExampleWordPage,
+    SelectTalkerPage,
+    SelectKeywordGroupPage,
+    SelectKeywordPage,
   ],
-  imports: [BrowserModule, InlineSVGModule, IonicModule.forRoot(CalvinApp)],
+  imports: [
+    BrowserModule,
+    InlineSVGModule,
+    IonicModule.forRoot(CalvinApp),
+    ComponentsModule,
+  ],
   bootstrap: [IonicApp],
   entryComponents: [
     CalvinApp,
