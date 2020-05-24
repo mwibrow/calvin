@@ -24,12 +24,12 @@ import { ComponentsModule } from "../components/components.module";
 @NgModule({
   declarations: [
     CalvinApp,
-    HomePage,
-    VowelTrainerPage,
-    ExampleWordPage,
-    SelectTalkerPage,
-    SelectKeywordGroupPage,
-    SelectKeywordPage,
+    // HomePage,
+    // VowelTrainerPage,
+    // ExampleWordPage,
+    // SelectTalkerPage,
+    // SelectKeywordGroupPage,
+    // SelectKeywordPage,
   ],
   imports: [
     BrowserModule,
