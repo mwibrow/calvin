@@ -1,10 +1,10 @@
 talkers:
-  mark:
-    display: Mark
-    avatar: mark
+  calvin:
+    display: Calvin
+    avatar: calvin
 words:
   talkers:
-    - mark
+    - calvin
   items:
     - ball
     - bears
@@ -62,7 +62,7 @@ words:
     - wood
 keywords:
   talkers:
-    - mark
+    - calvin
   items:
     - card
     - coin
@@ -84,7 +84,7 @@ keywords:
     - wood
 vowels:
   talkers:
-    - mark
+    - calvin
   items:
     - heed
     - hid
