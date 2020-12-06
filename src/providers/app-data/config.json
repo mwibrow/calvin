@@ -1,13 +1,13 @@
 {
   "talkers": {
-    "mark": {
-      "display": "Mark",
-      "avatar": "mark"
+    "calvin": {
+      "display": "Calvin",
+      "avatar": "calvin"
     }
   },
   "words": {
     "talkers": [
-      "mark"
+      "calvin"
     ],
     "items": [
       "ball",
@@ -68,7 +68,7 @@
   },
   "keywords": {
     "talkers": [
-      "mark"
+      "calvin"
     ],
     "items": [
       "card",
@@ -93,7 +93,7 @@
   },
   "vowels": {
     "talkers": [
-      "mark"
+      "calvin"
     ],
     "items": [
       "heed",
