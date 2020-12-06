@@ -1,4 +1,8 @@
 import { Component, Directive, Input, NgZone } from "@angular/core";
+
+import p5 from "p5";
+import "p5/lib/addons/p5.sound";
+
 import {
   AudioProvider,
   AudioPlayer,
@@ -22,6 +26,7 @@ export class KeywordComponent {
   canRecord: boolean;
   zone: NgZone;
   onEndedId: string;
+  sound: p5.SoundFile;
 
   @Input("selected") selected: boolean = false;
   @Input("selectable") selectable: boolean;
@@ -40,6 +45,8 @@ export class KeywordComponent {
     this.canRecord = true;
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.onEndedId = "";
+
+    this.sound = null;
   }
 
   setUri(uri: string) {
@@ -74,9 +81,12 @@ export class KeywordComponent {
         }
         this.selected = !this.selected;
       }
-      this.player.playUrl(this.uri).catch((err) => {
-        global.console.error("AN ERROR OCCURED");
+      this.sound = new p5.SoundFile(this.uri, () => {
+        this.sound.play();
       });
+      // this.player.playUrl(this.uri).catch((err) => {
+      //   global.console.error("AN ERROR OCCURED");
+      // });
     }
   }
 
