@@ -66,17 +66,8 @@ class AudioEventHandler {
   }
 }
 
-// tslint:disable-next-line
-const raise = (err, msg = "") => {
-  console.error(msg);
-  console.log(err);
-};
-
 export class AudioPlayer extends AudioEventHandler {
   private context: AudioContext;
-  private nodes: Array<AudioNode>;
-  private buffer: AudioBuffer;
-  private source: AudioBufferSourceNode;
   private running: boolean;
   private initialised: boolean;
 
@@ -85,7 +76,6 @@ export class AudioPlayer extends AudioEventHandler {
   constructor(context: AudioContext) {
     super();
     this.context = context;
-    this.nodes = new Array<AudioNode>();
   }
 
   initialise() {
@@ -122,19 +112,10 @@ export class AudioPlayer extends AudioEventHandler {
     this.emit("init");
   }
 
-  addNode(node: AudioNode) {
-    this.nodes.push(node);
-  }
-
   loadUrl(url: string) {
     return new Promise((resolve, reject) => {
       this.sound = new p5.SoundFile(url, resolve, reject);
     });
-  }
-
-  loadBuffer(buffer: AudioBuffer) {
-    this.stop();
-    this.buffer = buffer;
   }
 
   playing() {
@@ -148,9 +129,10 @@ export class AudioPlayer extends AudioEventHandler {
   play() {
     this.context.resume();
     return new Promise((resolve, reject) => {
-      
       if (!this.sound) {
-        if (resolve) resolve();
+        if (resolve) {
+          resolve();
+        }
         return;
       }
       this.running = true;
@@ -159,18 +141,15 @@ export class AudioPlayer extends AudioEventHandler {
       this.sound.onended(() => {
         this.running = false;
         this.emit("ended");
-        if (resolve) resolve();
+        if (resolve) {
+          resolve();
+        }
       });
     });
   }
 
   playSound(sound: p5.SoundFile) {
     this.sound = sound;
-    return this.play();
-  }
-
-  playBuffer(buffer: AudioBuffer) {
-    this.loadBuffer(buffer);
     return this.play();
   }
 
@@ -182,7 +161,6 @@ export class AudioPlayer extends AudioEventHandler {
     });
   }
 
-  
   stop() {
     if (this.sound && this.running) {
       this.sound.stop();
@@ -194,9 +172,6 @@ export class AudioPlayer extends AudioEventHandler {
 
 export class AudioRecorder extends AudioEventHandler {
   private context: AudioContext;
-  
-
-  
   running: boolean;
   timeout: any;
 
@@ -208,9 +183,7 @@ export class AudioRecorder extends AudioEventHandler {
 
   constructor(context: AudioContext) {
     super();
-    
     this.running = false;
-
     this.context = context;
     this.timeout = null;
     this.initialised = false;
