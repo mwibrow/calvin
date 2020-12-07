@@ -65,7 +65,7 @@ export class KeywordComponent {
   }
 
   getBuffer() {
-    this.audioBuffer = this.recorder.recordBuffer;
+    // this.audioBuffer = this.recorder.recordBuffer;
     this.zone.run(() => {
       this.canPlay = true;
       this.recording = false;
@@ -81,20 +81,17 @@ export class KeywordComponent {
         }
         this.selected = !this.selected;
       }
-      this.sound = new p5.SoundFile(this.uri, () => {
-        this.sound.play();
+      this.player.playUrl(this.uri).catch((err) => {
+        global.console.error("AN ERROR OCCURED");
       });
-      // this.player.playUrl(this.uri).catch((err) => {
-      //   global.console.error("AN ERROR OCCURED");
-      // });
     }
   }
 
   playRecording() {
-    if (this.audioBuffer) {
+    if (this.recorder.sound) {
       this.canRecord = false;
       this.player
-        .playBuffer(this.audioBuffer)
+        .playSound(this.recorder.sound)
         .then(() => (this.canRecord = true));
     }
   }
@@ -102,11 +99,16 @@ export class KeywordComponent {
   startRecording() {
     this.recording = true;
     this.canPlayKeyword = this.canPlay = false;
-    this.recorder.record(5.0).then(() => this.getBuffer());
+    this.recorder.record(5.0).then(() => {
+      this.canPlayKeyword = this.canPlay = true;
+      this.recording = false;
+    });
   }
 
   stopRecording() {
-    this.recorder.stop().then(() => this.getBuffer());
+    this.recorder.stop();
+    this.canPlayKeyword = this.canPlay = true;
+    this.recording = false;
   }
 
   toggleRecording() {
