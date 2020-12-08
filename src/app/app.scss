@@ -29,6 +29,35 @@ html, body,
     // color: color($md-palette, md-yellow);
 }
 
+
+@include media(">=sm", "<md") {
+    ion-header, ion-content, ion-footer {
+        width: 80vw;
+        left: 10vw;
+    }
+}
+
+@include media(">=md", "<lg") {
+    ion-header, ion-content, ion-footer {
+        width: 60vw;
+        left: 20vw;
+    }
+}
+
+@include media(">=lg", "<xl") {
+    ion-header, ion-content, ion-footer {
+        width: 50vw;
+        left: 25vw;
+    }
+}
+
+@include media(">=xl") {
+    ion-header, ion-content, ion-footer {
+        width: 40vw;
+        left: 30vw;
+    }
+}
+
 // .content {
 //     background-color: transparent !important;
 // }
@@ -521,10 +550,7 @@ ion-content, ion-header, ion-footer {
     // left: calc(50vw - 50vh * 3 / 4);
     background-color: transparent !important;
 }
-ion-content {
-    // height: 80vh;
-    // margin-top: 10vh;
-}
+
 
 ion-header {
     top: 0;
