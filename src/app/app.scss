@@ -27,6 +27,47 @@ body,
   // color: color($md-palette, md-yellow);
 }
 
+html,
+body,
+.app-root,
+.ion-page {
+  font-size: 16px !important;
+}
+
+ion-header {
+  height: 5rem;
+  background-color: red;
+}
+
+ion-content {
+  top: 5rem !important;
+  height: calc(100% - 5rem - 5rem) !important;
+  background-color: green;
+}
+
+ion-footer {
+  bottom: 0 !important;
+  height: 5rem !important;
+  background-color: blue;
+}
+
+ion-header,
+ion-content,
+ion-footer {
+  width: 100vw !important;
+  left: 0vw;
+  box-sizing: border-box;
+  //background-color: transparent !important;
+}
+
+ion-header {
+  padding-top: 0.25rem;
+  ion-title {
+    width: 95vw !important;
+    margin-left: 2.5vw !important;
+  }
+}
+
 @include media(">=sm", "<md") {
   ion-header,
   ion-content,
@@ -608,70 +649,26 @@ ion-title {
   .svg-trapezium-background {
     fill: color($md-palette, md-light-blue) !important;
   }
-  .svg-trapezium {
-    height: 8.75vh !important;
-  }
   .toolbar-title {
     color: color($md-palette, md-white);
   }
 }
 
-ion-content,
-ion-header,
-ion-footer {
-  box-sizing: border-box;
-
-  // width: calc(100vh * 3 / 4);
-  // left: calc(50vw - 50vh * 3 / 4);
-  background-color: transparent !important;
-}
-
-ion-header {
-  top: 0;
-  height: 10vh;
-}
-
-ion-content {
-  height: 75vh;
-  top: 10vh;
-}
-ion-footer {
-  bottom: 0vh;
-  height: 15vh !important;
-}
-
-ion-header,
-ion-footer {
-  button {
-    width: 10vh;
-    height: 10vh !important;
-    ion-icon {
-      font-size: 6.25vh;
-    }
-  }
-}
-
-ion-header {
-  font-size: 6.25vh;
-  div {
-    font-size: 6.25vh;
-  }
-}
 .view-button,
 .exit-button,
 .navigate-button,
 .keyword-control-button,
 .keyword-group-button {
-  width: 10vh;
-  height: 10vh;
+  width: 4rem;
+  height: 4rem;
 
   ion-icon {
-    font-size: 6.25vh;
+    font-size: 2rem;
   }
 }
 .navigate-button {
   .svg-shape-component {
-    width: 6.25vh !important;
+    width: 2rem !important;
   }
 }
 
@@ -684,9 +681,9 @@ ion-header {
 .keyword-button,
 .example-word-button,
 .select-talker-button {
-  height: 10vh;
-  width: 30vh;
-  font-size: 6.25vh;
+  height: 4rem;
+  width: 12rem;
+  font-size: 2rem;
 }
 
 .media-small {
