@@ -517,6 +517,10 @@ $spinner-border: 10px;
 
 .media-video {
     background-color:  color($md-palette, md-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
 }
 
 ion-navbar, .toolbar, .toolbar-md {
