@@ -5,12 +5,10 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
-
 
 @import "ionic.globals";
 @import "./include-media";
@@ -26,10 +24,8 @@ $breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
-  xl: 1200px
+  xl: 1200px,
 );
-
-
 
 // Named Color Variables
 // --------------------------------------------------
@@ -42,18 +38,17 @@ $breakpoints: (
 @import "./md-colors";
 
 $colors: (
-  primary:   color($md-palette, md-light-blue),
+  primary: color($md-palette, md-light-blue),
   secondary: color($md-palette, md-light-green),
-  danger:    color($md-palette, md-red),
-  light:     darken(color($md-palette, md-white), 5%),
-  dark:      lighten(color($md-palette, md-black), 5%),
-  active:    darken(color($md-palette, md-blue), 5%),
-  inactive:  lighten(color($md-palette, md-grey), 5%)
+  danger: color($md-palette, md-red),
+  light: darken(color($md-palette, md-white), 5%),
+  dark: lighten(color($md-palette, md-black), 5%),
+  active: darken(color($md-palette, md-blue), 5%),
+  inactive: lighten(color($md-palette, md-grey), 5%),
 );
 
 $view-button-bg: color($md-palette, md-light-blue);
 $view-button-fg: color($md-palette, md-white);
-
 
 $navigate-button-bg: color($md-palette, md-light-green);
 $navigate-button-fg: color($md-palette, md-white);
@@ -73,41 +68,32 @@ $keyword-label-fg: color($md-palette, md-white);
 $keyword-label-highlight-fg: color($md-palette, md-red);
 $keyword-label-lowlight-fg: color($md-palette, md-white);
 
-@mixin button-hover($bg, $fg, $bd:10, $fd:10) {
-    background-color: $bg;
-    border-bottom: 0.5rem solid darken($bg, $bd) !important;
-    & span {
-       color: $fg;
-    };
-    &:disabled {
-       opacity: 0.0;
-    }
-    &:hover {
-        background-color: lighten($bg, $fd) !important;
-        border-bottom: 0.25rem solid darken($bg, $bd) !important;
-    }
+@mixin button-hover($bg, $fg, $bd: 10, $fd: 10) {
+  background-color: $bg;
+  border-bottom: 0.5rem solid darken($bg, $bd) !important;
+  & span {
+    color: $fg;
+  }
+  &:disabled {
+    opacity: 0;
+  }
+  &:hover {
+    background-color: lighten($bg, $fd) !important;
+    border-bottom: 0.25rem solid darken($bg, $bd) !important;
+  }
 }
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
-
-
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
-
-
 
 // App Theme
 // --------------------------------------------------
@@ -118,7 +104,6 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
 
 @import "ionic.theme.default";
 
-
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
@@ -126,26 +111,26 @@ $keyword-label-lowlight-fg: color($md-palette, md-white);
 
 @import "ionic.ionicons";
 
-
 // Fonts
 // --------------------------------------------------
 
 @import "roboto";
 @import "noto-sans";
 
-@import '../assets/fonts/crafty_girls/CraftyGirls.ttf';
-@import '../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf';
+@import "../assets/fonts/crafty_girls/CraftyGirls.ttf";
+@import "../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf";
 
 @font-face {
-  font-family: 'Crafty Girls';
-  src: url('../assets/fonts/crafty_girls/CraftyGirls.ttf') format('truetype');
+  font-family: "Crafty Girls";
+  src: url("../assets/fonts/crafty_girls/CraftyGirls.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'BubblegumSans';
-  src: url('../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf') format('truetype');
+  font-family: "BubblegumSans";
+  src: url("../assets/fonts/Bubblegum_Sans/BubblegumSans-Regular.ttf")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }

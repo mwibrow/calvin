@@ -1,107 +1,116 @@
 page-vowel-trainer {
+  logo {
+    cursor: pointer;
+    span {
+      cursor: pointer;
+    }
+  }
+  .highlight {
+    opacity: 1;
+  }
+  .lowlight {
+    opacity: 0.5;
+  }
 
-	logo {
-		cursor: pointer;
-		span {
-			cursor: pointer;
-		}
-	}
-	.highlight {
-	  opacity: 1;
-	}
-	.lowlight {
-		opacity: 0.5;
-	}
+  .keyword-display {
+    color: $keyword-label-fg;
+  }
 
-	.keyword-display {
-		color: $keyword-label-fg;
-	}
+  .navigate-button {
+    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+    @include hover-box-shadow($navigate-button-bg);
+  }
 
+  .fade-out {
+    opacity: 0 !important;
+    transition: opacity 1s;
+  }
 
-	.navigate-button {
-		@include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
-		@include hover-box-shadow($navigate-button-bg);
-	}
+  .fade-in {
+    opacity: 1 !important;
+    transition: opacity 1s;
+  }
 
-	.fade-out {
-		opacity: 0 !important;
-		transition: opacity 1s;
-	}
-
-
-	.fade-in {
-		opacity: 1 !important;
-		transition: opacity 1s;
-	}
-
-	.view-button {
-		@include button-hover($view-button-bg, $view-button-fg, 15, 5);
+  .view-button {
+    @include button-hover($view-button-bg, $view-button-fg, 15, 5);
     @include hover-box-shadow($view-button-bg);
 
-		transform-origin: 50%, 50%;
-		transform: scale(0.875);
-		&:disabled {
-			opacity: 1;
-			transform-origin: 50%, 50%;
-			transform: scale(1.125);
-			border-width: 0.125rem;
-		}
-	}
-
-	.content-container {
-		display: flex !important;
-		justify-content: center !important;
-		text-align: center !important;
-		margin: auto !important;
-		width: 50% !important;
-	}
-
-	.media-button {
-		position: relative;
-        display: block;
-        img {
-            vertical-align:bottom;
-            width: 100%;
-            height: 100%;
-        }
-	}
-
-    .media-button:hover {
-        box-shadow: 0px 0px 30px  color($md-palette, md-white);
+    transform-origin: 50%, 50%;
+    transform: scale(0.875);
+    &:disabled {
+      opacity: 1;
+      transform-origin: 50%, 50%;
+      transform: scale(1.125);
+      border-width: 0.125rem;
     }
+  }
 
-	mark {
-        position: absolute;
-        display: inline-block;
-        right: 0;
-        bottom: 0;
-	}
+  .content-container {
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: auto !important;
+    width: 50% !important;
+  }
 
-	.preview-audio-button {
-		display: flex;
-		align-items:center;
-		justify-content: center;
-		border-radius: 2px !important;
-		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		z-index: 500;
-		transform: translate(-50%, 33.3%);
-	}
+  .media-button {
+    position: relative;
+    display: block;
+    img {
+      vertical-align: bottom;
+      width: 100%;
+      height: 100%;
+    }
+  }
 
-	.example-word-title {
-		position: absolute;
-		top: 0;
-		left: 50%;
-		@include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
-		@include hover-box-shadow($preview-audio-button-bg);
-		transform: translate(-50%, -25%);
+  .media-button:hover {
+    box-shadow: 0px 0px 30px color($md-palette, md-white);
+  }
 
-		padding: 0.5ex 1em;
-		border-radius: 3px;
-		z-index: 500;
-	}
+  mark {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+  }
 
+  .preview-audio-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px !important;
+    @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+    @include hover-box-shadow($preview-audio-button-bg);
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 500;
+    transform: translate(-50%, 33.3%);
+  }
+
+  .example-word-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
+    @include hover-box-shadow($preview-audio-button-bg);
+    transform: translate(-50%, -25%);
+
+    padding: 0.5ex 1em;
+    border-radius: 3px;
+    z-index: 500;
+  }
+
+  .no-scroll {
+    div.scroll-content {
+      margin-top: 0 !important;
+    }
+  }
+  .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: 100%;
+  }
 }

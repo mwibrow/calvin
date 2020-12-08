@@ -1,5 +1,4 @@
 page-example-word {
-
   .float {
     position: absolute;
     right: 0px;
@@ -9,7 +8,7 @@ page-example-word {
     align-items: center;
     justify-content: center;
     z-index: 800;
-    transform: translate(12.5%,12.5%);
+    transform: translate(12.5%, 12.5%);
   }
 
   .float-button {
@@ -19,15 +18,14 @@ page-example-word {
   }
 
   .float:hover {
-    box-shadow: 0px 0px 30px  color($md-palette, md-white) !important;
+    box-shadow: 0px 0px 30px color($md-palette, md-white) !important;
   }
 
   .media-example {
-    transform: translateY(-16px)
+    transform: translateY(-16px);
   }
 
   .media {
     line-height: 0;
   }
-
 }

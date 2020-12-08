@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -15,70 +14,76 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-
-
 * {
-    font-weight: bold;
-    letter-spacing: 0.1ex;
+  font-weight: bold;
+  letter-spacing: 0.1ex;
 }
 
-html, body,
+html,
+body,
 .app-root,
 .ion-page {
-    background-color: transparent !important;
-    // color: color($md-palette, md-yellow);
+  background-color: transparent !important;
+  // color: color($md-palette, md-yellow);
 }
 
-
 @include media(">=sm", "<md") {
-    ion-header, ion-content, ion-footer {
-        width: 80vw;
-        left: 10vw;
-    }
+  ion-header,
+  ion-content,
+  ion-footer {
+    width: 80vw;
+    left: 10vw;
+  }
 }
 
 @include media(">=md", "<lg") {
-    ion-header, ion-content, ion-footer {
-        width: 60vw;
-        left: 20vw;
-    }
+  ion-header,
+  ion-content,
+  ion-footer {
+    width: 60vw;
+    left: 20vw;
+  }
 }
 
 @include media(">=lg", "<xl") {
-    ion-header, ion-content, ion-footer {
-        width: 50vw;
-        left: 25vw;
-    }
+  ion-header,
+  ion-content,
+  ion-footer {
+    width: 50vw;
+    left: 25vw;
+  }
 }
 
 @include media(">=xl") {
-    ion-header, ion-content, ion-footer {
-        width: 40vw;
-        left: 30vw;
-    }
+  ion-header,
+  ion-content,
+  ion-footer {
+    width: 40vw;
+    left: 30vw;
+  }
 }
 
 // .content {
 //     background-color: transparent !important;
 // }
 .ion-page {
-    // background-image: url('/assets/images/drawing.svg');
-    background-repeat: repeat;
+  // background-image: url('/assets/images/drawing.svg');
+  background-repeat: repeat;
 }
-.no-scroll, .scroll-content{
-    padding-top: 0 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible !important;
-    //overflow-y: auto !important;
+.no-scroll,
+.scroll-content {
+  padding-top: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  //overflow-y: auto !important;
 
-    // ion-grid, ion-row, ion-col {
-    //     padding: 0 !important;
-    //     margin:  0 !important;
-    // }
+  // ion-grid, ion-row, ion-col {
+  //     padding: 0 !important;
+  //     margin:  0 !important;
+  // }
 }
-
 
 // ion-footer, .footer, .footer-md {
 //   background-color: transparent !important;
@@ -92,77 +97,78 @@ html, body,
 // }
 
 .toolbar-background {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .header-md::after {
-    background-image: none !important;
+  background-image: none !important;
 }
 
 .footer-md::before {
-    background-image: none !important;
+  background-image: none !important;
 }
 
 html {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 button {
-    text-transform: none !important;
+  text-transform: none !important;
 }
 
 .centered {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-@mixin button-hover($bg, $fg, $bd:10, $fd:10) {
-    background-color: $bg;
-    border-bottom: 0.5rem solid darken($bg, $bd) !important;
+@mixin button-hover($bg, $fg, $bd: 10, $fd: 10) {
+  background-color: $bg;
+  border-bottom: 0.5rem solid darken($bg, $bd) !important;
+  color: $fg;
+  & span {
     color: $fg;
+  }
+  &:disabled {
+    opacity: 0;
+  }
+  &:hover {
+    background-color: lighten($bg, $fd) !important;
+    border-bottom: 0.25rem solid darken($bg, $bd) !important;
+  }
+  &.semi-disabled {
+    opacity: 0.5;
     & span {
-       color: $fg;
-    };
-    &:disabled {
-       opacity: 0.0;
+      color: darken($bg, $bd);
     }
     &:hover {
-        background-color: lighten($bg, $fd) !important;
-        border-bottom: 0.25rem solid darken($bg, $bd) !important;
+      background-color: $bg !important;
+      border-bottom: 0.5rem solid darken($bg, $bd) !important;
     }
-    &.semi-disabled {
-        opacity: 0.5;
-        & span {
-            color: darken($bg, $bd);
-        };
-        &:hover {
-            background-color: $bg !important;
-            border-bottom: 0.5rem solid darken($bg, $bd) !important;
-        }
-    }
-    &.selected, &:disabled {
-        border-bottom: 0.25rem solid darken($bg, $bd) !important;
-    }
+  }
+  &.selected,
+  &:disabled {
+    border-bottom: 0.25rem solid darken($bg, $bd) !important;
+  }
 }
 
-@mixin hover-box-shadow ($cl) {
-    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25) !important;
-    &:hover {
-        box-shadow: 0px 0px 30px $cl !important;
-        transition: none !important;
-    }
-    &.semi-disabled:hover {
-        box-shadow: none;
-    }
+@mixin hover-box-shadow($cl) {
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.25) !important;
+  &:hover {
+    box-shadow: 0px 0px 30px $cl !important;
+    transition: none !important;
+  }
+  &.semi-disabled:hover {
+    box-shadow: none;
+  }
 }
 
 @mixin border($width: $spinner-border) {
-    border-top: $width  solid color($md-palette, md-red);
-    border-left: $width solid color($md-palette, md-orange);
-    border-right: $width solid color($md-palette, md-light-green);
-    border-bottom: $width solid color($md-palette, md-light-blue);
+  border-top: $width solid color($md-palette, md-red);
+  border-left: $width solid color($md-palette, md-orange);
+  border-right: $width solid color($md-palette, md-light-green);
+  border-bottom: $width solid color($md-palette, md-light-blue);
 }
 
 // .md-button {
@@ -179,8 +185,8 @@ button {
 //   }
 
 .button-primary {
-    background-color: color($colors, primary);
-    color: color($md-palette, md-white);
+  background-color: color($colors, primary);
+  color: color($md-palette, md-white);
 }
 
 $spinner-size: 50px;
@@ -188,636 +194,539 @@ $spinner-time: 2s;
 $spinner-border: 10px;
 
 @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg)
-    }
+  0% {
+    transform: rotate(0deg);
   }
-
-.loader {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-
-    .spinner {
-      border-radius: 50%;
-      border-top: $spinner-border solid color($md-palette, md-red);
-      border-left: $spinner-border solid color($md-palette, md-orange);
-      border-right: $spinner-border solid color($md-palette, md-light-green);
-      border-bottom: $spinner-border solid color($md-palette, md-light-blue);
-      width: $spinner-size !important;
-      height: $spinner-size !important;
-      margin: $spinner-size / 4;
-      animation: spin $spinner-time linear infinite;
-    }
+  100% {
+    transform: rotate(360deg);
   }
-
-.error {
-    color: color($colors, danger);
 }
 
+.loader {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  .spinner {
+    border-radius: 50%;
+    border-top: $spinner-border solid color($md-palette, md-red);
+    border-left: $spinner-border solid color($md-palette, md-orange);
+    border-right: $spinner-border solid color($md-palette, md-light-green);
+    border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+    width: $spinner-size !important;
+    height: $spinner-size !important;
+    margin: $spinner-size / 4;
+    animation: spin $spinner-time linear infinite;
+  }
+}
+
+.error {
+  color: color($colors, danger);
+}
 
 .alert {
-    color: color($md-palette, md-black);
-    * {
-        font-weight: bold;
-        line-height: 1.5;
+  color: color($md-palette, md-black);
+  * {
+    font-weight: bold;
+    line-height: 1.5;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      width: auto;
+      color: color($md-palette, md-white);
+      line-height: 1;
     }
-    button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        span {
-            width: auto;
-            color: color($md-palette, md-white);
-            line-height: 1;
-        }
-        width: 5rem;
-    }
-    button:first-of-type {
-        background: color($colors, primary);
-    }
-    button:last-of-type {
-        background: color($colors, danger);
-    }
-    .alert-wrapper {
-        border-radius: 2rem !important;
-        border-top: $spinner-border solid color($md-palette, md-red);
-        border-left: $spinner-border solid color($md-palette, md-orange);
-        border-right: $spinner-border solid color($md-palette, md-light-green);
-        border-bottom: $spinner-border solid color($md-palette, md-light-blue);
-        padding-bottom: 1rem;
-    }
-    .alert-head {
-        padding-top: 1rem;
-    }
-    .alert-title {
-        text-align: center;
-    }
+    width: 5rem;
+  }
+  button:first-of-type {
+    background: color($colors, primary);
+  }
+  button:last-of-type {
+    background: color($colors, danger);
+  }
+  .alert-wrapper {
+    border-radius: 2rem !important;
+    border-top: $spinner-border solid color($md-palette, md-red);
+    border-left: $spinner-border solid color($md-palette, md-orange);
+    border-right: $spinner-border solid color($md-palette, md-light-green);
+    border-bottom: $spinner-border solid color($md-palette, md-light-blue);
+    padding-bottom: 1rem;
+  }
+  .alert-head {
+    padding-top: 1rem;
+  }
+  .alert-title {
+    text-align: center;
+  }
 }
 
 .calvin-logo {
-    display: inline-block;
-    span {
-        font-family: Crafty Girls;
-    }
-    span:nth-child(1) {
-        color: color($md-palette, md-red);
-    }
-    span:nth-child(2) {
-        color: color($md-palette, md-light-green);
-    }
-    span:nth-child(3) {
-        color: color($md-palette, md-light-blue);
-    }
-    span:nth-child(4) {
-        margin-left: -0.125ex;
-        color: color($md-palette, md-amber);
-        margin-right: 0.125ex;
-    }
-    span:nth-child(5), span:nth-child(6) {
-        color: color($md-palette, md-purple);
-    }
+  display: inline-block;
+  span {
+    font-family: Crafty Girls;
+  }
+  span:nth-child(1) {
+    color: color($md-palette, md-red);
+  }
+  span:nth-child(2) {
+    color: color($md-palette, md-light-green);
+  }
+  span:nth-child(3) {
+    color: color($md-palette, md-light-blue);
+  }
+  span:nth-child(4) {
+    margin-left: -0.125ex;
+    color: color($md-palette, md-amber);
+    margin-right: 0.125ex;
+  }
+  span:nth-child(5),
+  span:nth-child(6) {
+    color: color($md-palette, md-purple);
+  }
 }
 
 @keyframes Blink {
-    0% { transform: scaleY(1) }
-   33% { transform: scaleY(1) }
-   34% { transform: scaleY(0.1) }
-   35% { transform: scaleY(1) }
-   75% { transform: scaleY(1) }
-   76% { transform: scaleY(0.1) }
-   77% { transform: scaleY(1) }
-   81% { transform: scaleY(1) }
-   82% { transform: scaleY(0.1) }
-   83% { transform: scaleY(1) }
-  100% { transform: scaleY(1) }
+  0% {
+    transform: scaleY(1);
+  }
+  33% {
+    transform: scaleY(1);
+  }
+  34% {
+    transform: scaleY(0.1);
+  }
+  35% {
+    transform: scaleY(1);
+  }
+  75% {
+    transform: scaleY(1);
+  }
+  76% {
+    transform: scaleY(0.1);
+  }
+  77% {
+    transform: scaleY(1);
+  }
+  81% {
+    transform: scaleY(1);
+  }
+  82% {
+    transform: scaleY(0.1);
+  }
+  83% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 .avatar-calvin {
-    .head, .ear {
-        fill: color($md-palette, md-amber);
-    }
-    .neck, .ear-hole, .lips {
-        fill: color($md-palette, md-amber-700);
-    }
-    .arms {
-        fill: color($md-palette, md-red-800);
-    }
-    .chest {
-        fill: color($md-palette, md-red);
-    }
-    .hair {
-        fill: color($md-palette, md-brown);
-    }
-    .eye {
-        fill: color($md-palette, md-blue-grey-900);
-    }
-    .eye {
-        transform-origin: 230.28571px 172.79071px;
-        animation: Blink 10s infinite;
-    }
+  .head,
+  .ear {
+    fill: color($md-palette, md-amber);
+  }
+  .neck,
+  .ear-hole,
+  .lips {
+    fill: color($md-palette, md-amber-700);
+  }
+  .arms {
+    fill: color($md-palette, md-red-800);
+  }
+  .chest {
+    fill: color($md-palette, md-red);
+  }
+  .hair {
+    fill: color($md-palette, md-brown);
+  }
+  .eye {
+    fill: color($md-palette, md-blue-grey-900);
+  }
+  .eye {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 10s infinite;
+  }
 }
 
 .avatar-emma {
-    .head, .ear {
-        fill: color($md-palette, md-brown-600);
-    }
-    .neck, .ear-hole, .lips {
-        fill: color($md-palette, md-brown-800);
-    }
-    .arms {
-        fill: color($md-palette, md-amber-800);
-    }
-    .chest {
-        fill: color($md-palette, md-amber);
-    }
-    .hair {
-        fill: color($md-palette, md-grey-900);
-    }
-    .eye {
-        fill: color($md-palette, md-blue-grey-900);
-    }
-    .eye {
-        transform-origin: 230.28571px 172.79071px;
-        animation: Blink 10s infinite;
-        animation-delay: 3s;
-    }
+  .head,
+  .ear {
+    fill: color($md-palette, md-brown-600);
+  }
+  .neck,
+  .ear-hole,
+  .lips {
+    fill: color($md-palette, md-brown-800);
+  }
+  .arms {
+    fill: color($md-palette, md-amber-800);
+  }
+  .chest {
+    fill: color($md-palette, md-amber);
+  }
+  .hair {
+    fill: color($md-palette, md-grey-900);
+  }
+  .eye {
+    fill: color($md-palette, md-blue-grey-900);
+  }
+  .eye {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 10s infinite;
+    animation-delay: 3s;
+  }
 }
 
 .avatar-dan {
-    .head, .ear {
-        fill: color($md-palette, md-brown-600);
-    }
-    .neck, .ear-hole, .lips {
-        fill: color($md-palette, md-brown-800);
-    }
-    .arms {
-        fill: color($md-palette, md-light-green-900);
-    }
-    .chest {
-        fill: color($md-palette, md-light-green-700);
-    }
-    .hair {
-        fill: color($md-palette, md-grey-900);
-    }
-    .eye {
-        fill: color($md-palette, md-blue-grey-900);
-    }
-    .eye {
-        transform-origin: 230.28571px 172.79071px;
-        animation: Blink 9s infinite;
-        animation-direction: reverse;
-        animation-delay: 4s;
-    }
+  .head,
+  .ear {
+    fill: color($md-palette, md-brown-600);
+  }
+  .neck,
+  .ear-hole,
+  .lips {
+    fill: color($md-palette, md-brown-800);
+  }
+  .arms {
+    fill: color($md-palette, md-light-green-900);
+  }
+  .chest {
+    fill: color($md-palette, md-light-green-700);
+  }
+  .hair {
+    fill: color($md-palette, md-grey-900);
+  }
+  .eye {
+    fill: color($md-palette, md-blue-grey-900);
+  }
+  .eye {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 9s infinite;
+    animation-direction: reverse;
+    animation-delay: 4s;
+  }
 }
 
 .avatar-kerry {
-    .head, .ear {
-        fill: color($md-palette, md-pink-100);
-    }
-    .neck, .ear-hole, .lips {
-        fill: color($md-palette, md-pink-200);
-    }
-    .arms {
-        fill: color($md-palette, md-light-blue-800);
-    }
-    .chest {
-        fill: color($md-palette, md-light-blue);
-    }
-    .hair {
-        fill: color($md-palette, md-orange-900);
-    }
-    .eye {
-        fill: color($md-palette, md-blue-grey-900);
-    }
-    .eye {
-        transform-origin: 230.28571px 172.79071px;
-        animation: Blink 10s infinite;
-        animation-delay: 1s;
-    }
+  .head,
+  .ear {
+    fill: color($md-palette, md-pink-100);
+  }
+  .neck,
+  .ear-hole,
+  .lips {
+    fill: color($md-palette, md-pink-200);
+  }
+  .arms {
+    fill: color($md-palette, md-light-blue-800);
+  }
+  .chest {
+    fill: color($md-palette, md-light-blue);
+  }
+  .hair {
+    fill: color($md-palette, md-orange-900);
+  }
+  .eye {
+    fill: color($md-palette, md-blue-grey-900);
+  }
+  .eye {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 10s infinite;
+    animation-delay: 1s;
+  }
 }
 
 .avatar-mark {
-    .head, .ear {
-        fill: color($md-palette, md-pink-100);
-    }
-    .neck, .ear-hole, .lips {
-        fill: color($md-palette, md-pink-200);
-    }
-    .arms {
-        fill: color($md-palette, md-purple-800);
-    }
-    .chest {
-        fill: color($md-palette, md-purple);
-    }
-    .hair {
-        fill: color($md-palette, md-yellow);
-    }
-    .eye {
-        fill: color($md-palette, md-blue-grey-900);
-    }
-    .eye {
-        transform-origin: 230.28571px 172.79071px;
-        animation: Blink 9s infinite;
-        animation-direction: reverse;
-        animation-delay: 2s;
-    }
+  .head,
+  .ear {
+    fill: color($md-palette, md-pink-100);
+  }
+  .neck,
+  .ear-hole,
+  .lips {
+    fill: color($md-palette, md-pink-200);
+  }
+  .arms {
+    fill: color($md-palette, md-purple-800);
+  }
+  .chest {
+    fill: color($md-palette, md-purple);
+  }
+  .hair {
+    fill: color($md-palette, md-yellow);
+  }
+  .eye {
+    fill: color($md-palette, md-blue-grey-900);
+  }
+  .eye {
+    transform-origin: 230.28571px 172.79071px;
+    animation: Blink 9s infinite;
+    animation-direction: reverse;
+    animation-delay: 2s;
+  }
 }
 
 @keyframes Rotate {
-    0% { transform: scale(1) }
-    40%  { transform: scale(1.25) }
-    80% { transform: scale(1) }
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25);
+  }
+  80% {
+    transform: scale(1);
+  }
 }
 
 @keyframes Pulse {
-    0% { transform: sclae(1) }
-    20% { transform: scale(1.125)}
-    40% { transform: scale(1)}
-    60% { transform: scale(1.125) }
-    80% { transform: scale(1) }
-    100% { transform: sclae(1) }
+  0% {
+    transform: sclae(1);
+  }
+  20% {
+    transform: scale(1.125);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.125);
+  }
+  80% {
+    transform: scale(1);
+  }
+  100% {
+    transform: sclae(1);
+  }
 }
 
 .pulse {
-    transform-origin: 50%, 50%;
-    animation: Pulse 2s linear infinite;
+  transform-origin: 50%, 50%;
+  animation: Pulse 2s linear infinite;
 }
 
-
-.example-word-button, .keyword-button, .keyword-group-button {
-    @include button-hover($example-word-button-bg, $example-word-button-fg, 15, 5);
-    @include hover-box-shadow($example-word-button-bg);
+.example-word-button,
+.keyword-button,
+.keyword-group-button {
+  @include button-hover(
+    $example-word-button-bg,
+    $example-word-button-fg,
+    15,
+    5
+  );
+  @include hover-box-shadow($example-word-button-bg);
 }
 
 .navigate-button {
-    @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
-		@include hover-box-shadow($navigate-button-bg);
-  }
+  @include button-hover($navigate-button-bg, $navigate-button-fg, 15, 5);
+  @include hover-box-shadow($navigate-button-bg);
+}
 
 .exit-button {
-    @include button-hover(color($md-palette, md-red), color($md-palette, md-white), 15, 5);
-	@include hover-box-shadow(color($md-palette, md-red));
+  @include button-hover(
+    color($md-palette, md-red),
+    color($md-palette, md-white),
+    15,
+    5
+  );
+  @include hover-box-shadow(color($md-palette, md-red));
 }
 
 .navigation-arrow {
-    .svg-shape-component {
-      margin-left: -25%;
-    }
-    .svg-shape {
-      fill: color($md-palette, md-white);
-    }
+  .svg-shape-component {
+    margin-left: -25%;
+  }
+  .svg-shape {
+    fill: color($md-palette, md-white);
+  }
 }
 
-
 .navigate-button-back {
-    .svg-shape {
-        transform: rotate(180deg);
-    }
+  .svg-shape {
+    transform: rotate(180deg);
+  }
 }
 
 .vocal-tract-animation {
-
-    padding: 0 10px;
-    background: color($md-palette, md-black);
-    svg {
-        background-color: transparent !important;
-    }
+  padding: 0 10px;
+  background: color($md-palette, md-black);
+  svg {
+    background-color: transparent !important;
+  }
 }
 
 .image-container {
-    border: 5px solid color($md-palette, md-white);
-    border-radius: 5px;
+  border: 5px solid color($md-palette, md-white);
+  border-radius: 5px;
 }
 
 .media-wrapper {
-    margin: auto;
-    position: relative;
+  margin: auto;
+  position: relative;
 }
 
-
 .media-frame {
-    border: 5px solid color($md-palette, md-white);
-    border-radius: 2px;
+  border: 5px solid color($md-palette, md-white);
+  border-radius: 2px;
 }
 
 .media-image {
-    background-color: color($md-palette, md-black);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background-color: color($md-palette, md-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-video {
-    background-color:  color($md-palette, md-white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 0;
+  background-color: color($md-palette, md-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
 }
 
-ion-navbar, .toolbar, .toolbar-md {
-    contain: none !important;
-    overflow: visible;
+ion-navbar,
+.toolbar,
+.toolbar-md {
+  contain: none !important;
+  overflow: visible;
 }
 
 .float-left {
-    float: left;
+  float: left;
 }
 
 ion-title {
-    width: auto;
-    .svg-trapezium-background {
-        fill: color($md-palette, md-light-blue) !important;
-    }
-    .svg-trapezium {
-       height: 8.75vh !important;
-    }
-    .toolbar-title {
-       color:  color($md-palette, md-white);
-    }
+  width: auto;
+  .svg-trapezium-background {
+    fill: color($md-palette, md-light-blue) !important;
+  }
+  .svg-trapezium {
+    height: 8.75vh !important;
+  }
+  .toolbar-title {
+    color: color($md-palette, md-white);
+  }
 }
 
+ion-content,
+ion-header,
+ion-footer {
+  box-sizing: border-box;
 
-
-ion-content, ion-header, ion-footer {
-    box-sizing: border-box;
-
-    // width: calc(100vh * 3 / 4);
-    // left: calc(50vw - 50vh * 3 / 4);
-    background-color: transparent !important;
+  // width: calc(100vh * 3 / 4);
+  // left: calc(50vw - 50vh * 3 / 4);
+  background-color: transparent !important;
 }
-
 
 ion-header {
-    top: 0;
-    height: 10vh;
+  top: 0;
+  height: 10vh;
 }
 
 ion-content {
-    height: 75vh;
-    top: 12.5vh;
+  height: 75vh;
+  top: 12.5vh;
 }
 ion-footer {
-    bottom: 0vh;
-    height: 15vh !important;
+  bottom: 0vh;
+  height: 15vh !important;
 }
 
-ion-header, ion-footer {
-    button {
-        width: 10vh;
-        height: 10vh !important;
-        ion-icon {
-            font-size: 6.25vh;
-        }
+ion-header,
+ion-footer {
+  button {
+    width: 10vh;
+    height: 10vh !important;
+    ion-icon {
+      font-size: 6.25vh;
     }
+  }
 }
-
 
 ion-header {
+  font-size: 6.25vh;
+  div {
     font-size: 6.25vh;
-    div {
-        font-size: 6.25vh;
-    }
+  }
 }
-.view-button, .exit-button, .navigate-button, .keyword-control-button, .keyword-group-button {
-    width: 10vh;
-    height: 10vh;
+.view-button,
+.exit-button,
+.navigate-button,
+.keyword-control-button,
+.keyword-group-button {
+  width: 10vh;
+  height: 10vh;
 
-    ion-icon {
-        font-size: 6.25vh;
-    }
-
+  ion-icon {
+    font-size: 6.25vh;
+  }
 }
 .navigate-button {
-    .svg-shape-component {
-        width: 6.25vh !important;
-    }
+  .svg-shape-component {
+    width: 6.25vh !important;
+  }
 }
 
 .preview-audio-button {
-    font-size: 3.75vh;
-    width: 15vh;
-    height: 6.25vh;
+  font-size: 3.75vh;
+  width: 15vh;
+  height: 6.25vh;
 }
 
-.keyword-button, .example-word-button, .select-talker-button {
-    height: 10vh;
-    width: 30vh;
-    font-size: 6.25vh;
+.keyword-button,
+.example-word-button,
+.select-talker-button {
+  height: 10vh;
+  width: 30vh;
+  font-size: 6.25vh;
 }
 
 .media-small {
-    width: calc(100vh * 3 / 4 * .375);
-    height: calc(100vh * 3 / 4 * .375);
-    margin:  1vh auto 0.5vh;
+  width: calc(100vh * 3 / 4 * 0.375);
+  height: calc(100vh * 3 / 4 * 0.375);
+  margin: 1vh auto 0.5vh;
 }
 
 .media-tiny {
-    width: calc(100vh * 3 / 4 * .2);
-    height: calc(100vh * 3 / 4 * .2);
-    margin:  0vh !important;
+  width: calc(100vh * 3 / 4 * 0.2);
+  height: calc(100vh * 3 / 4 * 0.2);
+  margin: 0vh !important;
 }
 
 page-vowel-trainer {
-    .media-small {
-        width: calc(100vh * 3 / 4 * .4);
-        height: calc(100vh * 3 / 4 * .4);
-        margin:  5vh auto 5vh;
-    }
+  .media-small {
+    width: calc(100vh * 3 / 4 * 0.4);
+    height: calc(100vh * 3 / 4 * 0.4);
+    margin: 5vh auto 5vh;
+  }
 }
 
 .media-button {
-   margin: 1vh;
+  margin: 1vh;
 }
+
 .media-wrapper {
-    width: calc(75vh * 3 / 4);
-    height: calc(75vh * 3 / 4);
+  width: calc(75vw * 3 / 4);
+  height: calc(75vw * 3 / 4);
 
-    .vocal-tract-animation {
-        width: calc(65vh * 3 / 4);
-    }
+  .vocal-tract-animation {
+    width: calc(65vh * 3 / 4);
+  }
 
-    .media-video, .media-image {
-        width: calc(65vh * 3 / 4);
-    }
-}
-
-.home-page-titleX {
-    font-size: 12.5vh !important;
-    margin-bottom: 20vh;
-    logo {
-        padding: 2.5vh;
-    }
-    .svg-trapezium-content {
-        min-width: 90%;
-    }
-    .calvin-frame {
-        width: 25vh;
-        height: 25vh;
-        left: calc(50% - 12.5vh);
-        top: calc(100% - 7.5vh);
-        z-index: 1000;
-    }
-}
-
-@media (max-width: 576px) {
-    .home-page-titleX {
-        font-size: 8.5vh !important;
-        .calvin-frame {
-            top: 75%;
-        }
-        margin-bottom: 25vh;
-    }
-
+  .media-video,
+  .media-image {
+    width: calc(65vh * 3 / 4);
+  }
 }
 
 .subtitle {
-    font-size: 3vh;
+  font-size: 3vh;
 }
-
-// @media screen and (min-height: 512px) {
-//     ion-content {
-//         margin-top: 10vh;
-//         max-width: 80vh;
-//         left: calc(50% - 40vh);
-//         height: calc(100% - 20vh);
-//     }
-//     ion-row.row-1 {
-//        margin-top: 5vh;
-//     }
-//     ion-grid {
-
-//     }
-//     ion-header {
-//         height: 10vh;
-//     }
-//     ion-footer {
-//         height: 15vh;
-//     }
-//     .navigate-button, .keyword-control-button, .view-button,  {
-//         width: 10vh;
-//         height: 10vh;
-//         font-size: 2.5vh;
-//     }
-
-//     .keyword-button, .example-word-button, .keyword-group-button {
-//         height: 10vh;
-//         line-height: 10vh;
-//         width: 75%;
-//         span {
-//             font-size: 6.25vh !important;
-//             letter-spacing: .125vh;
-//         }
-//         margin: 0 !important;
-//         padding: 0 !important;
-//     }
-//     .keyword-button, .example-word-button {
-//         width: 100%;
-//     }
-//     .vocal-tract-animation {
-//         width: 45vh;
-//         height: 45vh;
-//         svg {
-//             width: 40vh;
-//         }
-//     }
-//     .vocal-tract-animaton-trapezium {
-//         width: 100%;
-//         height: 100%;
-//         .svg-trapezium-container {
-//             svg {
-//                 height: 55vh !important;
-//             }
-//         }
-//     }
-//     .media-wrapper {
-//         width: 55vh;
-//         height: 55vh;
-//     }
-//     .media {
-//         width: 45vh;
-//         height: 45vh;
-//     }
-
-//     .media-video {
-//         width: 45vh;
-//         height: 42vh;
-//         overflow: hidden;
-//     }
-
-
-// }
-
-
-// @media screen and (min-height: 768px) {
-//     ion-content {
-//         margin-top: 5vh;
-//         max-width: 80vh;
-//         left: calc(50% - 40vh);
-//     }
-//     ion-grid {
-
-//     }
-//     ion-footer {
-//         height: 17.5vh;
-//     }
-//     .navigate-button, .keyword-control-button, .view-button {
-//         width: 12.5vh;
-//         height: 12.5vh;
-//         font-size: 3.25vh;
-//     }
-//     .keyword-button {
-//         height: 12.5vh;
-//         width: 100%;
-//         span {
-//             font-size: 7.5vh !important;
-//             letter-spacing: .25vh;
-//         }
-//         margin: 0 !important;
-//         padding: 0 !important;
-//     }
-//    .image-container, .video-player-container {
-//         width: 50vh;
-//         height: 50vh;
-//     }
-//     .vocal-tract-animation {
-//         height: 50vh;
-//     }
-// }
-
-// ion-content {
-//     width: calc(100vh / 1.25) !important;
-//     margin-left: calc(50vw - 50vh / 1.25);
-// }
-
-// .video-player-container, .image-container {
-//     width: calc(90vh / 1.5);
-//     height: calc(90vh / 1.5);
-// }
-
-// .keyword-button {
-//     height: 10vh;
-//     .keyword-display {
-//     font-size: 5vh;
-//     }
-// }
-
-// .keyword-control-button, .view-button {
-//     width: 10vh;
-//     height: 10vh;
-//     font-size: 3.333vh;
-// }
-
-// .navigate-button {
-//     width: 10vh;
-//     height: 10vh;
-//     font-size: 3.333vh;
-// }

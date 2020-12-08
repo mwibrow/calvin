@@ -1,35 +1,35 @@
 logo {
-    .calvin-logo {
-        display: inline-flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 0;
-        width: 100%;
+  .calvin-logo {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
-        .calvin-logo-letter {
-            font-family: Crafty Girls;
-            font-weight: bold;
-            font-size: 88px;
-        }
-        .calvin-logo-c {
-            fill: color($md-palette, md-red);
-        }
-        .calvin-logo-a {
-            fill: color($md-palette, md-light-green);
-        }
-        .calvin-logo-l {
-            fill: color($md-palette, md-light-blue);
-        }
-        .calvin-logo-v {
-            fill: color($md-palette, md-amber);
-        }
-        .calvin-logo-i {
-            fill: color($md-palette, md-purple);
-        }
-        .calvin-logo-n {
-            fill: color($md-palette, md-purple);
-        }
+    .calvin-logo-letter {
+      font-family: Crafty Girls;
+      font-weight: bold;
+      font-size: 88px;
     }
+    .calvin-logo-c {
+      fill: color($md-palette, md-red);
+    }
+    .calvin-logo-a {
+      fill: color($md-palette, md-light-green);
+    }
+    .calvin-logo-l {
+      fill: color($md-palette, md-light-blue);
+    }
+    .calvin-logo-v {
+      fill: color($md-palette, md-amber);
+    }
+    .calvin-logo-i {
+      fill: color($md-palette, md-purple);
+    }
+    .calvin-logo-n {
+      fill: color($md-palette, md-purple);
+    }
+  }
 }
