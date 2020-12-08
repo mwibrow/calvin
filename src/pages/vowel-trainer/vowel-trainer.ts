@@ -114,7 +114,7 @@ export class VowelTrainerPage {
   getExampleWords() {
     let word = this.getWord();
     let examples = this.appData.keywordExampleMap[word.hvd];
-    return examples;
+    return examples.slice(0, 2);
   }
 
   getExampleWordImageUri(word: string) {

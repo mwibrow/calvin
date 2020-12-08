@@ -13,7 +13,7 @@
 
 
 <ion-content class="no-scroll">
-  <ion-grid [hidden]="!isViewState(ViewState.Audio)">
+  <ion-grid [hidden]="!isViewState(ViewState.Audio)" class="centered">
     <ion-row text-center>
       <ion-col>
         <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
@@ -34,7 +34,7 @@
     </ion-row>
   </ion-grid>
 
-  <ion-grid [hidden]="!isViewState(ViewState.Animation)">
+  <ion-grid [hidden]="!isViewState(ViewState.Animation)" class="centered">
     <ion-row justify-content-center>
       <ion-col text-center>
         <keyword keyword-controls [keyword-uri]="getVowelUri()" #keywordVowel>
@@ -57,14 +57,14 @@
 
   <ion-grid [hidden]="!isViewState(ViewState.Examples)" class="centered">
 
-    <ion-row text-center>
-      <ion-col>
+    <ion-row justify-content-center>
+      <ion-col text-center>
         <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
           <span [innerHtml]="getKeyword()"></span>
         </keyword>
       </ion-col>
     </ion-row>
-    <ion-row justify-content-center align-items-center>
+    <ion-row justify-content-center class="example-words">
       <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
         <div class="media-small" style="position: relative;">
           <svg-trapezium  [color]="imageColor">
@@ -83,6 +83,7 @@
         </div>
       </ion-col>
     </ion-row>
+    <ion-row></ion-row>
   </ion-grid>
 
 </ion-content>
