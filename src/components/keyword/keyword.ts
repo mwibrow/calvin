@@ -1,4 +1,8 @@
 import { Component, Directive, Input, NgZone } from "@angular/core";
+
+import p5 from "p5";
+import "p5/lib/addons/p5.sound";
+
 import {
   AudioProvider,
   AudioPlayer,
@@ -22,6 +26,7 @@ export class KeywordComponent {
   canRecord: boolean;
   zone: NgZone;
   onEndedId: string;
+  sound: p5.SoundFile;
 
   @Input("selected") selected: boolean = false;
   @Input("selectable") selectable: boolean;
@@ -40,6 +45,8 @@ export class KeywordComponent {
     this.canRecord = true;
     this.zone = new NgZone({ enableLongStackTrace: false });
     this.onEndedId = "";
+
+    this.sound = null;
   }
 
   setUri(uri: string) {
@@ -58,7 +65,7 @@ export class KeywordComponent {
   }
 
   getBuffer() {
-    this.audioBuffer = this.recorder.recordBuffer;
+    // this.audioBuffer = this.recorder.recordBuffer;
     this.zone.run(() => {
       this.canPlay = true;
       this.recording = false;
@@ -81,10 +88,10 @@ export class KeywordComponent {
   }
 
   playRecording() {
-    if (this.audioBuffer) {
+    if (this.recorder.sound) {
       this.canRecord = false;
       this.player
-        .playBuffer(this.audioBuffer)
+        .playSound(this.recorder.sound)
         .then(() => (this.canRecord = true));
     }
   }
@@ -92,11 +99,16 @@ export class KeywordComponent {
   startRecording() {
     this.recording = true;
     this.canPlayKeyword = this.canPlay = false;
-    this.recorder.record(5.0).then(() => this.getBuffer());
+    this.recorder.record(5.0).then(() => {
+      this.canPlayKeyword = this.canPlay = true;
+      this.recording = false;
+    });
   }
 
   stopRecording() {
-    this.recorder.stop().then(() => this.getBuffer());
+    this.recorder.stop();
+    this.canPlayKeyword = this.canPlay = true;
+    this.recording = false;
   }
 
   toggleRecording() {

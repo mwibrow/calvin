@@ -1,14 +1,12 @@
-/* tslint:disable */
 import { Injectable } from "@angular/core";
 import "rxjs/add/operator/map";
 
-import * as InlineWorker from "inline-worker";
-import * as WavDecoder from "wav-decoder";
-import * as WavEncoder from "wav-encoder";
+import p5 from "p5";
+import "p5/lib/addons/p5.sound";
 
 @Injectable()
 export class AudioProvider {
-  private context: AudioContext;
+  public readonly context: AudioContext;
   public readonly player: AudioPlayer;
   public readonly recorder: AudioRecorder;
 
@@ -35,7 +33,6 @@ export class AudioProvider {
     }
     if (this.recorder.isRunning()) {
       this.recorder.stop();
-      this.recorder.quit();
     }
   }
 }
@@ -69,24 +66,16 @@ class AudioEventHandler {
   }
 }
 
-// tslint:disable-next-line
-const raise = (err, msg = "") => {
-  console.error(msg);
-  console.log(err);
-};
-
 export class AudioPlayer extends AudioEventHandler {
   private context: AudioContext;
-  private nodes: Array<AudioNode>;
-  private buffer: AudioBuffer;
-  private source: AudioBufferSourceNode;
   private running: boolean;
   private initialised: boolean;
+
+  private sound: p5.SoundFile;
 
   constructor(context: AudioContext) {
     super();
     this.context = context;
-    this.nodes = new Array<AudioNode>();
   }
 
   initialise() {
@@ -118,43 +107,15 @@ export class AudioPlayer extends AudioEventHandler {
     });
   }
 
-  initialiseSuccess(stream) {
+  initialiseSuccess(_stream: MediaStream) {
     this.initialised = true;
     this.emit("init");
   }
 
-  addNode(node: AudioNode) {
-    this.nodes.push(node);
-  }
-
   loadUrl(url: string) {
     return new Promise((resolve, reject) => {
-      let request = new XMLHttpRequest();
-      request.addEventListener(
-        "error",
-        (e) =>
-          function (e) {
-            console.log(e);
-          }
-      );
-      request.open("GET", url, true);
-      request.responseType = "arraybuffer";
-      request.onload = () =>
-        this.context.decodeAudioData(
-          request.response,
-          (buffer) => {
-            this.buffer = buffer;
-            resolve();
-          },
-          (e) => reject(e)
-        );
-      request.send();
+      this.sound = new p5.SoundFile(url, resolve, reject);
     });
-  }
-
-  loadBuffer(buffer: AudioBuffer) {
-    this.stop();
-    this.buffer = buffer;
   }
 
   playing() {
@@ -166,36 +127,29 @@ export class AudioPlayer extends AudioEventHandler {
   }
 
   play() {
+    this.context.resume();
     return new Promise((resolve, reject) => {
-      let i: number;
-      if (this.buffer) {
-        if (this.source) {
-          this.source.disconnect(this.context.destination);
-          for (i = 0; i < this.nodes.length; i++) {
-            this.source.disconnect(this.nodes[i]);
-          }
-        }
-        this.source = this.context.createBufferSource();
-        this.source.buffer = this.buffer;
-        for (i = 0; i < this.nodes.length; i++) {
-          this.source.connect(this.nodes[i]);
-        }
-        this.source.connect(this.context.destination);
-
-        this.source.onended = () => {
-          this.running = false;
-          this.emit("ended");
+      if (!this.sound) {
+        if (resolve) {
           resolve();
-        };
-        this.running = true;
-        this.emit("start");
-        this.source.start(0);
+        }
+        return;
       }
+      this.running = true;
+      this.emit("start");
+      this.sound.play();
+      this.sound.onended(() => {
+        this.running = false;
+        this.emit("ended");
+        if (resolve) {
+          resolve();
+        }
+      });
     });
   }
 
-  playBuffer(buffer: AudioBuffer) {
-    this.loadBuffer(buffer);
+  playSound(sound: p5.SoundFile) {
+    this.sound = sound;
     return this.play();
   }
 
@@ -207,43 +161,9 @@ export class AudioPlayer extends AudioEventHandler {
     });
   }
 
-  playTone(
-    frequency: number,
-    duration: number,
-    amplitude = Math.SQRT1_2,
-    numberOfChannels = 1,
-    sampleRate = 44100,
-    rampLength = 0.05
-  ) {
-    let length: number,
-      buffer: AudioBuffer,
-      i: number,
-      omega: number,
-      samples: number[];
-    length = Math.floor(duration * sampleRate);
-    buffer = this.context.createBuffer(numberOfChannels, length, sampleRate);
-
-    samples = new Array<number>(length);
-    omega = (2.0 * Math.PI * frequency) / sampleRate;
-    for (i = 0; i < length; i++) {
-      samples[i] = amplitude * Math.sin(i * omega);
-    }
-    rampLength = Math.floor(sampleRate * rampLength);
-    for (i = 0; i < rampLength; i++) {
-      samples[i] *= i / rampLength;
-      samples[length - i] *= i / rampLength;
-    }
-
-    for (i = 0; i < numberOfChannels; i++) {
-      buffer.copyToChannel(new Float32Array(samples), i, 0);
-    }
-    this.loadBuffer(buffer);
-    return this.play();
-  }
-
   stop() {
-    if (this.source && this.running) {
-      this.source.stop();
+    if (this.sound && this.running) {
+      this.sound.stop();
       this.running = false;
       this.emit("stop");
     }
@@ -252,38 +172,24 @@ export class AudioPlayer extends AudioEventHandler {
 
 export class AudioRecorder extends AudioEventHandler {
   private context: AudioContext;
-  private nodes: Array<AudioNode>;
-
-  streamSource: MediaStreamAudioSourceNode;
-  recordBuffer: AudioBuffer;
-  settings: any;
-
-  onMessage: any;
-  worker: Worker;
   running: boolean;
-  monitor: boolean;
-  scriptNode: ScriptProcessorNode;
   timeout: any;
+
+  sound: p5.SoundFile;
+  mic: p5.AudioIn;
+  recorder: p5.SoundRecorder;
 
   private initialised: boolean;
 
   constructor(context: AudioContext) {
     super();
-    this.settings = {
-      bufferSize: 2048,
-      channels: 1,
-    };
     this.running = false;
-
-    this.onMessage = null;
-    this.scriptNode = null;
-    this.streamSource = null;
-    this.worker = null;
-    this.nodes = new Array<AudioNode>();
-    this.monitor = false;
     this.context = context;
     this.timeout = null;
     this.initialised = false;
+    this.mic = null;
+    this.sound = new p5.SoundFile(undefined);
+    this.recorder = null;
   }
 
   initialise() {
@@ -315,287 +221,36 @@ export class AudioRecorder extends AudioEventHandler {
     });
   }
 
-  initialiseSuccess(stream) {
+  initialiseSuccess(_stream: MediaStream) {
     this.initialised = true;
-    this.scriptNode = this.context.createScriptProcessor(
-      this.settings.bufferSize,
-      this.settings.channels,
-      this.settings.channels
-    );
-    this.streamSource = this.context.createMediaStreamSource(stream);
+    this.mic = new p5.AudioIn();
+    this.mic.start();
+    this.recorder = new p5.SoundRecorder();
+    this.recorder.setInput(this.mic);
     this.emit("init");
-  }
-
-  addNode(node: AudioNode) {
-    this.nodes.push(node);
-  }
-
-  clearNodes() {
-    this.nodes = new Array<AudioNode>();
-  }
-
-  monitorAudio() {
-    this.monitor = true;
-    this.recordInit();
   }
 
   isRunning() {
     return this.running;
   }
 
-  private recordInit() {
-    this.worker = getAudioWorker();
-    this.worker.onmessage = (message) => this.processMessage(message);
-    this.onMessage = () => this.recordStart();
-    this.worker.postMessage({
-      command: "initialise",
-      settings: {
-        sampleRate: this.context.sampleRate,
-      },
-    });
-  }
-
-  private recordStart() {
-    let i: number;
-    this.running = true;
-    this.scriptNode.onaudioprocess = (event) => this.processAudio(event);
-    this.streamSource.connect(this.scriptNode);
-    // This shouldn't be necessary.
-    this.scriptNode.connect(this.context.destination);
-    for (i = 0; i < this.nodes.length; i++) {
-      this.streamSource.connect(this.nodes[i]);
-    }
-    this.emit("start");
-  }
-
   record(timeout?: number) {
+    this.context.resume();
     return new Promise((resolve, reject) => {
-      this.recordInit();
-      if (timeout) {
-        this.timeout = setTimeout(
-          () => this.stop().then(() => resolve()),
-          timeout * 1000
-        );
-      }
+      this.running = true;
+      this.recorder.record(this.sound, timeout, () => {
+        this.running = false;
+        this.emit("stop");
+      });
     });
   }
 
   stop() {
-    this.running = false;
-    this.timeout && clearTimeout(this.timeout);
+    this.recorder.stop();
+  }
+
+  private stopped() {
     this.emit("stop");
-    this.scriptNode.disconnect();
-    this.streamSource.disconnect();
-    if (!this.monitor) {
-      return new Promise((resolve, reject) => {
-        this.getAudioBuffers().then(() => resolve());
-      });
-    }
-  }
-
-  quit() {
-    if (this.worker) {
-      this.worker.terminate();
-    }
-  }
-
-  clear() {
-    this.onMessage = null;
-    this.worker.postMessage({ command: "clear" });
-  }
-
-  private getAudioBuffers() {
-    let self: any = this;
-    return new Promise((resolve, reject) => {
-      const setRecordBuffer = (buffer) => {
-        self.recordBuffer = self.context.createBuffer(
-          buffer.length,
-          buffer[0].length,
-          self.context.sampleRate
-        );
-        for (let i: number = 0; i < buffer.length; i++) {
-          self.recordBuffer.copyToChannel(buffer[i], i, 0);
-        }
-        self.worker.terminate();
-        resolve();
-      };
-      self.onMessage = (buffer) => setRecordBuffer(buffer);
-      self.worker.postMessage({
-        command: "getBuffers",
-      });
-    });
-  }
-
-  // tslint:disable-next-line
-  private setRecordBuffer(buffer: Array<Float32Array>) {
-    let i: number;
-    this.recordBuffer = this.context.createBuffer(
-      buffer.length,
-      buffer[0].length,
-      this.context.sampleRate
-    );
-    for (i = 0; i < buffer.length; i++) {
-      this.recordBuffer.copyToChannel(buffer[i], i, 0);
-    }
-    this.worker.terminate();
-    this.emit("ended");
-  }
-
-  private processMessage(message) {
-    this.onMessage && this.onMessage(message.data);
-  }
-
-  private processAudio(event) {
-    if (!this.running || this.monitor) return;
-    this.worker.postMessage({
-      command: "record",
-      buffer: [event.inputBuffer.getChannelData(0)],
-    });
-  }
-}
-
-/* tslint:disable */
-const getAudioWorker = () => {
-  let self: any = {};
-  let worker: Worker = new InlineWorker(function (self) {
-    //
-    // Begin worker code...
-
-    var channelCount = 1;
-    var buffers = [];
-    var frameCount = 0;
-    var sampleRate = 44100;
-
-    self.onmessage = function (event) {
-      var command = event.data.command;
-      var success, buffers;
-      switch (command) {
-        case "initialise":
-          success = self.initialise(event.data.settings || {});
-          self.postMessage(success);
-          break;
-        case "clear":
-          success = self.clear();
-          self.postMessage(success);
-          break;
-        case "record":
-          self.record(event.data.buffer);
-          break;
-        case "getBuffers":
-          buffers = self.getBuffers();
-          self.postMessage(buffers);
-          break;
-        default:
-          console.error("Unknown function '" + command + "' in audioWorker");
-      }
-    };
-
-    function initialise(settings) {
-      self.channelCount = settings.channelCount || self.channelCount;
-      self.sampleRate = settings.sampleRate || self.sampleRate;
-      self.clear();
-      return true;
-    }
-
-    function record(inputBuffer) {
-      for (var i = 0; i < self.channelCount; i++) {
-        self.buffers[i].push(inputBuffer[i]);
-      }
-      self.frameCount += inputBuffer[0].length;
-      return true;
-    }
-
-    function clear() {
-      self.buffers = [];
-      for (var i = 0; i < self.channelCount; i++) {
-        self.buffers.push([]);
-      }
-      self.frameCount = 0;
-      return true;
-    }
-
-    function flattenBuffer(buffer, frameCount) {
-      var i, offset, flattenedBuffer;
-      flattenedBuffer = new Float32Array(frameCount);
-      offset = 0;
-      for (i = 0; i < buffer.length; i++) {
-        flattenedBuffer.set(buffer[i], offset);
-        offset += buffer[i].length;
-      }
-      return flattenedBuffer;
-    }
-
-    function interleave(buffers) {
-      var i, j, k, frameCount, interleaved;
-      for (i = 0; i < buffers.length; i++) {
-        frameCount += buffers[i].length;
-      }
-      interleaved = new Float32Array(frameCount);
-
-      i = j = 0;
-      while (i < frameCount) {
-        for (k = 0; k < buffers.length; k++) {
-          interleaved[i++] = buffers[k][j];
-        }
-        j++;
-      }
-      return interleaved;
-    }
-
-    function getBuffers() {
-      var i;
-      var buffers = [];
-      for (i = 0; i < self.channelCount; i++) {
-        buffers.push(flattenBuffer(self.buffers[i], self.frameCount));
-      }
-      return buffers;
-    }
-
-    // ...end worker code.
-    //
-  }, self);
-  return worker;
-};
-
-export class Visualiser {
-  public analyser: AnalyserNode;
-  public data: Uint8Array;
-  private visualise: boolean;
-  public onvisualise: any;
-  public frameRate: number = 1;
-  private _frame;
-  constructor(public audioContext: AudioContext, analyserParams?: any) {
-    let params = Object.assign(
-      {
-        fftSize: 512,
-        bufferSize: 512,
-        bufferType: Uint8Array,
-      },
-      analyserParams || {}
-    );
-
-    this.analyser = audioContext.createAnalyser();
-    this.analyser.fftSize = params.fftSize;
-    this.data = new params.bufferType(params.bufferSize);
-    this.visualise = true;
-    this.onvisualise = null;
-  }
-
-  initialise() {}
-  public start() {
-    this.visualise = true;
-    this._frame = 0;
-    requestAnimationFrame(() => this.analyse());
-  }
-
-  public stop() {
-    this.visualise = false;
-  }
-
-  private analyse() {
-    this._frame = (this._frame + 1) % this.frameRate;
-    this.analyser.getByteFrequencyData(this.data);
-    if (this._frame === 0) this.onvisualise && this.onvisualise(this.data);
-    this.visualise && requestAnimationFrame(() => this.analyse());
+    this.running = false;
   }
 }
