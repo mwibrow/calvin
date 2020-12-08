@@ -5,19 +5,22 @@
   <ion-grid col-12 col-sm-10 col-md-8  col-lg-6 col-xl-4>
     <ion-row justify-content-center>
       <ion-col>
-        <div class="home-page-title">
-            <svg-trapezium>
+        <svg-trapezium>
           <div class="media media-image media-frame">
             <logo></logo>
           </div>
-          </svg-trapezium>
-
-        <div class="calvin-frame" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
-      </div>
+        </svg-trapezium>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <div class="calvin-frame">
+          <div class="avatar" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+        </div>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
-      <ion-col col-auto class="subtitle">
+      <ion-col text-center class="subtitle">
           <span>Computer Assisted Learning for Vowels interface</span>
       </ion-col>
     </ion-row>

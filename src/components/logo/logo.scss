@@ -1,14 +1,17 @@
 logo {
     .calvin-logo {
-        position: relative;
         display: inline-flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
 
         .calvin-logo-letter {
             font-family: Crafty Girls;
             font-weight: bold;
+            font-size: 88px;
         }
         .calvin-logo-c {
             fill: color($md-palette, md-red);

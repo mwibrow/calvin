@@ -481,6 +481,9 @@ $spinner-border: 10px;
 
 .media-image {
     background-color: color($md-palette, md-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .media-video {
@@ -613,7 +616,7 @@ page-vowel-trainer {
     }
 }
 
-.home-page-title {
+.home-page-titleX {
     font-size: 12.5vh !important;
     margin-bottom: 20vh;
     logo {
@@ -632,7 +635,7 @@ page-vowel-trainer {
 }
 
 @media (max-width: 576px) {
-    .home-page-title {
+    .home-page-titleX {
         font-size: 8.5vh !important;
         .calvin-frame {
             top: 75%;
