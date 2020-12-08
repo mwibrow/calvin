@@ -1,3 +1,9 @@
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
 
 /* Desktop, Laptop */
 @media screen and (min-width: 1024px) and (min-height: 768px) {

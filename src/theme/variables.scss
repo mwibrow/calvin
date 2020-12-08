@@ -13,7 +13,7 @@ $app-direction: ltr;
 
 
 @import "ionic.globals";
-
+@import "./include-media";
 
 // Shared Variables
 // --------------------------------------------------
@@ -22,6 +22,12 @@ $app-direction: ltr;
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
 
 
 
