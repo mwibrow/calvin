@@ -633,7 +633,7 @@ ion-header {
 
 ion-content {
   height: 75vh;
-  top: 12.5vh;
+  top: 10vh;
 }
 ion-footer {
   bottom: 0vh;
@@ -714,8 +714,8 @@ page-vowel-trainer {
 }
 
 .media-wrapper {
-  width: calc(75vw * 3 / 4);
-  height: calc(75vw * 3 / 4);
+  width: calc(75vh * 3 / 4);
+  height: calc(75vh * 3 / 4);
 
   .vocal-tract-animation {
     width: calc(65vh * 3 / 4);
