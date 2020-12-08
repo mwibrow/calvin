@@ -557,6 +557,10 @@ ion-header {
     height: 10vh;
 }
 
+ion-content {
+    height: 75vh;
+    top: 10vh;
+}
 ion-footer {
     bottom: 0vh;
     height: 15vh !important;
