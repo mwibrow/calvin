@@ -18,6 +18,7 @@ import { VideoPlayerComponent } from "./video-player/video-player";
 import { SvgTrapeziumComponent } from "./svg-trapezium/svg-trapezium";
 import { VocalTractAnimationComponent } from "./vocal-tract-animation/vocal-tract-animation";
 import { AnimationDirective } from "./vocal-tract-animation/animation-directive";
+import { HeadingComponent } from "./heading/heading";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AnimationDirective } from "./vocal-tract-animation/animation-directive"
     BackgroundComponent,
     SvgShapeComponent,
     MarkComponent,
+    HeadingComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { AnimationDirective } from "./vocal-tract-animation/animation-directive"
     BackgroundComponent,
     SvgShapeComponent,
     MarkComponent,
+    HeadingComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

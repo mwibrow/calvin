@@ -1,0 +1,27 @@
+heading {
+  .heading {
+    position: relative;
+    padding: 1rem 1rem;
+    display: inline-block;
+  }
+  .heading-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    svg {
+      z-index: -1;
+    }
+    z-index: -1;
+  }
+  .heading-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+}

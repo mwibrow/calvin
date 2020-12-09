@@ -37,6 +37,13 @@ body,
 ion-header {
   height: 5rem;
   background-color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  title {
+    display: inline-block;
+  }
 }
 
 ion-content {
@@ -54,7 +61,7 @@ ion-footer {
 ion-header,
 ion-content,
 ion-footer {
-  width: 100vw !important;
+  width: 100vw;
   left: 0vw;
   box-sizing: border-box;
   //background-color: transparent !important;
@@ -63,8 +70,11 @@ ion-footer {
 ion-header {
   padding-top: 0.25rem;
   ion-title {
-    width: 95vw !important;
-    margin-left: 2.5vw !important;
+    width: 95% !important;
+    margin-left: 2.5% !important;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    height: 100%;
   }
 }
 

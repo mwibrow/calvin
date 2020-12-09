@@ -2,25 +2,28 @@
 
 <ion-header transparent no-border>
   <!-- <ion-navbar hideBackButton> -->
-    <ion-title>
+    <!-- <ion-title>
       <svg-trapezium>
        <div>Choose a speaker</div>
       </svg-trapezium>
-    </ion-title>
+    </ion-title> -->
+    <heading>
+      Choose a speaker
+    </heading>
   <!-- </ion-navbar> -->
 </ion-header>
 
 <ion-content class="no-scroll">
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let talker of getTalkers()">
-        <ion-avatar>
+      <ion-col col-3 *ngFor="let talker of getTalkers()">
+        <!-- <ion-avatar> -->
           <div class="avatar media-small {{isTalker(talker) ? 'is-selected' : ''}}" [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"></div>
 
           <button class="select-talker-button" (click)="setTalker(talker)">
             <span>{{talker.displayName}}</span>
           </button>
-        </ion-avatar>
+        <!-- </ion-avatar> -->
       </ion-col>
     </ion-row>
   </ion-grid>
