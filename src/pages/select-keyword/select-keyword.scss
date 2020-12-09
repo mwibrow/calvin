@@ -44,7 +44,7 @@ page-select-keyword {
     left: 50%;
     @include button-hover($preview-audio-button-bg, $preview-audio-button-fg);
     @include hover-box-shadow($preview-audio-button-bg);
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -35%);
 
     padding: 0.5ex 1em;
     border-radius: 3px;
@@ -54,7 +54,7 @@ page-select-keyword {
   .media-frame {
     background-color: color($md-palette, md-black);
     padding: 0.125rem;
-    margin: 0.125rem;
+    margin: 0rem;
   }
 
   .keyword-column {

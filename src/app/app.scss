@@ -44,11 +44,11 @@ body,
 }
 
 @include media(">=md") {
-  @include font-size-base(18px);
+  @include font-size-base(17px);
 }
 
 @include media(">=lg") {
-  @include font-size-base(20px);
+  @include font-size-base(18px);
 }
 
 ion-header {
@@ -697,9 +697,9 @@ ion-title {
 }
 
 .preview-audio-button {
-  font-size: 3.75vh;
-  width: 15vh;
-  height: 6.25vh;
+  font-size: 1.25rem;
+  width: 8rem;
+  height: 3rem;
 }
 
 .keyword-button,
@@ -708,10 +708,4 @@ ion-title {
   height: 4rem;
   width: 11rem;
   font-size: 2rem;
-}
-
-.media-small {
-  width: calc(100vh * 3 / 4 * 0.375);
-  height: calc(100vh * 3 / 4 * 0.375);
-  margin: 1vh auto 0.5vh;
 }

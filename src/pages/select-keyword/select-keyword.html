@@ -8,22 +8,6 @@
     <ion-row justify-content-center align-items-center>
       <ion-col col-5 *ngFor="let keyword of getKeywordList(); let i = index">
         <div class="keyword-column">
-          <!-- <svg-trapezium [color]="imageColor">
-            <div class="media-button" (click)="setKeyword(keyword)">
-              <div class="media media-image media-frame">
-                <img
-                  *ngIf="getKeywordImageUri(keyword)"
-                  [src]="getKeywordImageUri(keyword)"
-                />
-              </div>
-              <mark
-                *ngIf="getKeyword(keyword).isComplete()"
-                class="mark-{{i + 1}}"
-              >
-                <svg-shape shape="check"></svg-shape>
-              </mark>
-            </div>
-          </svg-trapezium> -->
           <fancy-frame>
             <div class="media-frame" (click)="setKeyword(keyword)">
               <img
