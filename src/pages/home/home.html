@@ -1,43 +1,50 @@
-
 <background [color]="getBackgroundColor()" pattern="diamonds"></background>
 
 <ion-content class="no-scroll">
   <ion-grid>
     <ion-row justify-content-center>
-      <ion-col>
-        <svg-trapezium>
+      <ion-col col-10 col-lg-8 col-xl-6>
+        <fancy-frame>
           <div class="media media-image media-frame">
             <logo></logo>
           </div>
-        </svg-trapezium>
+        </fancy-frame>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col text-center>
         <div class="calvin-frame">
-          <div class="avatar" [inlineSVG]="'assets/images/avatars/calvin.svg'"></div>
+          <div
+            class="avatar"
+            [inlineSVG]="'assets/images/avatars/calvin.svg'"
+          ></div>
         </div>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
       <ion-col text-center class="subtitle">
-          <span>Computer Assisted Learning for Vowels interface</span>
+        <span>Computer Assisted Learning for Vowels interface</span>
       </ion-col>
     </ion-row>
-    <ion-row  *ngIf="!audioAvailable" justify-content-center>
+    <ion-row *ngIf="!audioAvailable" justify-content-center>
       <ion-col col-auto>
         <div class="error">
           Cannot access audio for recording
-          <br>
+          <br />
           Please check computer audio settings and restart
-          <br>
+          <br />
           &nbsp;
         </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="audioAvailable"  justify-content-center>
+    <ion-row *ngIf="audioAvailable" justify-content-center>
       <ion-col col-auto>
-        <button ion-button (click)="onStart()" class="example-word-button" id="home-page-start-button">
+        <button
+          ion-button
+          (click)="onStart()"
+          class="example-word-button"
+          id="home-page-start-button"
+        >
           <span>Start</span>
         </button>
       </ion-col>
@@ -47,7 +54,13 @@
 
 <ion-footer>
   <ion-buttons end>
-    <button *ngIf="remote" ion-button icon-only class="exit-button" (click)="exitApplication()">
+    <button
+      *ngIf="remote"
+      ion-button
+      icon-only
+      class="exit-button"
+      (click)="exitApplication()"
+    >
       <ion-icon name="exit"></ion-icon>
     </button>
   </ion-buttons>

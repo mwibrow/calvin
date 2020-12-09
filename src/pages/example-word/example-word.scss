@@ -45,5 +45,9 @@ page-example-word {
     flex-direction: column;
     justify-content: flex-start !important;
     align-items: center !important;
+
+    @include media("<sm") {
+      height: 100%;
+    }
   }
 }
