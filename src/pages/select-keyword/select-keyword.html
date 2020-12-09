@@ -6,13 +6,9 @@
 <ion-content class="no-scroll keyword-group-size-{{getKeywordList().length}}">
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
-      <ion-col
-        col-5
-        col-sm-4
-        *ngFor="let keyword of getKeywordList(); let i = index"
-      >
+      <ion-col col-5 *ngFor="let keyword of getKeywordList(); let i = index">
         <div class="keyword-column">
-          <svg-trapezium [color]="imageColor">
+          <!-- <svg-trapezium [color]="imageColor">
             <div class="media-button" (click)="setKeyword(keyword)">
               <div class="media media-image media-frame">
                 <img
@@ -27,7 +23,15 @@
                 <svg-shape shape="check"></svg-shape>
               </mark>
             </div>
-          </svg-trapezium>
+          </svg-trapezium> -->
+          <fancy-frame>
+            <div class="media-frame" (click)="setKeyword(keyword)">
+              <img
+                *ngIf="getKeywordImageUri(keyword)"
+                [src]="getKeywordImageUri(keyword)"
+              />
+            </div>
+          </fancy-frame>
           <button class="preview-audio-button" (click)="playKeyword(keyword)">
             <span>{{getKeyword(keyword).display}}</span>
           </button>

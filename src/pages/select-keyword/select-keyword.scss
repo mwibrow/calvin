@@ -51,25 +51,12 @@ page-select-keyword {
     z-index: 500;
   }
 
-  // .media-small {
-  //   width: 100%;
-  //   display: block;
-  //   &:after {
-  //     content: "";
-  //     display: block;
-  //     padding-bottom: 100% !important;
-  //   }
-  // }
+  .media-frame {
+    background-color: color($md-palette, md-black);
+    padding: 0.125rem;
+    margin: 0.125rem;
+  }
 
-  // .svg-trapezium-container,
-  // .svg-trapezium {
-  //   width: 100%;
-  //   &::after {
-  //     content: "";
-  //     display: block;
-  //     padding-bottom: 100%;
-  //   }
-  // }
   .keyword-column {
     position: relative;
     margin-bottom: 2.5rem;

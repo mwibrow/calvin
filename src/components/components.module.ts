@@ -12,13 +12,14 @@ import {
 import { BackgroundComponent } from "./background/background";
 import { MarkComponent } from "./mark/mark";
 import { HelpComponent } from "./help/help";
-import { SvgShapeComponent } from "./svg-shape/svg-shape";
+import { SvgShapeComponent } from "./svg-shape/svg-shape"; 
 import { LogoComponent } from "./logo/logo";
 import { VideoPlayerComponent } from "./video-player/video-player";
 import { SvgTrapeziumComponent } from "./svg-trapezium/svg-trapezium";
 import { VocalTractAnimationComponent } from "./vocal-tract-animation/vocal-tract-animation";
 import { AnimationDirective } from "./vocal-tract-animation/animation-directive";
 import { HeadingComponent } from "./heading/heading";
+import { FancyFrameComponent } from "./fancy-frame/fancy-frame";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HeadingComponent } from "./heading/heading";
     SvgShapeComponent,
     MarkComponent,
     HeadingComponent,
+    FancyFrameComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +57,7 @@ import { HeadingComponent } from "./heading/heading";
     SvgShapeComponent,
     MarkComponent,
     HeadingComponent,
+    FancyFrameComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

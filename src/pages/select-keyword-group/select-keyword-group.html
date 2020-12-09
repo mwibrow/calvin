@@ -11,7 +11,7 @@
         col-sm-4
         *ngFor="let keywordGroup of getKeywordGroupList(); let i = index"
       >
-        <svg-trapezium [color]="trapeziumColor">
+        <fancy-frame [color]="trapeziumColor">
           <div class="media-button" (click)="setKeywordGroupIndex(i)">
             <div class="media media-image media-frame">
               <div class="media-tiny flex flex-centered relative">
@@ -28,7 +28,7 @@
               <svg-shape shape="check"></svg-shape>
             </mark>
           </div>
-        </svg-trapezium>
+        </fancy-frame>
       </ion-col>
     </ion-row>
   </ion-grid>

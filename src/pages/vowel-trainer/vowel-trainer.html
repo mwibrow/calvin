@@ -1,16 +1,11 @@
-
 <background [color]="backgroundColor" pattern="circles"></background>
 
 <ion-header transparent>
-  <ion-navbar hideBackButton>
-    <ion-title>
-      <svg-trapezium>
-        {{ isViewState(ViewState.Audio) ? 'Listen' : isViewState(ViewState.Animation) ? 'Watch' : 'Choose an example' }}
-      </svg-trapezium>
-    </ion-title>
-  </ion-navbar>
+  <heading>
+    {{ isViewState(ViewState.Audio) ? 'Listen' :
+    isViewState(ViewState.Animation) ? 'Watch' : 'Choose an example' }}
+  </heading>
 </ion-header>
-
 
 <ion-content class="no-scroll">
   <ion-grid [hidden]="!isViewState(ViewState.Audio)" class="centered">
@@ -22,13 +17,16 @@
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
-      <ion-col text-center>
+      <ion-col col-10 text-center>
         <div class="media-wrapper">
-          <svg-trapezium>
-            <div class="media media-image media-frame">
-              <img *ngIf="getKeywordImageUri(keyword)" [src]="getKeywordImageUri(keyword)"/>
+          <fancy-frame>
+            <div class="media media-image media-frame" style="margin: 0.5rem">
+              <img
+                *ngIf="getKeywordImageUri(keyword)"
+                [src]="getKeywordImageUri(keyword)"
+              />
             </div>
-          </svg-trapezium>
+          </fancy-frame>
         </div>
       </ion-col>
     </ion-row>
@@ -47,7 +45,9 @@
         <div class="media-wrapper">
           <svg-trapezium>
             <div class="media-frame">
-              <vocal-tract-animation #vocalTractAnimation></vocal-tract-animation>
+              <vocal-tract-animation
+                #vocalTractAnimation
+              ></vocal-tract-animation>
             </div>
           </svg-trapezium>
         </div>
@@ -56,7 +56,6 @@
   </ion-grid>
 
   <ion-grid [hidden]="!isViewState(ViewState.Examples)" class="centered">
-
     <ion-row justify-content-center>
       <ion-col text-center>
         <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
@@ -66,47 +65,71 @@
     </ion-row>
     <ion-row justify-content-center class="example-words">
       <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
-        <div class="media-small" style="position: relative;">
-          <svg-trapezium  [color]="imageColor">
+        <div class="media-small" style="position: relative">
+          <svg-trapezium [color]="imageColor">
             <div class="media-button" (click)="showExampleWord(i)">
               <div class="media media-image media-frame">
-                <img *ngIf="getExampleWordImageUri(wordId)" [src]="getExampleWordImageUri(wordId)"/>
+                <img
+                  *ngIf="getExampleWordImageUri(wordId)"
+                  [src]="getExampleWordImageUri(wordId)"
+                />
               </div>
-              <mark *ngIf="getExampleWord(wordId).isComplete()" class="mark-{{i + 1}}">
+              <mark
+                *ngIf="getExampleWord(wordId).isComplete()"
+                class="mark-{{i + 1}}"
+              >
                 <svg-shape shape="check"></svg-shape>
               </mark>
             </div>
           </svg-trapezium>
-          <button class="preview-audio-button" (click)="playExampleWord(wordId, i)">
-              <span>{{getExampleWord(wordId).display}}</span>
-            </button>
+          <button
+            class="preview-audio-button"
+            (click)="playExampleWord(wordId, i)"
+          >
+            <span>{{getExampleWord(wordId).display}}</span>
+          </button>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
-<ion-footer padding>
-
-  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
-      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+<ion-footer>
+  <button
+    ion-button
+    class="navigate-button navigate-button-back float-left"
+    (click)="goBack()"
+  >
+    <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
   </button>
 
   <ion-buttons text-center>
-    <button ion-button icon-only class="toolbar-button view-button"
-        (click)="changeViewState(ViewState.Audio)" [disabled]="isViewState(ViewState.Audio)">
+    <button
+      ion-button
+      icon-only
+      class="toolbar-button view-button"
+      (click)="changeViewState(ViewState.Audio)"
+      [disabled]="isViewState(ViewState.Audio)"
+    >
       <ion-icon name="headset"></ion-icon>
     </button>
-    <button ion-button icon-only class="toolbar-button view-button"
-        (click)="changeViewState(ViewState.Animation)" [disabled]="isViewState(ViewState.Animation)">
+    <button
+      ion-button
+      icon-only
+      class="toolbar-button view-button"
+      (click)="changeViewState(ViewState.Animation)"
+      [disabled]="isViewState(ViewState.Animation)"
+    >
       <ion-icon name="person"></ion-icon>
     </button>
-    <button ion-button icon-only class="toolbar-button view-button"
-        (click)="changeViewState(ViewState.Examples)" [disabled]="isViewState(ViewState.Examples)">
-      <ion-icon name="list">
-      </ion-icon>
+    <button
+      ion-button
+      icon-only
+      class="toolbar-button view-button"
+      (click)="changeViewState(ViewState.Examples)"
+      [disabled]="isViewState(ViewState.Examples)"
+    >
+      <ion-icon name="list"> </ion-icon>
     </button>
   </ion-buttons>
-
 </ion-footer>
