@@ -28,4 +28,23 @@ page-example-word {
   .media {
     line-height: 0;
   }
+
+  .media-frame-video,
+  .media-frame-image {
+    width: 100%;
+    height: auto;
+    margin: 0.5rem;
+  }
+
+  .media-frame-image {
+    background-color: color($md-palette, md-black);
+  }
+
+  .centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: 100%;
+  }
 }

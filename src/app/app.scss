@@ -715,39 +715,3 @@ ion-title {
   height: calc(100vh * 3 / 4 * 0.375);
   margin: 1vh auto 0.5vh;
 }
-
-.media-tiny {
-  width: calc(100vh * 3 / 4 * 0.2);
-  height: calc(100vh * 3 / 4 * 0.2);
-  margin: 0vh !important;
-}
-
-page-vowel-trainer {
-  .media-small {
-    width: calc(100vh * 3 / 4 * 0.4);
-    height: calc(100vh * 3 / 4 * 0.4);
-    margin: 5vh auto 5vh;
-  }
-}
-
-.media-button {
-  margin: 1vh;
-}
-
-.media-wrapper {
-  // width: calc(75vh * 3 / 4);
-  // height: calc(75vh * 3 / 4);
-
-  // .vocal-tract-animation {
-  //   width: calc(65vh * 3 / 4);
-  // }
-
-  // .media-video,
-  // .media-image {
-  //   width: calc(65vh * 3 / 4);
-  // }
-}
-
-.subtitle {
-  font-size: 3vh;
-}

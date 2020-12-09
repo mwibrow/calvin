@@ -1,83 +1,76 @@
 <background [color]="backgroundColor" pattern="stars"></background>
 <ion-header transparent>
-  <ion-navbar hideBackButton>
-    <ion-title>
-      <svg-trapezium>
-        Listen and watch
-      </svg-trapezium>
-    </ion-title>
-  </ion-navbar>
+  <heading> Listen and watch </heading>
 </ion-header>
 
-
 <ion-content class="no-scroll">
-  <ion-grid>
+  <ion-grid class="centered">
     <ion-row justify-content-center>
       <ion-col>
-        <ion-grid>
-          <ion-row text-center>
-            <ion-col>
-              <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
-                <span [innerHtml]="getExampleWord()"></span>
-              </keyword>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
+          <span [innerHtml]="getExampleWord()"></span>
+        </keyword>
       </ion-col>
     </ion-row>
-    <ion-row  *ngIf="isViewState(ViewState.Image)" justify-content-center>
-      <ion-col>
-        <ion-grid>
-          <ion-row text-center>
-            <ion-col>
-              <div class="media-wrapper media-example">
-                <svg-trapezium [color]="imageColor" class="media-trapezium">
-                  <div class="media media-image media-frame">
-                    <img *ngIf="getImageUri()" [src]="getImageUri()"/>
-                  </div>
-                </svg-trapezium>
-                <div class="float">
-                  <div class="float-button media-frame" (click)="setViewState(ViewState.Video)">
-                    <div class="media media-video">
-                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" disabled="true"></video-player>
-                    </div>
-                  </div>
-                </div>
+    <ion-row *ngIf="isViewState(ViewState.Image)" justify-content-center>
+      <ion-col col-10>
+        <div class="media-wrapper media-wrapper-example">
+          <fancy-frame>
+            <div class="media-frame media-frame-image">
+              <img *ngIf="getImageUri()" [src]="getImageUri()" />
+            </div>
+          </fancy-frame>
+          <div class="float">
+            <div
+              class="float-button media-frame"
+              (click)="setViewState(ViewState.Video)"
+            >
+              <div class="media media-video">
+                <video-player
+                  *ngIf="getVideoUri()"
+                  [src]="getVideoUri()"
+                  disabled="true"
+                ></video-player>
               </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+            </div>
+          </div>
+        </div>
       </ion-col>
     </ion-row>
-    <ion-row  *ngIf="isViewState(ViewState.Video)" justify-content-center>
-        <ion-col>
-          <ion-grid>
-            <ion-row text-center>
-              <ion-col>
-                <div class="media-wrapper media-example">
-                  <svg-trapezium  [color]="imageColor" class="media-trapezium">
-                    <div class="media media-video media-frame">
-                      <video-player *ngIf="getVideoUri()" [src]="getVideoUri()" #videoPlayer></video-player>
-                    </div>
-                  </svg-trapezium>
-                  <div class="float">
-                    <div class="float-button media-frame" (click)="setViewState(ViewState.Image)">
-                      <div class="media media-image">
-                        <img *ngIf="getImageUri()" [src]="getImageUri()"/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-col>
-      </ion-row>
+    <ion-row *ngIf="isViewState(ViewState.Video)" justify-content-center>
+      <ion-col col-10>
+        <div class="media-wrapper media-wrapper-example">
+          <fancy-frame>
+            <div class="media-frame media-frame-video">
+              <video-player
+                *ngIf="getVideoUri()"
+                [src]="getVideoUri()"
+                #videoPlayer
+              ></video-player>
+            </div>
+          </fancy-frame>
+          <div class="float">
+            <div
+              class="float-button media-frame"
+              (click)="setViewState(ViewState.Image)"
+            >
+              <div class="media media-image">
+                <img *ngIf="getImageUri()" [src]="getImageUri()" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-  <button ion-button class="navigate-button navigate-button-back float-left" (click)="goBack()">
+  <button
+    ion-button
+    class="navigate-button navigate-button-back float-left"
+    (click)="goBack()"
+  >
     <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
   </button>
 </ion-footer>

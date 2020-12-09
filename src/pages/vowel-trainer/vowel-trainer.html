@@ -63,25 +63,26 @@
         </keyword>
       </ion-col>
     </ion-row>
-    <ion-row justify-content-center class="example-words">
-      <ion-col *ngFor="let wordId of getExampleWords(); let i = index">
-        <div class="media-small" style="position: relative">
-          <svg-trapezium [color]="imageColor">
-            <div class="media-button" (click)="showExampleWord(i)">
-              <div class="media media-image media-frame">
-                <img
-                  *ngIf="getExampleWordImageUri(wordId)"
-                  [src]="getExampleWordImageUri(wordId)"
-                />
-              </div>
-              <mark
-                *ngIf="getExampleWord(wordId).isComplete()"
-                class="mark-{{i + 1}}"
-              >
-                <svg-shape shape="check"></svg-shape>
-              </mark>
+    <ion-row justify-content-center>
+      <ion-col col-5 *ngFor="let wordId of getExampleWords(); let i = index">
+        <div class="media-wrapper media-wrapper-examples">
+          <fancy-frame>
+            <div
+              class="media-frame media-frame-example"
+              (click)="showExampleWord(i)"
+            >
+              <img
+                *ngIf="getExampleWordImageUri(wordId)"
+                [src]="getExampleWordImageUri(wordId)"
+              />
             </div>
-          </svg-trapezium>
+            <mark
+              *ngIf="getExampleWord(wordId).isComplete()"
+              class="mark-{{i + 1}}"
+            >
+              <svg-shape shape="check"></svg-shape>
+            </mark>
+          </fancy-frame>
           <button
             class="preview-audio-button"
             (click)="playExampleWord(wordId, i)"

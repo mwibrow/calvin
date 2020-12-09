@@ -85,7 +85,7 @@ page-vowel-trainer {
     bottom: 0;
     left: 50%;
     z-index: 500;
-    transform: translate(-50%, 33.3%);
+    transform: translate(-50%, 60%);
   }
 
   .example-word-title {
@@ -122,6 +122,9 @@ page-vowel-trainer {
   .media-frame-keyword,
   .media-frame-vocal-tract-animation {
     margin: 1rem;
+    background-color: color($md-palette, md-black);
+  }
+  .media-frame-example {
     background-color: color($md-palette, md-black);
   }
 }

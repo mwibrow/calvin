@@ -7,26 +7,19 @@
   <ion-grid class="centered">
     <ion-row justify-content-center align-items-center>
       <ion-col
-        col-6
+        col-5
         col-sm-4
         *ngFor="let keywordGroup of getKeywordGroupList(); let i = index"
       >
-        <fancy-frame [color]="trapeziumColor">
-          <div class="media-button" (click)="setKeywordGroupIndex(i)">
-            <div class="media media-image media-frame">
-              <div class="media-tiny flex flex-centered relative">
-                <div
-                  class="keyword-group-label keyword-group-label-{{i + 1}}"
-                ></div>
-                <span>{{i + 1}}</span>
-              </div>
-            </div>
-            <mark
-              *ngIf="getKeywordGroup(keywordGroup).isComplete()"
-              class="mark-{{i + 1}}"
-            >
-              <svg-shape shape="check"></svg-shape>
-            </mark>
+        <fancy-frame>
+          <div
+            class="keyword-group-image media-frame"
+            (click)="setKeywordGroupIndex(i)"
+          >
+            <div
+              class="keyword-group-label keyword-group-label-{{i + 1}}"
+            ></div>
+            <span>{{i + 1}}</span>
           </div>
         </fancy-frame>
       </ion-col>

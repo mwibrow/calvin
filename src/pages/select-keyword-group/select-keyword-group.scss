@@ -1,126 +1,151 @@
 page-select-keyword-group {
-
-    @keyframes Beat {
-        0% { transform: scale(1) }
-        40% { transform: scale(1.25) }
-        80% { transform: scale(1) }
+  @keyframes Beat {
+    0% {
+      transform: scale(1);
     }
-    @keyframes Squish {
-        0% { transform: scale(1) }
-        40% { transform: scale(1.05, 0.95) }
-        80% { transform: scale(1) }
+    40% {
+      transform: scale(1.25);
     }
-
-    // ion-content {
-    //     overflow: visible !important;
-    //     height: 90% !important;
-    // }
-
-    .centered {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        height: 100%;
+    80% {
+      transform: scale(1);
     }
-
-    mark {
-        position: absolute;
-        display: inline-block;
-        right: 0;
-        bottom: 10%;
-
+  }
+  @keyframes Squish {
+    0% {
+      transform: scale(1);
     }
-
-    .mark {
-        transform-origin: 50%, 50%;
-        animation: Beat 2s infinite;
+    40% {
+      transform: scale(1.05, 0.95);
     }
-
-    .keyword-buttons {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    80% {
+      transform: scale(1);
     }
+  }
 
-    .keyword-group-button-container {
-        display: block;
-        // position: absolute;
+  // ion-content {
+  //     overflow: visible !important;
+  //     height: 90% !important;
+  // }
 
-    }
+  .centered {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100%;
+  }
 
-    .keyword-group-button {
-        border-radius: 3px;
-    }
+  mark {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 10%;
+  }
 
-    .flex {
-        display: flex;
-    }
-    .flex-centered {
-        justify-content: center;
-        align-items: center;
-    }
-    .relative {
-        position: relative;
-    }
+  .mark {
+    transform-origin: 50%, 50%;
+    animation: Beat 2s infinite;
+  }
 
-    .media-tiny {
-        span {
-            z-index: 500;
-            color: color($md-palette, md-white);
-            font-size: 6.25vh;
-        }
-        overflow: visible;
-    }
+  .keyword-buttons {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
+  .keyword-group-button-container {
+    display: block;
+    // position: absolute;
+  }
+
+  .keyword-group-button {
+    border-radius: 3px;
+  }
+
+  .flex {
+    display: flex;
+  }
+  .flex-centered {
+    justify-content: center;
+    align-items: center;
+  }
+  .relative {
+    position: relative;
+  }
+
+  .media-tiny {
+    span {
+      z-index: 500;
+      color: color($md-palette, md-white);
+      font-size: 6.25vh;
+    }
+    overflow: visible;
+  }
+
+  .keyword-group-label {
+    position: absolute;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: Squish 2s infinite;
+  }
+  .keyword-group-label::before {
+    position: absolute;
+    left: 20%;
+    top: 0%;
+    content: "";
+    width: 60%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .keyword-group-label::after {
+    position: absolute;
+    left: 40%;
+    top: 0%;
+    content: "";
+    width: 20%;
+    height: 100%;
+    border-radius: 50%;
+  }
+
+  $keywordGroupColors: red, light-green, light-blue, amber, pink;
+
+  @for $i from 1 through length($keywordGroupColors) {
+    $c: nth($keywordGroupColors, $i);
+    .keyword-group-label-#{$i},
+    .keyword-group-label-#{$i}::after {
+      background-color: color($md-palette, md-#{$c}-900);
+    }
+    .keyword-group-label-#{$i}::before {
+      background-color: color($md-palette, md-#{$c}-700);
+    }
+  }
+
+  .media-button:hover {
+    box-shadow: 0px 0px 30px color($md-palette, md-white);
+  }
+
+  .keyword-group-image {
+    width: 6rem;
+    height: 6rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: color($md-palette, md-black);
     .keyword-group-label {
-        position: absolute;
-        width: 75%;
-        height: 75%;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: Squish 2s infinite;
-
+      z-index: 1;
     }
-    .keyword-group-label::before {
-        position: absolute;
-        left: 20%;
-        top: 0%;
-        content: '';
-        width: 60%;
-        height: 100%;
-        border-radius: 50%;
-
+    span {
+      color: color($md-palette, md-white);
+      z-index: 2;
+      font-size: 2rem;
     }
-    .keyword-group-label::after {
-        position: absolute;
-        left: 40%;
-        top: 0%;
-        content: '';
-        width: 20%;
-        height: 100%;
-        border-radius: 50%;
-    }
-
-    $keywordGroupColors: red, light-green, light-blue, amber, pink;
-
-    @for $i from 1 through length($keywordGroupColors)  {
-        $c: nth($keywordGroupColors, $i);
-        .keyword-group-label-#{$i}, .keyword-group-label-#{$i}::after {
-            background-color: color($md-palette, md-#{$c}-900);
-        }
-        .keyword-group-label-#{$i}::before {
-            background-color: color($md-palette, md-#{$c}-700);
-        }
-    }
-
-    .media-button:hover {
-        box-shadow: 0px 0px 30px  color($md-palette, md-white);
-
-    }
+  }
 }
