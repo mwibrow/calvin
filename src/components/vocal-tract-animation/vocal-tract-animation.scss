@@ -1,74 +1,68 @@
 vocal-tract-animation {
-
-.vocal-tract-animation {
+  .vocal-tract-animation {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+  }
 
-
-
-
-.svg-container {
-    height: 256px;
-}
-
-.vocal-tract-svg {
-    overflow: visible;
-    height: 100%;
-}
-
-
-circle {
-    fill: red;
-}
-
-.range-container {
+  .svg-container {
     width: 100%;
-}
+    height: auto;
+  }
 
-ion-range {
+  .vocal-tract-svg {
+    // overflow: visible;
+    // height: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  circle {
+    fill: red;
+  }
+
+  .range-container {
+    width: 100%;
+  }
+
+  ion-range {
     margin: 0% !important;
     padding-top: 0% !important;
-}
+  }
 
-.head, .laryngeal-wall,
-.lip
-{
+  .head,
+  .laryngeal-wall,
+  .lip {
     fill: lighten(color($md-palette, md-blue-grey), 0%);
-}
+  }
 
-.larynx {
+  .larynx {
     fill: darken(color($md-palette, md-pink), 0%);
-}
-.velum
-{
+  }
+  .velum {
     fill: darken(color($md-palette, md-pink), 0%);
-}
+  }
 
-.tongue
-{
+  .tongue {
     fill: darken(color($md-palette, md-red), 0%);
     stroke: darken(color($md-palette, md-red), 0%);
     stroke-width: 2px;
-}
+  }
 
-.gum
-{
+  .gum {
     fill: color($md-palette, md-grey);
-}
+  }
 
-.teeth
-{
+  .teeth {
     fill: color($md-palette, md-white);
-}
+  }
 
-// .range-container {
-//     .range-knob,  {
-//     }
-//     .range-bar {
-//     }
-//     .range-bar-active {
-//     }
-// }
+  // .range-container {
+  //     .range-knob,  {
+  //     }
+  //     .range-bar {
+  //     }
+  //     .range-bar-active {
+  //     }
+  // }
 }

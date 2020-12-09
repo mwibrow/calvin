@@ -118,4 +118,10 @@ page-vowel-trainer {
     width: 100%;
     height: auto;
   }
+
+  .media-frame-keyword,
+  .media-frame-vocal-tract-animation {
+    margin: 1rem;
+    background-color: color($md-palette, md-black);
+  }
 }

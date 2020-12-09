@@ -19,14 +19,6 @@
   letter-spacing: 0.1ex;
 }
 
-@mixin font-size-base($size) {
-  html,
-  body,
-  .app-root,
-  .ion-page {
-    font-size: $size !important;
-  }
-}
 html,
 body,
 .app-root,
@@ -35,7 +27,29 @@ body,
   color: color($md-palette, md-yellow);
 }
 
+// base font stuff.
+@mixin font-size-base($size) {
+  html,
+  body,
+  .app-root,
+  .ion-page {
+    font-size: $size !important;
+  }
+}
+
 @include font-size-base(14px);
+
+@include media(">=sm") {
+  @include font-size-base(16px);
+}
+
+@include media(">=md") {
+  @include font-size-base(18px);
+}
+
+@include media(">=lg") {
+  @include font-size-base(20px);
+}
 
 ion-header {
   height: 5rem;
@@ -76,14 +90,6 @@ ion-header {
     margin-bottom: 2.5%;
     height: 100%;
   }
-}
-
-@include media(">=sm") {
-  @include font-size-base(16px);
-}
-
-@include media(">=md") {
-  @include font-size-base(18px);
 }
 
 @include media(">=sm", "<md") {
@@ -729,17 +735,17 @@ page-vowel-trainer {
 }
 
 .media-wrapper {
-  width: calc(75vh * 3 / 4);
-  height: calc(75vh * 3 / 4);
+  // width: calc(75vh * 3 / 4);
+  // height: calc(75vh * 3 / 4);
 
-  .vocal-tract-animation {
-    width: calc(65vh * 3 / 4);
-  }
+  // .vocal-tract-animation {
+  //   width: calc(65vh * 3 / 4);
+  // }
 
-  .media-video,
-  .media-image {
-    width: calc(65vh * 3 / 4);
-  }
+  // .media-video,
+  // .media-image {
+  //   width: calc(65vh * 3 / 4);
+  // }
 }
 
 .subtitle {

@@ -20,7 +20,7 @@
       <ion-col col-10 text-center>
         <div class="media-wrapper">
           <fancy-frame>
-            <div class="media media-image media-frame" style="margin: 0.5rem">
+            <div class="media-frame media-frame-keyword">
               <img
                 *ngIf="getKeywordImageUri(keyword)"
                 [src]="getKeywordImageUri(keyword)"
@@ -41,15 +41,15 @@
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
-      <ion-col text-center>
+      <ion-col col-10 text-center>
         <div class="media-wrapper">
-          <svg-trapezium>
-            <div class="media-frame">
+          <fancy-frame>
+            <div class="media-frame media-frame-vocal-tract-animation">
               <vocal-tract-animation
                 #vocalTractAnimation
               ></vocal-tract-animation>
             </div>
-          </svg-trapezium>
+          </fancy-frame>
         </div>
       </ion-col>
     </ion-row>
