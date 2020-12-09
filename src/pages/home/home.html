@@ -3,16 +3,16 @@
 <ion-content class="no-scroll">
   <ion-grid>
     <ion-row justify-content-center>
-      <ion-col col-10 col-lg-8 col-xl-6>
+      <ion-col col-10 col-lg-10 col-xl-10>
         <fancy-frame>
-          <div class="media media-image media-frame">
+          <div class="media-frame">
             <logo></logo>
           </div>
         </fancy-frame>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col text-center>
+    <ion-row justify-content-center>
+      <ion-col col-10 col-lg-8 col-xl-6 text-center>
         <div class="calvin-frame">
           <div
             class="avatar"
@@ -47,21 +47,17 @@
         >
           <span>Start</span>
         </button>
+        <button
+          ion-button
+          icon-only
+          *ngIf="remote"
+          class="exit-button"
+          style="position: absolute"
+          (click)="exitApplication()"
+        >
+          <ion-icon name="exit"></ion-icon>
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
-
-<ion-footer>
-  <ion-buttons end>
-    <button
-      *ngIf="remote"
-      ion-button
-      icon-only
-      class="exit-button"
-      (click)="exitApplication()"
-    >
-      <ion-icon name="exit"></ion-icon>
-    </button>
-  </ion-buttons>
-</ion-footer>
