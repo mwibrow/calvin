@@ -24,7 +24,7 @@ body,
 .app-root,
 .ion-page {
   background-color: transparent !important;
-  // color: color($md-palette, md-yellow);
+  color: color($md-palette, md-yellow);
 }
 
 html,
@@ -36,7 +36,6 @@ body,
 
 ion-header {
   height: 5rem;
-  background-color: red;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,13 +48,11 @@ ion-header {
 ion-content {
   top: 5rem !important;
   height: calc(100% - 5rem - 5rem) !important;
-  background-color: green;
 }
 
 ion-footer {
   bottom: 0 !important;
   height: 5rem !important;
-  background-color: blue;
 }
 
 ion-header,
@@ -64,7 +61,7 @@ ion-footer {
   width: 100vw;
   left: 0vw;
   box-sizing: border-box;
-  //background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 ion-header {

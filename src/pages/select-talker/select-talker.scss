@@ -1,33 +1,15 @@
 page-select-talker {
-  .toolbar-title {
-    font-weight: bold;
-    color: color($md-palette, md-white);
-  }
-  ion-avatar {
-    display: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: scale(0.875);
-    margin-bottom: 1rem;
-  }
-
   .select-talker-button {
     position: absolute;
     @include button-hover($keyword-button-bg, $keyword-button-fg);
-    margin-left: auto;
-    margin-right: auto;
     top: 100%;
-    transform: translateY(-33.3%);
-  }
-
-  ion-col {
-    border: 1px solid black;
+    left: 50%;
+    transform: translate(-50%, -33.3%);
   }
 
   .avatar {
     width: 100%;
-    padding-top: 100%;
+
     position: relative;
     display: flex;
     align-items: center;
@@ -39,7 +21,7 @@ page-select-talker {
 
     svg {
       position: absolute;
-      transform: translateY(12.5%) scale(1.333);
+      transform: translateY(15%) scale(1.333);
     }
     &.is-selected {
       background-color: color($md-palette, md-light-blue-100);
@@ -49,6 +31,11 @@ page-select-talker {
           transform: scale(1.5, 1.75);
         }
       }
+    }
+    &::after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
     }
   }
 }
