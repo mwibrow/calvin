@@ -34,8 +34,20 @@ export class AudioProvider {
   }
 
   startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
-    // @ts-ignore
-    return p5.prototype.userStartAudio(elements, callback);
+    return new Promise((resolve, reject) => {
+      // @ts-ignore
+      p5.prototype
+        // @ts-ignore
+        .userStartAudio(elements, callback)
+        .then(() => {
+          this.player.initialise();
+          this.recorder.initialise();
+          resolve();
+        })
+        .catch(() => {
+          reject();
+        });
+    });
   }
 }
 
@@ -72,22 +84,15 @@ class AudioEventHandler {
     return p5.prototype.getAudioContext();
   }
 
-  startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
-    // @ts-ignore
-    return p5.prototype.userStartAudio(elements, callback);
-  }
-
   resumeAudio(): void {
     const context: AudioContext = this.getContext();
     if (context.state !== "running") {
       context.resume();
     }
   }
-
 }
 
 export class AudioPlayer extends AudioEventHandler {
-
   private running: boolean;
   private initialised: boolean;
 
@@ -100,35 +105,6 @@ export class AudioPlayer extends AudioEventHandler {
   }
 
   initialise() {
-    return new Promise((resolve, reject) => {
-      if (this.initialised) {
-        resolve();
-      }
-      if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia({ audio: true, video: false })
-          .then((stream) => {
-            this.initialiseSuccess(stream);
-            resolve();
-          })
-          .catch((err) => {
-            this.initialised = false;
-            reject({
-              message: "Unable to initailise audio",
-              error: err,
-            });
-          });
-      } else {
-        this.initialised = false;
-        reject({
-          message: "Audio unsupported on this device",
-          error: null,
-        });
-      }
-    });
-  }
-
-  initialiseSuccess(_stream: MediaStream) {
     this.initialised = true;
     this.emit("init");
   }
@@ -192,7 +168,6 @@ export class AudioPlayer extends AudioEventHandler {
 }
 
 export class AudioRecorder extends AudioEventHandler {
-
   running: boolean;
   private timeout: any;
   sound: p5.SoundFile;
@@ -212,35 +187,6 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   initialise() {
-    return new Promise((resolve, reject) => {
-      if (this.initialised) {
-        resolve();
-      }
-      if (navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia({ audio: true, video: false })
-          .then((stream) => {
-            this.initialiseSuccess(stream);
-            resolve();
-          })
-          .catch((err) => {
-            this.initialised = false;
-            reject({
-              message: "Unable to initailise audio",
-              error: err,
-            });
-          });
-      } else {
-        this.initialised = false;
-        reject({
-          message: "Audio unsupported on this device",
-          error: null,
-        });
-      }
-    });
-  }
-
-  initialiseSuccess(_stream: MediaStream) {
     this.initialised = true;
     this.mic = new p5.AudioIn();
     this.mic.start();
@@ -266,7 +212,9 @@ export class AudioRecorder extends AudioEventHandler {
         this.emit("stop");
         resolve();
       });
-      this.timeout = setTimeout(() => { this.stop(); }, timeout * 1000);
+      this.timeout = setTimeout(() => {
+        this.stop();
+      }, timeout * 1000);
     });
   }
 
@@ -277,5 +225,4 @@ export class AudioRecorder extends AudioEventHandler {
     }
     this.recorder.stop();
   }
-
 }

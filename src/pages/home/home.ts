@@ -48,13 +48,9 @@ export class HomePage {
   }
 
   checkAudio() {
-    this.audio.recorder
-      .initialise()
-      // tslint:disable-next-line: no-empty
-      .then((stream) => {})
-      .catch((err) => {
-        this.audioAvailable = false;
-      });
+    this.audio.startAudio().catch(() => {
+      this.audioAvailable = false;
+    });
   }
 
   exitApplication() {
