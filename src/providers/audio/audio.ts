@@ -236,6 +236,7 @@ export class AudioRecorder extends AudioEventHandler {
 
   record(timeout?: number) {
     this.context.resume();
+    p5.getAudioContext();
     return new Promise((resolve, reject) => {
       this.running = true;
       this.recorder.record(this.sound, timeout, () => {
