@@ -20,7 +20,8 @@ export class AudioProvider {
   }
 
   getContext() {
-    return p5.getAudioContext();
+    // @ts-ignore
+    return p5.prototype.getAudioContext();
   }
 
   stop() {
@@ -33,7 +34,8 @@ export class AudioProvider {
   }
 
   startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
-    return p5.userStartAudio(elements, callback);
+    // @ts-ignore
+    return p5.prototype.userStartAudio(elements, callback);
   }
 }
 
@@ -66,11 +68,13 @@ class AudioEventHandler {
   }
 
   getContext(): AudioContext {
-    return p5.getAudioContext();
+    // @ts-ignore
+    return p5.prototype.getAudioContext();
   }
 
   startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
-    return p5.userStartAudio(elements, callback);
+    // @ts-ignore
+    return p5.prototype.userStartAudio(elements, callback);
   }
 
   resumeAudio(): void {
@@ -190,8 +194,7 @@ export class AudioPlayer extends AudioEventHandler {
 export class AudioRecorder extends AudioEventHandler {
 
   running: boolean;
-  timeout: any;
-
+  private timeout: any;
   sound: p5.SoundFile;
   mic: p5.AudioIn;
   recorder: p5.SoundRecorder;
@@ -252,22 +255,27 @@ export class AudioRecorder extends AudioEventHandler {
 
   record(timeout?: number) {
     this.resumeAudio();
-    p5.getAudioContext();
     return new Promise((resolve, reject) => {
       this.running = true;
       this.recorder.record(this.sound, timeout, () => {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+          this.timeout = null;
+        }
         this.running = false;
         this.emit("stop");
+        resolve();
       });
+      this.timeout = setTimeout(() => { this.stop(); }, timeout * 1000);
     });
   }
 
   stop() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+      this.timeout = null;
+    }
     this.recorder.stop();
   }
 
-  private stopped() {
-    this.emit("stop");
-    this.running = false;
-  }
 }
