@@ -134,7 +134,7 @@ export class AudioPlayer extends AudioEventHandler {
       }
       this.running = true;
       this.emit("start");
-      this.sound.play();
+      this.sound.playMode("restart");
       this.sound.onended(() => {
         this.running = false;
         this.emit("ended");
@@ -142,6 +142,7 @@ export class AudioPlayer extends AudioEventHandler {
           resolve();
         }
       });
+      this.sound.play();
     });
   }
 

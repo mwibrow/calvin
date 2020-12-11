@@ -90,9 +90,11 @@ export class KeywordComponent {
   playRecording() {
     if (this.recorder.sound) {
       this.canRecord = false;
-      this.player
-        .playSound(this.recorder.sound)
-        .then(() => (this.canRecord = true));
+      this.canPlay = false;
+      this.player.playSound(this.recorder.sound).then(() => {
+        this.canRecord = true;
+        this.canPlay = true;
+      });
     }
   }
 
