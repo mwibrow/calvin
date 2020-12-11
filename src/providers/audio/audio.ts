@@ -6,16 +6,12 @@ import "p5/lib/addons/p5.sound";
 
 @Injectable()
 export class AudioProvider {
-  public readonly context: AudioContext;
   public readonly player: AudioPlayer;
   public readonly recorder: AudioRecorder;
 
-  private static _context: AudioContext = new AudioContext();
-
   constructor() {
-    this.context = this.getContext();
-    this.player = new AudioPlayer(this.context);
-    this.recorder = new AudioRecorder(this.context);
+    this.player = new AudioPlayer();
+    this.recorder = new AudioRecorder();
   }
 
   initialise() {
@@ -24,7 +20,7 @@ export class AudioProvider {
   }
 
   getContext() {
-    return AudioProvider._context;
+    return p5.getAudioContext();
   }
 
   stop() {
@@ -34,6 +30,10 @@ export class AudioProvider {
     if (this.recorder.isRunning()) {
       this.recorder.stop();
     }
+  }
+
+  startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
+    return p5.userStartAudio(elements, callback);
   }
 }
 
@@ -64,18 +64,35 @@ class AudioEventHandler {
       delete this.handlers[event];
     }
   }
+
+  getContext(): AudioContext {
+    return p5.getAudioContext();
+  }
+
+  startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
+    return p5.userStartAudio(elements, callback);
+  }
+
+  resumeAudio(): void {
+    const context: AudioContext = this.getContext();
+    if (context.state !== "running") {
+      context.resume();
+    }
+  }
+
 }
 
 export class AudioPlayer extends AudioEventHandler {
-  private context: AudioContext;
+
   private running: boolean;
   private initialised: boolean;
 
   private sound: p5.SoundFile;
 
-  constructor(context: AudioContext) {
+  constructor() {
     super();
-    this.context = context;
+    this.running = false;
+    this.initialised = false;
   }
 
   initialise() {
@@ -127,7 +144,7 @@ export class AudioPlayer extends AudioEventHandler {
   }
 
   play() {
-    this.context.resume();
+    this.resumeAudio();
     return new Promise((resolve, reject) => {
       if (!this.sound) {
         if (resolve) {
@@ -171,7 +188,7 @@ export class AudioPlayer extends AudioEventHandler {
 }
 
 export class AudioRecorder extends AudioEventHandler {
-  private context: AudioContext;
+
   running: boolean;
   timeout: any;
 
@@ -181,10 +198,9 @@ export class AudioRecorder extends AudioEventHandler {
 
   private initialised: boolean;
 
-  constructor(context: AudioContext) {
+  constructor() {
     super();
     this.running = false;
-    this.context = context;
     this.timeout = null;
     this.initialised = false;
     this.mic = null;
@@ -235,7 +251,7 @@ export class AudioRecorder extends AudioEventHandler {
   }
 
   record(timeout?: number) {
-    this.context.resume();
+    this.resumeAudio();
     p5.getAudioContext();
     return new Promise((resolve, reject) => {
       this.running = true;
