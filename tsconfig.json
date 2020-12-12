@@ -17,7 +17,8 @@
     ]
   },
   "files": [
-    "typings/json.d.ts"
+    "typings/json.d.ts",
+    "typings/p5.d.ts"
   ],
   "include": [
     "src/**/*.ts"

@@ -76,13 +76,15 @@ ion-footer {
   height: 5rem !important;
 }
 
-ion-header,
-ion-content,
-ion-footer {
+.paper {
+  position: absolute;
+  top: 0;
   width: 100vw;
   left: 0vw;
   box-sizing: border-box;
-  background-color: transparent !important;
+  //background-color: transparent !important;
+  background-color: magenta !important;
+  height: 100vh;
 }
 
 ion-header {
@@ -97,36 +99,28 @@ ion-header {
 }
 
 @include media(">=sm", "<md") {
-  ion-header,
-  ion-content,
-  ion-footer {
+  .paper {
     width: 80vw;
     left: 10vw;
   }
 }
 
 @include media(">=md", "<lg") {
-  ion-header,
-  ion-content,
-  ion-footer {
+  .paper {
     width: 60vw;
     left: 20vw;
   }
 }
 
 @include media(">=lg", "<xl") {
-  ion-header,
-  ion-content,
-  ion-footer {
+  .paper {
     width: 50vw;
     left: 25vw;
   }
 }
 
 @include media(">=xl") {
-  ion-header,
-  ion-content,
-  ion-footer {
+  .paper {
     width: 40vw;
     left: 30vw;
   }

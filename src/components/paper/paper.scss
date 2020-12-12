@@ -1,0 +1,15 @@
+paper {
+  .paper-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent !important;
+    z-index: 0;
+  }
+  .paper {
+    padding: 0;
+    background-color: red !important;
+  }
+}

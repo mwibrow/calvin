@@ -1,63 +1,63 @@
-<background [color]="getBackgroundColor()" pattern="diamonds"></background>
-
-<ion-content class="no-scroll">
-  <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col col-10 col-lg-10 col-xl-10>
-        <fancy-frame>
-          <div class="media-frame">
-            <logo></logo>
+<paper pattern="diamonds">
+  <ion-content class="no-scroll">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col col-10 col-lg-10 col-xl-10>
+          <fancy-frame>
+            <div class="media-frame">
+              <logo></logo>
+            </div>
+          </fancy-frame>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col col-10 col-lg-8 col-xl-6 text-center>
+          <div class="calvin-frame">
+            <div
+              class="avatar"
+              [inlineSVG]="'assets/images/avatars/calvin.svg'"
+            ></div>
           </div>
-        </fancy-frame>
-      </ion-col>
-    </ion-row>
-    <ion-row justify-content-center>
-      <ion-col col-10 col-lg-8 col-xl-6 text-center>
-        <div class="calvin-frame">
-          <div
-            class="avatar"
-            [inlineSVG]="'assets/images/avatars/calvin.svg'"
-          ></div>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row justify-content-center>
-      <ion-col text-center class="subtitle">
-        <span>Computer Assisted Learning for Vowels interface</span>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="!audioAvailable" justify-content-center>
-      <ion-col col-auto>
-        <div class="error">
-          Cannot access audio for recording
-          <br />
-          Please check your audio settings
-          <br />
-          &nbsp;
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="audioAvailable" justify-content-center>
-      <ion-col col-auto>
-        <button
-          ion-button
-          (click)="onStart()"
-          class="example-word-button"
-          id="home-page-start-button"
-        >
-          <span>Start</span>
-        </button>
-        <button
-          ion-button
-          icon-only
-          *ngIf="remote"
-          class="exit-button"
-          style="position: absolute"
-          (click)="exitApplication()"
-        >
-          <ion-icon name="exit"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <ion-col text-center class="subtitle">
+          <span>Computer Assisted Learning for Vowels interface</span>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!audioAvailable" justify-content-center>
+        <ion-col col-auto>
+          <div class="error">
+            Cannot access audio for recording
+            <br />
+            Please check your audio settings
+            <br />
+            &nbsp;
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="audioAvailable" justify-content-center>
+        <ion-col col-auto>
+          <button
+            ion-button
+            (click)="onStart()"
+            class="example-word-button"
+            id="home-page-start-button"
+          >
+            <span>Start</span>
+          </button>
+          <button
+            ion-button
+            icon-only
+            *ngIf="remote"
+            class="exit-button"
+            style="position: absolute"
+            (click)="exitApplication()"
+          >
+            <ion-icon name="exit"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</paper>

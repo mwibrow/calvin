@@ -12,7 +12,7 @@ import {
 import { BackgroundComponent } from "./background/background";
 import { MarkComponent } from "./mark/mark";
 import { HelpComponent } from "./help/help";
-import { SvgShapeComponent } from "./svg-shape/svg-shape"; 
+import { SvgShapeComponent } from "./svg-shape/svg-shape";
 import { LogoComponent } from "./logo/logo";
 import { VideoPlayerComponent } from "./video-player/video-player";
 import { SvgTrapeziumComponent } from "./svg-trapezium/svg-trapezium";
@@ -20,6 +20,7 @@ import { VocalTractAnimationComponent } from "./vocal-tract-animation/vocal-trac
 import { AnimationDirective } from "./vocal-tract-animation/animation-directive";
 import { HeadingComponent } from "./heading/heading";
 import { FancyFrameComponent } from "./fancy-frame/fancy-frame";
+import { PaperComponent } from "./paper/paper";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { FancyFrameComponent } from "./fancy-frame/fancy-frame";
     MarkComponent,
     HeadingComponent,
     FancyFrameComponent,
+    PaperComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { FancyFrameComponent } from "./fancy-frame/fancy-frame";
     MarkComponent,
     HeadingComponent,
     FancyFrameComponent,
+    PaperComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
