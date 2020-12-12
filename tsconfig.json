@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2015"
+      "es2015" 
     ],
     "module": "es2015",
     "moduleResolution": "node",
@@ -17,8 +17,7 @@
     ]
   },
   "files": [
-    "typings/json.d.ts",
-    "typings/p5.d.ts"
+    "typings/json.d.ts"
   ],
   "include": [
     "src/**/*.ts"

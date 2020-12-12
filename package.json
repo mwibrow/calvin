@@ -84,7 +84,6 @@
     "@types/electron": "1.6.10",
     "@types/electron-builder": "^2.8.0",
     "@types/node": "8.0.51",
-    "@types/p5": "^0.9.1",
     "electron": "7.2.4",
     "electron-builder": "19.33.0",
     "fs-extra": "4.0.2",

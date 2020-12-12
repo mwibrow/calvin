@@ -20,8 +20,7 @@ export class AudioProvider {
   }
 
   getContext() {
-    // @ts-ignore
-    return p5.prototype.getAudioContext(); // @ts-ignore
+    return p5.prototype.getAudioContext();
   }
 
   stop() {
@@ -33,16 +32,13 @@ export class AudioProvider {
     }
   }
 
-  startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
+  startAudio(elements?: HTMLElement[], callback?: () => void) {
     return new Promise((resolve, reject) => {
-      // @ts-ignore
-      p5.prototype // @ts-ignore
-        // @ts-ignore
-        .userStartAudio(elements, callback) // @ts-ignore
+      p5.prototype
+        .userStartAudio(elements, callback)
         .then(() => {
           this.player.initialise();
           this.recorder.initialise();
-          resolve();
         })
         .catch(() => {
           reject();
@@ -80,8 +76,7 @@ class AudioEventHandler {
   }
 
   getContext(): AudioContext {
-    // @ts-ignore
-    return p5.prototype.getAudioContext(); // @ts-ignore
+    return p5.prototype.getAudioContext();
   }
 
   resumeAudio(): void {
