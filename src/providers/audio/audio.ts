@@ -21,7 +21,7 @@ export class AudioProvider {
 
   getContext() {
     // @ts-ignore
-    return p5.prototype.getAudioContext();
+    return p5.prototype.getAudioContext(); // @ts-ignore
   }
 
   stop() {
@@ -36,9 +36,9 @@ export class AudioProvider {
   startAudio(elements?: HTMLElement[], callback?: () => void): Promise<void> {
     return new Promise((resolve, reject) => {
       // @ts-ignore
-      p5.prototype
+      p5.prototype // @ts-ignore
         // @ts-ignore
-        .userStartAudio(elements, callback)
+        .userStartAudio(elements, callback) // @ts-ignore
         .then(() => {
           this.player.initialise();
           this.recorder.initialise();
@@ -81,7 +81,7 @@ class AudioEventHandler {
 
   getContext(): AudioContext {
     // @ts-ignore
-    return p5.prototype.getAudioContext();
+    return p5.prototype.getAudioContext(); // @ts-ignore
   }
 
   resumeAudio(): void {
@@ -128,7 +128,7 @@ export class AudioPlayer extends AudioEventHandler {
     return new Promise((resolve, reject) => {
       if (!this.sound) {
         if (resolve) {
-          resolve();
+          resolve(undefined);
         }
         return;
       }
@@ -139,7 +139,7 @@ export class AudioPlayer extends AudioEventHandler {
         this.running = false;
         this.emit("ended");
         if (resolve) {
-          resolve();
+          resolve(undefined);
         }
       });
       this.sound.play();
@@ -154,7 +154,7 @@ export class AudioPlayer extends AudioEventHandler {
   playUrl(url: string) {
     return new Promise((resolve, reject) => {
       this.loadUrl(url)
-        .then(() => this.play().then(() => resolve()))
+        .then(() => this.play().then(() => resolve(undefined)))
         .catch((e) => reject(e));
     });
   }
@@ -211,7 +211,7 @@ export class AudioRecorder extends AudioEventHandler {
         }
         this.running = false;
         this.emit("stop");
-        resolve();
+        resolve(undefined);
       });
       this.timeout = setTimeout(() => {
         this.stop();
