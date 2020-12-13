@@ -47,32 +47,12 @@ export class AudioProvider {
   }
 }
 
-class AudioEventHandler {
-  private handlers: any;
+class AudioDevice {
+  protected sound: p5.SoundFile;
+  protected running: boolean = false;
 
-  constructor() {
-    this.handlers = {};
-  }
-
-  on(event: string, handler?: any) {
-    let handle: string = handler.toString();
-    if (!this.handlers.hasOwnProperty(event)) {
-      this.handlers[event] = {};
-    }
-    this.handlers[event][handle] = handler;
-    return this;
-  }
-
-  emit(event: string, ...args: any[]) {
-    let handle: string;
-    if (this.handlers.hasOwnProperty(event)) {
-      for (handle in this.handlers[event]) {
-        if (this.handlers[event].hasOwnProperty(handle)) {
-          this.handlers[event][handle](this, ...args);
-        }
-      }
-      delete this.handlers[event];
-    }
+  isRunning(): boolean {
+    return this.running;
   }
 
   getContext(): AudioContext {
@@ -87,21 +67,13 @@ class AudioEventHandler {
   }
 }
 
-export class AudioPlayer extends AudioEventHandler {
-  private running: boolean;
-  private initialised: boolean;
-
-  private sound: p5.SoundFile;
-
+export class AudioPlayer extends AudioDevice {
   constructor() {
     super();
-    this.running = false;
-    this.initialised = false;
   }
 
-  initialise() {
-    this.initialised = true;
-    this.emit("init");
+  initialise(): void {
+    return null;
   }
 
   loadUrl(url: string) {
@@ -111,10 +83,6 @@ export class AudioPlayer extends AudioEventHandler {
   }
 
   playing() {
-    return this.running;
-  }
-
-  isRunning() {
     return this.running;
   }
 
@@ -128,11 +96,9 @@ export class AudioPlayer extends AudioEventHandler {
         return;
       }
       this.running = true;
-      this.emit("start");
       this.sound.playMode("restart");
       this.sound.onended(() => {
         this.running = false;
-        this.emit("ended");
         if (resolve) {
           resolve(undefined);
         }
@@ -158,37 +124,26 @@ export class AudioPlayer extends AudioEventHandler {
     if (this.sound && this.running) {
       this.sound.stop();
       this.running = false;
-      this.emit("stop");
     }
   }
 }
 
-export class AudioRecorder extends AudioEventHandler {
-  running: boolean;
+export class AudioRecorder extends AudioDevice {
   private timeout: any;
-  sound: p5.SoundFile;
-  mic: p5.AudioIn;
   recorder: p5.SoundRecorder;
-
-  private initialised: boolean;
 
   constructor() {
     super();
     this.running = false;
     this.timeout = null;
-    this.initialised = false;
-    this.mic = null;
     this.sound = new p5.SoundFile(undefined);
-    this.recorder = null;
   }
 
   initialise() {
-    this.initialised = true;
-    this.mic = new p5.AudioIn();
-    this.mic.start();
+    const mic = new p5.AudioIn();
+    mic.start();
     this.recorder = new p5.SoundRecorder();
-    this.recorder.setInput(this.mic);
-    this.emit("init");
+    this.recorder.setInput(mic);
   }
 
   isRunning() {
@@ -205,7 +160,6 @@ export class AudioRecorder extends AudioEventHandler {
           this.timeout = null;
         }
         this.running = false;
-        this.emit("stop");
         resolve(undefined);
       });
       this.timeout = setTimeout(() => {
