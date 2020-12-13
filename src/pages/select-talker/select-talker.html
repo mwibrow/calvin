@@ -1,35 +1,32 @@
-<background
-  [color]="getBackgroundColor()"
-  pattern="vertical-lines"
-></background>
+<paper pattern="vertical-lines">
+  <ion-header transparent no-border>
+    <heading> Choose a speaker </heading>
+  </ion-header>
 
-<ion-header transparent no-border>
-  <heading> Choose a speaker </heading>
-</ion-header>
+  <ion-content class="no-scroll">
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col col-5 *ngFor="let talker of getTalkers()">
+          <div
+            class="avatar {{isTalker(talker) ? 'is-selected' : ''}}"
+            [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"
+          ></div>
 
-<ion-content class="no-scroll">
-  <ion-grid>
-    <ion-row justify-content-center>
-      <ion-col col-5 *ngFor="let talker of getTalkers()">
-        <div
-          class="avatar {{isTalker(talker) ? 'is-selected' : ''}}"
-          [inlineSVG]="'assets/images/avatars/' + talker.avatar + '.svg'"
-        ></div>
+          <button class="select-talker-button" (click)="setTalker(talker)">
+            <span>{{talker.displayName}}</span>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 
-        <button class="select-talker-button" (click)="setTalker(talker)">
-          <span>{{talker.displayName}}</span>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
-
-<ion-footer>
-  <button
-    ion-button
-    class="navigate-button navigate-button-back float-left"
-    (click)="goBack()"
-  >
-    <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
-  </button>
-</ion-footer>
+  <ion-footer>
+    <button
+      ion-button
+      class="navigate-button navigate-button-back float-left"
+      (click)="goBack()"
+    >
+      <svg-shape class="navigation-arrow" shape="arrow"></svg-shape>
+    </button>
+  </ion-footer>
+</paper>

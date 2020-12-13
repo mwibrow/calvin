@@ -32,29 +32,35 @@ body,
   html,
   body,
   .app-root,
-  .ion-page {
+  .ion-page,
+  .paper {
     font-size: $size !important;
   }
 }
 
-@include font-size-base(14px);
+@include font-size-base(2vh);
 
-@include media(">=sm") {
-  @include font-size-base(16px);
+.paper {
+  box-sizing: border-box;
+  //background-color: transparent !important;
+  height: 100vh;
+  width: 61.8vh;
 }
 
-@include media(">=md") {
-  @include font-size-base(17px);
+@media (max-aspect-ratio: 618/1000) {
+  .paper {
+    width: 100vw;
+    height: 161.8vw;
+    left: 0;
+  }
+  @include font-size-base(2vw);
 }
 
-@include media(">=lg") {
-  @include font-size-base(18px);
+ion-header,
+ion-content,
+ion-footer {
+  background-color: transparent !important;
 }
-
-@include media(">=xl") {
-  @include font-size-base(18px);
-}
-
 ion-header {
   height: 5rem;
   display: flex;
@@ -76,59 +82,6 @@ ion-footer {
   height: 5rem !important;
 }
 
-.paper {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  left: 0vw;
-  box-sizing: border-box;
-  //background-color: transparent !important;
-  background-color: magenta !important;
-  height: 100vh;
-}
-
-ion-header {
-  padding-top: 0.25rem;
-  ion-title {
-    width: 95% !important;
-    margin-left: 2.5% !important;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
-    height: 100%;
-  }
-}
-
-@include media(">=sm", "<md") {
-  .paper {
-    width: 80vw;
-    left: 10vw;
-  }
-}
-
-@include media(">=md", "<lg") {
-  .paper {
-    width: 60vw;
-    left: 20vw;
-  }
-}
-
-@include media(">=lg", "<xl") {
-  .paper {
-    width: 50vw;
-    left: 25vw;
-  }
-}
-
-@include media(">=xl") {
-  .paper {
-    width: 40vw;
-    left: 30vw;
-  }
-}
-
-// .content {
-//     background-color: transparent !important;
-// }
 .ion-page {
   // background-image: url('/assets/images/drawing.svg');
   background-repeat: repeat;

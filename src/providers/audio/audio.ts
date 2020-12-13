@@ -48,8 +48,8 @@ export class AudioProvider {
 }
 
 class AudioDevice {
-  protected sound: p5.SoundFile;
-  protected running: boolean = false;
+  public sound: p5.SoundFile;
+  public running: boolean = false;
 
   isRunning(): boolean {
     return this.running;
