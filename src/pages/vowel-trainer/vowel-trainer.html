@@ -8,8 +8,8 @@
 
   <ion-content class="no-scroll">
     <ion-grid [hidden]="!isViewState(ViewState.Audio)" class="centered">
-      <ion-row text-center>
-        <ion-col>
+      <ion-row justfy-content-center>
+        <ion-col text-center>
           <keyword keyword-controls [keyword-uri]="getKeywordUri()" #keyword>
             <span [innerHtml]="getKeyword()"></span>
           </keyword>

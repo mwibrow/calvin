@@ -132,8 +132,12 @@ page-select-keyword-group {
   }
 
   .keyword-group-image {
-    width: 6rem;
-    height: 6rem;
+    width: 100%;
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
     position: relative;
     display: flex;
     align-items: center;
@@ -147,5 +151,9 @@ page-select-keyword-group {
       z-index: 2;
       font-size: 2rem;
     }
+  }
+
+  ion-row.row {
+    width: 100% !important;
   }
 }

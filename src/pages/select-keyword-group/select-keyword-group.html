@@ -5,11 +5,12 @@
 
   <ion-content class="no-scroll">
     <ion-grid class="centered">
-      <ion-row justify-content-center align-items-center>
+      <ion-row justify-content-center>
         <ion-col
           col-5
           col-sm-4
           *ngFor="let keywordGroup of getKeywordGroupList(); let i = index"
+          class="xcol"
         >
           <fancy-frame>
             <div
