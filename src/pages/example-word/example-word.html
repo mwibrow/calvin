@@ -5,7 +5,7 @@
 
   <ion-content class="no-scroll">
     <ion-grid class="centered">
-      <ion-row justify-content-center>
+      <ion-row text-center>
         <ion-col>
           <keyword keyword-controls [keyword-uri]="getAudioUri()" #keyword>
             <span [innerHtml]="getExampleWord()"></span>
@@ -13,7 +13,7 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="isViewState(ViewState.Image)" justify-content-center>
-        <ion-col col-10>
+        <ion-col col-10 col-sm-12 text-center>
           <div class="media-wrapper media-wrapper-example">
             <fancy-frame>
               <div class="media-frame media-frame-image">
@@ -38,7 +38,7 @@
         </ion-col>
       </ion-row>
       <ion-row *ngIf="isViewState(ViewState.Video)" justify-content-center>
-        <ion-col col-10>
+        <ion-col col-10 col-sm-12 text-center>
           <div class="media-wrapper media-wrapper-example">
             <fancy-frame>
               <div class="media-frame media-frame-video">
@@ -65,7 +65,7 @@
     </ion-grid>
   </ion-content>
 
-  <ion-footer>
+  <ion-footer class="centereds">
     <button
       ion-button
       class="navigate-button navigate-button-back float-left"

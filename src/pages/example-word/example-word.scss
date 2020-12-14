@@ -11,6 +11,21 @@ page-example-word {
     transform: translate(12.5%, 12.5%);
   }
 
+  .no-scroll {
+    div.scroll-content,
+    div.fixed-content {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+
+  // .centered {
+  //   background-color: magenta;
+  // }
   .float-button {
     width: 15vh;
     height: 15vh;
@@ -38,16 +53,5 @@ page-example-word {
 
   .media-frame-image {
     background-color: color($md-palette, md-black);
-  }
-
-  .centered {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start !important;
-    align-items: center !important;
-
-    @include media("<sm") {
-      height: 100%;
-    }
   }
 }
