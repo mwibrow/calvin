@@ -87,7 +87,6 @@ ion-row.row {
 }
 
 .ion-page {
-  // background-image: url('/assets/images/drawing.svg');
   background-repeat: repeat;
 }
 .no-scroll,
@@ -97,24 +96,7 @@ ion-row.row {
   align-items: center;
   justify-content: center;
   overflow: visible !important;
-  //overflow-y: auto !important;
-
-  // ion-grid, ion-row, ion-col {
-  //     padding: 0 !important;
-  //     margin:  0 !important;
-  // }
 }
-
-// ion-footer, .footer, .footer-md {
-//   background-color: transparent !important;
-// }
-
-// ion-content {
-//     background: color($md-palette, md-yellow) !important;
-// // }
-// ion-footer {
-//     background-color: color($md-palette, md-light-green) !important;
-// }
 
 .toolbar-background {
   background-color: transparent !important;
@@ -190,19 +172,6 @@ button {
   border-right: $width solid color($md-palette, md-light-green);
   border-bottom: $width solid color($md-palette, md-light-blue);
 }
-
-// .md-button {
-//     padding: 0 6px 0 6px;
-//     margin: 6px 8px 6px 8px;
-//     min-width: 88px;
-//     border-radius: 3px;
-//     font-size: 14px;
-//     text-align: center;
-//     text-transform: uppercase;
-//     text-decoration:none;
-//     border: none;
-//     outline: none;
-//   }
 
 .button-primary {
   background-color: color($colors, primary);
