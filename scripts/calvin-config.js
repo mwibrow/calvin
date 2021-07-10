@@ -17,6 +17,7 @@ function main() {
   try {
     config = yaml.readSync(configFile);
   } catch (err) {
+    console.log(err)
     console.log(`Invalid config file: '${configFile}'`);
     return;
   }
@@ -39,7 +40,7 @@ function main() {
       );
       if (!fs.existsSync(filePath)) {
         throw new Error(
-          `Missing file: no audio file '${word}.wav' for talker '${talker}`
+          `Missing file: no audio file '${word}.wav' for talker '${talker}': ${filePath}`
         );
       }
       bar.tick();
@@ -156,7 +157,7 @@ function main() {
   items = config.vowels.items;
   bar = new ProgressBar('Copying vowels         [:bar]', {
     width: 20,
-    total: items.length
+    total: talkers.length * items.length
   });
   talkers.map(talker => {
     fs.ensureDirSync(path.join(assetsDir, 'audio', 'vowels', talker));

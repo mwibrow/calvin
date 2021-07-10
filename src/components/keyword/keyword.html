@@ -1,8 +1,9 @@
-
 <ion-grid>
   <ion-row justify-content-center align-items-center>
     <ion-col col-auto>
-      <button [class]="['keyword-control-button', controls ? '' : 'invisible', canRecord ? 'fade-in' : 'semi-disabled'].join(' ')" ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
+      <button
+        [class]="['keyword-control-button', controls ? '' : 'invisible', canRecord ? 'fade-in' : 'semi-disabled'].join(' ')"
+        ion-button icon-only round [disabled]="!canRecord" (click)="toggleRecording()">
         <ion-icon *ngIf="!recording" name='mic'>
         </ion-icon>
         <ion-icon *ngIf="recording" name='square'>
@@ -10,12 +11,15 @@
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button ion-button full strong [class]="['keyword-button', selected ? 'selected' : ''].join(' ')" (click)="playKeyword()">
+      <button ion-button full strong [class]="['keyword-button', selected ? 'selected' : ''].join(' ')"
+        [disabled]="!canPlayKeyword" (click)="playKeyword()">
         <ng-content></ng-content>
       </button>
     </ion-col>
     <ion-col col-auto>
-      <button [class]="['keyword-control-button', controls ? '' : 'invisible', canPlay ? 'fade-in' : 'semi-disabled'].join(' ')" ion-button icon-only round  [disabled]="!canPlay" (click)="playRecording()">
+      <button
+        [class]="['keyword-control-button', controls ? '' : 'invisible', canPlay ? 'fade-in' : 'semi-disabled'].join(' ')"
+        ion-button icon-only round [disabled]="!canPlay" (click)="playRecording()">
         <ion-icon name='play'>
         </ion-icon>
       </button>

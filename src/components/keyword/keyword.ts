@@ -81,7 +81,10 @@ export class KeywordComponent {
         }
         this.selected = !this.selected;
       }
-      this.player.playUrl(this.uri).catch((err) => {
+      this.canPlayKeyword = false;
+      this.player.playUrl(this.uri).then(() => {
+        this.canPlayKeyword = true;
+      }).catch((err) => {
         global.console.error("AN ERROR OCCURED");
       });
     }
@@ -126,7 +129,7 @@ export class KeywordComponent {
   selector: "[keyword-controls]", // Attribute selector
 })
 export class KeywordControlsDirective {
-  constructor(public keywordComponent: KeywordComponent) {}
+  constructor(public keywordComponent: KeywordComponent) { }
   ngOnInit() {
     this.keywordComponent.setControls(true);
   }
@@ -137,7 +140,7 @@ export class KeywordControlsDirective {
 })
 export class KeywordUriDirective {
   @Input("keyword-uri") keywordUri: string;
-  constructor(public keywordComponent: KeywordComponent) {}
+  constructor(public keywordComponent: KeywordComponent) { }
 
   ngOnInit() {
     this.keywordComponent.setUri(this.keywordUri);

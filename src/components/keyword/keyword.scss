@@ -9,6 +9,11 @@ keyword {
         @include hover-box-shadow($keyword-button-bg);
     }
 
+    .keyword-button:disabled {
+      display: inline-block;
+      opacity: 0.875 !important;
+    }
+
     .keyword-control-button {
         border-radius: 2px !important;
         @include button-hover($keyword-control-button-bg, $keyword-control-button-fg);

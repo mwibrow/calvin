@@ -1,10 +1,18 @@
 talkers:
-  calvin:
-    display: Calvin
-    avatar: calvin
+  emma:
+    display: Emma
+    avatar: emma
+  kerry:
+    display: Kerry
+    avatar: kerry
+  mark:
+    display: Mark
+    avatar: mark
 words:
   talkers:
-    - calvin
+    - emma
+    - kerry
+    - mark
   items:
     - ball
     - bears
@@ -62,7 +70,9 @@ words:
     - wood
 keywords:
   talkers:
-    - calvin
+    - emma
+    - kerry
+    - mark
   items:
     - card
     - coin
@@ -84,7 +94,9 @@ keywords:
     - wood
 vowels:
   talkers:
-    - calvin
+    - mark
+    - emma
+    - kerry
   items:
     - heed
     - hid
