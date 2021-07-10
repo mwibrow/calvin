@@ -68,8 +68,11 @@ class AudioDevice {
 }
 
 export class AudioPlayer extends AudioDevice {
+
+  private sounds;
   constructor() {
     super();
+    this.sounds = {};
   }
 
   initialise(): void {
@@ -78,7 +81,13 @@ export class AudioPlayer extends AudioDevice {
 
   loadUrl(url: string) {
     return new Promise((resolve, reject) => {
-      this.sound = new p5.SoundFile(url, resolve, reject);
+      if (this.sounds[url]) {
+        this.sound = this.sounds[url];
+        resolve(undefined);
+      } else {
+        this.sound = new p5.SoundFile(url, resolve, reject);
+        this.sounds[url] = this.sound;
+      }
     });
   }
 
