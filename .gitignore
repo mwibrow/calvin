@@ -37,3 +37,4 @@ UserInterfaceState.xcuserstate
 
 src/assets/**/
 media/**/
+src/providers/app-data/config.json

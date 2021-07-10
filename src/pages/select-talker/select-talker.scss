@@ -1,4 +1,12 @@
 page-select-talker {
+  ion-grid {
+    margin-top: -2.5rem !important;
+  }
+  ion-col {
+    margin-top: 2.5rem !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
   .select-talker-button {
     position: absolute;
     @include button-hover($keyword-button-bg, $keyword-button-fg);

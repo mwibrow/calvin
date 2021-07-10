@@ -129,6 +129,7 @@ export class VowelTrainerPage {
   // ionViewDidLoad() {}
 
   goBack() {
+
     this.navCtrl.pop();
   }
 
@@ -155,7 +156,7 @@ export class VowelTrainerPage {
         this.showExampleWord(index);
       })
       // tslint:disable-next-line: no-empty
-      .catch(() => {});
+      .catch(() => { });
   }
 
   getKeywordUri() {
