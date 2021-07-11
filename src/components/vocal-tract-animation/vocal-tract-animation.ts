@@ -45,6 +45,7 @@ export class VocalTractAnimationComponent {
   lipLowerRotationCenter: Geometry.Point;
   jawRotationCenter: Geometry.Point;
   velumRotationCenter: Geometry.Point;
+  animating: boolean;
 
   constructor(
     public elementRef: ElementRef,
@@ -63,6 +64,7 @@ export class VocalTractAnimationComponent {
     this.speed = 2;
     this.player = audio.player;
     this.player.initialise();
+    this.animating = false;
   }
 
   setAnimation(animation: string, uri?: string) {
@@ -255,6 +257,10 @@ export class VocalTractAnimationComponent {
   }
 
   playAnimation() {
+    if (this.animating) {
+      return;
+    }
+    this.animating = true;
     this.frame = 0;
     this.animationRange.setValue(0);
     this.rangeChange({ value: this.animationRange.value });
@@ -262,7 +268,9 @@ export class VocalTractAnimationComponent {
       this._playAnimation(ev)
     );
     if (this.audioUri) {
-      this.player.playUrl(this.audioUri);
+      this.player.playUrl(this.audioUri).then(() => {
+        this.animating = false;
+      });
     }
   }
 

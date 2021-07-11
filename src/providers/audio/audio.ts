@@ -96,6 +96,14 @@ export class AudioPlayer extends AudioDevice {
   }
 
   play() {
+    if (this.running) {
+      return new Promise((resolve) => {
+        if (resolve) {
+          resolve(undefined);
+        }
+        return;
+      })
+    }
     this.resumeAudio();
     return new Promise((resolve, reject) => {
       if (!this.sound) {
@@ -105,7 +113,7 @@ export class AudioPlayer extends AudioDevice {
         return;
       }
       this.running = true;
-      this.sound.playMode("restart");
+      this.sound.playMode("untilDone");
       this.sound.onended(() => {
         this.running = false;
         if (resolve) {

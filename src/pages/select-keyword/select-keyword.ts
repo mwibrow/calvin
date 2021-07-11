@@ -75,13 +75,14 @@ export class SelectKeywordPage {
   setKeyword(keyword: string) {
     this.selectedKeyword = keyword;
     if (this.player.playing()) {
-      this.player.stop();
+      return;
     }
     this.appData.keywordIndex = this.appData.keywordList.indexOf(keyword);
     this.navCtrl.push(VowelTrainerPage);
   }
 
   playKeyword(keyword: string) {
+
     this.selectedKeyword = keyword;
     let uri = this.appData.getAudioUri(
       this.appData.talker.id,
@@ -96,7 +97,7 @@ export class SelectKeywordPage {
         }
       })
       // tslint:disable-next-line: no-empty
-      .catch(() => {});
+      .catch(() => { });
   }
 
   goBack() {

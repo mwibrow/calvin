@@ -63,6 +63,7 @@ page-select-keyword-group {
 
   .keyword-group-button {
     border-radius: 3px;
+    cursor: default;
   }
 
   .flex {
@@ -151,6 +152,7 @@ page-select-keyword-group {
       z-index: 2;
       font-size: 2rem;
     }
+    cursor: pointer;
   }
 
   ion-row.row {
