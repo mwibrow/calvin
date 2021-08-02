@@ -44,3 +44,7 @@ enabling its use on Linux, Windows and MacOS.
 
 *CALVin* requires a substantial amount of audio, video
 and image data which is _not_ currently available via this repository.
+
+A demo of *CALVin* using syntheiszed speech is can be viewed in a browser by clicking 
+[this link](https://mwibrow.github.io/calvin-demo/). Note that, full use of the demo
+requies access to the computer's microphone.
