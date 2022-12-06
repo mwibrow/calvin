@@ -80,7 +80,7 @@
   },
   "devDependencies": {
     "7zip-bin": "^2.3.4",
-    "@ionic/app-scripts": "3.0.0",
+    "@ionic/app-scripts": "3.2.4",
     "@types/electron": "1.6.10",
     "@types/electron-builder": "^2.8.0",
     "@types/node": "8.0.51",
